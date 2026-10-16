@@ -1,3 +1,4 @@
+import { readFileSync } from "node:fs";
 import { describe, it, expect, vi, afterEach } from "vitest";
 import {
   candidatesFor,
@@ -11,6 +12,12 @@ import { lookup, type Lexeme } from "./data";
 import { tr, supported } from "./i18n";
 import fixture from "./fixtures/high-regression.json";
 
+const fullSemantics = JSON.parse(
+  readFileSync(
+    new URL("./fixtures/general-regression.json", import.meta.url),
+    "utf8",
+  ),
+).semantics;
 const entries = fixture.entries as unknown as Record<string, Lexeme>;
 afterEach(() => vi.unstubAllGlobals());
 describe("High: senses and learner contrasts with observed corpus counts", () => {
@@ -19,9 +26,10 @@ describe("High: senses and learner contrasts with observed corpus counts", () =>
     expect(data.a).toHaveLength(7);
     const height = candidatesFor(data, "amod", "forward", "high.a.02");
     const pitch = candidatesFor(data, "amod", "forward", "high.a.04");
-    expect(height.some((c) => c.word === "lofty")).toBe(true);
+    expect(height).toEqual([]); // similar_to is no longer treated as synonymy
     expect(height.some((c) => c.word === "shrill")).toBe(false);
-    expect(pitch.some((c) => c.word === "shrill")).toBe(true);
+    expect(pitch.some((c) => c.word === "high-pitched")).toBe(true);
+    expect(pitch.some((c) => c.word === "shrill")).toBe(false);
     expect(pitch.some((c) => c.word === "lofty")).toBe(false);
   });
   it("does not call shared-context neighbours lexical synonyms or include direct antonyms", () => {
@@ -30,7 +38,8 @@ describe("High: senses and learner contrasts with observed corpus counts", () =>
       "amod",
       "forward",
     );
-    expect(all.find((c) => c.word === "average")?.kind).toBe("context");
+    expect(all.some((c) => c.word === "average")).toBe(false);
+    expect(all.some((c) => c.word === "graduate")).toBe(false);
     expect(all.some((c) => c.word === "low")).toBe(false);
   });
   it("reproduces the measured differences without declaring observed variants wrong", () => {
@@ -77,7 +86,7 @@ describe("General comparisons and evidence safety", () => {
       "fetch",
       vi.fn(async () => ({
         ok: true,
-        json: async () => ({ words: { price: fixture.nounSemantic } }),
+        json: async () => ({ words: { price: fullSemantics.price } }),
       })),
     );
     const words = await comparisonGroup("price", "high", "amod", "reverse");
@@ -128,7 +137,7 @@ describe("General comparisons and evidence safety", () => {
                 beautiful: { amod: [100, [["day", 10, 9, 100]]] },
                 lovely: { amod: [50, []] },
               }
-            : {},
+            : { words: {} },
       })),
     );
     expect(await lookup("beautiful day")).toMatchObject({
@@ -161,7 +170,7 @@ describe("General comparisons and evidence safety", () => {
       vi.fn(async (url: string) => ({
         ok: true,
         json: async () =>
-          url.includes("/semantics/")
+          url.includes("/semantics/") || url.includes("/synonyms/")
             ? { words: { begin: { pos_counts: { VERB: 20000 } } } }
             : url.includes("/lexicon/")
               ? {
@@ -170,7 +179,7 @@ describe("General comparisons and evidence safety", () => {
                     nsubj: [10000, [["experiment", 13, 11, 300]]],
                   },
                 }
-              : {},
+              : { words: {} },
       })),
     );
     const found = await lookup("begin an experiment");

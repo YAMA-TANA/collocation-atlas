@@ -53,7 +53,8 @@ export function SenseChoices({
       aria-label={tr(lang, "meaningComparisons")}
     >
       <h3>{tr(lang, "meaningComparisons")}</h3>
-      <p>{tr(lang, "meaningChoiceHelp")}</p>
+      <p>{tr(lang, "strictSynonymsHelp")}</p>
+      <p>{tr(lang, "senseCountsHelp")}</p>
       <div className="meaning-grid">
         {senses.slice(0, 4).map((s) => (
           <button
@@ -75,9 +76,20 @@ export function SenseChoices({
                 .join(" / ")}
             </strong>
             <span>{s.definition}</span>
+            <small>{s.source ?? "WordNet 3.0"}</small>
           </button>
         ))}
       </div>
+      <small className="lexical-attribution">
+        Wiktionary contributors / Kaikki.org · CC BY-SA 4.0 · WordNet 3.0 ·{" "}
+        <a
+          href="/data/synonyms/ATTRIBUTION.txt"
+          target="_blank"
+          rel="noreferrer"
+        >
+          {tr(lang, "license")}
+        </a>
+      </small>
     </section>
   );
 }

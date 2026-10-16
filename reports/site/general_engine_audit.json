@@ -1,5 +1,29 @@
 {
-  "schema": 2,
+  "schema": 3,
+  "engine": "source-constrained-synonym-groups",
+  "quality": {
+    "target_cases": 19,
+    "recovered": 17,
+    "known_source_gaps": [
+      {
+        "word": "strong",
+        "collocate": "rain",
+        "expected": [
+          "heavy"
+        ]
+      },
+      {
+        "word": "high",
+        "collocate": "possibility",
+        "expected": [
+          "strong",
+          "real"
+        ]
+      }
+    ],
+    "inference_failures_with_source_support": [],
+    "interpretation": "Learner-target retrieval coverage, not native-naturalness accuracy. Missing source edges are retained as failures; no related-word links are invented to satisfy these targets."
+  },
   "corpus_words": 102072709,
   "query_settings": 141,
   "settings_with_comparisons": 141,
@@ -8,364 +32,356 @@
       "word": "high",
       "relation": "amod",
       "direction": "forward",
-      "selected_sense": "high.a.01",
-      "available_sense_groups": 7,
+      "selected_sense": "wikt:5bedcbd5ffe2f0240e69:reverse:tall",
+      "available_sense_groups": 43,
       "comparison": [
         "high",
-        "graduate",
-        "postgraduate"
+        "lofty",
+        "tall",
+        "elevated",
+        "exalted"
       ],
-      "lexical_candidates": 81
+      "lexical_candidates": 108
     },
     {
       "word": "low",
       "relation": "amod",
       "direction": "forward",
-      "selected_sense": "low.a.01",
-      "available_sense_groups": 10,
+      "selected_sense": "wikt:en-low-en-adj-i2GoPiq1",
+      "available_sense_groups": 164,
       "comparison": [
         "low",
-        "reduced"
+        "reduced",
+        "modest",
+        "small",
+        "little",
+        "slight"
       ],
-      "lexical_candidates": 81
+      "lexical_candidates": 614
     },
     {
       "word": "strong",
       "relation": "amod",
       "direction": "forward",
-      "selected_sense": "strong.a.01",
-      "available_sense_groups": 10,
+      "selected_sense": "wikt:en-stiff-en-adj-ySCORXOg:reverse:stiff",
+      "available_sense_groups": 23,
       "comparison": [
         "strong",
         "powerful",
-        "severe",
-        "stiff",
-        "virile",
-        "brawny"
+        "stiff"
       ],
-      "lexical_candidates": 109
+      "lexical_candidates": 45
     },
     {
       "word": "weak",
       "relation": "amod",
       "direction": "forward",
-      "selected_sense": "weak.a.01",
-      "available_sense_groups": 12,
+      "selected_sense": "wikt:en-low-en-adj-cx-R927J:reverse:low",
+      "available_sense_groups": 48,
       "comparison": [
         "weak",
         "weakened",
         "vulnerable",
-        "flimsy",
         "tender",
-        "anemic"
+        "flimsy",
+        "faint"
       ],
-      "lexical_candidates": 98
+      "lexical_candidates": 373
     },
     {
       "word": "big",
       "relation": "amod",
       "direction": "forward",
-      "selected_sense": "large.a.01",
-      "available_sense_groups": 13,
+      "selected_sense": "wikt:en-big-en-adj-hPuQw5No",
+      "available_sense_groups": 48,
       "comparison": [
         "big",
         "large",
         "huge",
         "great",
         "enormous",
-        "macro"
+        "giant"
       ],
-      "lexical_candidates": 185
+      "lexical_candidates": 192
     },
     {
       "word": "small",
       "relation": "amod",
       "direction": "forward",
-      "selected_sense": "small.a.01",
-      "available_sense_groups": 10,
+      "selected_sense": "wikt:en-small-en-adj-gzBYf9nZ",
+      "available_sense_groups": 37,
       "comparison": [
         "small",
+        "little",
         "tiny",
-        "diminutive",
-        "slender",
-        "petite",
-        "undersized"
+        "microscopic",
+        "minuscule",
+        "minute"
       ],
-      "lexical_candidates": 93
+      "lexical_candidates": 79
     },
     {
       "word": "large",
       "relation": "amod",
       "direction": "forward",
-      "selected_sense": "large.a.01",
-      "available_sense_groups": 7,
+      "selected_sense": "wikt:en-big-en-adj-hPuQw5No:reverse:big",
+      "available_sense_groups": 12,
       "comparison": [
         "large",
         "big",
         "huge",
         "vast",
-        "sizable",
-        "enormous"
+        "enormous",
+        "sizeable"
       ],
-      "lexical_candidates": 119
+      "lexical_candidates": 88
     },
     {
       "word": "little",
       "relation": "amod",
       "direction": "forward",
-      "selected_sense": "small.a.01",
-      "available_sense_groups": 8,
+      "selected_sense": "wikt:en-small-en-adj-gzBYf9nZ:reverse:small",
+      "available_sense_groups": 32,
       "comparison": [
         "little",
+        "small",
         "tiny",
-        "slim",
-        "petite",
-        "undersized",
-        "smallish"
+        "microscopic",
+        "minuscule",
+        "minute"
       ],
-      "lexical_candidates": 99
+      "lexical_candidates": 73
     },
     {
       "word": "beautiful",
       "relation": "amod",
       "direction": "forward",
-      "selected_sense": "beautiful.a.01",
-      "available_sense_groups": 2,
+      "selected_sense": "wikt:67ac9f628aee1dfd2a9a",
+      "available_sense_groups": 22,
       "comparison": [
         "beautiful",
         "lovely",
         "pretty",
         "gorgeous",
-        "stunning",
-        "scenic"
+        "attractive",
+        "handsome"
       ],
-      "lexical_candidates": 25
+      "lexical_candidates": 98
     },
     {
       "word": "ugly",
       "relation": "amod",
       "direction": "forward",
-      "selected_sense": "ugly.a.01",
-      "available_sense_groups": 4,
+      "selected_sense": "wikt:en-ugly-en-adj-ncFje5-i",
+      "available_sense_groups": 34,
       "comparison": [
         "ugly",
-        "monstrous",
-        "scrofulous",
-        "unlovely",
+        "hideous",
+        "repulsive",
+        "unattractive",
+        "homely",
         "unsightly"
       ],
-      "lexical_candidates": 111
+      "lexical_candidates": 301
     },
     {
       "word": "fast",
       "relation": "amod",
       "direction": "forward",
-      "selected_sense": "fast.a.01",
-      "available_sense_groups": 9,
+      "selected_sense": "wikt:en-fast-en-adj-A7XeIcY4",
+      "available_sense_groups": 26,
       "comparison": [
         "fast",
         "quick",
         "rapid",
-        "express",
         "swift",
-        "accelerated"
+        "speedy",
+        "easy"
       ],
-      "lexical_candidates": 74
+      "lexical_candidates": 61
     },
     {
       "word": "slow",
       "relation": "amod",
       "direction": "forward",
-      "selected_sense": "slow.a.01",
-      "available_sense_groups": 5,
+      "selected_sense": "wn:dull.s.05",
+      "available_sense_groups": 59,
       "comparison": [
         "slow",
         "sluggish",
-        "gradual",
-        "sulky",
-        "dilatory",
-        "pokey"
+        "dull"
       ],
-      "lexical_candidates": 44
+      "lexical_candidates": 244
     },
     {
       "word": "quick",
       "relation": "amod",
       "direction": "forward",
-      "selected_sense": "quick.s.01",
-      "available_sense_groups": 6,
+      "selected_sense": "wikt:en-fast-en-adj-vEO8Hjch:reverse:fast",
+      "available_sense_groups": 44,
       "comparison": [
         "quick",
         "speedy",
         "fast",
-        "rapid",
-        "swift",
-        "immediate"
+        "light"
       ],
-      "lexical_candidates": 53
+      "lexical_candidates": 143
     },
     {
       "word": "rapid",
       "relation": "amod",
       "direction": "forward",
-      "selected_sense": "rapid.s.01",
-      "available_sense_groups": 2,
+      "selected_sense": "wikt:en-acute-en-adj-OvD4yhw-:reverse:acute",
+      "available_sense_groups": 9,
       "comparison": [
         "rapid",
         "fast",
-        "quick",
-        "swift",
-        "accelerated",
-        "meteoric"
+        "acute"
       ],
-      "lexical_candidates": 16
+      "lexical_candidates": 28
     },
     {
       "word": "old",
       "relation": "amod",
       "direction": "forward",
-      "selected_sense": "old.a.01",
-      "available_sense_groups": 8,
+      "selected_sense": "wikt:en-wintry-en-adj-YvG2ALM9:reverse:wintry",
+      "available_sense_groups": 39,
       "comparison": [
         "old",
         "aged",
         "elderly",
-        "mature",
-        "hoary",
-        "emeritus"
+        "ancient",
+        "venerable",
+        "senior"
       ],
-      "lexical_candidates": 82
+      "lexical_candidates": 236
     },
     {
       "word": "new",
       "relation": "amod",
       "direction": "forward",
-      "selected_sense": "new.a.01",
-      "available_sense_groups": 10,
+      "selected_sense": "wikt:ac8a3a504f0c9867d3f4",
+      "available_sense_groups": 29,
       "comparison": [
         "new",
-        "current",
-        "untried"
+        "unused",
+        "fresh",
+        "hot",
+        "novel",
+        "green"
       ],
-      "lexical_candidates": 49
+      "lexical_candidates": 126
     },
     {
       "word": "young",
       "relation": "amod",
       "direction": "forward",
-      "selected_sense": "young.a.01",
-      "available_sense_groups": 5,
+      "selected_sense": "wn:young.a.01",
+      "available_sense_groups": 10,
       "comparison": [
         "young",
-        "immature",
-        "teenage",
-        "adolescent",
-        "newborn",
-        "teenaged"
+        "immature"
       ],
-      "lexical_candidates": 51
+      "lexical_candidates": 60
     },
     {
       "word": "ancient",
       "relation": "amod",
       "direction": "forward",
-      "selected_sense": "ancient.s.01",
-      "available_sense_groups": 2,
+      "selected_sense": "wikt:en-antediluvian-en-adj-HZXx5VZL:reverse:antediluvian",
+      "available_sense_groups": 9,
       "comparison": [
         "ancient",
-        "medieval",
         "prehistoric",
-        "historical",
-        "historic",
-        "onetime"
+        "venerable",
+        "old",
+        "gray",
+        "aged"
       ],
-      "lexical_candidates": 43
+      "lexical_candidates": 52
     },
     {
       "word": "rich",
       "relation": "amod",
       "direction": "forward",
-      "selected_sense": "rich.a.01",
-      "available_sense_groups": 10,
+      "selected_sense": "wikt:en-rich-en-adj-1GrwxpHu",
+      "available_sense_groups": 17,
       "comparison": [
         "rich",
         "wealthy",
-        "prosperous",
-        "affluent",
-        "abundant",
+        "fat",
+        "rolling",
+        "loaded",
         "moneyed"
       ],
-      "lexical_candidates": 115
+      "lexical_candidates": 75
     },
     {
       "word": "poor",
       "relation": "amod",
       "direction": "forward",
-      "selected_sense": "hapless.s.01",
-      "available_sense_groups": 5,
+      "selected_sense": "wn:hapless.s.01",
+      "available_sense_groups": 74,
       "comparison": [
         "poor",
         "miserable",
-        "pitiful",
-        "pitiable",
-        "piteous",
-        "unfortunate"
+        "pathetic",
+        "hapless",
+        "wretched",
+        "pitiful"
       ],
-      "lexical_candidates": 82
+      "lexical_candidates": 305
     },
     {
       "word": "smart",
       "relation": "amod",
       "direction": "forward",
-      "selected_sense": "smart.a.01",
-      "available_sense_groups": 7,
+      "selected_sense": "wikt:en-keen-en-adj-sSPlAxcq:reverse:keen",
+      "available_sense_groups": 28,
       "comparison": [
         "smart",
+        "wise",
         "clever",
         "intelligent",
-        "shrewd",
-        "canny",
-        "streetwise"
+        "brilliant",
+        "shrewd"
       ],
-      "lexical_candidates": 88
+      "lexical_candidates": 109
     },
     {
       "word": "clever",
       "relation": "amod",
       "direction": "forward",
-      "selected_sense": "cagey.s.01",
-      "available_sense_groups": 3,
+      "selected_sense": "wn:cagey.s.01",
+      "available_sense_groups": 14,
       "comparison": [
         "clever",
-        "smart",
-        "canny",
-        "sharp",
-        "streetwise"
+        "canny"
       ],
-      "lexical_candidates": 31
+      "lexical_candidates": 33
     },
     {
       "word": "intelligent",
       "relation": "amod",
       "direction": "forward",
-      "selected_sense": "intelligent.a.01",
-      "available_sense_groups": 4,
+      "selected_sense": "wikt:dccdbf57b313b028d333",
+      "available_sense_groups": 12,
       "comparison": [
         "intelligent",
+        "rational",
         "clever",
         "smart",
         "brilliant",
-        "nimble",
-        "prehensile"
+        "quick"
       ],
-      "lexical_candidates": 36
+      "lexical_candidates": 44
     },
     {
       "word": "hard",
       "relation": "amod",
       "direction": "forward",
-      "selected_sense": "difficult.a.01",
-      "available_sense_groups": 12,
+      "selected_sense": "wikt:en-rough-en-adj-BWb~CWeO:reverse:rough",
+      "available_sense_groups": 52,
       "comparison": [
         "hard",
         "difficult",
@@ -374,1023 +390,983 @@
         "sticky",
         "rocky"
       ],
-      "lexical_candidates": 150
+      "lexical_candidates": 196
     },
     {
       "word": "easy",
       "relation": "amod",
       "direction": "forward",
-      "selected_sense": "easy.a.01",
-      "available_sense_groups": 12,
+      "selected_sense": "wikt:en-simple-en-adj-en:easy:reverse:simple",
+      "available_sense_groups": 19,
       "comparison": [
         "easy",
         "simple",
         "soft",
-        "easygoing",
-        "painless",
-        "cushy"
+        "smooth",
+        "light",
+        "natural"
       ],
-      "lexical_candidates": 88
+      "lexical_candidates": 62
     },
     {
       "word": "difficult",
       "relation": "amod",
       "direction": "forward",
-      "selected_sense": "difficult.a.01",
-      "available_sense_groups": 2,
+      "selected_sense": "wikt:en-rough-en-adj-BWb~CWeO:reverse:rough",
+      "available_sense_groups": 16,
       "comparison": [
         "difficult",
         "hard",
         "challenging",
         "arduous",
-        "problematic",
-        "tough"
+        "tough",
+        "rough"
       ],
-      "lexical_candidates": 39
+      "lexical_candidates": 82
     },
     {
       "word": "simple",
       "relation": "amod",
       "direction": "forward",
-      "selected_sense": "simple.a.01",
-      "available_sense_groups": 7,
+      "selected_sense": "wikt:en-simple-en-adj-ZR0bWTyt",
+      "available_sense_groups": 83,
       "comparison": [
         "simple",
-        "simplistic",
-        "easy",
-        "unsophisticated"
+        "plain",
+        "basic",
+        "uncomplicated"
       ],
-      "lexical_candidates": 56
+      "lexical_candidates": 239
     },
     {
       "word": "important",
       "relation": "amod",
       "direction": "forward",
-      "selected_sense": "important.a.01",
-      "available_sense_groups": 5,
+      "selected_sense": "wikt:en-grave-en-adj-oRTqGyiL:reverse:grave",
+      "available_sense_groups": 10,
       "comparison": [
         "important",
         "key",
         "crucial",
         "essential",
-        "fundamental",
-        "principal"
+        "valuable",
+        "significant"
       ],
-      "lexical_candidates": 56
+      "lexical_candidates": 80
     },
     {
       "word": "significant",
       "relation": "amod",
       "direction": "forward",
-      "selected_sense": "significant.a.01",
-      "available_sense_groups": 3,
+      "selected_sense": "wn:significant.s.01",
+      "available_sense_groups": 23,
       "comparison": [
         "significant",
-        "important",
-        "profound",
-        "fundamental",
-        "remarkable",
-        "large"
+        "substantial"
       ],
-      "lexical_candidates": 32
+      "lexical_candidates": 75
     },
     {
       "word": "serious",
       "relation": "amod",
       "direction": "forward",
-      "selected_sense": "serious.a.01",
-      "available_sense_groups": 6,
+      "selected_sense": "wikt:be70be070a39defa624e",
+      "available_sense_groups": 21,
       "comparison": [
         "serious",
         "grave",
-        "real",
         "thoughtful",
         "earnest",
-        "sobering"
+        "stern",
+        "austere"
       ],
-      "lexical_candidates": 79
+      "lexical_candidates": 125
     },
     {
       "word": "severe",
       "relation": "amod",
       "direction": "forward",
-      "selected_sense": "severe.s.01",
-      "available_sense_groups": 6,
+      "selected_sense": "wn:severe.s.01",
+      "available_sense_groups": 49,
       "comparison": [
         "severe",
         "terrible",
-        "intense",
-        "extreme",
-        "bad",
-        "strong"
+        "wicked"
       ],
-      "lexical_candidates": 109
+      "lexical_candidates": 148
     },
     {
       "word": "heavy",
       "relation": "amod",
       "direction": "forward",
-      "selected_sense": "heavy.a.01",
-      "available_sense_groups": 25,
+      "selected_sense": "wikt:en-ponderous-en-adj-aKKbAMWE:reverse:ponderous",
+      "available_sense_groups": 45,
       "comparison": [
         "heavy",
         "massive",
-        "dense",
-        "ponderous",
-        "soggy"
+        "ponderous"
       ],
-      "lexical_candidates": 177
+      "lexical_candidates": 197
     },
     {
       "word": "light",
       "relation": "amod",
       "direction": "forward",
-      "selected_sense": "light.a.01",
-      "available_sense_groups": 20,
+      "selected_sense": "wikt:en-light-en-adj-GaFVg8g~",
+      "available_sense_groups": 35,
       "comparison": [
         "light",
-        "airy",
-        "floaty"
+        "lightweight"
       ],
-      "lexical_candidates": 147
+      "lexical_candidates": 149
     },
     {
       "word": "powerful",
       "relation": "amod",
       "direction": "forward",
-      "selected_sense": "powerful.a.01",
-      "available_sense_groups": 5,
+      "selected_sense": "wikt:en-stiff-en-adj-ySCORXOg:reverse:stiff",
+      "available_sense_groups": 19,
       "comparison": [
         "powerful",
         "strong",
-        "mighty",
-        "regent",
-        "omnipotent",
-        "almighty"
+        "stiff"
       ],
-      "lexical_candidates": 37
+      "lexical_candidates": 183
     },
     {
       "word": "deep",
       "relation": "amod",
       "direction": "forward",
-      "selected_sense": "deep.a.01",
-      "available_sense_groups": 15,
+      "selected_sense": "wikt:en-deep-en-adj-TFLTRbVQ",
+      "available_sense_groups": 23,
       "comparison": [
         "deep",
         "profound",
-        "heavy"
+        "heavy",
+        "meaningful"
       ],
-      "lexical_candidates": 156
+      "lexical_candidates": 79
     },
     {
       "word": "shallow",
       "relation": "amod",
       "direction": "forward",
-      "selected_sense": "shallow.a.01",
+      "selected_sense": "wikt:953a0776c37395c0a78c",
       "available_sense_groups": 3,
       "comparison": [
         "shallow",
-        "neritic",
-        "fordable"
+        "superficial"
       ],
-      "lexical_candidates": 11
+      "lexical_candidates": 9
     },
     {
       "word": "wide",
       "relation": "amod",
       "direction": "forward",
-      "selected_sense": "wide.a.01",
-      "available_sense_groups": 7,
+      "selected_sense": "wn:wide.a.01",
+      "available_sense_groups": 19,
       "comparison": [
         "wide",
-        "broad",
-        "thick"
+        "broad"
       ],
-      "lexical_candidates": 92
+      "lexical_candidates": 82
     },
     {
       "word": "broad",
       "relation": "amod",
       "direction": "forward",
-      "selected_sense": "wide.a.01",
-      "available_sense_groups": 8,
+      "selected_sense": "wn:wide.a.01",
+      "available_sense_groups": 27,
       "comparison": [
         "broad",
-        "wide",
-        "sweeping"
+        "wide"
       ],
-      "lexical_candidates": 109
+      "lexical_candidates": 98
     },
     {
       "word": "bright",
       "relation": "amod",
       "direction": "forward",
-      "selected_sense": "bright.a.01",
-      "available_sense_groups": 9,
+      "selected_sense": "wikt:en-glorious-en-adj-5zk2Jg4e:reverse:glorious",
+      "available_sense_groups": 36,
       "comparison": [
         "bright",
         "brilliant",
         "luminous",
-        "glossy",
         "shiny",
-        "silvery"
+        "glorious",
+        "splendid"
       ],
-      "lexical_candidates": 101
+      "lexical_candidates": 142
     },
     {
       "word": "dark",
       "relation": "amod",
       "direction": "forward",
-      "selected_sense": "dark.a.01",
-      "available_sense_groups": 11,
+      "selected_sense": "wikt:en-black-en-adj-UN2dmH0O:reverse:black",
+      "available_sense_groups": 83,
       "comparison": [
         "dark",
+        "dull",
         "black",
+        "somber",
         "gloomy",
-        "subdued",
-        "unlit",
-        "crepuscular"
+        "dusky"
       ],
-      "lexical_candidates": 122
+      "lexical_candidates": 366
     },
     {
       "word": "cheap",
       "relation": "amod",
       "direction": "forward",
-      "selected_sense": "cheap.a.01",
-      "available_sense_groups": 4,
+      "selected_sense": "wikt:en-cheap-en-adj-en:affordable__low_priced",
+      "available_sense_groups": 93,
       "comparison": [
         "cheap",
         "inexpensive",
-        "affordable",
-        "twopenny"
+        "affordable"
       ],
-      "lexical_candidates": 57
+      "lexical_candidates": 483
     },
     {
       "word": "expensive",
       "relation": "amod",
       "direction": "forward",
-      "selected_sense": "expensive.a.01",
-      "available_sense_groups": 1,
+      "selected_sense": "wikt:en-expensive-en-adj-ccfpd0qF",
+      "available_sense_groups": 7,
       "comparison": [
         "expensive",
         "costly",
-        "valuable",
-        "pricey",
-        "overpriced",
-        "pricy"
+        "dear",
+        "pricey"
       ],
-      "lexical_candidates": 6
+      "lexical_candidates": 12
     },
     {
       "word": "happy",
       "relation": "amod",
       "direction": "forward",
-      "selected_sense": "happy.a.01",
-      "available_sense_groups": 4,
+      "selected_sense": "wikt:en-freak-en-adj-nNhAe3RM:reverse:freak",
+      "available_sense_groups": 33,
       "comparison": [
         "happy",
-        "prosperous",
-        "blissful",
-        "halcyon",
-        "euphoric",
-        "glad"
+        "fortunate",
+        "lucky",
+        "rare",
+        "unusual",
+        "alien"
       ],
-      "lexical_candidates": 27
+      "lexical_candidates": 186
     },
     {
       "word": "angry",
       "relation": "amod",
       "direction": "forward",
-      "selected_sense": "angry.a.01",
-      "available_sense_groups": 3,
+      "selected_sense": "wikt:en-mad-en-adj-X4RAUWEs:reverse:mad",
+      "available_sense_groups": 23,
       "comparison": [
         "angry",
         "furious",
-        "angered",
-        "irate",
-        "indignant",
-        "irascible"
+        "mad",
+        "hot",
+        "cross",
+        "sore"
       ],
-      "lexical_candidates": 68
+      "lexical_candidates": 73
     },
     {
       "word": "hot",
       "relation": "amod",
       "direction": "forward",
-      "selected_sense": "hot.a.01",
-      "available_sense_groups": 21,
+      "selected_sense": "wikt:9a339202e3f0473042c7:reverse:exciting",
+      "available_sense_groups": 70,
       "comparison": [
         "hot",
         "warm",
-        "heated",
-        "sulfurous",
-        "torrid",
-        "overheated"
+        "electric",
+        "dramatic",
+        "impressive",
+        "explosive"
       ],
-      "lexical_candidates": 234
+      "lexical_candidates": 391
     },
     {
       "word": "cold",
       "relation": "amod",
       "direction": "forward",
-      "selected_sense": "cold.a.01",
-      "available_sense_groups": 13,
+      "selected_sense": "wikt:en-cold-en-adj-J15B0cfP",
+      "available_sense_groups": 62,
       "comparison": [
         "cold",
         "cool",
-        "polar",
         "icy",
-        "arctic",
-        "crisp"
+        "glacial",
+        "freezing",
+        "chilly"
       ],
-      "lexical_candidates": 153
+      "lexical_candidates": 169
     },
     {
       "word": "warm",
       "relation": "amod",
       "direction": "forward",
-      "selected_sense": "warm.a.01",
-      "available_sense_groups": 10,
+      "selected_sense": "wikt:en-tepid-en-adj-gMfJUNx2:reverse:tepid",
+      "available_sense_groups": 13,
       "comparison": [
         "warm",
-        "hot",
         "lukewarm",
-        "warmed",
+        "mild",
+        "balmy",
         "tepid"
       ],
-      "lexical_candidates": 69
+      "lexical_candidates": 83
     },
     {
       "word": "cool",
       "relation": "amod",
       "direction": "forward",
-      "selected_sense": "cool.a.01",
-      "available_sense_groups": 6,
+      "selected_sense": "wikt:en-stony-en-adj-0YBTv8WT:reverse:stony",
+      "available_sense_groups": 110,
       "comparison": [
         "cool",
-        "cold"
+        "cold",
+        "severe",
+        "hard",
+        "strict",
+        "tough"
       ],
-      "lexical_candidates": 44
+      "lexical_candidates": 460
     },
     {
       "word": "clear",
       "relation": "amod",
       "direction": "forward",
-      "selected_sense": "clear.a.01",
-      "available_sense_groups": 15,
+      "selected_sense": "wikt:en-distinct-en-adj-Vr0EbVBV:reverse:distinct",
+      "available_sense_groups": 57,
       "comparison": [
         "clear",
-        "broad",
-        "vivid",
-        "definite",
-        "distinct",
-        "lucid"
+        "distinct"
       ],
-      "lexical_candidates": 99
+      "lexical_candidates": 195
     },
     {
       "word": "obvious",
       "relation": "amod",
       "direction": "forward",
-      "selected_sense": "obvious.a.01",
-      "available_sense_groups": 1,
+      "selected_sense": "wikt:en-apparent-en-adj-Q73D4P52:reverse:apparent",
+      "available_sense_groups": 18,
       "comparison": [
         "obvious",
-        "apparent",
         "evident",
+        "apparent",
         "plain",
-        "overt",
-        "demonstrable"
+        "transparent",
+        "certain"
       ],
-      "lexical_candidates": 13
+      "lexical_candidates": 152
     },
     {
       "word": "real",
       "relation": "amod",
       "direction": "forward",
-      "selected_sense": "real.a.01",
-      "available_sense_groups": 8,
+      "selected_sense": "wikt:en-real-en-adj-en:real_life__in_the_flesh",
+      "available_sense_groups": 24,
       "comparison": [
         "real",
-        "actual",
-        "genuine",
-        "realistic"
+        "actual"
       ],
-      "lexical_candidates": 37
+      "lexical_candidates": 63
     },
     {
       "word": "possible",
       "relation": "amod",
       "direction": "forward",
-      "selected_sense": "possible.a.01",
-      "available_sense_groups": 2,
+      "selected_sense": "wikt:en-feasible-en-adj-d1fIPH6S:reverse:feasible",
+      "available_sense_groups": 5,
       "comparison": [
         "possible",
-        "likely",
-        "viable",
         "feasible",
-        "practical",
-        "workable"
+        "workable",
+        "achievable",
+        "practicable",
+        "doable"
       ],
-      "lexical_candidates": 17
+      "lexical_candidates": 12
     },
     {
       "word": "likely",
       "relation": "amod",
       "direction": "forward",
-      "selected_sense": "likely.a.01",
-      "available_sense_groups": 4,
+      "selected_sense": "wn:probable.a.01",
+      "available_sense_groups": 13,
       "comparison": [
         "likely",
-        "probable",
-        "possible",
-        "promising",
-        "liable"
+        "probable"
       ],
-      "lexical_candidates": 12
+      "lexical_candidates": 42
     },
     {
       "word": "do",
       "relation": "dobj",
       "direction": "forward",
-      "selected_sense": "make.v.01",
-      "available_sense_groups": 13,
+      "selected_sense": "wn:make.v.01",
+      "available_sense_groups": 82,
       "comparison": [
         "do",
-        "overdo"
+        "make"
       ],
-      "lexical_candidates": 111
+      "lexical_candidates": 235
     },
     {
       "word": "lessen",
       "relation": "dobj",
       "direction": "forward",
-      "selected_sense": "decrease.v.01",
-      "available_sense_groups": 3,
+      "selected_sense": "wn:decrease.v.01",
+      "available_sense_groups": 24,
       "comparison": [
         "lessen",
         "decrease",
         "diminish",
-        "reduce",
-        "deflate",
-        "retard"
+        "fall",
+        "minimize",
+        "reduce"
       ],
-      "lexical_candidates": 50
+      "lexical_candidates": 75
     },
     {
       "word": "reduce",
       "relation": "dobj",
       "direction": "forward",
-      "selected_sense": "reduce.v.01",
-      "available_sense_groups": 20,
+      "selected_sense": "wn:reduce.v.01",
+      "available_sense_groups": 53,
       "comparison": [
         "reduce",
         "cut",
-        "decrease",
         "trim",
+        "decrease",
         "lessen",
-        "slash"
+        "limit"
       ],
-      "lexical_candidates": 71
+      "lexical_candidates": 197
     },
     {
       "word": "decrease",
       "relation": "dobj",
       "direction": "forward",
-      "selected_sense": "decrease.v.01",
-      "available_sense_groups": 2,
+      "selected_sense": "wn:decrease.v.01",
+      "available_sense_groups": 16,
       "comparison": [
         "decrease",
         "lessen",
         "diminish",
+        "fall",
         "reduce",
-        "shorten",
-        "slow"
+        "lower"
       ],
-      "lexical_candidates": 49
+      "lexical_candidates": 16
     },
     {
       "word": "lower",
       "relation": "dobj",
       "direction": "forward",
-      "selected_sense": "lower.v.01",
-      "available_sense_groups": 5,
+      "selected_sense": "wikt:en-reduce-en-verb-4xUfLvyu:reverse:reduce",
+      "available_sense_groups": 25,
       "comparison": [
         "lower",
         "decrease",
         "lessen",
-        "depress",
-        "incline",
-        "reef"
+        "reduce",
+        "cut",
+        "minimize"
       ],
-      "lexical_candidates": 17
+      "lexical_candidates": 47
     },
     {
       "word": "diminish",
       "relation": "dobj",
       "direction": "forward",
-      "selected_sense": "decrease.v.01",
-      "available_sense_groups": 2,
+      "selected_sense": "wn:decrease.v.01",
+      "available_sense_groups": 20,
       "comparison": [
         "diminish",
         "lessen",
         "decrease",
-        "weaken",
-        "reduce",
-        "concentrate"
+        "fall",
+        "weaken"
       ],
-      "lexical_candidates": 30
+      "lexical_candidates": 83
     },
     {
       "word": "cut",
       "relation": "dobj",
       "direction": "forward",
-      "selected_sense": "cut.v.01",
-      "available_sense_groups": 40,
+      "selected_sense": "wikt:en-race-en-verb-en:marks:reverse:race",
+      "available_sense_groups": 31,
       "comparison": [
         "cut",
         "slash",
-        "sever",
-        "trim",
-        "chop",
-        "carve"
+        "carve",
+        "race",
+        "incise",
+        "gash"
       ],
-      "lexical_candidates": 164
+      "lexical_candidates": 56
     },
     {
       "word": "increase",
       "relation": "dobj",
       "direction": "forward",
-      "selected_sense": "increase.v.01",
-      "available_sense_groups": 2,
+      "selected_sense": "wikt:en-elevate-en-verb-zFHC74K8:reverse:elevate",
+      "available_sense_groups": 11,
       "comparison": [
         "increase",
-        "gain",
+        "raise",
         "heighten",
-        "accumulate",
-        "amass",
-        "wax"
+        "augment",
+        "grow",
+        "swell"
       ],
-      "lexical_candidates": 52
+      "lexical_candidates": 26
     },
     {
       "word": "raise",
       "relation": "dobj",
       "direction": "forward",
-      "selected_sense": "raise.v.01",
-      "available_sense_groups": 26,
+      "selected_sense": "wikt:en-elevate-en-verb-zFHC74K8:reverse:elevate",
+      "available_sense_groups": 42,
       "comparison": [
         "raise",
         "heighten",
-        "levy",
-        "arouse",
         "increase",
-        "boost"
+        "enhance",
+        "elevate",
+        "grow"
       ],
-      "lexical_candidates": 139
+      "lexical_candidates": 104
     },
     {
       "word": "boost",
       "relation": "dobj",
       "direction": "forward",
-      "selected_sense": "hike.v.01",
-      "available_sense_groups": 5,
+      "selected_sense": "wn:hike.v.01",
+      "available_sense_groups": 11,
       "comparison": [
         "boost",
-        "increase",
-        "raise",
-        "spur",
-        "lift"
+        "hike"
       ],
-      "lexical_candidates": 20
+      "lexical_candidates": 63
     },
     {
       "word": "enhance",
       "relation": "dobj",
       "direction": "forward",
-      "selected_sense": "enhance.v.01",
-      "available_sense_groups": 2,
+      "selected_sense": "wn:enhance.v.01",
+      "available_sense_groups": 11,
       "comparison": [
         "enhance",
         "heighten",
-        "improve",
-        "deepen",
-        "potentiate"
+        "raise",
+        "improve"
       ],
-      "lexical_candidates": 11
+      "lexical_candidates": 52
     },
     {
       "word": "improve",
       "relation": "dobj",
       "direction": "forward",
-      "selected_sense": "better.v.02",
-      "available_sense_groups": 2,
+      "selected_sense": "wn:better.v.02",
+      "available_sense_groups": 9,
       "comparison": [
         "improve",
-        "enhance",
         "better",
-        "restore",
-        "alter",
-        "upgrade"
+        "amend",
+        "ameliorate",
+        "meliorate",
+        "enhance"
       ],
-      "lexical_candidates": 48
+      "lexical_candidates": 32
     },
     {
       "word": "cause",
       "relation": "dobj",
       "direction": "forward",
-      "selected_sense": "cause.v.01",
-      "available_sense_groups": 2,
+      "selected_sense": "wn:cause.v.01",
+      "available_sense_groups": 10,
       "comparison": [
         "cause",
-        "create",
-        "provoke",
-        "impel",
-        "actuate",
-        "effectuate"
+        "do",
+        "make",
+        "provoke"
       ],
-      "lexical_candidates": 44
+      "lexical_candidates": 65
     },
     {
       "word": "trigger",
       "relation": "dobj",
       "direction": "forward",
-      "selected_sense": "trip.v.04",
-      "available_sense_groups": 1,
+      "selected_sense": "wn:trip.v.04",
+      "available_sense_groups": 5,
       "comparison": [
         "trigger",
         "spark",
         "activate",
         "trip",
-        "initiate",
-        "actuate"
+        "actuate",
+        "initiate"
       ],
-      "lexical_candidates": 6
+      "lexical_candidates": 44
     },
     {
       "word": "induce",
       "relation": "dobj",
       "direction": "forward",
-      "selected_sense": "induce.v.01",
-      "available_sense_groups": 5,
+      "selected_sense": "wn:induce.v.02",
+      "available_sense_groups": 37,
       "comparison": [
         "induce",
         "stimulate",
-        "generate"
+        "cause",
+        "make",
+        "have",
+        "get"
       ],
-      "lexical_candidates": 28
+      "lexical_candidates": 123
     },
     {
       "word": "affect",
       "relation": "dobj",
       "direction": "forward",
-      "selected_sense": "affect.v.01",
-      "available_sense_groups": 5,
+      "selected_sense": "wn:affect.v.01",
+      "available_sense_groups": 15,
       "comparison": [
         "affect",
         "impact",
+        "touch",
         "strike",
         "alter",
-        "influence",
-        "stimulate"
+        "influence"
       ],
-      "lexical_candidates": 80
+      "lexical_candidates": 29
     },
     {
       "word": "influence",
       "relation": "dobj",
       "direction": "forward",
-      "selected_sense": "influence.v.01",
-      "available_sense_groups": 3,
+      "selected_sense": "wn:influence.v.01",
+      "available_sense_groups": 7,
       "comparison": [
         "influence",
-        "affect",
-        "dominate",
-        "sway",
-        "manipulate",
-        "impact"
+        "work",
+        "shape",
+        "affect"
       ],
-      "lexical_candidates": 40
+      "lexical_candidates": 16
     },
     {
       "word": "impact",
       "relation": "dobj",
       "direction": "forward",
-      "selected_sense": "impact.v.01",
-      "available_sense_groups": 2,
+      "selected_sense": "wikt:en-touch-en-verb-4W0nc8LM:reverse:touch",
+      "available_sense_groups": 13,
       "comparison": [
         "impact",
         "affect",
-        "strike",
-        "endanger",
-        "wedge"
+        "touch",
+        "involve",
+        "regard",
+        "concern"
       ],
-      "lexical_candidates": 27
+      "lexical_candidates": 64
     },
     {
       "word": "solve",
       "relation": "dobj",
       "direction": "forward",
-      "selected_sense": "solve.v.01",
-      "available_sense_groups": 3,
+      "selected_sense": "wn:solve.v.01",
+      "available_sense_groups": 10,
       "comparison": [
         "solve",
-        "resolve",
         "work",
-        "answer",
-        "understand",
-        "guess"
+        "lick",
+        "resolve"
       ],
-      "lexical_candidates": 19
+      "lexical_candidates": 11
     },
     {
       "word": "resolve",
       "relation": "dobj",
       "direction": "forward",
-      "selected_sense": "decide.v.02",
-      "available_sense_groups": 7,
+      "selected_sense": "wn:decide.v.02",
+      "available_sense_groups": 18,
       "comparison": [
         "resolve",
         "settle",
         "decide",
         "adjudicate",
-        "end",
-        "judge"
+        "solve"
       ],
-      "lexical_candidates": 32
+      "lexical_candidates": 20
     },
     {
       "word": "address",
       "relation": "dobj",
       "direction": "forward",
-      "selected_sense": "address.v.01",
-      "available_sense_groups": 10,
+      "selected_sense": "wn:cover.v.05",
+      "available_sense_groups": 13,
       "comparison": [
         "address",
         "handle",
-        "discuss",
-        "broach",
-        "ask",
-        "call"
+        "treat",
+        "cover",
+        "deal",
+        "plow"
       ],
-      "lexical_candidates": 43
+      "lexical_candidates": 25
     },
     {
       "word": "tackle",
       "relation": "dobj",
       "direction": "forward",
-      "selected_sense": "undertake.v.02",
-      "available_sense_groups": 3,
+      "selected_sense": "wikt:en-undertake-en-verb-v52iIjah:reverse:undertake",
+      "available_sense_groups": 6,
       "comparison": [
         "tackle",
         "undertake",
-        "confront",
-        "face"
+        "confront"
       ],
-      "lexical_candidates": 8
+      "lexical_candidates": 6
     },
     {
       "word": "obtain",
       "relation": "dobj",
       "direction": "forward",
-      "selected_sense": "obtain.v.01",
-      "available_sense_groups": 3,
+      "selected_sense": "wikt:en-take-en-verb-Pkf0sHy3:reverse:take",
+      "available_sense_groups": 20,
       "comparison": [
         "obtain",
         "secure",
         "acquire",
+        "receive",
         "get",
-        "gain",
-        "derive"
+        "procure"
       ],
-      "lexical_candidates": 27
+      "lexical_candidates": 40
     },
     {
       "word": "acquire",
       "relation": "dobj",
       "direction": "forward",
-      "selected_sense": "get.v.01",
-      "available_sense_groups": 7,
+      "selected_sense": "wn:get.v.01",
+      "available_sense_groups": 25,
       "comparison": [
         "acquire",
-        "purchase",
-        "buy",
-        "inherit",
-        "obtain",
-        "lease"
+        "get",
+        "obtain"
       ],
-      "lexical_candidates": 74
+      "lexical_candidates": 37
     },
     {
       "word": "gain",
       "relation": "dobj",
       "direction": "forward",
-      "selected_sense": "derive.v.02",
-      "available_sense_groups": 9,
+      "selected_sense": "wn:derive.v.02",
+      "available_sense_groups": 25,
       "comparison": [
         "gain",
+        "derive",
         "earn",
-        "attain",
-        "obtain"
+        "attain"
       ],
-      "lexical_candidates": 49
+      "lexical_candidates": 41
     },
     {
       "word": "get",
       "relation": "dobj",
       "direction": "forward",
-      "selected_sense": "get.v.01",
-      "available_sense_groups": 35,
+      "selected_sense": "wn:get.v.01",
+      "available_sense_groups": 109,
       "comparison": [
         "get",
-        "obtain",
-        "receive",
-        "gain",
-        "catch",
-        "garner"
+        "acquire",
+        "obtain"
       ],
-      "lexical_candidates": 194
+      "lexical_candidates": 303
     },
     {
       "word": "make",
       "relation": "dobj",
       "direction": "forward",
-      "selected_sense": "make.v.01",
-      "available_sense_groups": 49,
+      "selected_sense": "wn:make.v.01",
+      "available_sense_groups": 84,
       "comparison": [
         "make",
-        "overdo"
+        "do"
       ],
-      "lexical_candidates": 269
+      "lexical_candidates": 181
     },
     {
       "word": "create",
       "relation": "dobj",
       "direction": "forward",
-      "selected_sense": "make.v.03",
-      "available_sense_groups": 6,
+      "selected_sense": "wn:make.v.03",
+      "available_sense_groups": 14,
       "comparison": [
         "create",
-        "cause",
-        "recreate",
-        "establish",
-        "evoke",
-        "generate"
+        "make"
       ],
-      "lexical_candidates": 113
+      "lexical_candidates": 61
     },
     {
       "word": "produce",
       "relation": "dobj",
       "direction": "forward",
-      "selected_sense": "produce.v.01",
-      "available_sense_groups": 7,
+      "selected_sense": "wikt:en-produce-en-verb-PvimAkOL",
+      "available_sense_groups": 17,
       "comparison": [
         "produce",
         "generate",
-        "deliver",
-        "manufacture",
-        "birth",
-        "sporulate"
+        "yield",
+        "develop",
+        "create",
+        "evolve"
       ],
-      "lexical_candidates": 68
+      "lexical_candidates": 81
     },
     {
       "word": "generate",
       "relation": "dobj",
       "direction": "forward",
-      "selected_sense": "generate.v.01",
-      "available_sense_groups": 4,
+      "selected_sense": "wikt:en-generate-en-verb-1g9PTDAa",
+      "available_sense_groups": 13,
       "comparison": [
         "generate",
-        "yield",
         "produce",
         "create",
-        "induce"
+        "make",
+        "spawn",
+        "engender"
       ],
-      "lexical_candidates": 19
+      "lexical_candidates": 66
     },
     {
       "word": "prevent",
       "relation": "dobj",
       "direction": "forward",
-      "selected_sense": "prevent.v.01",
-      "available_sense_groups": 2,
+      "selected_sense": "wn:prevent.v.01",
+      "available_sense_groups": 11,
       "comparison": [
         "prevent",
-        "avoid",
+        "preclude",
+        "forbid",
+        "forestall",
         "foreclose",
-        "avert",
-        "stop",
-        "halt"
+        "avert"
       ],
-      "lexical_candidates": 34
+      "lexical_candidates": 64
     },
     {
       "word": "avoid",
       "relation": "dobj",
       "direction": "forward",
-      "selected_sense": "avoid.v.01",
-      "available_sense_groups": 5,
+      "selected_sense": "wikt:ee2ed1a62cd29e87186f",
+      "available_sense_groups": 3,
       "comparison": [
         "avoid",
         "escape",
         "evade",
-        "circumvent",
-        "dodge",
-        "elude"
+        "avert",
+        "elude",
+        "dodge"
       ],
-      "lexical_candidates": 35
+      "lexical_candidates": 22
     },
     {
       "word": "avert",
       "relation": "dobj",
       "direction": "forward",
-      "selected_sense": "debar.v.02",
-      "available_sense_groups": 2,
+      "selected_sense": "wn:debar.v.02",
+      "available_sense_groups": 5,
       "comparison": [
         "avert",
         "avoid",
+        "deflect",
         "obviate",
-        "prevent",
         "debar",
-        "forestall"
+        "prevent"
       ],
-      "lexical_candidates": 10
+      "lexical_candidates": 30
     },
     {
       "word": "allow",
       "relation": "dobj",
       "direction": "forward",
-      "selected_sense": "let.v.01",
-      "available_sense_groups": 9,
+      "selected_sense": "wikt:a47ea816c47582b01688:reverse:let",
+      "available_sense_groups": 34,
       "comparison": [
         "allow",
-        "permit"
+        "permit",
+        "let"
       ],
-      "lexical_candidates": 50
+      "lexical_candidates": 72
     },
     {
       "word": "permit",
       "relation": "dobj",
       "direction": "forward",
-      "selected_sense": "permit.v.01",
-      "available_sense_groups": 3,
+      "selected_sense": "wn:permit.v.01",
+      "available_sense_groups": 11,
       "comparison": [
         "permit",
         "allow",
+        "let",
         "countenance",
-        "legalize",
-        "authorize",
-        "authorise"
+        "authorize"
       ],
-      "lexical_candidates": 34
+      "lexical_candidates": 20
     },
     {
       "word": "enable",
       "relation": "dobj",
       "direction": "forward",
-      "selected_sense": "enable.v.01",
-      "available_sense_groups": 1,
+      "selected_sense": "wikt:en-entitle-en-verb-Py0Eh30x:reverse:entitle",
+      "available_sense_groups": 6,
       "comparison": [
         "enable",
         "empower",
-        "endue"
+        "entitle",
+        "qualify"
       ],
-      "lexical_candidates": 9
+      "lexical_candidates": 13
     },
     {
       "word": "show",
       "relation": "dobj",
       "direction": "forward",
-      "selected_sense": "show.v.01",
-      "available_sense_groups": 12,
+      "selected_sense": "wn:show.v.01",
+      "available_sense_groups": 22,
       "comparison": [
         "show",
         "exhibit",
         "demonstrate",
-        "express",
-        "indicate",
+        "present",
+        "demo",
         "display"
       ],
-      "lexical_candidates": 93
+      "lexical_candidates": 42
     },
     {
       "word": "indicate",
       "relation": "dobj",
       "direction": "forward",
-      "selected_sense": "bespeak.v.01",
-      "available_sense_groups": 5,
+      "selected_sense": "wn:bespeak.v.01",
+      "available_sense_groups": 17,
       "comparison": [
         "indicate",
         "signal",
         "point",
         "bespeak",
         "betoken",
-        "predict"
+        "suggest"
       ],
       "lexical_candidates": 33
     },
@@ -1398,47 +1374,47 @@
       "word": "demonstrate",
       "relation": "dobj",
       "direction": "forward",
-      "selected_sense": "show.v.01",
-      "available_sense_groups": 4,
+      "selected_sense": "wn:show.v.01",
+      "available_sense_groups": 7,
       "comparison": [
         "demonstrate",
         "show",
         "exhibit",
-        "prove",
+        "present",
         "demo",
-        "confirm"
+        "prove"
       ],
-      "lexical_candidates": 29
+      "lexical_candidates": 16
     },
     {
       "word": "reveal",
       "relation": "dobj",
       "direction": "forward",
-      "selected_sense": "uncover.v.01",
-      "available_sense_groups": 3,
+      "selected_sense": "wn:uncover.v.01",
+      "available_sense_groups": 13,
       "comparison": [
         "reveal",
         "uncover",
         "unveil",
         "disclose",
-        "expose",
-        "show"
+        "discover",
+        "divulge"
       ],
-      "lexical_candidates": 23
+      "lexical_candidates": 25
     },
     {
       "word": "suggest",
       "relation": "dobj",
       "direction": "forward",
-      "selected_sense": "propose.v.01",
-      "available_sense_groups": 5,
+      "selected_sense": "wn:propose.v.01",
+      "available_sense_groups": 19,
       "comparison": [
         "suggest",
         "propose",
-        "recommend",
-        "advocate",
-        "state",
-        "advance"
+        "advise",
+        "indicate",
+        "imply",
+        "recommend"
       ],
       "lexical_candidates": 30
     },
@@ -1446,92 +1422,82 @@
       "word": "buy",
       "relation": "dobj",
       "direction": "forward",
-      "selected_sense": "buy.v.01",
-      "available_sense_groups": 5,
+      "selected_sense": "wikt:en-buy-en-verb-YaKPHcwU",
+      "available_sense_groups": 8,
       "comparison": [
         "buy",
-        "purchase",
-        "acquire",
-        "subscribe",
-        "repurchase"
+        "purchase"
       ],
-      "lexical_candidates": 12
+      "lexical_candidates": 13
     },
     {
       "word": "purchase",
       "relation": "dobj",
       "direction": "forward",
-      "selected_sense": "buy.v.01",
-      "available_sense_groups": 1,
+      "selected_sense": "wikt:en-buy-en-verb-YaKPHcwU:reverse:buy",
+      "available_sense_groups": 5,
       "comparison": [
         "purchase",
-        "buy",
-        "acquire",
-        "subscribe",
-        "repurchase"
+        "buy"
       ],
-      "lexical_candidates": 6
+      "lexical_candidates": 5
     },
     {
       "word": "choose",
       "relation": "dobj",
       "direction": "forward",
-      "selected_sense": "choose.v.01",
-      "available_sense_groups": 3,
+      "selected_sense": "wn:choose.v.01",
+      "available_sense_groups": 7,
       "comparison": [
         "choose",
         "select",
+        "take",
         "elect",
-        "nominate",
-        "pick",
-        "adopt"
+        "nominate"
       ],
-      "lexical_candidates": 38
+      "lexical_candidates": 41
     },
     {
       "word": "select",
       "relation": "dobj",
       "direction": "forward",
-      "selected_sense": "choose.v.01",
-      "available_sense_groups": 1,
+      "selected_sense": "wn:choose.v.01",
+      "available_sense_groups": 5,
       "comparison": [
         "select",
         "choose",
-        "elect",
-        "nominate",
-        "field",
-        "pick"
+        "take",
+        "elect"
       ],
-      "lexical_candidates": 34
+      "lexical_candidates": 26
     },
     {
       "word": "begin",
       "relation": "dobj",
       "direction": "forward",
-      "selected_sense": "get_down.v.07",
-      "available_sense_groups": 10,
+      "selected_sense": "wn:get_down.v.07",
+      "available_sense_groups": 8,
       "comparison": [
         "begin",
-        "start",
         "commence",
-        "launch",
-        "recommence"
+        "start",
+        "get"
       ],
-      "lexical_candidates": 30
+      "lexical_candidates": 10
     },
     {
       "word": "start",
       "relation": "dobj",
       "direction": "forward",
-      "selected_sense": "get_down.v.07",
-      "available_sense_groups": 13,
+      "selected_sense": "wn:get_down.v.07",
+      "available_sense_groups": 25,
       "comparison": [
         "start",
         "begin",
         "commence",
-        "launch",
-        "embark",
-        "plunge"
+        "get",
+        "initiate",
+        "launch"
       ],
       "lexical_candidates": 41
     },
@@ -1539,535 +1505,521 @@
       "word": "finish",
       "relation": "dobj",
       "direction": "forward",
-      "selected_sense": "complete.v.01",
-      "available_sense_groups": 6,
+      "selected_sense": "wn:complete.v.01",
+      "available_sense_groups": 23,
       "comparison": [
         "finish",
         "complete",
         "end",
-        "conclude",
-        "close"
+        "conclude"
       ],
-      "lexical_candidates": 29
+      "lexical_candidates": 109
     },
     {
       "word": "complete",
       "relation": "dobj",
       "direction": "forward",
-      "selected_sense": "complete.v.01",
-      "available_sense_groups": 4,
+      "selected_sense": "wn:complete.v.01",
+      "available_sense_groups": 11,
       "comparison": [
         "complete",
         "finish",
-        "execute",
         "accomplish"
       ],
-      "lexical_candidates": 15
+      "lexical_candidates": 27
     },
     {
       "word": "answer",
       "relation": "dobj",
       "direction": "forward",
-      "selected_sense": "answer.v.01",
-      "available_sense_groups": 10,
+      "selected_sense": "wn:answer.v.01",
+      "available_sense_groups": 7,
       "comparison": [
         "answer",
-        "counter",
-        "return",
-        "field",
-        "retort",
-        "bridle"
+        "reply",
+        "respond"
       ],
-      "lexical_candidates": 38
+      "lexical_candidates": 17
     },
     {
       "word": "reply",
       "relation": "dobj",
       "direction": "forward",
-      "selected_sense": "answer.v.01",
-      "available_sense_groups": 1,
+      "selected_sense": "wn:answer.v.01",
+      "available_sense_groups": 2,
       "comparison": [
         "reply",
         "answer",
-        "respond",
-        "tell",
-        "say",
-        "return"
+        "respond"
       ],
-      "lexical_candidates": 13
+      "lexical_candidates": 7
     },
     {
       "word": "use",
       "relation": "dobj",
       "direction": "forward",
-      "selected_sense": "use.v.01",
-      "available_sense_groups": 6,
+      "selected_sense": "wn:use.v.01",
+      "available_sense_groups": 16,
       "comparison": [
         "use",
         "utilize",
         "employ",
         "apply",
-        "utilise",
-        "implement"
+        "utilise"
       ],
-      "lexical_candidates": 56
+      "lexical_candidates": 29
     },
     {
       "word": "employ",
       "relation": "dobj",
       "direction": "forward",
-      "selected_sense": "use.v.01",
-      "available_sense_groups": 2,
+      "selected_sense": "wn:use.v.01",
+      "available_sense_groups": 9,
       "comparison": [
         "employ",
         "utilize",
-        "apply",
         "utilise",
+        "apply",
         "use",
-        "implement"
+        "hire"
       ],
-      "lexical_candidates": 49
+      "lexical_candidates": 38
     },
     {
       "word": "help",
       "relation": "dobj",
       "direction": "forward",
-      "selected_sense": "help.v.01",
-      "available_sense_groups": 8,
+      "selected_sense": "wn:help.v.01",
+      "available_sense_groups": 12,
       "comparison": [
         "help",
         "assist",
-        "aid",
-        "serve",
-        "avail",
-        "subserve"
+        "aid"
       ],
-      "lexical_candidates": 37
+      "lexical_candidates": 31
     },
     {
       "word": "assist",
       "relation": "dobj",
       "direction": "forward",
-      "selected_sense": "help.v.01",
-      "available_sense_groups": 3,
+      "selected_sense": "wn:help.v.01",
+      "available_sense_groups": 6,
       "comparison": [
         "assist",
         "help",
-        "aid",
-        "serve",
-        "support",
-        "facilitate"
+        "aid"
       ],
-      "lexical_candidates": 20
+      "lexical_candidates": 29
     },
     {
       "word": "change",
       "relation": "dobj",
       "direction": "forward",
-      "selected_sense": "change.v.01",
-      "available_sense_groups": 10,
+      "selected_sense": "wikt:fd19aa8517d7faa3f785",
+      "available_sense_groups": 13,
       "comparison": [
         "change",
         "alter",
         "modify",
-        "shape",
         "switch",
-        "shift"
+        "shift",
+        "adjust"
       ],
-      "lexical_candidates": 581
+      "lexical_candidates": 25
     },
     {
       "word": "alter",
       "relation": "dobj",
       "direction": "forward",
-      "selected_sense": "change.v.01",
-      "available_sense_groups": 5,
+      "selected_sense": "wikt:fd19aa8517d7faa3f785:reverse:change",
+      "available_sense_groups": 10,
       "comparison": [
         "alter",
         "change",
         "modify",
-        "shape",
         "affect",
-        "adjust"
+        "amend"
       ],
-      "lexical_candidates": 464
+      "lexical_candidates": 22
     },
     {
       "word": "ask",
       "relation": "dobj",
       "direction": "forward",
-      "selected_sense": "ask.v.01",
+      "selected_sense": "wn:ask.v.01",
       "available_sense_groups": 7,
       "comparison": [
         "ask",
         "inquire",
-        "enquire",
-        "consult",
-        "pry"
+        "enquire"
       ],
-      "lexical_candidates": 32
+      "lexical_candidates": 18
     },
     {
       "word": "need",
       "relation": "dobj",
       "direction": "forward",
-      "selected_sense": "necessitate.v.01",
-      "available_sense_groups": 2,
+      "selected_sense": "wn:necessitate.v.01",
+      "available_sense_groups": 5,
       "comparison": [
         "need",
         "require",
-        "want",
         "necessitate",
-        "demand"
+        "demand",
+        "take",
+        "ask"
       ],
-      "lexical_candidates": 16
+      "lexical_candidates": 10
     },
     {
       "word": "require",
       "relation": "dobj",
       "direction": "forward",
-      "selected_sense": "necessitate.v.01",
-      "available_sense_groups": 4,
+      "selected_sense": "wn:necessitate.v.01",
+      "available_sense_groups": 7,
       "comparison": [
         "require",
         "need",
         "necessitate",
         "involve",
-        "demand"
+        "demand",
+        "take"
       ],
-      "lexical_candidates": 34
+      "lexical_candidates": 16
     },
     {
       "word": "price",
       "relation": "amod",
       "direction": "reverse",
-      "selected_sense": "monetary_value.n.01",
-      "available_sense_groups": 6,
+      "selected_sense": "wn:monetary_value.n.01",
+      "available_sense_groups": 3,
       "comparison": [
         "price",
         "cost"
       ],
-      "lexical_candidates": 9
+      "lexical_candidates": 4
     },
     {
       "word": "cost",
       "relation": "amod",
       "direction": "reverse",
-      "selected_sense": "cost.n.01",
+      "selected_sense": "wikt:en-expenditure-en-noun-K-8oRYDC:reverse:expenditure",
       "available_sense_groups": 3,
       "comparison": [
         "cost",
-        "price",
         "expense",
         "expenditure",
         "payment",
-        "damage"
+        "charge",
+        "outlay"
       ],
-      "lexical_candidates": 15
+      "lexical_candidates": 8
     },
     {
       "word": "chance",
       "relation": "amod",
       "direction": "reverse",
-      "selected_sense": "opportunity.n.01",
-      "available_sense_groups": 5,
+      "selected_sense": "wn:opportunity.n.01",
+      "available_sense_groups": 20,
       "comparison": [
         "chance",
         "opportunity"
       ],
-      "lexical_candidates": 29
+      "lexical_candidates": 28
     },
     {
       "word": "opportunity",
       "relation": "amod",
       "direction": "reverse",
-      "selected_sense": "opportunity.n.01",
-      "available_sense_groups": 1,
+      "selected_sense": "wn:opportunity.n.01",
+      "available_sense_groups": 2,
       "comparison": [
         "opportunity",
         "chance"
       ],
-      "lexical_candidates": 13
+      "lexical_candidates": 2
     },
     {
       "word": "possibility",
       "relation": "amod",
       "direction": "reverse",
-      "selected_sense": "possibility.n.01",
-      "available_sense_groups": 4,
+      "selected_sense": "wikt:86e9364519299189cb60",
+      "available_sense_groups": 15,
       "comparison": [
         "possibility",
-        "prospect",
-        "expectation"
+        "chance",
+        "contingent",
+        "contingency",
+        "potentiality",
+        "eventuality"
       ],
-      "lexical_candidates": 27
+      "lexical_candidates": 28
     },
     {
       "word": "probability",
       "relation": "amod",
       "direction": "reverse",
-      "selected_sense": "probability.n.01",
-      "available_sense_groups": 2,
+      "selected_sense": "wn:probability.n.01",
+      "available_sense_groups": 1,
       "comparison": [
         "probability",
         "chance"
       ],
-      "lexical_candidates": 7
+      "lexical_candidates": 1
     },
     {
       "word": "problem",
       "relation": "amod",
       "direction": "reverse",
-      "selected_sense": "problem.n.01",
-      "available_sense_groups": 3,
+      "selected_sense": "wn:problem.n.01",
+      "available_sense_groups": 9,
       "comparison": [
         "problem",
-        "difficulty"
+        "job"
       ],
-      "lexical_candidates": 16
+      "lexical_candidates": 50
     },
     {
       "word": "issue",
       "relation": "amod",
       "direction": "reverse",
-      "selected_sense": "issue.n.01",
-      "available_sense_groups": 11,
+      "selected_sense": "wn:topic.n.02",
+      "available_sense_groups": 24,
       "comparison": [
         "issue",
-        "content"
+        "topic",
+        "matter",
+        "subject"
       ],
-      "lexical_candidates": 75
+      "lexical_candidates": 70
     },
     {
       "word": "job",
       "relation": "amod",
       "direction": "reverse",
-      "selected_sense": "occupation.n.01",
-      "available_sense_groups": 11,
+      "selected_sense": "wn:occupation.n.01",
+      "available_sense_groups": 36,
       "comparison": [
         "job",
         "business",
-        "occupation"
+        "occupation",
+        "line"
       ],
-      "lexical_candidates": 48
+      "lexical_candidates": 119
     },
     {
       "word": "work",
       "relation": "amod",
       "direction": "reverse",
-      "selected_sense": "work.n.01",
-      "available_sense_groups": 7,
+      "selected_sense": "wikt:en-writing-en-noun-6iKYm~st:reverse:writing",
+      "available_sense_groups": 12,
       "comparison": [
         "work",
-        "project",
-        "investigation",
-        "labor",
-        "job",
-        "task"
+        "writing"
       ],
-      "lexical_candidates": 94
+      "lexical_candidates": 18
     },
     {
       "word": "mistake",
       "relation": "amod",
       "direction": "reverse",
-      "selected_sense": "mistake.n.01",
-      "available_sense_groups": 3,
+      "selected_sense": "wn:mistake.n.01",
+      "available_sense_groups": 23,
       "comparison": [
         "mistake",
         "error",
         "fault"
       ],
-      "lexical_candidates": 32
+      "lexical_candidates": 24
     },
     {
       "word": "error",
       "relation": "amod",
       "direction": "reverse",
-      "selected_sense": "mistake.n.01",
-      "available_sense_groups": 7,
+      "selected_sense": "wn:mistake.n.01",
+      "available_sense_groups": 40,
       "comparison": [
         "error",
         "mistake",
         "fault"
       ],
-      "lexical_candidates": 39
+      "lexical_candidates": 52
     },
     {
       "word": "result",
       "relation": "amod",
       "direction": "reverse",
-      "selected_sense": "consequence.n.01",
-      "available_sense_groups": 3,
+      "selected_sense": "wn:consequence.n.01",
+      "available_sense_groups": 19,
       "comparison": [
         "result",
         "outcome",
         "consequence",
         "effect",
-        "upshot"
+        "event",
+        "issue"
       ],
-      "lexical_candidates": 46
+      "lexical_candidates": 36
     },
     {
       "word": "outcome",
       "relation": "amod",
       "direction": "reverse",
-      "selected_sense": "result.n.03",
-      "available_sense_groups": 2,
+      "selected_sense": "wn:result.n.03",
+      "available_sense_groups": 5,
       "comparison": [
         "outcome",
         "result",
+        "termination",
         "resultant"
       ],
-      "lexical_candidates": 41
+      "lexical_candidates": 10
     },
     {
       "word": "risk",
       "relation": "amod",
       "direction": "reverse",
-      "selected_sense": "hazard.n.01",
-      "available_sense_groups": 4,
+      "selected_sense": "wn:hazard.n.01",
+      "available_sense_groups": 5,
       "comparison": [
         "risk",
         "hazard",
+        "jeopardy",
+        "peril",
         "endangerment"
       ],
-      "lexical_candidates": 9
+      "lexical_candidates": 10
     },
     {
       "word": "danger",
       "relation": "amod",
       "direction": "reverse",
-      "selected_sense": "danger.n.01",
-      "available_sense_groups": 4,
+      "selected_sense": "wikt:2781e5af8964b0e0f12d",
+      "available_sense_groups": 8,
       "comparison": [
         "danger",
-        "vulnerability",
-        "exposure",
-        "riskiness"
+        "threat",
+        "menace",
+        "hazard",
+        "jeopardy",
+        "distress"
       ],
-      "lexical_candidates": 19
+      "lexical_candidates": 11
     },
     {
       "word": "ability",
       "relation": "amod",
       "direction": "reverse",
-      "selected_sense": "ability.n.01",
-      "available_sense_groups": 2,
+      "selected_sense": "wikt:en-craft-en-noun-Mq-BhdL3:reverse:craft",
+      "available_sense_groups": 15,
       "comparison": [
         "ability",
+        "skill",
         "capability",
-        "quality",
+        "capacity",
         "competence",
-        "sensitivity",
-        "competency"
+        "hand"
       ],
-      "lexical_candidates": 31
+      "lexical_candidates": 41
     },
     {
       "word": "capability",
       "relation": "amod",
       "direction": "reverse",
-      "selected_sense": "capability.n.01",
-      "available_sense_groups": 3,
+      "selected_sense": "wikt:46e392ac503079bc8da3:reverse:faculty",
+      "available_sense_groups": 14,
       "comparison": [
         "capability",
         "ability",
         "capacity",
-        "strength",
-        "posture",
-        "overkill"
+        "power",
+        "property",
+        "talent"
       ],
-      "lexical_candidates": 16
+      "lexical_candidates": 64
     },
     {
       "word": "goal",
       "relation": "amod",
       "direction": "reverse",
-      "selected_sense": "goal.n.01",
-      "available_sense_groups": 4,
+      "selected_sense": "wn:goal.n.01",
+      "available_sense_groups": 10,
       "comparison": [
         "goal",
-        "aim",
-        "objective",
-        "intention",
-        "purpose",
-        "destination"
+        "end"
       ],
-      "lexical_candidates": 20
+      "lexical_candidates": 48
     },
     {
       "word": "aim",
       "relation": "amod",
       "direction": "reverse",
-      "selected_sense": "purpose.n.01",
-      "available_sense_groups": 4,
+      "selected_sense": "wn:purpose.n.01",
+      "available_sense_groups": 12,
       "comparison": [
         "aim",
         "intention",
+        "intent",
         "purpose",
-        "intent"
+        "design"
       ],
-      "lexical_candidates": 25
+      "lexical_candidates": 49
     },
     {
       "word": "idea",
       "relation": "amod",
       "direction": "reverse",
-      "selected_sense": "idea.n.01",
-      "available_sense_groups": 5,
+      "selected_sense": "wn:idea.n.01",
+      "available_sense_groups": 13,
       "comparison": [
         "idea",
         "thought"
       ],
-      "lexical_candidates": 69
+      "lexical_candidates": 61
     },
     {
       "word": "thought",
       "relation": "amod",
       "direction": "reverse",
-      "selected_sense": "idea.n.01",
-      "available_sense_groups": 4,
+      "selected_sense": "wn:idea.n.01",
+      "available_sense_groups": 58,
       "comparison": [
         "thought",
         "idea"
       ],
-      "lexical_candidates": 59
+      "lexical_candidates": 134
     },
     {
       "word": "house",
       "relation": "amod",
       "direction": "reverse",
-      "selected_sense": "house.n.01",
-      "available_sense_groups": 12,
+      "selected_sense": "wn:sign_of_the_zodiac.n.01",
+      "available_sense_groups": 9,
       "comparison": [
         "house",
         "mansion",
-        "building",
-        "villa",
-        "home",
-        "hall"
+        "sign"
       ],
-      "lexical_candidates": 57
+      "lexical_candidates": 21
     },
     {
       "word": "home",
       "relation": "amod",
       "direction": "reverse",
-      "selected_sense": "home.n.01",
-      "available_sense_groups": 9,
+      "selected_sense": "wn:home.n.01",
+      "available_sense_groups": 13,
       "comparison": [
         "home",
         "place"
       ],
-      "lexical_candidates": 31
+      "lexical_candidates": 22
     },
     {
       "word": "car",
       "relation": "amod",
       "direction": "reverse",
-      "selected_sense": "car.n.01",
-      "available_sense_groups": 5,
+      "selected_sense": "wn:car.n.01",
+      "available_sense_groups": 10,
       "comparison": [
         "car",
         "machine",
@@ -2075,47 +2027,46 @@
         "auto",
         "motorcar"
       ],
-      "lexical_candidates": 38
+      "lexical_candidates": 18
     },
     {
       "word": "vehicle",
       "relation": "amod",
       "direction": "reverse",
-      "selected_sense": "vehicle.n.01",
-      "available_sense_groups": 4,
+      "selected_sense": "wikt:en-medium-en-noun-en:a_format_for_communicating_or_presenting_information:reverse:medium",
+      "available_sense_groups": 3,
       "comparison": [
         "vehicle",
-        "transport",
-        "craft",
-        "projectile",
-        "sledge",
-        "conveyance"
+        "medium"
       ],
-      "lexical_candidates": 12
+      "lexical_candidates": 10
     },
     {
       "word": "customer",
       "relation": "amod",
       "direction": "reverse",
-      "selected_sense": "customer.n.01",
-      "available_sense_groups": 1,
+      "selected_sense": "wn:customer.n.01",
+      "available_sense_groups": 4,
       "comparison": [
         "customer",
         "client"
       ],
-      "lexical_candidates": 16
+      "lexical_candidates": 8
     },
     {
       "word": "client",
       "relation": "amod",
       "direction": "reverse",
-      "selected_sense": "client.n.01",
-      "available_sense_groups": 3,
+      "selected_sense": "wikt:en-client-en-noun-bs3ndY9b",
+      "available_sense_groups": 6,
       "comparison": [
         "client",
-        "case"
+        "buyer",
+        "customer",
+        "purchaser",
+        "patron"
       ],
-      "lexical_candidates": 19
+      "lexical_candidates": 11
     }
   ],
   "phrase_results": [
@@ -2123,84 +2074,53 @@
       "word": "strong",
       "collocate": "rain",
       "relation": "amod",
-      "selected_sense": "strong.s.01",
+      "selected_sense": "wikt:en-strong-en-adj-NiqKHp95",
+      "expected": [
+        "heavy"
+      ],
+      "candidate_target_found": false,
+      "source_target_exists": false,
       "candidates": [
         {
-          "word": "heavy",
-          "kind": "gloss",
-          "count": 1313,
-          "documents": 807,
+          "word": "intense",
+          "kind": "synonym",
+          "count": 3,
+          "documents": 3,
           "shared": [
-            "accent",
-            "action",
-            "activity",
-            "airplay",
-            "album",
-            "amount",
-            "approach",
-            "area"
+            "hurricane",
+            "dislike",
+            "typhoon",
+            "thunderstorm",
+            "wind",
+            "storm"
           ],
-          "similarity": 0
+          "similarity": 0.16462,
+          "provenance": [
+            {
+              "source": "Wiktionary",
+              "url": "https://en.wiktionary.org/wiki/strong",
+              "senseId": "wikt:en-strong-en-adj-NiqKHp95",
+              "definition": "Highly stimulating to the senses."
+            }
+          ]
         },
         {
-          "word": "warm",
-          "kind": "gloss",
-          "count": 9,
-          "documents": 9,
+          "word": "extreme",
+          "kind": "synonym",
+          "count": 3,
+          "documents": 2,
           "shared": [
-            "feeling",
-            "current",
-            "breeze",
-            "friendship",
-            "personality",
             "bias"
           ],
-          "similarity": 0.04741
-        },
-        {
-          "word": "hard",
-          "kind": "gloss",
-          "count": 7,
-          "documents": 6,
-          "shared": [
-            "feeling",
-            "evidence"
-          ],
-          "similarity": 0.01362
-        },
-        {
-          "word": "light",
-          "kind": "gloss",
-          "count": 78,
-          "documents": 71,
-          "shared": [
-            "absorption",
-            "alloy",
-            "amount",
-            "approach",
-            "area",
-            "arm",
-            "armament",
-            "armor"
-          ],
-          "similarity": 0
-        },
-        {
-          "word": "high",
-          "kind": "gloss",
-          "count": 24,
-          "documents": 18,
-          "shared": [
-            "ability",
-            "absorption",
-            "acclaim",
-            "acid",
-            "act",
-            "action",
-            "activation",
-            "activity"
-          ],
-          "similarity": 0
+          "similarity": 0.0063,
+          "provenance": [
+            {
+              "source": "Wiktionary",
+              "url": "https://en.wiktionary.org/wiki/strong",
+              "senseId": "wikt:en-strong-en-adj-NiqKHp95",
+              "definition": "Highly stimulating to the senses."
+            }
+          ]
         }
       ]
     },
@@ -2208,11 +2128,16 @@
       "word": "powerful",
       "collocate": "coffee",
       "relation": "amod",
-      "selected_sense": "powerful.a.01",
+      "selected_sense": "wikt:en-stiff-en-adj-ySCORXOg:reverse:stiff",
+      "expected": [
+        "strong"
+      ],
+      "candidate_target_found": true,
+      "source_target_exists": true,
       "candidates": [
         {
           "word": "strong",
-          "kind": "similar",
+          "kind": "synonym",
           "count": 2,
           "documents": 2,
           "shared": [
@@ -2223,59 +2148,37 @@
             "bite",
             "gust"
           ],
-          "similarity": 0.13766
+          "similarity": 0.13766,
+          "provenance": [
+            {
+              "source": "Wiktionary",
+              "url": "https://en.wiktionary.org/wiki/stiff#English",
+              "senseId": "wikt:en-stiff-en-adj-ySCORXOg:reverse:stiff",
+              "definition": "Potent.",
+              "membership": "sense-group",
+              "anchor": "stiff"
+            }
+          ]
         },
         {
-          "word": "mighty",
-          "kind": "similar",
+          "word": "stiff",
+          "kind": "synonym",
           "count": 0,
           "documents": 0,
           "shared": [
-            "warrior",
-            "empire",
-            "king",
-            "man"
+            "wind"
           ],
-          "similarity": 0.10099
-        },
-        {
-          "word": "potent",
-          "kind": "similar",
-          "count": 0,
-          "documents": 0,
-          "shared": [
-            "weapon",
-            "symbol",
-            "force",
-            "influence"
-          ],
-          "similarity": 0.04651
-        },
-        {
-          "word": "muscular",
-          "kind": "similar",
-          "count": 0,
-          "documents": 0,
-          "shared": [
-            "build",
-            "warrior",
-            "man"
-          ],
-          "similarity": 0.02553
-        },
-        {
-          "word": "effective",
-          "kind": "related",
-          "count": 0,
-          "documents": 0,
-          "shared": [
-            "tool",
-            "weapon",
-            "ruler",
-            "attack",
-            "force"
-          ],
-          "similarity": 0.0425
+          "similarity": 0.00341,
+          "provenance": [
+            {
+              "source": "Wiktionary",
+              "url": "https://en.wiktionary.org/wiki/stiff#English",
+              "senseId": "wikt:en-stiff-en-adj-ySCORXOg:reverse:stiff",
+              "definition": "Potent.",
+              "membership": "sense-group",
+              "anchor": "stiff"
+            }
+          ]
         }
       ]
     },
@@ -2283,130 +2186,146 @@
       "word": "high",
       "collocate": "building",
       "relation": "amod",
-      "selected_sense": "high.a.02",
+      "selected_sense": "wikt:5bedcbd5ffe2f0240e69:reverse:tall",
+      "expected": [
+        "tall"
+      ],
+      "candidate_target_found": true,
+      "source_target_exists": true,
       "candidates": [
         {
-          "word": "first",
-          "kind": "gloss",
-          "count": 265,
-          "documents": 212,
-          "shared": [
-            "acclaim",
-            "accommodation",
-            "ace",
-            "achievement",
-            "acid",
-            "act",
-            "action",
-            "activity"
-          ],
-          "similarity": 0
-        },
-        {
           "word": "tall",
-          "kind": "related",
+          "kind": "synonym",
           "count": 370,
           "documents": 197,
           "shared": [
             "peak",
             "mountain"
           ],
-          "similarity": 0.02523
+          "similarity": 0.02523,
+          "provenance": [
+            {
+              "source": "Wiktionary",
+              "url": "https://en.wiktionary.org/wiki/tall#English",
+              "senseId": "wikt:5bedcbd5ffe2f0240e69:reverse:tall",
+              "definition": "Thesaurus:tall",
+              "membership": "sense-group",
+              "anchor": "tall"
+            }
+          ]
         },
         {
-          "word": "major",
-          "kind": "gloss",
-          "count": 67,
-          "documents": 61,
-          "shared": [
-            "acclaim",
-            "achievement",
-            "acid",
-            "act",
-            "action",
-            "activity",
-            "agency",
-            "aim"
-          ],
-          "similarity": 0
+          "word": "elevated",
+          "kind": "synonym",
+          "count": 4,
+          "documents": 4,
+          "shared": [],
+          "similarity": 0,
+          "provenance": [
+            {
+              "source": "Wiktionary",
+              "url": "https://en.wiktionary.org/wiki/tall#English",
+              "senseId": "wikt:5bedcbd5ffe2f0240e69:reverse:tall",
+              "definition": "Thesaurus:tall",
+              "membership": "sense-group",
+              "anchor": "tall"
+            }
+          ]
         },
         {
-          "word": "good",
-          "kind": "gloss",
-          "count": 21,
-          "documents": 17,
+          "word": "lofty",
+          "kind": "synonym",
+          "count": 2,
+          "documents": 2,
           "shared": [
-            "ability",
-            "accommodation",
-            "accuracy",
-            "achievement",
-            "act",
-            "action",
-            "activity",
-            "administration"
+            "expectation",
+            "mountain",
+            "price"
           ],
-          "similarity": 0
+          "similarity": 0.1006,
+          "provenance": [
+            {
+              "source": "Wiktionary",
+              "url": "https://en.wiktionary.org/wiki/tall#English",
+              "senseId": "wikt:5bedcbd5ffe2f0240e69:reverse:tall",
+              "definition": "Thesaurus:tall",
+              "membership": "sense-group",
+              "anchor": "tall"
+            }
+          ]
         },
         {
-          "word": "long",
-          "kind": "gloss",
-          "count": 24,
-          "documents": 21,
-          "shared": [
-            "age",
-            "aircraft",
-            "album",
-            "amount",
-            "animal",
-            "appearance",
-            "arch",
-            "area"
-          ],
-          "similarity": 0
+          "word": "exalted",
+          "kind": "synonym",
+          "count": 0,
+          "documents": 0,
+          "shared": [],
+          "similarity": 0,
+          "provenance": [
+            {
+              "source": "Wiktionary",
+              "url": "https://en.wiktionary.org/wiki/tall#English",
+              "senseId": "wikt:5bedcbd5ffe2f0240e69:reverse:tall",
+              "definition": "Thesaurus:tall",
+              "membership": "sense-group",
+              "anchor": "tall"
+            }
+          ]
         }
       ]
+    },
+    {
+      "word": "high",
+      "collocate": "possibility",
+      "relation": "amod",
+      "selected_sense": null,
+      "expected": [
+        "strong",
+        "real"
+      ],
+      "candidate_target_found": false,
+      "source_target_exists": false,
+      "candidates": []
     },
     {
       "word": "big",
       "collocate": "mistake",
       "relation": "amod",
-      "selected_sense": "big.s.01",
+      "selected_sense": "wikt:en-big-en-adj-hPuQw5No",
+      "expected": [
+        "serious",
+        "major",
+        "large"
+      ],
+      "candidate_target_found": true,
+      "source_target_exists": true,
       "candidates": [
         {
-          "word": "small",
-          "kind": "gloss",
-          "count": 6,
-          "documents": 5,
+          "word": "huge",
+          "kind": "synonym",
+          "count": 9,
+          "documents": 9,
           "shared": [
-            "accident",
-            "act",
-            "action",
-            "addition",
-            "adjustment",
-            "advance",
-            "advantage",
-            "affair"
+            "fan",
+            "chunk",
+            "hit",
+            "leap",
+            "mess",
+            "margin"
           ],
-          "similarity": 0
-        },
-        {
-          "word": "serious",
-          "kind": "related",
-          "count": 16,
-          "documents": 15,
-          "shared": [
-            "challenge",
-            "problem",
-            "mistake",
-            "flaw",
-            "obstacle",
-            "threat"
-          ],
-          "similarity": 0.0843
+          "similarity": 0.19734,
+          "provenance": [
+            {
+              "source": "Wiktionary",
+              "url": "https://en.wiktionary.org/wiki/Thesaurus%3Alarge",
+              "senseId": "wikt:en-big-en-adj-hPuQw5No",
+              "definition": "Of great size, large."
+            }
+          ]
         },
         {
           "word": "great",
-          "kind": "related",
+          "kind": "synonym",
           "count": 19,
           "documents": 17,
           "shared": [
@@ -2416,32 +2335,194 @@
             "disappointment",
             "upset"
           ],
-          "similarity": 0.05581
+          "similarity": 0.05581,
+          "provenance": [
+            {
+              "source": "Wiktionary",
+              "url": "https://en.wiktionary.org/wiki/Thesaurus%3Alarge",
+              "senseId": "wikt:en-big-en-adj-hPuQw5No",
+              "definition": "Of great size, large."
+            }
+          ]
         },
         {
-          "word": "grave",
-          "kind": "related",
-          "count": 9,
-          "documents": 9,
+          "word": "large",
+          "kind": "synonym",
+          "count": 0,
+          "documents": 0,
           "shared": [
-            "mistake",
-            "threat",
+            "chunk",
+            "corporation",
+            "margin",
+            "crowd",
+            "city",
+            "mouth"
+          ],
+          "similarity": 0.05318,
+          "provenance": [
+            {
+              "source": "Wiktionary",
+              "url": "https://en.wiktionary.org/wiki/big",
+              "senseId": "wikt:en-big-en-adj-hPuQw5No",
+              "definition": "Of great size, large."
+            }
+          ]
+        },
+        {
+          "word": "enormous",
+          "kind": "synonym",
+          "count": 2,
+          "documents": 2,
+          "shared": [
             "challenge",
-            "problem"
+            "crowd",
+            "influence",
+            "boost",
+            "problem",
+            "hit"
           ],
-          "similarity": 0.04697
+          "similarity": 0.05588,
+          "provenance": [
+            {
+              "source": "Wiktionary",
+              "url": "https://en.wiktionary.org/wiki/Thesaurus%3Alarge",
+              "senseId": "wikt:en-big-en-adj-hPuQw5No",
+              "definition": "Of great size, large."
+            }
+          ]
         },
         {
-          "word": "strategic",
-          "kind": "related",
-          "count": 10,
-          "documents": 10,
+          "word": "colossal",
+          "kind": "synonym",
+          "count": 2,
+          "documents": 2,
+          "shared": [],
+          "similarity": 0,
+          "provenance": [
+            {
+              "source": "Wiktionary",
+              "url": "https://en.wiktionary.org/wiki/Thesaurus%3Alarge",
+              "senseId": "wikt:en-big-en-adj-hPuQw5No",
+              "definition": "Of great size, large."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "word": "fast",
+      "collocate": "speed",
+      "relation": "amod",
+      "selected_sense": "wikt:en-fast-en-adj-A7XeIcY4",
+      "expected": [
+        "high",
+        "rapid"
+      ],
+      "candidate_target_found": true,
+      "source_target_exists": true,
+      "candidates": [
+        {
+          "word": "rapid",
+          "kind": "synonym",
+          "count": 9,
+          "documents": 8,
           "shared": [
-            "mistake",
-            "blunder",
-            "threat"
+            "pace",
+            "growth",
+            "rate",
+            "onset",
+            "breathing",
+            "motion"
           ],
-          "similarity": 0.02709
+          "similarity": 0.10782,
+          "provenance": [
+            {
+              "source": "Wiktionary",
+              "url": "https://en.wiktionary.org/wiki/fast",
+              "senseId": "wikt:en-fast-en-adj-A7XeIcY4",
+              "definition": "Able to transfer data in a short period of time."
+            }
+          ]
+        },
+        {
+          "word": "quick",
+          "kind": "synonym",
+          "count": 0,
+          "documents": 0,
+          "shared": [
+            "pace",
+            "lap",
+            "driver",
+            "tempo",
+            "cutting",
+            "start"
+          ],
+          "similarity": 0.19107,
+          "provenance": [
+            {
+              "source": "Wiktionary",
+              "url": "https://en.wiktionary.org/wiki/fast",
+              "senseId": "wikt:en-fast-en-adj-A7XeIcY4",
+              "definition": "Able to transfer data in a short period of time."
+            }
+          ]
+        },
+        {
+          "word": "swift",
+          "kind": "synonym",
+          "count": 0,
+          "documents": 0,
+          "shared": [
+            "runner",
+            "pace",
+            "movement",
+            "boat",
+            "kick",
+            "horse"
+          ],
+          "similarity": 0.07713,
+          "provenance": [
+            {
+              "source": "Wiktionary",
+              "url": "https://en.wiktionary.org/wiki/fast",
+              "senseId": "wikt:en-fast-en-adj-A7XeIcY4",
+              "definition": "Able to transfer data in a short period of time."
+            }
+          ]
+        },
+        {
+          "word": "speedy",
+          "kind": "synonym",
+          "count": 0,
+          "documents": 0,
+          "shared": [
+            "recovery"
+          ],
+          "similarity": 0.03002,
+          "provenance": [
+            {
+              "source": "Wiktionary",
+              "url": "https://en.wiktionary.org/wiki/fast",
+              "senseId": "wikt:en-fast-en-adj-A7XeIcY4",
+              "definition": "Able to transfer data in a short period of time."
+            }
+          ]
+        },
+        {
+          "word": "easy",
+          "kind": "synonym",
+          "count": 0,
+          "documents": 0,
+          "shared": [],
+          "similarity": 0,
+          "provenance": [
+            {
+              "source": "Wiktionary",
+              "url": "https://en.wiktionary.org/wiki/fast",
+              "senseId": "wikt:en-fast-en-adj-A7XeIcY4",
+              "definition": "Able to transfer data in a short period of time."
+            }
+          ]
         }
       ]
     },
@@ -2449,20 +2530,14 @@
       "word": "hard",
       "collocate": "problem",
       "relation": "amod",
-      "selected_sense": "difficult.a.01",
+      "selected_sense": "wikt:en-rough-en-adj-BWb~CWeO:reverse:rough",
+      "expected": [
+        "difficult",
+        "complex"
+      ],
+      "candidate_target_found": true,
+      "source_target_exists": true,
       "candidates": [
-        {
-          "word": "severe",
-          "kind": "gloss",
-          "count": 96,
-          "documents": 84,
-          "shared": [
-            "blow",
-            "winter",
-            "difficulty"
-          ],
-          "similarity": 0.01855
-        },
         {
           "word": "difficult",
           "kind": "synonym",
@@ -2476,40 +2551,21 @@
             "question",
             "thing"
           ],
-          "similarity": 0.12
-        },
-        {
-          "word": "serious",
-          "kind": "similar",
-          "count": 326,
-          "documents": 298,
-          "shared": [
-            "blow",
-            "question",
-            "difficulty"
-          ],
-          "similarity": 0.0209
-        },
-        {
-          "word": "psychological",
-          "kind": "gloss",
-          "count": 43,
-          "documents": 41,
-          "shared": [
-            "aspect",
-            "blow",
-            "challenge",
-            "component",
-            "edge",
-            "element",
-            "experience",
-            "film"
-          ],
-          "similarity": 0
+          "similarity": 0.12,
+          "provenance": [
+            {
+              "source": "Wiktionary",
+              "url": "https://en.wiktionary.org/wiki/rough#English",
+              "senseId": "wikt:en-rough-en-adj-BWb~CWeO:reverse:rough",
+              "definition": "Difficult; trying.",
+              "membership": "sense-group",
+              "anchor": "rough"
+            }
+          ]
         },
         {
           "word": "tough",
-          "kind": "similar",
+          "kind": "synonym",
           "count": 6,
           "documents": 6,
           "shared": [
@@ -2520,7 +2576,88 @@
             "alloy",
             "question"
           ],
-          "similarity": 0.14882
+          "similarity": 0.14882,
+          "provenance": [
+            {
+              "source": "Wiktionary",
+              "url": "https://en.wiktionary.org/wiki/rough#English",
+              "senseId": "wikt:en-rough-en-adj-BWb~CWeO:reverse:rough",
+              "definition": "Difficult; trying.",
+              "membership": "sense-group",
+              "anchor": "rough"
+            }
+          ]
+        },
+        {
+          "word": "challenging",
+          "kind": "synonym",
+          "count": 7,
+          "documents": 7,
+          "shared": [
+            "puzzle",
+            "difficulty",
+            "work",
+            "task",
+            "question",
+            "part"
+          ],
+          "similarity": 0.07924,
+          "provenance": [
+            {
+              "source": "Wiktionary",
+              "url": "https://en.wiktionary.org/wiki/rough#English",
+              "senseId": "wikt:en-rough-en-adj-BWb~CWeO:reverse:rough",
+              "definition": "Difficult; trying.",
+              "membership": "sense-group",
+              "anchor": "rough"
+            }
+          ]
+        },
+        {
+          "word": "sticky",
+          "kind": "synonym",
+          "count": 3,
+          "documents": 3,
+          "shared": [
+            "surface",
+            "pitch",
+            "wicket",
+            "cap",
+            "layer"
+          ],
+          "similarity": 0.05754,
+          "provenance": [
+            {
+              "source": "Wiktionary",
+              "url": "https://en.wiktionary.org/wiki/rough#English",
+              "senseId": "wikt:en-rough-en-adj-BWb~CWeO:reverse:rough",
+              "definition": "Difficult; trying.",
+              "membership": "sense-group",
+              "anchor": "rough"
+            }
+          ]
+        },
+        {
+          "word": "nasty",
+          "kind": "synonym",
+          "count": 1,
+          "documents": 1,
+          "shared": [
+            "thing",
+            "stuff",
+            "part"
+          ],
+          "similarity": 0.0565,
+          "provenance": [
+            {
+              "source": "Wiktionary",
+              "url": "https://en.wiktionary.org/wiki/rough#English",
+              "senseId": "wikt:en-rough-en-adj-BWb~CWeO:reverse:rough",
+              "definition": "Difficult; trying.",
+              "membership": "sense-group",
+              "anchor": "rough"
+            }
+          ]
         }
       ]
     },
@@ -2528,11 +2665,17 @@
       "word": "lessen",
       "collocate": "price",
       "relation": "dobj",
-      "selected_sense": "decrease.v.02",
+      "selected_sense": "wikt:en-reduce-en-verb-4xUfLvyu:reverse:reduce",
+      "expected": [
+        "lower",
+        "reduce"
+      ],
+      "candidate_target_found": true,
+      "source_target_exists": true,
       "candidates": [
         {
           "word": "reduce",
-          "kind": "related",
+          "kind": "synonym",
           "count": 59,
           "documents": 50,
           "shared": [
@@ -2543,7 +2686,17 @@
             "likelihood",
             "impact"
           ],
-          "similarity": 0.29498
+          "similarity": 0.29498,
+          "provenance": [
+            {
+              "source": "Wiktionary",
+              "url": "https://en.wiktionary.org/wiki/reduce#English",
+              "senseId": "wikt:en-reduce-en-verb-4xUfLvyu:reverse:reduce",
+              "definition": "To bring down the size, quantity, quality, value or intensity of something; to diminish, to lower.",
+              "membership": "sense-group",
+              "anchor": "reduce"
+            }
+          ]
         },
         {
           "word": "decrease",
@@ -2558,11 +2711,21 @@
             "effectiveness",
             "amount"
           ],
-          "similarity": 0.3014
+          "similarity": 0.3014,
+          "provenance": [
+            {
+              "source": "Wiktionary",
+              "url": "https://en.wiktionary.org/wiki/reduce#English",
+              "senseId": "wikt:en-reduce-en-verb-4xUfLvyu:reverse:reduce",
+              "definition": "To bring down the size, quantity, quality, value or intensity of something; to diminish, to lower.",
+              "membership": "sense-group",
+              "anchor": "reduce"
+            }
+          ]
         },
         {
           "word": "lower",
-          "kind": "related",
+          "kind": "synonym",
           "count": 62,
           "documents": 56,
           "shared": [
@@ -2573,28 +2736,63 @@
             "chance",
             "expense"
           ],
-          "similarity": 0.12189
+          "similarity": 0.12189,
+          "provenance": [
+            {
+              "source": "Wiktionary",
+              "url": "https://en.wiktionary.org/wiki/reduce#English",
+              "senseId": "wikt:en-reduce-en-verb-4xUfLvyu:reverse:reduce",
+              "definition": "To bring down the size, quantity, quality, value or intensity of something; to diminish, to lower.",
+              "membership": "sense-group",
+              "anchor": "reduce"
+            }
+          ]
         },
         {
           "word": "cut",
-          "kind": "related",
+          "kind": "synonym",
           "count": 19,
           "documents": 17,
           "shared": [
             "expense",
             "power"
           ],
-          "similarity": 0.02194
+          "similarity": 0.02194,
+          "provenance": [
+            {
+              "source": "Wiktionary",
+              "url": "https://en.wiktionary.org/wiki/reduce#English",
+              "senseId": "wikt:en-reduce-en-verb-4xUfLvyu:reverse:reduce",
+              "definition": "To bring down the size, quantity, quality, value or intensity of something; to diminish, to lower.",
+              "membership": "sense-group",
+              "anchor": "reduce"
+            }
+          ]
         },
         {
-          "word": "change",
-          "kind": "related",
-          "count": 5,
-          "documents": 4,
+          "word": "diminish",
+          "kind": "synonym",
+          "count": 0,
+          "documents": 0,
           "shared": [
-            "image"
+            "impact",
+            "chance",
+            "value",
+            "influence",
+            "burden",
+            "amount"
           ],
-          "similarity": 0.00828
+          "similarity": 0.28318,
+          "provenance": [
+            {
+              "source": "Wiktionary",
+              "url": "https://en.wiktionary.org/wiki/reduce#English",
+              "senseId": "wikt:en-reduce-en-verb-4xUfLvyu:reverse:reduce",
+              "definition": "To bring down the size, quantity, quality, value or intensity of something; to diminish, to lower.",
+              "membership": "sense-group",
+              "anchor": "reduce"
+            }
+          ]
         }
       ]
     },
@@ -2602,11 +2800,17 @@
       "word": "lessen",
       "collocate": "emission",
       "relation": "dobj",
-      "selected_sense": "decrease.v.02",
+      "selected_sense": "wikt:en-reduce-en-verb-4xUfLvyu:reverse:reduce",
+      "expected": [
+        "reduce",
+        "cut"
+      ],
+      "candidate_target_found": true,
+      "source_target_exists": true,
       "candidates": [
         {
           "word": "reduce",
-          "kind": "related",
+          "kind": "synonym",
           "count": 203,
           "documents": 96,
           "shared": [
@@ -2617,7 +2821,17 @@
             "likelihood",
             "impact"
           ],
-          "similarity": 0.29498
+          "similarity": 0.29498,
+          "provenance": [
+            {
+              "source": "Wiktionary",
+              "url": "https://en.wiktionary.org/wiki/reduce#English",
+              "senseId": "wikt:en-reduce-en-verb-4xUfLvyu:reverse:reduce",
+              "definition": "To bring down the size, quantity, quality, value or intensity of something; to diminish, to lower.",
+              "membership": "sense-group",
+              "anchor": "reduce"
+            }
+          ]
         },
         {
           "word": "decrease",
@@ -2632,48 +2846,227 @@
             "effectiveness",
             "amount"
           ],
-          "similarity": 0.3014
-        },
-        {
-          "word": "limit",
-          "kind": "related",
-          "count": 20,
-          "documents": 13,
-          "shared": [
-            "effectiveness",
-            "amount",
-            "impact",
-            "influence",
-            "value",
-            "power"
-          ],
-          "similarity": 0.12293
-        },
-        {
-          "word": "mitigate",
-          "kind": "related",
-          "count": 3,
-          "documents": 3,
-          "shared": [
-            "impact",
-            "risk",
-            "effect",
-            "burden",
-            "pain",
-            "threat"
-          ],
-          "similarity": 0.33565
+          "similarity": 0.3014,
+          "provenance": [
+            {
+              "source": "Wiktionary",
+              "url": "https://en.wiktionary.org/wiki/reduce#English",
+              "senseId": "wikt:en-reduce-en-verb-4xUfLvyu:reverse:reduce",
+              "definition": "To bring down the size, quantity, quality, value or intensity of something; to diminish, to lower.",
+              "membership": "sense-group",
+              "anchor": "reduce"
+            }
+          ]
         },
         {
           "word": "cut",
-          "kind": "related",
+          "kind": "synonym",
           "count": 24,
           "documents": 20,
           "shared": [
             "expense",
             "power"
           ],
-          "similarity": 0.02194
+          "similarity": 0.02194,
+          "provenance": [
+            {
+              "source": "Wiktionary",
+              "url": "https://en.wiktionary.org/wiki/reduce#English",
+              "senseId": "wikt:en-reduce-en-verb-4xUfLvyu:reverse:reduce",
+              "definition": "To bring down the size, quantity, quality, value or intensity of something; to diminish, to lower.",
+              "membership": "sense-group",
+              "anchor": "reduce"
+            }
+          ]
+        },
+        {
+          "word": "minimize",
+          "kind": "synonym",
+          "count": 2,
+          "documents": 2,
+          "shared": [
+            "impact",
+            "burden",
+            "risk",
+            "chance",
+            "effect",
+            "amount"
+          ],
+          "similarity": 0.39852,
+          "provenance": [
+            {
+              "source": "Wiktionary",
+              "url": "https://en.wiktionary.org/wiki/reduce#English",
+              "senseId": "wikt:en-reduce-en-verb-4xUfLvyu:reverse:reduce",
+              "definition": "To bring down the size, quantity, quality, value or intensity of something; to diminish, to lower.",
+              "membership": "sense-group",
+              "anchor": "reduce"
+            }
+          ]
+        },
+        {
+          "word": "diminish",
+          "kind": "synonym",
+          "count": 0,
+          "documents": 0,
+          "shared": [
+            "impact",
+            "chance",
+            "value",
+            "influence",
+            "burden",
+            "amount"
+          ],
+          "similarity": 0.28318,
+          "provenance": [
+            {
+              "source": "Wiktionary",
+              "url": "https://en.wiktionary.org/wiki/reduce#English",
+              "senseId": "wikt:en-reduce-en-verb-4xUfLvyu:reverse:reduce",
+              "definition": "To bring down the size, quantity, quality, value or intensity of something; to diminish, to lower.",
+              "membership": "sense-group",
+              "anchor": "reduce"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "word": "lessen",
+      "collocate": "temperature",
+      "relation": "dobj",
+      "selected_sense": "wikt:en-reduce-en-verb-4xUfLvyu:reverse:reduce",
+      "expected": [
+        "lower",
+        "reduce"
+      ],
+      "candidate_target_found": true,
+      "source_target_exists": true,
+      "candidates": [
+        {
+          "word": "decrease",
+          "kind": "synonym",
+          "count": 23,
+          "documents": 21,
+          "shared": [
+            "risk",
+            "likelihood",
+            "burden",
+            "chance",
+            "effectiveness",
+            "amount"
+          ],
+          "similarity": 0.3014,
+          "provenance": [
+            {
+              "source": "Wiktionary",
+              "url": "https://en.wiktionary.org/wiki/reduce#English",
+              "senseId": "wikt:en-reduce-en-verb-4xUfLvyu:reverse:reduce",
+              "definition": "To bring down the size, quantity, quality, value or intensity of something; to diminish, to lower.",
+              "membership": "sense-group",
+              "anchor": "reduce"
+            }
+          ]
+        },
+        {
+          "word": "lower",
+          "kind": "synonym",
+          "count": 37,
+          "documents": 34,
+          "shared": [
+            "risk",
+            "burden",
+            "value",
+            "amount",
+            "chance",
+            "expense"
+          ],
+          "similarity": 0.12189,
+          "provenance": [
+            {
+              "source": "Wiktionary",
+              "url": "https://en.wiktionary.org/wiki/reduce#English",
+              "senseId": "wikt:en-reduce-en-verb-4xUfLvyu:reverse:reduce",
+              "definition": "To bring down the size, quantity, quality, value or intensity of something; to diminish, to lower.",
+              "membership": "sense-group",
+              "anchor": "reduce"
+            }
+          ]
+        },
+        {
+          "word": "reduce",
+          "kind": "synonym",
+          "count": 23,
+          "documents": 21,
+          "shared": [
+            "dependence",
+            "burden",
+            "risk",
+            "severity",
+            "likelihood",
+            "impact"
+          ],
+          "similarity": 0.29498,
+          "provenance": [
+            {
+              "source": "Wiktionary",
+              "url": "https://en.wiktionary.org/wiki/reduce#English",
+              "senseId": "wikt:en-reduce-en-verb-4xUfLvyu:reverse:reduce",
+              "definition": "To bring down the size, quantity, quality, value or intensity of something; to diminish, to lower.",
+              "membership": "sense-group",
+              "anchor": "reduce"
+            }
+          ]
+        },
+        {
+          "word": "diminish",
+          "kind": "synonym",
+          "count": 0,
+          "documents": 0,
+          "shared": [
+            "impact",
+            "chance",
+            "value",
+            "influence",
+            "burden",
+            "amount"
+          ],
+          "similarity": 0.28318,
+          "provenance": [
+            {
+              "source": "Wiktionary",
+              "url": "https://en.wiktionary.org/wiki/reduce#English",
+              "senseId": "wikt:en-reduce-en-verb-4xUfLvyu:reverse:reduce",
+              "definition": "To bring down the size, quantity, quality, value or intensity of something; to diminish, to lower.",
+              "membership": "sense-group",
+              "anchor": "reduce"
+            }
+          ]
+        },
+        {
+          "word": "minimize",
+          "kind": "synonym",
+          "count": 0,
+          "documents": 0,
+          "shared": [
+            "impact",
+            "burden",
+            "risk",
+            "chance",
+            "effect",
+            "amount"
+          ],
+          "similarity": 0.39852,
+          "provenance": [
+            {
+              "source": "Wiktionary",
+              "url": "https://en.wiktionary.org/wiki/reduce#English",
+              "senseId": "wikt:en-reduce-en-verb-4xUfLvyu:reverse:reduce",
+              "definition": "To bring down the size, quantity, quality, value or intensity of something; to diminish, to lower.",
+              "membership": "sense-group",
+              "anchor": "reduce"
+            }
+          ]
         }
       ]
     },
@@ -2681,7 +3074,12 @@
       "word": "do",
       "collocate": "decision",
       "relation": "dobj",
-      "selected_sense": "cause.v.01",
+      "selected_sense": "wn:make.v.01",
+      "expected": [
+        "make"
+      ],
+      "candidate_target_found": true,
+      "source_target_exists": true,
       "candidates": [
         {
           "word": "make",
@@ -2692,47 +3090,15 @@
             "impression",
             "movie"
           ],
-          "similarity": 0.00946
-        },
-        {
-          "word": "influence",
-          "kind": "related",
-          "count": 126,
-          "documents": 116,
-          "shared": [
-            "thinking",
-            "work"
-          ],
-          "similarity": 0.01765
-        },
-        {
-          "word": "prompt",
-          "kind": "related",
-          "count": 16,
-          "documents": 16,
-          "shared": [],
-          "similarity": 0
-        },
-        {
-          "word": "facilitate",
-          "kind": "related",
-          "count": 6,
-          "documents": 2,
-          "shared": [
-            "repair",
-            "research",
-            "calculation",
-            "work"
-          ],
-          "similarity": 0.02185
-        },
-        {
-          "word": "force",
-          "kind": "related",
-          "count": 5,
-          "documents": 5,
-          "shared": [],
-          "similarity": 0
+          "similarity": 0.00946,
+          "provenance": [
+            {
+              "source": "WordNet 3.0",
+              "url": "https://wordnet.princeton.edu/",
+              "senseId": "wn:make.v.01",
+              "definition": "engage in"
+            }
+          ]
         }
       ]
     },
@@ -2740,11 +3106,17 @@
       "word": "solve",
       "collocate": "problem",
       "relation": "dobj",
-      "selected_sense": "solve.v.01",
+      "selected_sense": "wikt:en-resolve-en-verb-BHf-F-cG:reverse:resolve",
+      "expected": [
+        "resolve",
+        "address"
+      ],
+      "candidate_target_found": true,
+      "source_target_exists": true,
       "candidates": [
         {
           "word": "resolve",
-          "kind": "related",
+          "kind": "synonym",
           "count": 166,
           "documents": 155,
           "shared": [
@@ -2755,66 +3127,89 @@
             "dispute",
             "conflict"
           ],
-          "similarity": 0.43854
+          "similarity": 0.43854,
+          "provenance": [
+            {
+              "source": "Wiktionary",
+              "url": "https://en.wiktionary.org/wiki/resolve#English",
+              "senseId": "wikt:en-resolve-en-verb-BHf-F-cG:reverse:resolve",
+              "definition": "To find a solution to (a problem).",
+              "membership": "sense-group",
+              "anchor": "resolve"
+            }
+          ]
         },
         {
-          "word": "work",
+          "word": "decipher",
           "kind": "synonym",
-          "count": 14,
-          "documents": 13,
-          "shared": [
-            "puzzle",
-            "problem",
-            "case",
-            "lot",
-            "issue",
-            "series"
-          ],
-          "similarity": 0.05563
+          "count": 0,
+          "documents": 0,
+          "shared": [],
+          "similarity": 0,
+          "provenance": [
+            {
+              "source": "Wiktionary",
+              "url": "https://en.wiktionary.org/wiki/resolve#English",
+              "senseId": "wikt:en-resolve-en-verb-BHf-F-cG:reverse:resolve",
+              "definition": "To find a solution to (a problem).",
+              "membership": "sense-group",
+              "anchor": "resolve"
+            }
+          ]
         },
         {
-          "word": "understand",
-          "kind": "related",
-          "count": 25,
-          "documents": 25,
-          "shared": [
-            "issue",
-            "structure",
-            "equation",
-            "problem",
-            "difference",
-            "situation"
-          ],
-          "similarity": 0.06336
+          "word": "unravel",
+          "kind": "synonym",
+          "count": 0,
+          "documents": 0,
+          "shared": [],
+          "similarity": 0,
+          "provenance": [
+            {
+              "source": "Wiktionary",
+              "url": "https://en.wiktionary.org/wiki/resolve#English",
+              "senseId": "wikt:en-resolve-en-verb-BHf-F-cG:reverse:resolve",
+              "definition": "To find a solution to (a problem).",
+              "membership": "sense-group",
+              "anchor": "resolve"
+            }
+          ]
         },
         {
-          "word": "answer",
-          "kind": "related",
-          "count": 5,
-          "documents": 5,
-          "shared": [
-            "riddle",
-            "challenge",
-            "question",
-            "mystery",
-            "series",
-            "threat"
-          ],
-          "similarity": 0.12915
+          "word": "riddle",
+          "kind": "synonym",
+          "count": 0,
+          "documents": 0,
+          "shared": [],
+          "similarity": 0,
+          "provenance": [
+            {
+              "source": "Wiktionary",
+              "url": "https://en.wiktionary.org/wiki/resolve#English",
+              "senseId": "wikt:en-resolve-en-verb-BHf-F-cG:reverse:resolve",
+              "definition": "To find a solution to (a problem).",
+              "membership": "sense-group",
+              "anchor": "resolve"
+            }
+          ]
         },
         {
-          "word": "guess",
-          "kind": "related",
-          "count": 3,
-          "documents": 3,
-          "shared": [
-            "question",
-            "lot",
-            "problem",
-            "system",
-            "thing"
-          ],
-          "similarity": 0.05968
+          "word": "sleuth",
+          "kind": "synonym",
+          "count": 0,
+          "documents": 0,
+          "shared": [],
+          "similarity": 0,
+          "provenance": [
+            {
+              "source": "Wiktionary",
+              "url": "https://en.wiktionary.org/wiki/resolve#English",
+              "senseId": "wikt:en-resolve-en-verb-BHf-F-cG:reverse:resolve",
+              "definition": "To find a solution to (a problem).",
+              "membership": "sense-group",
+              "anchor": "resolve"
+            }
+          ]
         }
       ]
     },
@@ -2822,11 +3217,43 @@
       "word": "obtain",
       "collocate": "permission",
       "relation": "dobj",
-      "selected_sense": "obtain.v.01",
+      "selected_sense": "wikt:en-take-en-verb-Pkf0sHy3:reverse:take",
+      "expected": [
+        "get",
+        "gain",
+        "receive"
+      ],
+      "candidate_target_found": true,
+      "source_target_exists": true,
       "candidates": [
         {
+          "word": "receive",
+          "kind": "synonym",
+          "count": 250,
+          "documents": 233,
+          "shared": [
+            "doctorate",
+            "phd",
+            "approval",
+            "permission",
+            "certificate",
+            "grant"
+          ],
+          "similarity": 0.14914,
+          "provenance": [
+            {
+              "source": "Wiktionary",
+              "url": "https://en.wiktionary.org/wiki/take#English",
+              "senseId": "wikt:en-take-en-verb-Pkf0sHy3:reverse:take",
+              "definition": "To receive or accept (something, especially something which was given).",
+              "membership": "sense-group",
+              "anchor": "take"
+            }
+          ]
+        },
+        {
           "word": "get",
-          "kind": "related",
+          "kind": "synonym",
           "count": 89,
           "documents": 81,
           "shared": [
@@ -2837,11 +3264,21 @@
             "approval",
             "visa"
           ],
-          "similarity": 0.12654
+          "similarity": 0.12654,
+          "provenance": [
+            {
+              "source": "Wiktionary",
+              "url": "https://en.wiktionary.org/wiki/take#English",
+              "senseId": "wikt:en-take-en-verb-Pkf0sHy3:reverse:take",
+              "definition": "To receive or accept (something, especially something which was given).",
+              "membership": "sense-group",
+              "anchor": "take"
+            }
+          ]
         },
         {
           "word": "gain",
-          "kind": "related",
+          "kind": "synonym",
           "count": 59,
           "documents": 56,
           "shared": [
@@ -2852,11 +3289,21 @@
             "backing",
             "certificate"
           ],
-          "similarity": 0.10144
+          "similarity": 0.10144,
+          "provenance": [
+            {
+              "source": "Wiktionary",
+              "url": "https://en.wiktionary.org/wiki/take#English",
+              "senseId": "wikt:en-take-en-verb-Pkf0sHy3:reverse:take",
+              "definition": "To receive or accept (something, especially something which was given).",
+              "membership": "sense-group",
+              "anchor": "take"
+            }
+          ]
         },
         {
           "word": "secure",
-          "kind": "related",
+          "kind": "synonym",
           "count": 27,
           "documents": 25,
           "shared": [
@@ -2867,11 +3314,21 @@
             "right",
             "patent"
           ],
-          "similarity": 0.2377
+          "similarity": 0.2377,
+          "provenance": [
+            {
+              "source": "Wiktionary",
+              "url": "https://en.wiktionary.org/wiki/take#English",
+              "senseId": "wikt:en-take-en-verb-Pkf0sHy3:reverse:take",
+              "definition": "To receive or accept (something, especially something which was given).",
+              "membership": "sense-group",
+              "anchor": "take"
+            }
+          ]
         },
         {
           "word": "acquire",
-          "kind": "related",
+          "kind": "synonym",
           "count": 6,
           "documents": 6,
           "shared": [
@@ -2882,22 +3339,17 @@
             "visa",
             "lease"
           ],
-          "similarity": 0.18461
-        },
-        {
-          "word": "derive",
-          "kind": "related",
-          "count": 0,
-          "documents": 0,
-          "shared": [
-            "nutrient",
-            "estimate",
-            "nutrition",
-            "information",
-            "value",
-            "result"
-          ],
-          "similarity": 0.13433
+          "similarity": 0.18461,
+          "provenance": [
+            {
+              "source": "Wiktionary",
+              "url": "https://en.wiktionary.org/wiki/take#English",
+              "senseId": "wikt:en-take-en-verb-Pkf0sHy3:reverse:take",
+              "definition": "To receive or accept (something, especially something which was given).",
+              "membership": "sense-group",
+              "anchor": "take"
+            }
+          ]
         }
       ]
     },
@@ -2905,7 +3357,12 @@
       "word": "buy",
       "collocate": "car",
       "relation": "dobj",
-      "selected_sense": "buy.v.01",
+      "selected_sense": "wikt:en-buy-en-verb-YaKPHcwU",
+      "expected": [
+        "purchase"
+      ],
+      "candidate_target_found": true,
+      "source_target_exists": true,
       "candidates": [
         {
           "word": "purchase",
@@ -2920,52 +3377,15 @@
             "estate",
             "acre"
           ],
-          "similarity": 0.45502
-        },
-        {
-          "word": "get",
-          "kind": "related",
-          "count": 123,
-          "documents": 91,
-          "shared": [
-            "stuff",
-            "ticket",
-            "one",
-            "insurance",
-            "cadillac"
-          ],
-          "similarity": 0.04645
-        },
-        {
-          "word": "take",
-          "kind": "related",
-          "count": 86,
-          "documents": 74,
-          "shared": [],
-          "similarity": 0
-        },
-        {
-          "word": "acquire",
-          "kind": "related",
-          "count": 6,
-          "documents": 6,
-          "shared": [
-            "stake",
-            "land",
-            "freehold",
-            "tract",
-            "property",
-            "acre"
-          ],
-          "similarity": 0.22899
-        },
-        {
-          "word": "subscribe",
-          "kind": "related",
-          "count": 0,
-          "documents": 0,
-          "shared": [],
-          "similarity": 0
+          "similarity": 0.45502,
+          "provenance": [
+            {
+              "source": "Wiktionary",
+              "url": "https://en.wiktionary.org/wiki/buy",
+              "senseId": "wikt:en-buy-en-verb-YaKPHcwU",
+              "definition": "To obtain (something) in exchange for money or goods."
+            }
+          ]
         }
       ]
     },
@@ -2973,7 +3393,13 @@
       "word": "choose",
       "collocate": "option",
       "relation": "dobj",
-      "selected_sense": "choose.v.01",
+      "selected_sense": "wn:choose.v.01",
+      "expected": [
+        "select",
+        "pick"
+      ],
+      "candidate_target_found": true,
+      "source_target_exists": true,
       "candidates": [
         {
           "word": "select",
@@ -2988,7 +3414,15 @@
             "winner",
             "mate"
           ],
-          "similarity": 0.33783
+          "similarity": 0.33783,
+          "provenance": [
+            {
+              "source": "WordNet 3.0",
+              "url": "https://wordnet.princeton.edu/",
+              "senseId": "wn:choose.v.01",
+              "definition": "pick out, select, or choose from a number of alternatives"
+            }
+          ]
         },
         {
           "word": "take",
@@ -2998,49 +3432,15 @@
           "shared": [
             "photo"
           ],
-          "similarity": 0.00405
-        },
-        {
-          "word": "pick",
-          "kind": "related",
-          "count": 12,
-          "documents": 12,
-          "shared": [
-            "winner",
-            "successor",
-            "topic",
-            "jury",
-            "one",
-            "option"
-          ],
-          "similarity": 0.10126
-        },
-        {
-          "word": "limit",
-          "kind": "related",
-          "count": 12,
-          "documents": 12,
-          "shared": [
-            "option",
-            "president",
-            "value"
-          ],
-          "similarity": 0.02137
-        },
-        {
-          "word": "propose",
-          "kind": "related",
-          "count": 6,
-          "documents": 6,
-          "shared": [
-            "alternative",
-            "strategy",
-            "design",
-            "candidate",
-            "site",
-            "name"
-          ],
-          "similarity": 0.06132
+          "similarity": 0.00405,
+          "provenance": [
+            {
+              "source": "WordNet 3.0",
+              "url": "https://wordnet.princeton.edu/",
+              "senseId": "wn:choose.v.01",
+              "definition": "pick out, select, or choose from a number of alternatives"
+            }
+          ]
         }
       ]
     },
@@ -3048,7 +3448,12 @@
       "word": "begin",
       "collocate": "experiment",
       "relation": "dobj",
-      "selected_sense": "get_down.v.07",
+      "selected_sense": "wn:get_down.v.07",
+      "expected": [
+        "start"
+      ],
+      "candidate_target_found": true,
+      "source_target_exists": true,
       "candidates": [
         {
           "word": "start",
@@ -3063,7 +3468,15 @@
             "campaign",
             "trend"
           ],
-          "similarity": 0.40087
+          "similarity": 0.40087,
+          "provenance": [
+            {
+              "source": "WordNet 3.0",
+              "url": "https://wordnet.princeton.edu/",
+              "senseId": "wn:get_down.v.07",
+              "definition": "take the first step or steps in carrying out an action"
+            }
+          ]
         },
         {
           "word": "commence",
@@ -3078,15 +3491,15 @@
             "work",
             "reign"
           ],
-          "similarity": 0.42797
-        },
-        {
-          "word": "attack",
-          "kind": "related",
-          "count": 1,
-          "documents": 1,
-          "shared": [],
-          "similarity": 0
+          "similarity": 0.42797,
+          "provenance": [
+            {
+              "source": "WordNet 3.0",
+              "url": "https://wordnet.princeton.edu/",
+              "senseId": "wn:get_down.v.07",
+              "definition": "take the first step or steps in carrying out an action"
+            }
+          ]
         },
         {
           "word": "get",
@@ -3096,25 +3509,262 @@
           "shared": [
             "education"
           ],
-          "similarity": 0.00463
+          "similarity": 0.00463,
+          "provenance": [
+            {
+              "source": "WordNet 3.0",
+              "url": "https://wordnet.princeton.edu/",
+              "senseId": "wn:get_down.v.07",
+              "definition": "take the first step or steps in carrying out an action"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "word": "show",
+      "collocate": "result",
+      "relation": "dobj",
+      "selected_sense": "wikt:en-exhibit-en-verb-47wFjyeS:reverse:exhibit",
+      "expected": [
+        "indicate",
+        "reveal",
+        "demonstrate"
+      ],
+      "candidate_target_found": true,
+      "source_target_exists": true,
+      "candidates": [
+        {
+          "word": "demonstrate",
+          "kind": "synonym",
+          "count": 11,
+          "documents": 8,
+          "shared": [
+            "versatility",
+            "correlation",
+            "disregard",
+            "willingness",
+            "increase",
+            "mastery"
+          ],
+          "similarity": 0.28956,
+          "provenance": [
+            {
+              "source": "Wiktionary",
+              "url": "https://en.wiktionary.org/wiki/exhibit#English",
+              "senseId": "wikt:en-exhibit-en-verb-47wFjyeS:reverse:exhibit",
+              "definition": "To demonstrate.",
+              "membership": "sense-group",
+              "anchor": "exhibit"
+            }
+          ]
         },
         {
-          "word": "launch",
-          "kind": "related",
+          "word": "exhibit",
+          "kind": "synonym",
+          "count": 1,
+          "documents": 1,
+          "shared": [
+            "decrease",
+            "sign",
+            "reactivity",
+            "bias",
+            "variability",
+            "variation"
+          ],
+          "similarity": 0.31546,
+          "provenance": [
+            {
+              "source": "Wiktionary",
+              "url": "https://en.wiktionary.org/wiki/exhibit#English",
+              "senseId": "wikt:en-exhibit-en-verb-47wFjyeS:reverse:exhibit",
+              "definition": "To demonstrate.",
+              "membership": "sense-group",
+              "anchor": "exhibit"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "word": "need",
+      "collocate": "help",
+      "relation": "dobj",
+      "selected_sense": "wn:necessitate.v.01",
+      "expected": [
+        "require",
+        "seek"
+      ],
+      "candidate_target_found": true,
+      "source_target_exists": true,
+      "candidates": [
+        {
+          "word": "require",
+          "kind": "synonym",
+          "count": 22,
+          "documents": 22,
+          "shared": [
+            "repair",
+            "surgery",
+            "permit",
+            "transfusion",
+            "replacement",
+            "supervision"
+          ],
+          "similarity": 0.26307,
+          "provenance": [
+            {
+              "source": "WordNet 3.0",
+              "url": "https://wordnet.princeton.edu/",
+              "senseId": "wn:necessitate.v.01",
+              "definition": "require as useful, just, or proper"
+            }
+          ]
+        },
+        {
+          "word": "ask",
+          "kind": "synonym",
+          "count": 12,
+          "documents": 11,
+          "shared": [
+            "friend",
+            "permission",
+            "advice",
+            "mom",
+            "doctor"
+          ],
+          "similarity": 0.03543,
+          "provenance": [
+            {
+              "source": "WordNet 3.0",
+              "url": "https://wordnet.princeton.edu/",
+              "senseId": "wn:necessitate.v.01",
+              "definition": "require as useful, just, or proper"
+            }
+          ]
+        },
+        {
+          "word": "demand",
+          "kind": "synonym",
+          "count": 3,
+          "documents": 3,
+          "shared": [
+            "money",
+            "explanation",
+            "reform",
+            "revision",
+            "attention",
+            "change"
+          ],
+          "similarity": 0.07297,
+          "provenance": [
+            {
+              "source": "WordNet 3.0",
+              "url": "https://wordnet.princeton.edu/",
+              "senseId": "wn:necessitate.v.01",
+              "definition": "require as useful, just, or proper"
+            }
+          ]
+        },
+        {
+          "word": "take",
+          "kind": "synonym",
+          "count": 4,
+          "documents": 4,
+          "shared": [
+            "break",
+            "care"
+          ],
+          "similarity": 0.02319,
+          "provenance": [
+            {
+              "source": "WordNet 3.0",
+              "url": "https://wordnet.princeton.edu/",
+              "senseId": "wn:necessitate.v.01",
+              "definition": "require as useful, just, or proper"
+            }
+          ]
+        },
+        {
+          "word": "necessitate",
+          "kind": "synonym",
           "count": 0,
           "documents": 0,
           "shared": [
-            "campaign",
-            "investigation",
-            "career",
-            "offensive",
-            "programme",
-            "assault"
+            "repair",
+            "surgery",
+            "replacement",
+            "replay",
+            "treatment",
+            "reinforcement"
           ],
-          "similarity": 0.1715
+          "similarity": 0.14758,
+          "provenance": [
+            {
+              "source": "WordNet 3.0",
+              "url": "https://wordnet.princeton.edu/",
+              "senseId": "wn:necessitate.v.01",
+              "definition": "require as useful, just, or proper"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "word": "answer",
+      "collocate": "question",
+      "relation": "dobj",
+      "selected_sense": "wikt:en-field-en-verb-5S4lc5lB:reverse:field",
+      "expected": [
+        "reply",
+        "respond",
+        "address",
+        "resolve"
+      ],
+      "candidate_target_found": true,
+      "source_target_exists": true,
+      "candidates": [
+        {
+          "word": "address",
+          "kind": "synonym",
+          "count": 170,
+          "documents": 150,
+          "shared": [],
+          "similarity": 0,
+          "provenance": [
+            {
+              "source": "Wiktionary",
+              "url": "https://en.wiktionary.org/wiki/field#English",
+              "senseId": "wikt:en-field-en-verb-5S4lc5lB:reverse:field",
+              "definition": "To answer; to address.",
+              "membership": "sense-group",
+              "anchor": "field"
+            }
+          ]
+        },
+        {
+          "word": "field",
+          "kind": "synonym",
+          "count": 23,
+          "documents": 22,
+          "shared": [
+            "question",
+            "call"
+          ],
+          "similarity": 0.12165,
+          "provenance": [
+            {
+              "source": "Wiktionary",
+              "url": "https://en.wiktionary.org/wiki/field#English",
+              "senseId": "wikt:en-field-en-verb-5S4lc5lB:reverse:field",
+              "definition": "To answer; to address.",
+              "membership": "sense-group",
+              "anchor": "field"
+            }
+          ]
         }
       ]
     }
   ],
-  "interpretation": "Comparison candidates are not naturalness judgments. Lexical relations and shared-context alternatives are distinguished. Corpus counts are pooled by lemma, not disambiguated word senses. No word-specific candidate rules are used."
+  "interpretation": "Only source synonym/same-sense group membership can create a candidate. Primary WordNet sense anchors align groups but never create edges. Corpus counts and candidate ranking are not naturalness or word-sense judgments. Counts are pooled by lemma; no word-specific candidate rules are used."
 }

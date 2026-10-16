@@ -1,0 +1,1356 @@
+{
+  "schema": 1,
+  "source": {
+    "url": "https://kaikki.org/dictionary/English/kaikki.org-dictionary-English.jsonl.gz",
+    "bytes": 523331798,
+    "sha256": "6d40e0067718aeb3321db30297761ca803838390627111a29a5426fee4557faf",
+    "extracted": "2026-10-03",
+    "dump": "2026-09-02",
+    "license": "CC-BY-SA-4.0",
+    "source_page": "https://kaikki.org/dictionary/English/index.html"
+  },
+  "words": 35509,
+  "groups_by_source": {
+    "Wiktionary": 167933,
+    "WordNet 3.0": 50776
+  },
+  "synonym_edges": 5482324,
+  "method": "WordNet same-synset members and Wiktionary explicitly authored sense.synonyms or labelled thesaurus sets. A member can compare other members of that EXACT original sense set; these projections retain membership=sense-group and anchor/source. No traversal to other senses, whole-word transitive closure, hypernyms, hyponyms, similar_to, distributional or definition-similarity edges. Obsolete/archaic/nonstandard/offensive entries and unattached sense-less lists excluded.",
+  "license": "Wiktionary contributors, extracted by Tatu Ylonen / Wiktextract via Kaikki.org. Derived sense/POS synonym subset, filtering and bounded same-sense group membership by COLLOCA. CC BY-SA 4.0: https://creativecommons.org/licenses/by-sa/4.0/ . Per-sense and per-link source URLs are retained. No quotations or usage examples are included. WordNet senses retain their Princeton University license in WORDNET-LICENSE.txt.",
+  "processed_records": 1492836,
+  "max_shard_bytes": 1936107,
+  "examples": {
+    "lessen": {
+      "v": [
+        {
+          "id": "wikt:en-lessen-en-verb-5yk9u-qP",
+          "definition": "To make less; to diminish; to reduce.",
+          "source": "Wiktionary",
+          "membership": null,
+          "anchor": null,
+          "synonyms": [
+            "blunt"
+          ]
+        },
+        {
+          "id": "wikt:en-lessen-en-verb-HXBGvliR",
+          "definition": "To become less.",
+          "source": "Wiktionary",
+          "membership": null,
+          "anchor": null,
+          "synonyms": [
+            "abate"
+          ]
+        },
+        {
+          "id": "wikt:en-abate-en-verb-TsRpBnN-:reverse:abate",
+          "definition": "To reduce (something) in amount or size.",
+          "source": "Wiktionary",
+          "membership": "sense-group",
+          "anchor": "abate",
+          "synonyms": [
+            "abate",
+            "decrease"
+          ]
+        },
+        {
+          "id": "wikt:en-abate-en-verb-1zLGQZy9:reverse:abate",
+          "definition": "To reduce (something) in amount or size. / To cut away or hammer down (material from metalwork, a sculpture, etc.) in such a way as to leave a figure in relief.",
+          "source": "Wiktionary",
+          "membership": "sense-group",
+          "anchor": "abate",
+          "synonyms": [
+            "abate",
+            "decrease"
+          ]
+        },
+        {
+          "id": "wikt:en-hurt-en-verb-RvAklsdJ:reverse:hurt",
+          "definition": "To damage, harm, impair, undermine, impede.",
+          "source": "Wiktionary",
+          "membership": "sense-group",
+          "anchor": "hurt",
+          "synonyms": [
+            "behedge",
+            "blunt",
+            "crimp",
+            "dash",
+            "delay",
+            "diminish",
+            "foreclose",
+            "forestay",
+            "forslow",
+            "frustrate",
+            "hamper",
+            "handicap"
+          ]
+        },
+        {
+          "id": "wikt:5fc94be73c5df4819a47:reverse:decrease",
+          "definition": "Thesaurus:decrease",
+          "source": "Wiktionary",
+          "membership": "sense-group",
+          "anchor": "decrease",
+          "synonyms": [
+            "decrease",
+            "diminish",
+            "slump",
+            "wane"
+          ]
+        },
+        {
+          "id": "wikt:en-reduce-en-verb-4xUfLvyu:reverse:reduce",
+          "definition": "To bring down the size, quantity, quality, value or intensity of something; to diminish, to lower.",
+          "source": "Wiktionary",
+          "membership": "sense-group",
+          "anchor": "reduce",
+          "synonyms": [
+            "abate",
+            "belittle",
+            "besmall",
+            "cut",
+            "decrease",
+            "decrement",
+            "diminish",
+            "foreshorten",
+            "lilliputianize",
+            "lower",
+            "mince",
+            "minimize"
+          ]
+        },
+        {
+          "id": "wikt:en-ease-en-verb-b4gdJt92:reverse:ease",
+          "definition": "To alleviate, assuage or lessen (pain).",
+          "source": "Wiktionary",
+          "membership": "sense-group",
+          "anchor": "ease",
+          "synonyms": [
+            "allay",
+            "alleviate",
+            "assuage",
+            "ease",
+            "reduce"
+          ]
+        },
+        {
+          "id": "wikt:6ce19350bbec01413b1e:reverse:ease",
+          "definition": "lessen in severity",
+          "source": "Wiktionary",
+          "membership": "sense-group",
+          "anchor": "ease",
+          "synonyms": [
+            "ease",
+            "reduce"
+          ]
+        },
+        {
+          "id": "wikt:en-limit-en-verb-y4ozdBuQ:reverse:limit",
+          "definition": "To restrict; to circumscribe; not to allow to go beyond a certain bound, to set boundaries.",
+          "source": "Wiktionary",
+          "membership": "sense-group",
+          "anchor": "limit",
+          "synonyms": [
+            "behedge",
+            "bind",
+            "blunt",
+            "bury",
+            "catch",
+            "chasten",
+            "check",
+            "contain",
+            "cork",
+            "crimp",
+            "curb",
+            "curtail"
+          ]
+        },
+        {
+          "id": "wikt:en-contract-en-verb-ifyeRWVo:reverse:contract",
+          "definition": "To draw together or nearer; to shorten, narrow, or lessen.",
+          "source": "Wiktionary",
+          "membership": "sense-group",
+          "anchor": "contract",
+          "synonyms": [
+            "abate",
+            "contract",
+            "decrease",
+            "reduce",
+            "shorten",
+            "shrink"
+          ]
+        },
+        {
+          "id": "wikt:2fd7693e421a1487c49d:reverse:hinder",
+          "definition": "Thesaurus:hinder",
+          "source": "Wiktionary",
+          "membership": "sense-group",
+          "anchor": "hinder",
+          "synonyms": [
+            "behedge",
+            "blunt",
+            "crimp",
+            "dash",
+            "delay",
+            "diminish",
+            "foreclose",
+            "forestay",
+            "forslow",
+            "frustrate",
+            "hamper",
+            "handicap"
+          ]
+        }
+      ]
+    },
+    "chance": {
+      "n": [
+        {
+          "id": "wikt:en-chance-en-noun-GlsvExzh",
+          "definition": "Random occurrence; luck.",
+          "source": "Wiktionary",
+          "membership": null,
+          "anchor": null,
+          "synonyms": [
+            "accident",
+            "casualty",
+            "fortune",
+            "hap",
+            "hazard",
+            "joss",
+            "luck",
+            "serendipity"
+          ]
+        },
+        {
+          "id": "wikt:en-chance-en-noun-9kwv3ufs",
+          "definition": "probability; possibility.",
+          "source": "Wiktionary",
+          "membership": null,
+          "anchor": null,
+          "synonyms": [
+            "contingency",
+            "contingent",
+            "eventuality",
+            "possibility",
+            "potentiality"
+          ]
+        },
+        {
+          "id": "wikt:en-fortune-en-noun-iFKMZGp~:reverse:fortune",
+          "definition": "The arrival of something in a sudden or unexpected manner; chance; accident.",
+          "source": "Wiktionary",
+          "membership": "sense-group",
+          "anchor": "fortune",
+          "synonyms": [
+            "accident",
+            "casualty",
+            "fortune",
+            "hap",
+            "hazard",
+            "joss",
+            "luck",
+            "serendipity"
+          ]
+        },
+        {
+          "id": "wikt:en-luck-en-noun-8YH32bTW:reverse:luck",
+          "definition": "Something that happens to someone by chance, a chance occurrence.",
+          "source": "Wiktionary",
+          "membership": "sense-group",
+          "anchor": "luck",
+          "synonyms": [
+            "fortune",
+            "luck"
+          ]
+        },
+        {
+          "id": "wikt:en-luck-en-noun-v0OWvBB4:reverse:luck",
+          "definition": "Something that happens to someone by chance, a chance occurrence. / A favourable chance occurrence.",
+          "source": "Wiktionary",
+          "membership": "sense-group",
+          "anchor": "luck",
+          "synonyms": [
+            "felicity",
+            "fortuitousness",
+            "fortuity",
+            "fortune",
+            "hap",
+            "luck"
+          ]
+        },
+        {
+          "id": "wikt:998e34606292930cb927:reverse:luck",
+          "definition": "Thesaurus:luck",
+          "source": "Wiktionary",
+          "membership": "sense-group",
+          "anchor": "luck",
+          "synonyms": [
+            "accident",
+            "casualty",
+            "fortune",
+            "hazard",
+            "joss",
+            "luck",
+            "serendipity"
+          ]
+        },
+        {
+          "id": "wikt:en-serendipity-en-noun-WbUrr3i9:reverse:serendipity",
+          "definition": "An unsought, unintended or unexpected, but fortunate, discovery or learning experience that occurs by accident.",
+          "source": "Wiktionary",
+          "membership": "sense-group",
+          "anchor": "serendipity",
+          "synonyms": [
+            "accident",
+            "casualty",
+            "fortune",
+            "hazard",
+            "joss",
+            "luck",
+            "serendipity"
+          ]
+        },
+        {
+          "id": "wikt:86e9364519299189cb60:reverse:possibility",
+          "definition": "Thesaurus:possibility",
+          "source": "Wiktionary",
+          "membership": "sense-group",
+          "anchor": "possibility",
+          "synonyms": [
+            "contingency",
+            "contingent",
+            "eventuality",
+            "possibility",
+            "potentiality"
+          ]
+        },
+        {
+          "id": "wikt:en-joss-en-noun-LsQgsCJo:reverse:joss",
+          "definition": "Luck.",
+          "source": "Wiktionary",
+          "membership": "sense-group",
+          "anchor": "joss",
+          "synonyms": [
+            "joss"
+          ]
+        },
+        {
+          "id": "wikt:en-contingent-en-noun-~KuHdJDo:reverse:contingent",
+          "definition": "An event which may or may not happen; that which is unforeseen, undetermined, or dependent on something in the future.",
+          "source": "Wiktionary",
+          "membership": "sense-group",
+          "anchor": "contingent",
+          "synonyms": [
+            "contingency",
+            "contingent",
+            "eventuality",
+            "possibility",
+            "potentiality"
+          ]
+        },
+        {
+          "id": "wikt:en-lot-en-noun-NCMqhiQD:reverse:lot",
+          "definition": "That which happens without human design or forethought.",
+          "source": "Wiktionary",
+          "membership": "sense-group",
+          "anchor": "lot",
+          "synonyms": [
+            "accident",
+            "destiny",
+            "doom",
+            "fatality",
+            "fate",
+            "foredoom",
+            "foreordination",
+            "fortune",
+            "kismet",
+            "lot",
+            "orlay",
+            "portion"
+          ]
+        },
+        {
+          "id": "wikt:en-venture-en-noun-~u8a50Kb:reverse:venture",
+          "definition": "An event that is not, or cannot be, foreseen.",
+          "source": "Wiktionary",
+          "membership": "sense-group",
+          "anchor": "venture",
+          "synonyms": [
+            "accident",
+            "contingency",
+            "contingent",
+            "eventuality",
+            "possibility",
+            "potentiality",
+            "venture"
+          ]
+        }
+      ],
+      "a": [
+        {
+          "id": "wikt:en-chance-en-adj-wfzmJFR~",
+          "definition": "Happening by chance, casual.",
+          "source": "Wiktionary",
+          "membership": null,
+          "anchor": null,
+          "synonyms": [
+            "contingent"
+          ]
+        },
+        {
+          "id": "wn:casual.s.04",
+          "definition": "occurring or appearing or singled out by chance",
+          "source": "WordNet 3.0",
+          "membership": null,
+          "anchor": null,
+          "synonyms": [
+            "casual"
+          ]
+        }
+      ],
+      "v": [
+        {
+          "id": "wikt:en-chance-en-verb-A40ppYxC",
+          "definition": "To try or risk.",
+          "source": "Wiktionary",
+          "membership": null,
+          "anchor": null,
+          "synonyms": [
+            "test"
+          ]
+        },
+        {
+          "id": "wikt:en-chance-en-verb-FP3jDiUn",
+          "definition": "To rob, cheat or swindle someone.",
+          "source": "Wiktionary",
+          "membership": null,
+          "anchor": null,
+          "synonyms": [
+            "deceive"
+          ]
+        },
+        {
+          "id": "wn:gamble.v.01",
+          "definition": "take a risk in the hope of a favorable outcome",
+          "source": "WordNet 3.0",
+          "membership": null,
+          "anchor": null,
+          "synonyms": [
+            "adventure",
+            "gamble",
+            "hazard",
+            "risk"
+          ]
+        },
+        {
+          "id": "wn:find.v.01",
+          "definition": "come upon, as if by accident; meet with",
+          "source": "WordNet 3.0",
+          "membership": null,
+          "anchor": null,
+          "synonyms": [
+            "bump",
+            "encounter",
+            "find",
+            "happen"
+          ]
+        }
+      ]
+    },
+    "high": {
+      "a": [
+        {
+          "id": "wikt:en-high-en-adj-en:intoxicated",
+          "definition": "Intoxicated; under the influence of a mood-altering drug, formerly usually alcohol, but now (from the mid-20th century) usually not alcohol but rather marijuana, cocaine, heroin, etc.",
+          "source": "Wiktionary",
+          "membership": null,
+          "anchor": null,
+          "synonyms": [
+            "stoned"
+          ]
+        },
+        {
+          "id": "wikt:en-close-en-adj-en:linguistics:reverse:close",
+          "definition": "Articulated with the tongue body relatively close to the hard palate.",
+          "source": "Wiktionary",
+          "membership": "sense-group",
+          "anchor": "close",
+          "synonyms": [
+            "close"
+          ]
+        },
+        {
+          "id": "wikt:en-blown-en-adj-A0pfSAKP:reverse:blown",
+          "definition": "Under the influence of drugs, especially marijuana.",
+          "source": "Wiktionary",
+          "membership": "sense-group",
+          "anchor": "blown",
+          "synonyms": [
+            "baked",
+            "blazed",
+            "blitzed",
+            "blown",
+            "chopped",
+            "cut",
+            "drugged",
+            "drugged-out",
+            "fried",
+            "gassed",
+            "geeked",
+            "lifted"
+          ]
+        },
+        {
+          "id": "wikt:en-cut-en-adj-YHXKBqJA:reverse:cut",
+          "definition": "Intoxicated as a result of drugs or alcohol.",
+          "source": "Wiktionary",
+          "membership": "sense-group",
+          "anchor": "cut",
+          "synonyms": [
+            "adrip",
+            "arseholed",
+            "bedrunken",
+            "befuddled",
+            "beliquored",
+            "besotted",
+            "besotten",
+            "bevvied",
+            "bibacious",
+            "bibulous",
+            "bingoed",
+            "binned"
+          ]
+        },
+        {
+          "id": "wikt:5c0d88d4743b0957d233:reverse:drunk",
+          "definition": "Thesaurus:drunk",
+          "source": "Wiktionary",
+          "membership": "sense-group",
+          "anchor": "drunk",
+          "synonyms": [
+            "adrip",
+            "arseholed",
+            "bedrunken",
+            "befuddled",
+            "beliquored",
+            "besotted",
+            "besotten",
+            "bevvied",
+            "bibacious",
+            "bibulous",
+            "bingoed",
+            "binned"
+          ]
+        },
+        {
+          "id": "wikt:en-lit-en-adj-7zM-j4ET:reverse:lit",
+          "definition": "Drunk, intoxicated; under the influence of drugs or alcohol.",
+          "source": "Wiktionary",
+          "membership": "sense-group",
+          "anchor": "lit",
+          "synonyms": [
+            "adrip",
+            "arseholed",
+            "baked",
+            "bedrunken",
+            "befuddled",
+            "beliquored",
+            "besotted",
+            "besotten",
+            "bevvied",
+            "bibacious",
+            "bibulous",
+            "bingoed"
+          ]
+        },
+        {
+          "id": "wikt:afbc407b8b572ae55e89:reverse:long",
+          "definition": "having much distance from one point to another",
+          "source": "Wiktionary",
+          "membership": "sense-group",
+          "anchor": "long",
+          "synonyms": [
+            "deep",
+            "extended",
+            "lengthy",
+            "long",
+            "tall"
+          ]
+        },
+        {
+          "id": "wikt:en-tall-en-adj-Ql688okX:reverse:tall",
+          "definition": "Having a top that is far up (contrast: deep (having a bottom that is far down' ).) / Having its top a long way up; having a great vertical (and often greater than horizontal) extent.",
+          "source": "Wiktionary",
+          "membership": "sense-group",
+          "anchor": "tall",
+          "synonyms": [
+            "tall"
+          ]
+        },
+        {
+          "id": "wikt:5bedcbd5ffe2f0240e69:reverse:tall",
+          "definition": "Thesaurus:tall",
+          "source": "Wiktionary",
+          "membership": "sense-group",
+          "anchor": "tall",
+          "synonyms": [
+            "elevated",
+            "exalted",
+            "lofty",
+            "tall"
+          ]
+        },
+        {
+          "id": "wikt:en-rotten-en-adj-DPP~Izzz:reverse:rotten",
+          "definition": "Very drunk, intoxicated.",
+          "source": "Wiktionary",
+          "membership": "sense-group",
+          "anchor": "rotten",
+          "synonyms": [
+            "adrip",
+            "arseholed",
+            "bedrunken",
+            "befuddled",
+            "beliquored",
+            "besotted",
+            "besotten",
+            "bevvied",
+            "bibacious",
+            "bibulous",
+            "bingoed",
+            "binned"
+          ]
+        },
+        {
+          "id": "wikt:en-lash-en-adj-z6fuMRDZ:reverse:lash",
+          "definition": "Drunk.",
+          "source": "Wiktionary",
+          "membership": "sense-group",
+          "anchor": "lash",
+          "synonyms": [
+            "adrip",
+            "arseholed",
+            "bedrunken",
+            "befuddled",
+            "beliquored",
+            "besotted",
+            "besotten",
+            "bevvied",
+            "bibacious",
+            "bibulous",
+            "bingoed",
+            "binned"
+          ]
+        },
+        {
+          "id": "wikt:en-legless-en-adj-m3fpPWDD:reverse:legless",
+          "definition": "Too drunk to stand.",
+          "source": "Wiktionary",
+          "membership": "sense-group",
+          "anchor": "legless",
+          "synonyms": [
+            "adrip",
+            "arseholed",
+            "bedrunken",
+            "befuddled",
+            "beliquored",
+            "besotted",
+            "besotten",
+            "bevvied",
+            "bibacious",
+            "bibulous",
+            "bingoed",
+            "binned"
+          ]
+        }
+      ],
+      "n": [
+        {
+          "id": "wn:high.n.05",
+          "definition": "a high place",
+          "source": "WordNet 3.0",
+          "membership": null,
+          "anchor": null,
+          "synonyms": [
+            "heights"
+          ]
+        },
+        {
+          "id": "wn:senior_high_school.n.01",
+          "definition": "a public secondary school usually including grades 9 through 12",
+          "source": "WordNet 3.0",
+          "membership": null,
+          "anchor": null,
+          "synonyms": [
+            "highschool"
+          ]
+        }
+      ],
+      "r": [
+        {
+          "id": "wn:high.r.03",
+          "definition": "in a rich manner",
+          "source": "WordNet 3.0",
+          "membership": null,
+          "anchor": null,
+          "synonyms": [
+            "luxuriously",
+            "richly"
+          ]
+        }
+      ]
+    },
+    "solve": {
+      "v": [
+        {
+          "id": "wikt:en-solve-en-verb-bVHlg0ZN",
+          "definition": "To find an answer or solution to a problem or question; to work out.",
+          "source": "Wiktionary",
+          "membership": null,
+          "anchor": null,
+          "synonyms": [
+            "decipher",
+            "resolve",
+            "unriddle"
+          ]
+        },
+        {
+          "id": "wikt:212c4e7fc1fd8c50d017",
+          "definition": "Thesaurus:solve",
+          "source": "Wiktionary",
+          "membership": null,
+          "anchor": null,
+          "synonyms": [
+            "decipher",
+            "meliorate",
+            "resolve",
+            "riddle",
+            "sleuth",
+            "unpuzzle",
+            "unravel",
+            "unriddle",
+            "upsolve"
+          ]
+        },
+        {
+          "id": "wikt:en-resolve-en-verb-BHf-F-cG:reverse:resolve",
+          "definition": "To find a solution to (a problem).",
+          "source": "Wiktionary",
+          "membership": "sense-group",
+          "anchor": "resolve",
+          "synonyms": [
+            "decipher",
+            "meliorate",
+            "resolve",
+            "riddle",
+            "sleuth",
+            "unpuzzle",
+            "unravel",
+            "unriddle",
+            "upsolve"
+          ]
+        },
+        {
+          "id": "wikt:en-unravel-en-verb-en:disentangle__in_a_positive_way:reverse:unravel",
+          "definition": "To clear (something) from complication or difficulty; to investigate and solve (a mystery, a problem, etc.); to disentangle, to unfold, to work out.",
+          "source": "Wiktionary",
+          "membership": "sense-group",
+          "anchor": "unravel",
+          "synonyms": [
+            "decipher",
+            "meliorate",
+            "ravel",
+            "resolve",
+            "riddle",
+            "sleuth",
+            "unpuzzle",
+            "unravel",
+            "unriddle",
+            "upsolve"
+          ]
+        },
+        {
+          "id": "wikt:en-decipher-en-verb-lqhLfOoT:reverse:decipher",
+          "definition": "To find a solution to a problem.",
+          "source": "Wiktionary",
+          "membership": "sense-group",
+          "anchor": "decipher",
+          "synonyms": [
+            "decipher",
+            "meliorate",
+            "resolve",
+            "riddle",
+            "sleuth",
+            "unpuzzle",
+            "unravel",
+            "unriddle",
+            "upsolve"
+          ]
+        },
+        {
+          "id": "wikt:en-riddle-en-verb-SxdILPsW:reverse:riddle",
+          "definition": "To solve, answer, or explicate a riddle or question.",
+          "source": "Wiktionary",
+          "membership": "sense-group",
+          "anchor": "riddle",
+          "synonyms": [
+            "decipher",
+            "meliorate",
+            "resolve",
+            "riddle",
+            "sleuth",
+            "unpuzzle",
+            "unravel",
+            "unriddle",
+            "upsolve"
+          ]
+        },
+        {
+          "id": "wikt:en-sleuth-en-verb-MhR6P4U4:reverse:sleuth",
+          "definition": "To act as a detective; to try to discover who committed a crime, or, more generally, to solve a mystery.",
+          "source": "Wiktionary",
+          "membership": "sense-group",
+          "anchor": "sleuth",
+          "synonyms": [
+            "decipher",
+            "gumshoe",
+            "meliorate",
+            "resolve",
+            "riddle",
+            "shadow",
+            "sleuth",
+            "unpuzzle",
+            "unravel",
+            "unriddle",
+            "upsolve"
+          ]
+        },
+        {
+          "id": "wn:solve.v.01",
+          "definition": "find the solution to (a problem or question) or understand the meaning of",
+          "source": "WordNet 3.0",
+          "membership": null,
+          "anchor": null,
+          "synonyms": [
+            "lick",
+            "work"
+          ]
+        },
+        {
+          "id": "wn:resolve.v.06",
+          "definition": "find the solution",
+          "source": "WordNet 3.0",
+          "membership": null,
+          "anchor": null,
+          "synonyms": [
+            "resolve"
+          ]
+        },
+        {
+          "id": "wn:clear.v.19",
+          "definition": "settle, as of a debt",
+          "source": "WordNet 3.0",
+          "membership": null,
+          "anchor": null,
+          "synonyms": [
+            "clear"
+          ]
+        }
+      ]
+    },
+    "beautiful": {
+      "a": [
+        {
+          "id": "wikt:67ac9f628aee1dfd2a9a",
+          "definition": "possessing charm and attractive",
+          "source": "Wiktionary",
+          "membership": null,
+          "anchor": null,
+          "synonyms": [
+            "attractive",
+            "beauteous",
+            "cute",
+            "fair",
+            "fit",
+            "good-looking",
+            "gorgeous",
+            "handsome",
+            "hot",
+            "lovely",
+            "nice-looking",
+            "pretty"
+          ]
+        },
+        {
+          "id": "wikt:6c2c0ac04667499e7ca3",
+          "definition": "of the weather",
+          "source": "Wiktionary",
+          "membership": null,
+          "anchor": null,
+          "synonyms": [
+            "clear",
+            "fine",
+            "nice",
+            "pleasant",
+            "sunny"
+          ]
+        },
+        {
+          "id": "wikt:319ba6fc55f456c41031",
+          "definition": "well executed",
+          "source": "Wiktionary",
+          "membership": null,
+          "anchor": null,
+          "synonyms": [
+            "excellent",
+            "exceptional",
+            "good",
+            "great",
+            "marvellous",
+            "marvelous",
+            "perfect",
+            "stylish",
+            "wonderful"
+          ]
+        },
+        {
+          "id": "wikt:6d87a11b2506399f7188",
+          "definition": "ironic: how unfortunate",
+          "source": "Wiktionary",
+          "membership": null,
+          "anchor": null,
+          "synonyms": [
+            "great"
+          ]
+        },
+        {
+          "id": "wikt:4b647b08c7cfe7e06581",
+          "definition": "Thesaurus:beautiful",
+          "source": "Wiktionary",
+          "membership": null,
+          "anchor": null,
+          "synonyms": [
+            "beautifool",
+            "beautimous",
+            "bonnie",
+            "breathtaking",
+            "captivating",
+            "comely",
+            "divine",
+            "esculent",
+            "exquisite",
+            "fetching",
+            "fine-looking",
+            "heavenly"
+          ]
+        },
+        {
+          "id": "wikt:en-hot-en-adj-en:physically_or_sexually_attractive:reverse:hot",
+          "definition": "Relating to excited emotions. / Physically or sexually attractive.",
+          "source": "Wiktionary",
+          "membership": "sense-group",
+          "anchor": "hot",
+          "synonyms": [
+            "alluring",
+            "appealing",
+            "appetizing",
+            "attracting",
+            "attractive",
+            "beauteous",
+            "beautifool",
+            "beautimous",
+            "bewitching",
+            "bonnie",
+            "breathtaking",
+            "captivating"
+          ]
+        },
+        {
+          "id": "wikt:en-hot-en-adj-VShcATFE:reverse:hot",
+          "definition": "Relating to excited emotions. / Sexual or sexy; involving sexual intercourse or sexual excitement.",
+          "source": "Wiktionary",
+          "membership": "sense-group",
+          "anchor": "hot",
+          "synonyms": [
+            "alluring",
+            "arousing",
+            "attractive",
+            "bangable",
+            "beddable",
+            "bedworthy",
+            "bonable",
+            "bonerific",
+            "buff",
+            "delicious",
+            "desirable",
+            "doable"
+          ]
+        },
+        {
+          "id": "wikt:en-comely-en-adj-tUBo~tRo:reverse:comely",
+          "definition": "Attractive; visually pleasing; good-looking. / Of a person: attractive or pleasing to look at; beautiful, handsome; also, attractive but not particularly beautiful or handsome.",
+          "source": "Wiktionary",
+          "membership": "sense-group",
+          "anchor": "comely",
+          "synonyms": [
+            "attractive",
+            "beauteous",
+            "beautifool",
+            "beautimous",
+            "bonnie",
+            "breathtaking",
+            "captivating",
+            "comely",
+            "cute",
+            "divine",
+            "esculent",
+            "exquisite"
+          ]
+        },
+        {
+          "id": "wikt:en-divine-en-adj-DC1Utkhj:reverse:divine",
+          "definition": "Beautiful, heavenly.",
+          "source": "Wiktionary",
+          "membership": "sense-group",
+          "anchor": "divine",
+          "synonyms": [
+            "attractive",
+            "awesome",
+            "based",
+            "beat",
+            "beatific",
+            "beauteous",
+            "beautifool",
+            "beautimous",
+            "bewildering",
+            "blissful",
+            "bonnie",
+            "breathtaking"
+          ]
+        },
+        {
+          "id": "wikt:en-horny-en-adj-bpG6uHlJ:reverse:horny",
+          "definition": "Sexually exciting; arousing.",
+          "source": "Wiktionary",
+          "membership": "sense-group",
+          "anchor": "horny",
+          "synonyms": [
+            "alluring",
+            "arousing",
+            "attractive",
+            "bangable",
+            "beddable",
+            "bedworthy",
+            "bonable",
+            "bonerific",
+            "buff",
+            "delicious",
+            "desirable",
+            "doable"
+          ]
+        },
+        {
+          "id": "wikt:en-attractive-en-adj-NxDXjwF-:reverse:attractive",
+          "definition": "Pleasing or appealing to the senses, especially of a potential romantic partner.",
+          "source": "Wiktionary",
+          "membership": "sense-group",
+          "anchor": "attractive",
+          "synonyms": [
+            "attractive"
+          ]
+        },
+        {
+          "id": "wikt:8d74179103651c163b73:reverse:sexy",
+          "definition": "Thesaurus:sexy",
+          "source": "Wiktionary",
+          "membership": "sense-group",
+          "anchor": "sexy",
+          "synonyms": [
+            "arousing",
+            "attractive",
+            "bangable",
+            "beddable",
+            "bedworthy",
+            "bonable",
+            "bonerific",
+            "buff",
+            "delicious",
+            "desirable",
+            "doable",
+            "effable"
+          ]
+        }
+      ]
+    },
+    "begin": {
+      "v": [
+        {
+          "id": "wikt:642a899c6e60f56ca1d9",
+          "definition": "Thesaurus:begin",
+          "source": "Wiktionary",
+          "membership": null,
+          "anchor": null,
+          "synonyms": [
+            "commence",
+            "get",
+            "go",
+            "inchoate",
+            "initiate",
+            "issue",
+            "open",
+            "originate",
+            "start"
+          ]
+        },
+        {
+          "id": "wikt:en-get-en-verb-6jeIZo-Q:reverse:get",
+          "definition": "(with full infinitive or gerund-participle) To begin (doing something or to do something).",
+          "source": "Wiktionary",
+          "membership": "sense-group",
+          "anchor": "get",
+          "synonyms": [
+            "commence",
+            "get",
+            "go",
+            "inchoate",
+            "initiate",
+            "issue",
+            "open",
+            "originate",
+            "start"
+          ]
+        },
+        {
+          "id": "wikt:en-originate-en-verb-zmB47UmU:reverse:originate",
+          "definition": "To cause (someone or something) to be; to bring (someone or something) into existence; to produce or initiate a person or thing.",
+          "source": "Wiktionary",
+          "membership": "sense-group",
+          "anchor": "originate",
+          "synonyms": [
+            "coin",
+            "originate"
+          ]
+        },
+        {
+          "id": "wn:get_down.v.07",
+          "definition": "take the first step or steps in carrying out an action",
+          "source": "WordNet 3.0",
+          "membership": null,
+          "anchor": null,
+          "synonyms": [
+            "commence",
+            "get",
+            "start"
+          ]
+        },
+        {
+          "id": "wn:begin.v.02",
+          "definition": "have a beginning, in a temporal, spatial, or evaluative sense",
+          "source": "WordNet 3.0",
+          "membership": null,
+          "anchor": null,
+          "synonyms": [
+            "start"
+          ]
+        },
+        {
+          "id": "wn:begin.v.03",
+          "definition": "set in motion, cause to start",
+          "source": "WordNet 3.0",
+          "membership": null,
+          "anchor": null,
+          "synonyms": [
+            "commence",
+            "start"
+          ]
+        },
+        {
+          "id": "wn:begin.v.07",
+          "definition": "have a beginning characterized in some specified way",
+          "source": "WordNet 3.0",
+          "membership": null,
+          "anchor": null,
+          "synonyms": [
+            "start"
+          ]
+        },
+        {
+          "id": "wn:begin.v.08",
+          "definition": "begin an event that is implied and limited by the nature or inherent function of the direct object",
+          "source": "WordNet 3.0",
+          "membership": null,
+          "anchor": null,
+          "synonyms": [
+            "start"
+          ]
+        }
+      ]
+    },
+    "strong": {
+      "a": [
+        {
+          "id": "wikt:en-strong-en-adj-W9GNTsUv",
+          "definition": "Capable of producing great physical force.",
+          "source": "Wiktionary",
+          "membership": null,
+          "anchor": null,
+          "synonyms": [
+            "forceful",
+            "powerful"
+          ]
+        },
+        {
+          "id": "wikt:en-strong-en-adj-swMng6dp",
+          "definition": "Capable of withstanding great physical force.",
+          "source": "Wiktionary",
+          "membership": null,
+          "anchor": null,
+          "synonyms": [
+            "durable",
+            "sturdy",
+            "tough"
+          ]
+        },
+        {
+          "id": "wikt:en-strong-en-adj-q-917mKq",
+          "definition": "Determined; unyielding.",
+          "source": "Wiktionary",
+          "membership": null,
+          "anchor": null,
+          "synonyms": [
+            "ardent",
+            "swith",
+            "zealous"
+          ]
+        },
+        {
+          "id": "wikt:en-strong-en-adj-NiqKHp95",
+          "definition": "Highly stimulating to the senses.",
+          "source": "Wiktionary",
+          "membership": null,
+          "anchor": null,
+          "synonyms": [
+            "extreme",
+            "intense"
+          ]
+        },
+        {
+          "id": "wikt:en-strong-en-adj-yJzqVt4z",
+          "definition": "Having an offensive or intense odor or flavor.",
+          "source": "Wiktionary",
+          "membership": null,
+          "anchor": null,
+          "synonyms": [
+            "rank"
+          ]
+        },
+        {
+          "id": "wikt:en-strong-en-adj-en:coffee",
+          "definition": "Having a high concentration of an essential or active ingredient.",
+          "source": "Wiktionary",
+          "membership": null,
+          "anchor": null,
+          "synonyms": [
+            "concentrated",
+            "potent"
+          ]
+        },
+        {
+          "id": "wikt:en-strong-en-adj-en:alcohol",
+          "definition": "Having a high alcoholic content.",
+          "source": "Wiktionary",
+          "membership": null,
+          "anchor": null,
+          "synonyms": [
+            "hard"
+          ]
+        },
+        {
+          "id": "wikt:en-strong-en-adj-JF4WBIHj",
+          "definition": "Not easily subdued or taken.",
+          "source": "Wiktionary",
+          "membership": null,
+          "anchor": null,
+          "synonyms": [
+            "impregnable",
+            "inviolable",
+            "secure",
+            "unassailable",
+            "unattackable"
+          ]
+        },
+        {
+          "id": "wikt:en-hard-en-adj-BfcNtNOl:reverse:hard",
+          "definition": "Solid and firm. / Strong.",
+          "source": "Wiktionary",
+          "membership": "sense-group",
+          "anchor": "hard",
+          "synonyms": [
+            "hard"
+          ]
+        },
+        {
+          "id": "wikt:en-stiff-en-adj-ySCORXOg:reverse:stiff",
+          "definition": "Potent.",
+          "source": "Wiktionary",
+          "membership": "sense-group",
+          "anchor": "stiff",
+          "synonyms": [
+            "powerful",
+            "stiff"
+          ]
+        },
+        {
+          "id": "wikt:en-acute-en-adj-HG-MHIhd:reverse:acute",
+          "definition": "Intense; sensitive; sharp.",
+          "source": "Wiktionary",
+          "membership": "sense-group",
+          "anchor": "acute",
+          "synonyms": [
+            "acute",
+            "keen",
+            "peracute",
+            "powerful"
+          ]
+        },
+        {
+          "id": "wikt:6a3ec847752d868d8558:reverse:loud",
+          "definition": "Thesaurus:loud",
+          "source": "Wiktionary",
+          "membership": "sense-group",
+          "anchor": "loud",
+          "synonyms": [
+            "ample",
+            "blaring",
+            "forceful",
+            "forte",
+            "fortissimo",
+            "loud",
+            "noisy",
+            "powerful",
+            "sonorous",
+            "stentorian",
+            "strident",
+            "voluminous"
+          ]
+        }
+      ],
+      "r": [
+        {
+          "id": "wikt:en-strong-en-adv-en:strong",
+          "definition": "In a strong manner.",
+          "source": "Wiktionary",
+          "membership": null,
+          "anchor": null,
+          "synonyms": [
+            "forcefully",
+            "powerfully",
+            "strongly",
+            "vigorously"
+          ]
+        }
+      ]
+    }
+  }
+}

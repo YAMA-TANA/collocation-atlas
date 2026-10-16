@@ -1,0 +1,12 @@
+{
+  "all_edges_verified": true,
+  "words": 35509,
+  "edges_by_source": {
+    "WordNet 3.0": 115488,
+    "Wiktionary": 5366836
+  },
+  "no_related_or_similar_relations": true,
+  "no_cross_sense_transitive_closure": true,
+  "method": "Every authored Wiktionary edge/gloss checked against original snapshot synonym fields; projected members checked against that EXACT validated original synonym set, without traversing other senses; WordNet edges checked against exact original synset membership.",
+  "archive_sha256": "4e390246491f00da78b345531e6bd9968d8a3b9d34583b306ce191b5b412eacb"
+}

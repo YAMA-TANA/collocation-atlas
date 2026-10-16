@@ -56,6 +56,26 @@ for (const [name, contents] of Object.entries(unzipSync(semanticBytes))) {
   await mkdir(path.dirname(dest), { recursive: true });
   await writeFile(dest, contents);
 }
+const synonymBase =
+  "https://github.com/YAMA-TANA/collocation-atlas/releases/download/synonym-groups-2026-10-16";
+const synonymExpected = (
+  await (await get(`${synonymBase}/synonym-site.sha256`)).text()
+)
+  .trim()
+  .split(/\s+/)[0];
+const synonymBytes = new Uint8Array(
+  await (await get(`${synonymBase}/synonym-site.zip`)).arrayBuffer(),
+);
+if (createHash("sha256").update(synonymBytes).digest("hex") !== synonymExpected)
+  throw Error("Synonym archive checksum mismatch");
+for (const [name, contents] of Object.entries(unzipSync(synonymBytes))) {
+  if (name.endsWith("/")) continue;
+  const dest = path.resolve(target, name);
+  if (!dest.startsWith(target + path.sep) || !name.startsWith("data/synonyms/"))
+    throw Error("Unsafe synonym archive path");
+  await mkdir(path.dirname(dest), { recursive: true });
+  await writeFile(dest, contents);
+}
 const coverage = JSON.parse(
   await readFile(path.join(target, "data", "coverage.json"), "utf8"),
 );

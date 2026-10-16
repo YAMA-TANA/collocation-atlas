@@ -1,0 +1,23 @@
+{
+  "target_cases": 19,
+  "recovered": 17,
+  "known_source_gaps": [
+    {
+      "word": "strong",
+      "collocate": "rain",
+      "expected": [
+        "heavy"
+      ]
+    },
+    {
+      "word": "high",
+      "collocate": "possibility",
+      "expected": [
+        "strong",
+        "real"
+      ]
+    }
+  ],
+  "inference_failures_with_source_support": [],
+  "interpretation": "Learner-target retrieval coverage, not native-naturalness accuracy. Missing source edges are retained as failures; no related-word links are invented to satisfy these targets."
+}

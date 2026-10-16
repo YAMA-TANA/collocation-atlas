@@ -7,7 +7,7 @@ import {
   defaultSenseFor,
   senseComparison,
   rankCandidates,
-  partOfSpeech,
+  sensesFor,
   type Candidate,
   type Direction,
   type SemanticEntry,
@@ -41,12 +41,10 @@ export function SynonymExplorer({
       context?: Relationship;
     } | null>(null),
     [failed, setFailed] = useState(""),
-    [chosen, setChosen] = useState<{ key: string; id: string } | null>(null),
-    [expanded, setExpanded] = useState(false);
+    [chosen, setChosen] = useState<{ key: string; id: string } | null>(null);
   useEffect(() => {
     let alive = true;
     setFailed("");
-    setExpanded(false);
     Promise.all([
       getSemantics(word),
       context
@@ -69,7 +67,7 @@ export function SynonymExplorer({
       ? chosen.id
       : (defaultSenseFor(data, relation, direction, loaded?.context) ?? "")
     : "";
-  const senses = data?.[partOfSpeech(relation, direction)] ?? [];
+  const senses = data ? sensesFor(data, relation, direction) : [];
   const candidates = useMemo(
     () =>
       data
@@ -84,20 +82,7 @@ export function SynonymExplorer({
         : [],
     [data, word, relation, direction, sense, loaded],
   );
-  const lexical = candidates.filter((c) => c.kind === "synonym"),
-    nearby = candidates.filter(
-      (c) => c.kind === "similar" || c.kind === "related",
-    );
-  const contexts = data
-    ? rankCandidates(
-        word,
-        data,
-        relation,
-        direction,
-        undefined,
-        loaded?.context,
-      ).filter((c) => c.kind === "context")
-    : [];
+  const lexical = candidates.filter((c) => c.kind === "synonym");
   const toggle = (candidate: string) => {
     if (words.includes(candidate)) {
       if (candidate !== word) onChange(words.filter((w) => w !== candidate));
@@ -111,7 +96,7 @@ export function SynonymExplorer({
         key={c.word}
         aria-pressed={words.includes(c.word)}
         disabled={!words.includes(c.word) && words.length >= 6}
-        title={`${c.kind} · ${c.shared.join(", ")}${c.count !== undefined ? ` · ${c.count} ${t("observed")} / ${c.documents} ${t("documents")}` : ""}`}
+        title={`${c.provenance.map((p) => p.source + ": " + p.definition).join(" / ")} · ${c.shared.join(", ")}${c.count !== undefined ? ` · ${c.count} ${t("observed")} / ${c.documents} ${t("documents")}` : ""}`}
         onClick={() => toggle(c.word)}
       >
         {words.includes(c.word) ? "−" : "+"} {c.word}
@@ -153,7 +138,6 @@ export function SynonymExplorer({
               onChange={(e) => {
                 const id = e.target.value;
                 setChosen({ key, id });
-                setExpanded(false);
                 onChange(
                   senseComparison(
                     word,
@@ -176,6 +160,17 @@ export function SynonymExplorer({
           {sense && (
             <p className="sense-definition">
               {senses.find((s) => s.id === sense)?.definition}
+              {" · "}
+              <a
+                href={
+                  senses.find((s) => s.id === sense)?.url ??
+                  "https://wordnet.princeton.edu/"
+                }
+                target="_blank"
+                rel="noreferrer"
+              >
+                {senses.find((s) => s.id === sense)?.source ?? "WordNet 3.0"}
+              </a>
             </p>
           )}
           {!!context && (
@@ -189,47 +184,11 @@ export function SynonymExplorer({
             <div className="chip-list">{chips(lexical)}</div>
             {!lexical.length && <p>{t("noLexical")}</p>}
           </div>
-          {!!nearby.length && (
-            <div className="synonym-group">
-              <strong>{t("nearbyCandidates")}</strong>
-              <div className="chip-list">
-                {chips(expanded ? nearby : nearby.slice(0, 10))}
-              </div>
-              {nearby.length > 10 && (
-                <button
-                  className="text-link"
-                  onClick={() => setExpanded(!expanded)}
-                >
-                  {t(expanded ? "fewer" : "more")}
-                </button>
-              )}
-            </div>
-          )}
-          {candidates.some((c) => c.kind === "gloss") && (
-            <div className="synonym-group">
-              <strong>{t("definitionCandidates")}</strong>
-              <div className="chip-list">
-                {chips(
-                  candidates.filter((c) => c.kind === "gloss").slice(0, 10),
-                )}
-              </div>
-              <p>{t("definitionHelp")}</p>
-            </div>
-          )}
-          {!!contexts.length && (
-            <div className="synonym-group context-group">
-              <strong>
-                {t(context ? "contextAlternatives" : "contextCandidates")}
-              </strong>
-              <div className="chip-list">{chips(contexts.slice(0, 12))}</div>
-              <p>{t("contextNote")}</p>
-            </div>
-          )}
           {!candidates.length && <p>{t("manualCompare")}</p>}
           <small className="lexical-attribution">
-            WordNet 3.0 ·{" "}
+            Wiktionary / Kaikki.org · WordNet 3.0 ·{" "}
             <a
-              href="/data/semantics/WORDNET-LICENSE.txt"
+              href="/data/synonyms/ATTRIBUTION.txt"
               target="_blank"
               rel="noreferrer"
             >

@@ -7,6 +7,8 @@ import {
   senseComparison,
   automaticComparison,
   comparisonCandidates,
+  selectCandidates,
+  sourceGroupFor,
   senseOptions,
   partOfSpeech,
   type SemanticEntry,
@@ -59,10 +61,9 @@ describe("One engine across 141 adjective, verb and noun query settings", () => 
     });
 });
 const cases: [string, string, string, string[]][] = [
-  ["strong", "rain", "amod", ["heavy"]],
   ["powerful", "coffee", "amod", ["strong"]],
   ["high", "building", "amod", ["tall"]],
-  ["high", "possibility", "amod", ["strong", "real"]],
+
   ["big", "mistake", "amod", ["serious", "major", "large"]],
   ["fast", "speed", "amod", ["high", "rapid"]],
   ["hard", "problem", "amod", ["difficult", "complex"]],
@@ -138,9 +139,9 @@ describe("Argument-aware lexical choice across different word families", () => {
     it(`${word} + ${context}: finds ${expected.join(" / ")} from corpus data`, () => {
       const data = fixture.semantics[word],
         distribution = fixture.contexts[`${relation}:${context}`];
-      const sense = defaultSenseFor(data, relation, "forward", distribution);
       const candidates = comparisonCandidates(
-        rankCandidates(word, data, relation, "forward", sense, distribution),
+        selectCandidates(word, data, relation, "forward", distribution)
+          .candidates,
       );
       expect(
         candidates.some((c) => expected.includes(c.word)),
@@ -198,8 +199,131 @@ describe("Argument-aware lexical choice across different word families", () => {
       undefined,
       fixture.contexts["dobj:question"],
     );
-    expect(contextual.find((c) => c.word === "ask")?.kind).toBe("context");
+    expect(contextual.some((c) => c.word === "ask")).toBe(false);
   });
   it("does not treat common prepositions as noun synonyms", () =>
     expect(partOfSpeech("verb_prep", "reverse")).toBe("none"));
+});
+
+describe("Source precision and honest coverage limits", () => {
+  it("shows a source group that supports the whole comparison, not a different meaning of one pair", () => {
+    const source = sourceGroupFor(
+      ["do", "make"],
+      fixture.semantics.do,
+      "dobj",
+      "forward",
+    );
+    expect(source?.source).toBe("WordNet 3.0");
+    expect(source?.definition).not.toMatch(/sex|kill|destroy/i);
+    expect(
+      sourceGroupFor(
+        ["solve", "have", "cause"],
+        fixture.semantics.solve,
+        "dobj",
+        "forward",
+      ),
+    ).toBeUndefined();
+  });
+  for (const [word, partner, expected] of [
+    ["strong", "rain", "heavy"],
+    ["high", "possibility", "strong"],
+  ])
+    it(`${word} + ${partner}: records an unsupported learner contrast without inventing a synonym edge`, () => {
+      expect(
+        candidatesFor(fixture.semantics[word], "amod", "forward").some(
+          (c) => c.word === expected,
+        ),
+      ).toBe(false);
+      expect(
+        fixture.contexts[`amod:${partner}`][1].some(
+          (r) => r[0] === expected && r[1] > 0,
+        ),
+      ).toBe(true);
+    });
+  for (const { word, relation, direction } of fixture.queries)
+    it(`${word}: every automatic candidate has a source sense and only synonym membership`, () => {
+      for (const c of candidatesFor(
+        fixture.semantics[word],
+        relation,
+        direction,
+      )) {
+        expect(c.kind).toBe("synonym");
+        expect(c.provenance.length).toBeGreaterThan(0);
+        expect(
+          c.provenance.every((p) => p.senseId && p.url.startsWith("https://")),
+        ).toBe(true);
+      }
+    });
+  it("refuses context-only, hierarchical and definition-overlap alternatives even with huge corpus counts", () => {
+    const data: SemanticEntry = {
+      v: [
+        {
+          id: "sense",
+          definition: "find an answer",
+          synonyms: ["resolve"],
+          similar: ["indicate"],
+          related: ["cause"],
+          antonyms: [],
+        },
+      ],
+      availability: {
+        resolve: { "dobj:forward": 100 },
+        cause: { "dobj:forward": 999999 },
+        indicate: { "dobj:forward": 999999 },
+      },
+      neighbours: {
+        "dobj:forward": [
+          { word: "have", similarity: 1, shared: ["problem", "issue", "task"] },
+        ],
+      },
+      gloss_neighbours: {
+        "dobj:forward": [
+          {
+            word: "develop",
+            gloss_similarity: 1,
+            tokens: ["find", "solution"],
+            shared: ["problem", "issue", "task"],
+          },
+        ],
+      },
+    };
+    expect(
+      rankCandidates("solve", data, "dobj", "forward", undefined, [
+        1000,
+        [
+          ["have", 900, 800, 10000],
+          ["cause", 800, 700, 999999],
+          ["develop", 700, 600, 10000],
+          ["resolve", 10, 9, 100],
+        ],
+      ]).map((c) => c.word),
+    ).toEqual(["resolve"]);
+  });
+  it("abstains when no sourced sense has enough contextual evidence", () => {
+    const result = selectCandidates(
+      "high",
+      fixture.semantics.high,
+      "amod",
+      "forward",
+      fixture.contexts["amod:possibility"],
+    );
+    expect(result.senseId).toBeUndefined();
+    expect(result.candidates).toEqual([]);
+  });
+  it("does not select a destructive or sexual meaning for DO + DECISION", () => {
+    const result = selectCandidates(
+      "do",
+      fixture.semantics.do,
+      "dobj",
+      "forward",
+      fixture.contexts["dobj:decision"],
+    );
+    expect(result.candidates.some((c) => c.word === "make")).toBe(true);
+    expect(result.candidates.some((c) => c.word === "overturn")).toBe(false);
+    expect(
+      result.candidates
+        .flatMap((c) => c.provenance)
+        .some((p) => /sex|kill|destroy/i.test(p.definition)),
+    ).toBe(false);
+  });
 });

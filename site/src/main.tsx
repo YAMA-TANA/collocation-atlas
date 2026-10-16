@@ -57,7 +57,7 @@ import { SenseChoices } from "./SenseChoices";
 import {
   comparisonGroup,
   getSemantics,
-  candidatesFor,
+  sourceGroupFor,
   type SemanticEntry,
   discoverObjects,
   canonicalPair,
@@ -1416,6 +1416,10 @@ function Comparison({
     [error, setError] = useState(false),
     [mode, setMode] = useState<"count" | "preference" | "rate">("count");
   const [candidateMetadata, setCandidateMetadata] = useState<SemanticEntry>({});
+  const comparisonSource = useMemo(
+    () => sourceGroupFor(words, candidateMetadata, relation, direction),
+    [words, candidateMetadata, relation, direction],
+  );
   const [rowOrder, setRowOrder] = useState<RowOrder>(initialOrder);
   const [editorOpen, setEditorOpen] = useState(false);
   useEffect(() => setRowOrder(initialOrder), [initialOrder]);
@@ -1591,6 +1595,11 @@ function Comparison({
           </button>
         </div>
       </div>
+      {words.length < 2 && (
+        <p className="synonym-note" role="status">
+          {t("noVerifiedSynonyms")}
+        </p>
+      )}
       {!compact && (
         <SenseChoices
           word={words[0]}
@@ -1783,24 +1792,27 @@ function Comparison({
                     {w !== words[0] && (
                       <small
                         className="candidate-source"
-                        title={t("candidateSource")}
+                        title={
+                          comparisonSource?.definition ?? t("manualSource")
+                        }
                       >
                         {(() => {
-                          const kind = candidatesFor(
-                            candidateMetadata,
-                            relation,
-                            direction,
-                          ).find((c) => c.word === w)?.kind;
-                          return t(
-                            kind === "synonym"
-                              ? "synonymSource"
-                              : kind === "similar" || kind === "related"
-                                ? "relatedSource"
-                                : candidateMetadata.gloss_neighbours?.[
-                                      `${relation}:${direction}`
-                                    ]?.some((c) => c.word === w)
-                                  ? "definitionSource"
-                                  : "contextSource",
+                          return comparisonSource ? (
+                            <a
+                              href={
+                                comparisonSource.url ??
+                                "https://wordnet.princeton.edu/"
+                              }
+                              target="_blank"
+                              rel="noreferrer"
+                            >
+                              {(comparisonSource.source ?? "WordNet 3.0") +
+                                (comparisonSource.membership
+                                  ? ` · ${t("senseGroup")}`
+                                  : "")}
+                            </a>
+                          ) : (
+                            t("manualSource")
                           );
                         })()}
                       </small>

@@ -5,6 +5,13 @@ export type Sense = {
   similar: string[];
   related?: string[];
   antonyms: string[];
+  source?: string;
+  url?: string;
+  tags?: string[];
+  links?: Record<string, { word: string; tags: string[]; url: string }>;
+  reverse_assertion?: boolean;
+  membership?: "sense-group";
+  anchor?: string;
 };
 export type Neighbour = { word: string; similarity: number; shared: string[] };
 export type ContextEvidence = {
@@ -13,6 +20,7 @@ export type ContextEvidence = {
   shared_count: number;
 };
 export type SemanticEntry = {
+  synonym_senses?: Partial<Record<"a" | "v" | "n" | "r" | "none", Sense[]>>;
   a?: Sense[];
   v?: Sense[];
   n?: Sense[];
@@ -47,10 +55,33 @@ export async function getSemantics(word: string): Promise<SemanticEntry> {
   if (!cache.has(key))
     cache.set(
       key,
-      fetch(`/data/semantics/${key}.json?v=3`)
-        .then(async (r) => {
-          if (!r.ok) throw Error(`HTTP ${r.status}`);
-          return (await r.json()).words;
+      Promise.all([
+        fetch(`/data/semantics/${key}.json?v=3`),
+        fetch(`/data/synonyms/${key}.json?v=1`),
+      ])
+        .then(async ([legacy, synonyms]) => {
+          if (!legacy.ok || !synonyms.ok)
+            throw Error(
+              `Lexical data: HTTP ${legacy.status}/${synonyms.status}`,
+            );
+          const [oldData, newData] = await Promise.all([
+            legacy.json(),
+            synonyms.json(),
+          ]);
+          const words: Record<string, SemanticEntry> = oldData.words;
+          for (const [word, value] of Object.entries(
+            newData.words as Record<string, SemanticEntry>,
+          )) {
+            words[word] = {
+              ...words[word],
+              ...value,
+              availability: {
+                ...words[word]?.availability,
+                ...value.availability,
+              },
+            };
+          }
+          return words;
         })
         .catch((e) => {
           cache.delete(key);

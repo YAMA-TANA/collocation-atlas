@@ -18,12 +18,18 @@ def read(word,folder):
  key=sha256(word.encode()).hexdigest()[:2]
  if (folder,key) not in cache:cache[folder,key]=json.loads((DATA/folder/(key+'.json')).read_text(encoding='utf-8'))
  data=cache[folder,key]
- return data.get('words',data).get(word,{})
+ entry=data.get('words',data).get(word,{})
+ if folder=='semantics' and (DATA/'synonyms'/(key+'.json')).exists():
+  if ('synonyms',key) not in cache:cache['synonyms',key]=json.loads((DATA/'synonyms'/(key+'.json')).read_text(encoding='utf-8'))
+  extra=cache['synonyms',key]['words'].get(word,{})
+  entry={**entry,**extra,'availability':{**entry.get('availability',{}),**extra.get('availability',{})}}
+ return entry
 def main():
  roots=sorted({w for values in WORDS.values() for w in values.split()})
  data={'schema':1,'corpus_words':102072709,'license':(DATA/'semantics/WORDNET-LICENSE.txt').read_text(encoding='utf-8'),
        'queries':[{'word':w,'relation':key.split(':')[0],'direction':key.split(':')[1]} for key,values in WORDS.items() for w in values.split()],
        'semantics':{word:read(word,'semantics') for word in roots},'contexts':{},'lexemes':{}}
+ if (DATA/'synonyms/ATTRIBUTION.txt').exists():data['synonym_license']=(DATA/'synonyms/ATTRIBUTION.txt').read_text(encoding='utf-8')
  for relation,values in CONTEXTS.items():
   for word in values.split():
    data['contexts'][relation+':'+word]=read(word,'reverse').get(relation,[0,[]])

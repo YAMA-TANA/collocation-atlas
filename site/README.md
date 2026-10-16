@@ -22,9 +22,11 @@ uv run python scripts/export_site.py
 uv run python scripts/export_site_reverse.py
 uv run --extra semantics python -m nltk.downloader -d data/nltk_data wordnet
 uv run --extra semantics python scripts/export_semantics.py
-uv run --extra semantics python scripts/export_gloss_links.py
+uv run python scripts/download_kaikki_synonyms.py
+uv run --extra semantics python scripts/export_synonym_groups.py
 uv run python scripts/export_semantic_regressions.py
 uv run python scripts/verify_semantics.py
+uv run python scripts/verify_synonym_groups.py
 cd site
 npm run build
 npm test
@@ -56,34 +58,29 @@ other_marginal], ...]]`. Counts sum to **34,688,327 extracted dependencies**.
 - `/data/semantics/XX.json`: 47,029 WordNet entries with 100,151 sense records;
   same-synset synonyms, adjective `similar_to` candidates and broader lexical
   links remain sense-specific. The broader links (`also_see`, `verb_group`,
-  two-hop `similar_to`, direct hypernym/hyponym links) are labelled as related words, not synonyms.
+  two-hop `similar_to`, direct hypernym/hyponym links) are legacy audit metadata;
+  they do not enter the active synonym candidate pipeline.
   Every shard includes the full WordNet 3.0 license. Corpus availability uses the
   existing relation marginals, not WordNet sense-tag counts.
-- Definition-neighbour links compare WordNet definitions per sense and POS with
-  sublinear TF-IDF and Porter stems; maximum qualifying sense-pair similarity
-  >=0.12, >=2 shared definition tokens, >=3 shared corpus contexts (each >=3
-  occurrences and >=3 original documents), top32 candidates. These links are
-  separately labelled definition similarity, not dictionary synonymy.
-  Automatic definition-based expansion is limited to adjectives. Verb/noun
-  definition suggestions remain inspectable, but their automatic comparison
-  columns require lexical links: definition overlap alone can confuse distinct
-  actions such as beginning, performing and completing an experiment.
-- Automatic phrase comparisons exclude words supported only by a shared
-  argument. Unfiltered observed partners remain inspectable in the suggestion
-  panel. This prevents frequent but semantically different governors (such as
-  HAVE/CAUSE with PROBLEM) from crowding out lexical comparisons.
-
-- Context neighbours: discounted PPMI cosine in seven separate spaces: adjective–noun,
-  verb–object, verb–subject, noun–adjective, noun–verb, adverb–adjective and
-  adverb–verb. There are 18,271 neighbour sets. At least 3 occurrences in 3
-  original documents per feature, marginal >=50, >=5 features, top120 weighted
-  features, cosine >=0.12 and >=3 shared features. Up to 24 neighbours per space.
-  Direct WordNet antonyms are excluded; topical or opposed meanings can remain.
-- `/data/semantics/manifest.json` records the source archive, method and coverage.
-  Schema 3 also stores lexical-candidate cosine/shared-context evidence, selected
-  observed context rows and corpus POS counts. The client requests `?v=3` to
-  separate this schema from older browser caches. The semantic release is
-  `semantic-engine-2026-10-16-v2`; corpus aggregates remain unchanged.
+- `/data/synonyms/XX.json`: a separately versioned open thesaurus. The pinned
+  English Wiktionary/Kaikki 2026-10-03 extraction (2026-09-02 dump) provides
+  authored sense/POS synonym lists and labelled Thesaurus sets. Only these
+  fields and WordNet SAME-synset members can create candidates. The client no
+  longer promotes `related`, `similar_to`, hypernyms, hyponyms, context neighbours
+  or definition-overlap links to synonyms.
+- Each Wiktionary source sense is a bounded synonym group. Its members may be
+  compared within that EXACT original set; these projections retain
+  `membership: sense-group`, the original `anchor`, sense ID, definition and URL.
+  Groups are never merged by shared words or traversed across senses. This is
+  not unrestricted graph transitive closure. Source assertions and group
+  membership are independently verified against the original snapshot.
+- The synonym subset and adaptations are distributed under CC BY-SA 4.0 with
+  Wiktionary contributor and Kaikki/Wiktextract attribution, per-entry source
+  links, changes described, and WordNet's original notice. No quoted usage
+  examples or translations are imported. See `/data/synonyms/ATTRIBUTION.txt`.
+- `synonym-groups-2026-10-16` versions this archive independently of unchanged
+  corpus and legacy semantic releases. Each release download verifies SHA256.
+  The immutable input SHA256 is pinned in `scripts/download_kaikki_synonyms.py`.
 
 Detailed excerpts are deliberately a subset; every pair count is searchable.
 No full document texts are shipped. Forms, determiners and modifiers are pooled
@@ -107,20 +104,21 @@ log support, and alternates representatives of the compared words. Explicit
 examples retain all counts including rare and zero observations. This is an
 exploration order, not a test of anomalous usage.
 
-Every word uses the same candidate pipeline. There are no word-specific synonym
-or object lists in the engine. Bare queries start with the first supported lexical
-sense; corpus context overlap ranks candidates within it. When a verb leaves few
-well-supported alternatives, other lexical senses with cosine >=0.12 and >=3
-shared contexts can supplement the initial comparison. Alternatives with adequate
-corpus coverage but negligible shared context (cosine <0.05) are not prioritised
-in automatic comparisons. Explicit sense selection keeps the chosen lexical sense.
-Noun taxonomic links remain labelled suggestions and do not fill the initial
-synonym comparison. All supported senses are selectable. A supplied collocate also uses actually observed alternatives
-from the inverse relation and helps rank sense candidates. Lexical synonyms,
-lexically related words and shared-context alternatives have separate labels.
-Rare observed lexical candidates remain eligible; context-only suggestions need
-3 occurrences in 3 documents. Neither the selection score nor the inferred sense
-is a calibrated native-usage or word-sense probability.
+Every word uses the same source-constrained synonym pipeline. Meanings stay
+separate; selecting a meaning restricts the comparison to its synonym set.
+Bare queries select a supported group using relation availability and corpus
+context overlap, with a small usage-frequency tie-break. If a verb has fewer
+than five alternatives, other source-backed synonyms can supplement it only
+with cosine >=0.12 and >=3 shared contexts. No other relation can qualify.
+The primary WordNet sense provides alignment anchors only: even a matching
+anchor cannot create a candidate without a source synonym/group assertion.
+Phrase queries rank source senses by observed argument usage. Selecting a sense
+automatically requires at least one alternative in two occurrences and two
+documents; this is a retrieval-confidence rule, not a grammaticality test.
+All columns in the selected group retain rare and zero cells. A missing source relation is a coverage gap, not permission
+to infer a synonym from corpus co-occurrence. Explicit sense selection remains
+available. Selection scores are heuristics, not calibrated word-sense or
+native-naturalness probabilities. Counts remain pooled by lemma, not sense.
 
 Regression inputs freeze 141 different adjective, verb and noun queries and 29
 full argument distributions from the actual corpus. Tests cover these query
@@ -128,6 +126,11 @@ settings plus targeted phrase comparisons and explicit synonym families.
 `site/scripts/audit-engine.ts` records representative groups and candidate evidence;
 run it with a TypeScript runner (for example `npx tsx scripts/audit-engine.ts`).
 The generated fixture and audit are not included in the browser bundle.
+`reports/site/synonym_quality.json` preserves all 19 learner-retrieval targets:
+17 currently recover an expected alternative. STRONG+RAIN → HEAVY and
+HIGH+POSSIBILITY → STRONG/REAL remain explicit source-coverage failures; they
+are not repaired with related-word guesses. This measure is not naturalness
+accuracy. Manual corpus comparisons for these pairs remain available.
 
 Multilingual concept mappings are editorial search aids, never corpus evidence.
 Free-form machine translation is not provided. All analyzed text is English.
@@ -144,6 +147,10 @@ Free-form machine translation is not provided. All analyzed text is English.
   Copyright 2006 by Princeton University. All rights reserved. Full license in
   every semantic shard and `/data/semantics/WORDNET-LICENSE.txt`. Definitions
   remain in English; lexical senses are not tagged in the corpus occurrences.
+- [English Wiktionary via Kaikki.org](https://kaikki.org/dictionary/English/index.html):
+  contributors' sense-scoped synonym data, [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/).
+  Extracted by Tatu Ylonen / Wiktextract, 2026-10-03, from the 2026-09-02 dump.
+  Filtering and bounded sense-group projections are documented adaptations.
 
 Excerpts retain the original document URL and license label. Source rights are
 not replaced by this application's code distribution. Article dates, native
