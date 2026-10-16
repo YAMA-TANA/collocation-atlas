@@ -1,0 +1,31 @@
+{
+  "production_url": "https://collocation-atlas.pages.dev/",
+  "deployment_url": "https://673d067f.collocation-atlas.pages.dev/",
+  "code_commit": "33a94e79aaa54309e078e8b69392621060f51ab7",
+  "ci_url": "https://github.com/YAMA-TANA/collocation-atlas/actions/runs/38920785080",
+  "ci_conclusion": "success",
+  "javascript_tests_passed": 346,
+  "python_adapter_tests_passed": 4,
+  "corpus_pair_cells_verified": 12156,
+  "source_archive_sha256": "6d40e0067718aeb3321db30297761ca803838390627111a29a5426fee4557faf",
+  "release_archive_sha256": "4e390246491f00da78b345531e6bd9968d8a3b9d34583b306ce191b5b412eacb",
+  "public_release_download_verified": true,
+  "checks": [
+    {"query": "lessen the price", "words": ["lessen", "reduce", "decrease", "lower", "cut", "diminish"], "counts": [0, 59, 6, 62, 19, 0], "source_link": "https://en.wiktionary.org/wiki/reduce#English", "source_label": "Wiktionary · synonym group"},
+    {"query": "do a decision", "words": ["do", "make"], "counts": [0, 1731], "source_label": "WordNet 3.0"},
+    {"query": "high", "words": ["high", "lofty", "tall", "elevated", "exalted"], "excluded_old_context_candidate": "graduate", "pair_counts": {"high building": 36, "tall building": 370}},
+    {"query": "smart", "words": ["smart", "wise", "clever", "intelligent", "brilliant", "shrewd"]},
+    {"query": "high possibility", "words": ["high"], "result": "Insufficient source/context evidence displayed; no unrelated alternatives inserted"},
+    {"query": "lessen the price", "view": "rate", "words": ["lessen", "reduce", "decrease", "lower", "cut", "diminish"], "per_10000_relation_instances": [0, 53.24, 37.43, 454.55, 37.09, 0]},
+    {"interface": "English", "source_scope_help_visible": true, "lemma_vs_sense_count_help_visible": true},
+    {"viewport": 390, "document_width": 375, "meaning_panel_width": 343, "meaning_panel_scroll_width": 343, "root_overflow": false, "override_reset": true}
+  ],
+  "console_errors_on_checked_flow": [],
+  "learner_retrieval": {"targets": 19, "recovered": 17, "known_source_gaps": ["strong + rain → heavy", "high + possibility → strong/real"], "not_naturalness_accuracy": true},
+  "limits": [
+    "Group projections identify co-members of one original dictionary sense set, not individually authored pairwise synonym assertions.",
+    "Corpus frequencies remain pooled by lemma and are not sense-disambiguated; the UI states this.",
+    "Sense selection is a heuristic, not a native-naturalness judgment.",
+    "Missing synonym data, rare observations and zero corpus counts remain distinct."
+  ]
+}
