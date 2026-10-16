@@ -1,0 +1,29 @@
+{
+  "production_url": "https://collocation-atlas.pages.dev/",
+  "deployment_url": "https://83118321.collocation-atlas.pages.dev/",
+  "code_commit": "1bf79ff625e30982dec9f5514be38554efb09050",
+  "ci_url": "https://github.com/YAMA-TANA/collocation-atlas/actions/runs/38914525222",
+  "ci_conclusion": "success",
+  "unit_regressions_passed": 201,
+  "corpus_query_settings": 141,
+  "corpus_pair_cells_verified": 12156,
+  "semantic_archive_sha256": "b86aa4bbfc926b8a974a85baecee96fb0380f7ab3c298bfb86d8d97003bd2af8",
+  "release_download_checksum_passed": true,
+  "browser_checks": [
+    {"query": "begin an experiment", "relation": "dobj", "counts": {"begin": 14, "start": 9}, "excluded_automatic_columns": ["perform", "do", "complete"]},
+    {"query": "solve a problem", "counts": {"solve": 868, "resolve": 166}, "excluded_automatic_columns": ["have", "cause", "develop"]},
+    {"query": "strong rain", "counts": {"strong": 2, "heavy": 1313}, "heavy_source_label": "definition similarity"},
+    {"query": "beautiful", "initial_candidates": ["lovely", "pretty", "gorgeous", "stunning", "scenic"], "sense_card_selection": "weather sense changes comparison to pleasant / enjoyable / idyllic and further related words"},
+    {"query": "price", "comparison": ["price", "cost"], "direction": "reverse", "counts": {"retail price": 109, "retail cost": 1}},
+    {"query": "beautiful", "manual_collocates": ["woman", "scenery"], "count_and_rate_toggle": true},
+    {"viewport_width": 375, "document_width": 360, "root_horizontal_overflow": false, "viewport_override_reset": true}
+  ],
+  "browser_errors_on_checked_production_flow": [],
+  "limits": [
+    "Dependency pairs are pooled by lemma; these are not exact phrase-string counts.",
+    "Lexical senses are not disambiguated in corpus occurrence counts.",
+    "Dictionary-related and definition-similarity candidates are not claims of interchangeability.",
+    "Default sense selection and candidate ranking are heuristics, not calibrated native-naturalness judgments.",
+    "The current corpus is predominantly written English; rare and zero counts do not establish incorrectness."
+  ]
+}
