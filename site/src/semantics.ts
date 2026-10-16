@@ -12,6 +12,7 @@ export {
 import { getSemantics, type Neighbour, type SemanticEntry } from "./lexical";
 export type Candidate = {
   word: string;
+  pos: PartOfSpeech;
   kind: "synonym" | "similar" | "related" | "context" | "gloss";
   glossSimilarity?: number;
   neighbour?: Neighbour;
@@ -75,6 +76,7 @@ export function candidatesFor(
       total = data.availability?.[word]?.[key] ?? 0;
     return {
       word,
+      pos: partOfSpeech(relation, direction),
       kind,
       neighbour,
       similarity,
@@ -157,6 +159,7 @@ export function rankCandidates(
           gloss = data.gloss_neighbours?.[key]?.find((n) => n.word === name);
         byName.set(name, {
           word: name,
+          pos: partOfSpeech(relation, direction),
           kind: gloss ? "gloss" : "context",
           glossSimilarity: gloss?.gloss_similarity,
           similarity: ev?.similarity ?? neighbour?.similarity ?? 0,
@@ -298,8 +301,15 @@ export async function comparisonGroup(
 }
 export function comparisonCandidates(candidates: Candidate[]) {
   // A shared argument alone is not evidence of semantic compatibility.
+  // Definition overlap confuses different actions (begin/perform/complete).
+  // Keep these suggestions inspectable, but use lexical links for verb/noun columns.
   return candidates
-    .filter((c) => c.total > 0 && c.kind !== "context")
+    .filter(
+      (c) =>
+        c.total > 0 &&
+        c.kind !== "context" &&
+        (c.kind !== "gloss" || c.pos === "a"),
+    )
     .slice(0, 5);
 }
 export function senseContexts(

@@ -64,6 +64,10 @@ other_marginal], ...]]`. Counts sum to **34,688,327 extracted dependencies**.
   >=0.12, >=2 shared definition tokens, >=3 shared corpus contexts (each >=3
   occurrences and >=3 original documents), top32 candidates. These links are
   separately labelled definition similarity, not dictionary synonymy.
+  Automatic definition-based expansion is limited to adjectives. Verb/noun
+  definition suggestions remain inspectable, but their automatic comparison
+  columns require lexical links: definition overlap alone can confuse distinct
+  actions such as beginning, performing and completing an experiment.
 - Automatic phrase comparisons exclude words supported only by a shared
   argument. Unfiltered observed partners remain inspectable in the suggestion
   panel. This prevents frequent but semantically different governors (such as

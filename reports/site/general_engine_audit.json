@@ -2695,45 +2695,6 @@
           "similarity": 0.00946
         },
         {
-          "word": "take",
-          "kind": "gloss",
-          "count": 108,
-          "documents": 101,
-          "shared": [
-            "account",
-            "act",
-            "acting",
-            "action",
-            "activity",
-            "ad",
-            "adult",
-            "advance"
-          ],
-          "similarity": 0
-        },
-        {
-          "word": "execute",
-          "kind": "gloss",
-          "count": 7,
-          "documents": 7,
-          "shared": [
-            "duty",
-            "trick",
-            "work"
-          ],
-          "similarity": 0.01461
-        },
-        {
-          "word": "set",
-          "kind": "gloss",
-          "count": 5,
-          "documents": 5,
-          "shared": [
-            "business"
-          ],
-          "similarity": 0.00534
-        },
-        {
           "word": "influence",
           "kind": "related",
           "count": 126,
@@ -2743,6 +2704,35 @@
             "work"
           ],
           "similarity": 0.01765
+        },
+        {
+          "word": "prompt",
+          "kind": "related",
+          "count": 16,
+          "documents": 16,
+          "shared": [],
+          "similarity": 0
+        },
+        {
+          "word": "facilitate",
+          "kind": "related",
+          "count": 6,
+          "documents": 2,
+          "shared": [
+            "repair",
+            "research",
+            "calculation",
+            "work"
+          ],
+          "similarity": 0.02185
+        },
+        {
+          "word": "force",
+          "kind": "related",
+          "count": 5,
+          "documents": 5,
+          "shared": [],
+          "similarity": 0
         }
       ]
     },
@@ -2783,33 +2773,6 @@
           "similarity": 0.05563
         },
         {
-          "word": "clear",
-          "kind": "gloss",
-          "count": 3,
-          "documents": 3,
-          "shared": [
-            "mystery"
-          ],
-          "similarity": 0.01498
-        },
-        {
-          "word": "develop",
-          "kind": "gloss",
-          "count": 76,
-          "documents": 71,
-          "shared": [
-            "case",
-            "code",
-            "difference",
-            "equation",
-            "game",
-            "issue",
-            "lot",
-            "model"
-          ],
-          "similarity": 0
-        },
-        {
           "word": "understand",
           "kind": "related",
           "count": 25,
@@ -2823,6 +2786,35 @@
             "situation"
           ],
           "similarity": 0.06336
+        },
+        {
+          "word": "answer",
+          "kind": "related",
+          "count": 5,
+          "documents": 5,
+          "shared": [
+            "riddle",
+            "challenge",
+            "question",
+            "mystery",
+            "series",
+            "threat"
+          ],
+          "similarity": 0.12915
+        },
+        {
+          "word": "guess",
+          "kind": "related",
+          "count": 3,
+          "documents": 3,
+          "shared": [
+            "question",
+            "lot",
+            "problem",
+            "system",
+            "thing"
+          ],
+          "similarity": 0.05968
         }
       ]
     },
@@ -2832,38 +2824,6 @@
       "relation": "dobj",
       "selected_sense": "obtain.v.01",
       "candidates": [
-        {
-          "word": "receive",
-          "kind": "gloss",
-          "count": 250,
-          "documents": 233,
-          "shared": [
-            "doctorate",
-            "phd",
-            "approval",
-            "permission",
-            "certificate",
-            "grant"
-          ],
-          "similarity": 0.14914
-        },
-        {
-          "word": "have",
-          "kind": "gloss",
-          "count": 64,
-          "documents": 57,
-          "shared": [
-            "ability",
-            "abortion",
-            "access",
-            "accuracy",
-            "act",
-            "address",
-            "advantage",
-            "advice"
-          ],
-          "similarity": 0
-        },
         {
           "word": "get",
           "kind": "related",
@@ -2880,21 +2840,6 @@
           "similarity": 0.12654
         },
         {
-          "word": "hold",
-          "kind": "gloss",
-          "count": 3,
-          "documents": 3,
-          "shared": [
-            "patent",
-            "citizenship",
-            "benefice",
-            "key",
-            "licence",
-            "relic"
-          ],
-          "similarity": 0.05531
-        },
-        {
           "word": "gain",
           "kind": "related",
           "count": 59,
@@ -2908,6 +2853,51 @@
             "certificate"
           ],
           "similarity": 0.10144
+        },
+        {
+          "word": "secure",
+          "kind": "related",
+          "count": 27,
+          "documents": 25,
+          "shared": [
+            "funding",
+            "financing",
+            "loan",
+            "lease",
+            "right",
+            "patent"
+          ],
+          "similarity": 0.2377
+        },
+        {
+          "word": "acquire",
+          "kind": "related",
+          "count": 6,
+          "documents": 6,
+          "shared": [
+            "license",
+            "passport",
+            "citizenship",
+            "right",
+            "visa",
+            "lease"
+          ],
+          "similarity": 0.18461
+        },
+        {
+          "word": "derive",
+          "kind": "related",
+          "count": 0,
+          "documents": 0,
+          "shared": [
+            "nutrient",
+            "estimate",
+            "nutrition",
+            "information",
+            "value",
+            "result"
+          ],
+          "similarity": 0.13433
         }
       ]
     },
@@ -2947,44 +2937,33 @@
           "similarity": 0.04645
         },
         {
-          "word": "fix",
-          "kind": "gloss",
-          "count": 21,
-          "documents": 21,
-          "shared": [
-            "arm",
-            "bicycle",
-            "building",
-            "car",
-            "computer",
-            "dinner",
-            "door",
-            "engine"
-          ],
-          "similarity": 0
-        },
-        {
-          "word": "receive",
-          "kind": "gloss",
-          "count": 6,
-          "documents": 5,
-          "shared": [
-            "acre",
-            "aircraft",
-            "album",
-            "allotment",
-            "ammunition",
-            "amount",
-            "area",
-            "arm"
-          ],
-          "similarity": 0
-        },
-        {
           "word": "take",
           "kind": "related",
           "count": 86,
           "documents": 74,
+          "shared": [],
+          "similarity": 0
+        },
+        {
+          "word": "acquire",
+          "kind": "related",
+          "count": 6,
+          "documents": 6,
+          "shared": [
+            "stake",
+            "land",
+            "freehold",
+            "tract",
+            "property",
+            "acre"
+          ],
+          "similarity": 0.22899
+        },
+        {
+          "word": "subscribe",
+          "kind": "related",
+          "count": 0,
+          "documents": 0,
           "shared": [],
           "similarity": 0
         }
@@ -2996,21 +2975,6 @@
       "relation": "dobj",
       "selected_sense": "choose.v.01",
       "candidates": [
-        {
-          "word": "prefer",
-          "kind": "gloss",
-          "count": 4,
-          "documents": 3,
-          "shared": [
-            "mate",
-            "design",
-            "male",
-            "manner",
-            "candidate",
-            "site"
-          ],
-          "similarity": 0.10561
-        },
         {
           "word": "select",
           "kind": "synonym",
@@ -3052,21 +3016,31 @@
           "similarity": 0.10126
         },
         {
-          "word": "make",
-          "kind": "gloss",
-          "count": 14,
-          "documents": 14,
+          "word": "limit",
+          "kind": "related",
+          "count": 12,
+          "documents": 12,
           "shared": [
-            "act",
-            "action",
-            "actor",
-            "adventure",
-            "album",
-            "alignment",
-            "alternative",
-            "amount"
+            "option",
+            "president",
+            "value"
           ],
-          "similarity": 0
+          "similarity": 0.02137
+        },
+        {
+          "word": "propose",
+          "kind": "related",
+          "count": 6,
+          "documents": 6,
+          "shared": [
+            "alternative",
+            "strategy",
+            "design",
+            "candidate",
+            "site",
+            "name"
+          ],
+          "similarity": 0.06132
         }
       ]
     },
@@ -3092,66 +3066,52 @@
           "similarity": 0.40087
         },
         {
-          "word": "perform",
-          "kind": "gloss",
-          "count": 153,
-          "documents": 124,
+          "word": "commence",
+          "kind": "synonym",
+          "count": 0,
+          "documents": 0,
           "shared": [
-            "act",
-            "action",
-            "activity",
-            "album",
-            "analysis",
-            "appearance",
-            "approach",
-            "assessment"
+            "construction",
+            "bombardment",
+            "operation",
+            "training",
+            "work",
+            "reign"
           ],
+          "similarity": 0.42797
+        },
+        {
+          "word": "attack",
+          "kind": "related",
+          "count": 1,
+          "documents": 1,
+          "shared": [],
           "similarity": 0
         },
         {
-          "word": "initiate",
-          "kind": "gloss",
-          "count": 7,
-          "documents": 6,
+          "word": "get",
+          "kind": "synonym",
+          "count": 0,
+          "documents": 0,
           "shared": [
-            "feud",
-            "negotiation",
-            "construction",
-            "drive",
-            "campaign"
+            "education"
           ],
-          "similarity": 0.2982
+          "similarity": 0.00463
         },
         {
-          "word": "do",
-          "kind": "gloss",
-          "count": 24,
-          "documents": 23,
+          "word": "launch",
+          "kind": "related",
+          "count": 0,
+          "documents": 0,
           "shared": [
-            "account",
-            "act",
-            "action",
-            "activity",
-            "advance",
-            "album",
-            "analysis",
-            "angle"
+            "campaign",
+            "investigation",
+            "career",
+            "offensive",
+            "programme",
+            "assault"
           ],
-          "similarity": 0
-        },
-        {
-          "word": "complete",
-          "kind": "gloss",
-          "count": 4,
-          "documents": 4,
-          "shared": [
-            "refit",
-            "preparation",
-            "construction",
-            "journey",
-            "work"
-          ],
-          "similarity": 0.2396
+          "similarity": 0.1715
         }
       ]
     }

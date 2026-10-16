@@ -167,6 +167,25 @@ describe("Argument-aware lexical choice across different word families", () => {
     );
     expect(candidates.map((c) => c.word)).not.toContain("have");
     expect(candidates.map((c) => c.word)).not.toContain("cause");
+    expect(candidates.map((c) => c.word)).not.toContain("develop");
+  });
+  it("does not substitute a different action using definition overlap alone", () => {
+    const data = fixture.semantics.begin,
+      context = fixture.contexts["dobj:experiment"];
+    const candidates = comparisonCandidates(
+      rankCandidates(
+        "begin",
+        data,
+        "dobj",
+        "forward",
+        defaultSenseFor(data, "dobj", "forward", context),
+        context,
+      ),
+    );
+    expect(candidates.map((c) => c.word)).toContain("start");
+    expect(candidates.map((c) => c.word)).not.toContain("perform");
+    expect(candidates.map((c) => c.word)).not.toContain("complete");
+    expect(candidates.map((c) => c.word)).not.toContain("do");
   });
   it("keeps lexical equivalence separate from shared contexts", () => {
     const lexical = candidatesFor(fixture.semantics.buy, "dobj", "forward");
