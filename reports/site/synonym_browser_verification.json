@@ -1,0 +1,44 @@
+{
+  "public_url": "https://collocation-atlas.pages.dev/?q=high&lang=ja&view=compare",
+  "deployment": "https://01badc3f.collocation-atlas.pages.dev",
+  "code_commit": "a17fe545994dda76237be6078bf464ca9bddfd25",
+  "data_release": "https://github.com/YAMA-TANA/collocation-atlas/releases/tag/lexicon-2026-10-16-v2",
+  "ci": "https://github.com/YAMA-TANA/collocation-atlas/actions/runs/38886248536",
+  "checked_at": "2026-10-16T10:20:23.051843+00:00",
+  "tests_passed": 22,
+  "flows_verified": [
+    "high default -> height comparison: high/tall/lofty/elevated, building 36/370/2/4; tree 10/101/0/0",
+    "high degree preset -> high/strong/great/large/big/elevated; count and normalized per-word rate views",
+    "WordNet sense picker rebuilds comparison columns instead of merging meanings",
+    "High pitch preset -> high/shrill/squeaky/piercing; voice 38/7/5/0",
+    "Distinctive and specified row controls exercised in browser; shared discovery checked by automated tests",
+    "price -> noun comparison price/cost, reverse amod; retail price 109 in 81 original documents vs retail cost 1 in 1 document",
+    "Reverse comparison cell and alternative bars preserve the canonical adjective-to-noun pair",
+    "New searches show loading until new comparison group is ready; no stale query matrix",
+    "Expandable comparison editor keeps the matrix near the top",
+    "Public corpus and semantics archives download with SHA256 validation"
+  ],
+  "responsive_comparison_widths_without_page_overflow": [
+    320,
+    375,
+    414,
+    768
+  ],
+  "responsive_synonym_panel": {
+    "375": {
+      "panel": 328,
+      "select": 298
+    },
+    "320": {
+      "panel": 273,
+      "select": 243
+    }
+  },
+  "console_errors": [],
+  "limits": [
+    "47,029 lexical entries do not cover every corpus word. Manual comparison remains available.",
+    "WordNet senses and definitions are lexical suggestions, not corpus-native frequency labels.",
+    "Context neighbours use whole-word contexts and can include topical or opposed meanings; they are separately labelled.",
+    "Dependency counts pool inflections and senses. Meaning-specific teaching sets are candidate comparisons, not sense-disambiguated corpus counts."
+  ]
+}
