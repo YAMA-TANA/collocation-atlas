@@ -1,0 +1,1174 @@
+{
+  "coverage": {
+    "amod:forward": 1958,
+    "dobj:forward": 1551,
+    "nsubj:forward": 1169,
+    "amod:reverse": 4892,
+    "dobj:reverse": 4718
+  },
+  "examples": {
+    "strong": {
+      "amod:forward": [
+        {
+          "word": "firm",
+          "gloss_similarity": 1.0,
+          "tokens": [
+            "sure",
+            "strong"
+          ],
+          "shared": [
+            "action",
+            "advocate",
+            "alliance",
+            "ally",
+            "base",
+            "basis",
+            "belief",
+            "believer"
+          ]
+        },
+        {
+          "word": "hard",
+          "gloss_similarity": 1.0,
+          "tokens": [
+            "distil",
+            "ferment",
+            "content",
+            "alcohol",
+            "high",
+            "rather"
+          ],
+          "shared": [
+            "acid",
+            "album",
+            "alloy",
+            "area",
+            "aspect",
+            "audience",
+            "ball",
+            "band"
+          ]
+        },
+        {
+          "word": "potent",
+          "gloss_similarity": 1.0,
+          "tokens": [
+            "wield",
+            "author",
+            "forc"
+          ],
+          "shared": [
+            "activity",
+            "agent",
+            "combination",
+            "effect",
+            "example",
+            "factor",
+            "force",
+            "form"
+          ]
+        },
+        {
+          "word": "secure",
+          "gloss_similarity": 1.0,
+          "tokens": [
+            "tamper",
+            "immun",
+            "attack",
+            "incap"
+          ],
+          "shared": [
+            "area",
+            "attachment",
+            "base",
+            "building",
+            "control",
+            "environment",
+            "footing",
+            "ground"
+          ]
+        },
+        {
+          "word": "solid",
+          "gloss_similarity": 1.0,
+          "tokens": [
+            "solidli",
+            "built",
+            "condit",
+            "good"
+          ],
+          "shared": [
+            "action",
+            "addition",
+            "album",
+            "area",
+            "attempt",
+            "background",
+            "backing",
+            "ball"
+          ]
+        },
+        {
+          "word": "stiff",
+          "gloss_similarity": 1.0,
+          "tokens": [
+            "physiolog",
+            "chemic",
+            "strong",
+            "effect"
+          ],
+          "shared": [
+            "arm",
+            "breeze",
+            "challenge",
+            "competition",
+            "defence",
+            "drink",
+            "fight",
+            "leg"
+          ]
+        },
+        {
+          "word": "substantial",
+          "gloss_similarity": 1.0,
+          "tokens": [
+            "solidli",
+            "built",
+            "condit",
+            "good"
+          ],
+          "shared": [
+            "action",
+            "activity",
+            "addition",
+            "advantage",
+            "airplay",
+            "album",
+            "amount",
+            "area"
+          ]
+        },
+        {
+          "word": "warm",
+          "gloss_similarity": 1.0,
+          "tokens": [
+            "freshli",
+            "left"
+          ],
+          "shared": [
+            "act",
+            "album",
+            "area",
+            "atmosphere",
+            "bias",
+            "body",
+            "breeze",
+            "building"
+          ]
+        },
+        {
+          "word": "weak",
+          "gloss_similarity": 1.0,
+          "tokens": [
+            "inflect",
+            "verb",
+            "regular",
+            "standard"
+          ],
+          "shared": [
+            "ability",
+            "acid",
+            "activity",
+            "affinity",
+            "album",
+            "area",
+            "aspect",
+            "association"
+          ]
+        },
+        {
+          "word": "impressive",
+          "gloss_similarity": 0.53158,
+          "tokens": [
+            "strong",
+            "effect"
+          ],
+          "shared": [
+            "ability",
+            "addition",
+            "album",
+            "amount",
+            "array",
+            "aspect",
+            "average",
+            "body"
+          ]
+        },
+        {
+          "word": "light",
+          "gloss_similarity": 0.44211,
+          "tokens": [
+            "averag",
+            "greater",
+            "than"
+          ],
+          "shared": [
+            "absorption",
+            "alloy",
+            "amount",
+            "approach",
+            "area",
+            "arm",
+            "armament",
+            "armor"
+          ]
+        },
+        {
+          "word": "positive",
+          "gloss_similarity": 0.39279,
+          "tokens": [
+            "greater",
+            "than"
+          ],
+          "shared": [
+            "acclaim",
+            "act",
+            "action",
+            "activity",
+            "advantage",
+            "appreciation",
+            "argument",
+            "aspect"
+          ]
+        },
+        {
+          "word": "abnormal",
+          "gloss_similarity": 0.37445,
+          "tokens": [
+            "greater",
+            "than"
+          ],
+          "shared": [
+            "activation",
+            "activity",
+            "amount",
+            "behavior",
+            "cell",
+            "change",
+            "condition",
+            "development"
+          ]
+        },
+        {
+          "word": "heavy",
+          "gloss_similarity": 0.36215,
+          "tokens": [
+            "averag",
+            "greater",
+            "than"
+          ],
+          "shared": [
+            "accent",
+            "action",
+            "activity",
+            "airplay",
+            "album",
+            "amount",
+            "approach",
+            "area"
+          ]
+        },
+        {
+          "word": "high",
+          "gloss_similarity": 0.35853,
+          "tokens": [
+            "greater",
+            "than"
+          ],
+          "shared": [
+            "ability",
+            "absorption",
+            "acclaim",
+            "acid",
+            "act",
+            "action",
+            "activation",
+            "activity"
+          ]
+        },
+        {
+          "word": "powerful",
+          "gloss_similarity": 0.35121,
+          "tokens": [
+            "strength",
+            "power"
+          ],
+          "shared": [
+            "ability",
+            "acid",
+            "actor",
+            "advocate",
+            "agent",
+            "alliance",
+            "ally",
+            "approach"
+          ]
+        },
+        {
+          "word": "extraordinary",
+          "gloss_similarity": 0.33109,
+          "tokens": [
+            "expect",
+            "than"
+          ],
+          "shared": [
+            "ability",
+            "action",
+            "album",
+            "amount",
+            "capacity",
+            "claim",
+            "collection",
+            "condition"
+          ]
+        },
+        {
+          "word": "exaggerated",
+          "gloss_similarity": 0.33087,
+          "tokens": [
+            "greater",
+            "than"
+          ],
+          "shared": [
+            "accent",
+            "belief",
+            "claim",
+            "effect",
+            "expression",
+            "fashion",
+            "figure",
+            "form"
+          ]
+        },
+        {
+          "word": "long",
+          "gloss_similarity": 0.3153,
+          "tokens": [
+            "averag",
+            "greater",
+            "than"
+          ],
+          "shared": [
+            "agreement",
+            "album",
+            "amount",
+            "approach",
+            "arc",
+            "area",
+            "argument",
+            "arm"
+          ]
+        },
+        {
+          "word": "average",
+          "gloss_similarity": 0.31255,
+          "tokens": [
+            "averag",
+            "expect"
+          ],
+          "shared": [
+            "ability",
+            "activity",
+            "amount",
+            "area",
+            "arm",
+            "attendance",
+            "audience",
+            "average"
+          ]
+        },
+        {
+          "word": "mean",
+          "gloss_similarity": 0.31255,
+          "tokens": [
+            "averag",
+            "expect"
+          ],
+          "shared": [
+            "change",
+            "charge",
+            "concentration",
+            "content",
+            "datum",
+            "difference",
+            "effect",
+            "expression"
+          ]
+        },
+        {
+          "word": "muscular",
+          "gloss_similarity": 0.31173,
+          "tokens": [
+            "strength",
+            "power"
+          ],
+          "shared": [
+            "action",
+            "body",
+            "build",
+            "contraction",
+            "foot",
+            "frame",
+            "leg",
+            "limb"
+          ]
+        },
+        {
+          "word": "standard",
+          "gloss_similarity": 0.30881,
+          "tokens": [
+            "regular",
+            "standard"
+          ],
+          "shared": [
+            "accent",
+            "acid",
+            "addition",
+            "album",
+            "amount",
+            "approach",
+            "armament",
+            "arrangement"
+          ]
+        },
+        {
+          "word": "rich",
+          "gloss_similarity": 0.30864,
+          "tokens": [
+            "content",
+            "high"
+          ],
+          "shared": [
+            "amount",
+            "area",
+            "array",
+            "atmosphere",
+            "background",
+            "cell",
+            "center",
+            "character"
+          ]
+        },
+        {
+          "word": "sound",
+          "gloss_similarity": 0.28202,
+          "tokens": [
+            "condit",
+            "good"
+          ],
+          "shared": [
+            "advice",
+            "barrier",
+            "base",
+            "basis",
+            "bite",
+            "change",
+            "company",
+            "concept"
+          ]
+        },
+        {
+          "word": "sweet",
+          "gloss_similarity": 0.28169,
+          "tokens": [
+            "content",
+            "high"
+          ],
+          "shared": [
+            "ballad",
+            "character",
+            "dog",
+            "drink",
+            "end",
+            "episode",
+            "face",
+            "feeling"
+          ]
+        },
+        {
+          "word": "dry",
+          "gloss_similarity": 0.25273,
+          "tokens": [
+            "ferment",
+            "content"
+          ],
+          "shared": [
+            "area",
+            "atmosphere",
+            "body",
+            "bone",
+            "business",
+            "condition",
+            "county",
+            "environment"
+          ]
+        },
+        {
+          "word": "functional",
+          "gloss_similarity": 0.24785,
+          "tokens": [
+            "rather",
+            "than"
+          ],
+          "shared": [
+            "ability",
+            "activation",
+            "activity",
+            "approach",
+            "area",
+            "aspect",
+            "association",
+            "basis"
+          ]
+        },
+        {
+          "word": "oral",
+          "gloss_similarity": 0.2426,
+          "tokens": [
+            "rather",
+            "than"
+          ],
+          "shared": [
+            "absorption",
+            "agent",
+            "agreement",
+            "argument",
+            "collection",
+            "condition",
+            "culture",
+            "dose"
+          ]
+        },
+        {
+          "word": "unwritten",
+          "gloss_similarity": 0.2426,
+          "tokens": [
+            "rather",
+            "than"
+          ],
+          "shared": [
+            "agreement",
+            "law",
+            "rule"
+          ]
+        },
+        {
+          "word": "supersonic",
+          "gloss_similarity": 0.23293,
+          "tokens": [
+            "greater",
+            "than"
+          ],
+          "shared": [
+            "fighter",
+            "flow",
+            "jet",
+            "performance",
+            "service",
+            "speed",
+            "wave"
+          ]
+        },
+        {
+          "word": "intellectual",
+          "gloss_similarity": 0.23281,
+          "tokens": [
+            "rather",
+            "than"
+          ],
+          "shared": [
+            "ability",
+            "activity",
+            "approach",
+            "argument",
+            "atmosphere",
+            "audience",
+            "authority",
+            "background"
+          ]
+        }
+      ]
+    },
+    "solve": {
+      "dobj:forward": [
+        {
+          "word": "clear",
+          "gloss_similarity": 1.0,
+          "tokens": [
+            "debt",
+            "settl"
+          ],
+          "shared": [
+            "game",
+            "issue",
+            "mystery",
+            "part",
+            "problem",
+            "structure",
+            "system",
+            "thing"
+          ]
+        },
+        {
+          "word": "resolve",
+          "gloss_similarity": 1.0,
+          "tokens": [
+            "solut",
+            "find"
+          ],
+          "shared": [
+            "case",
+            "challenge",
+            "conflict",
+            "crisis",
+            "difference",
+            "difficulty",
+            "dilemma",
+            "dispute"
+          ]
+        },
+        {
+          "word": "work",
+          "gloss_similarity": 1.0,
+          "tokens": [
+            "problem",
+            "solut",
+            "question",
+            "understand",
+            "find",
+            "mean"
+          ],
+          "shared": [
+            "case",
+            "difference",
+            "game",
+            "issue",
+            "lot",
+            "part",
+            "problem",
+            "puzzle"
+          ]
+        },
+        {
+          "word": "break",
+          "gloss_similarity": 0.75648,
+          "tokens": [
+            "solut",
+            "find"
+          ],
+          "shared": [
+            "code",
+            "game",
+            "lot",
+            "one",
+            "part",
+            "series",
+            "set",
+            "structure"
+          ]
+        },
+        {
+          "word": "answer",
+          "gloss_similarity": 0.52998,
+          "tokens": [
+            "understand",
+            "mean"
+          ],
+          "shared": [
+            "challenge",
+            "mystery",
+            "problem",
+            "question",
+            "riddle",
+            "series",
+            "threat"
+          ]
+        },
+        {
+          "word": "develop",
+          "gloss_similarity": 0.36199,
+          "tokens": [
+            "solut",
+            "mean"
+          ],
+          "shared": [
+            "case",
+            "code",
+            "difference",
+            "equation",
+            "game",
+            "issue",
+            "lot",
+            "model"
+          ]
+        }
+      ],
+      "nsubj:forward": [
+        {
+          "word": "clear",
+          "gloss_similarity": 1.0,
+          "tokens": [
+            "debt",
+            "settl"
+          ],
+          "shared": [
+            "company",
+            "player",
+            "team"
+          ]
+        },
+        {
+          "word": "work",
+          "gloss_similarity": 1.0,
+          "tokens": [
+            "problem",
+            "question",
+            "solut",
+            "understand",
+            "find",
+            "mean"
+          ],
+          "shared": [
+            "case",
+            "change",
+            "company",
+            "government",
+            "people",
+            "player",
+            "state",
+            "team"
+          ]
+        },
+        {
+          "word": "break",
+          "gloss_similarity": 0.75508,
+          "tokens": [
+            "solut",
+            "find"
+          ],
+          "shared": [
+            "company",
+            "government",
+            "people",
+            "player",
+            "state",
+            "team",
+            "veronica"
+          ]
+        },
+        {
+          "word": "answer",
+          "gloss_similarity": 0.52757,
+          "tokens": [
+            "understand",
+            "mean"
+          ],
+          "shared": [
+            "people",
+            "player",
+            "state"
+          ]
+        },
+        {
+          "word": "remain",
+          "gloss_similarity": 0.36424,
+          "tokens": [
+            "problem",
+            "question"
+          ],
+          "shared": [
+            "case",
+            "change",
+            "company",
+            "government",
+            "people",
+            "player",
+            "problem",
+            "state"
+          ]
+        },
+        {
+          "word": "develop",
+          "gloss_similarity": 0.35958,
+          "tokens": [
+            "solut",
+            "mean"
+          ],
+          "shared": [
+            "case",
+            "company",
+            "government",
+            "people",
+            "player",
+            "problem",
+            "state",
+            "team"
+          ]
+        }
+      ]
+    },
+    "powerful": {
+      "amod:forward": [
+        {
+          "word": "muscular",
+          "gloss_similarity": 1.0,
+          "tokens": [
+            "rug",
+            "weight",
+            "strength",
+            "possess",
+            "power",
+            "physic"
+          ],
+          "shared": [
+            "body",
+            "breed",
+            "build",
+            "frame",
+            "leg",
+            "limb",
+            "man",
+            "movement"
+          ]
+        },
+        {
+          "word": "potent",
+          "gloss_similarity": 1.0,
+          "tokens": [
+            "influenc",
+            "great"
+          ],
+          "shared": [
+            "agent",
+            "drug",
+            "effect",
+            "example",
+            "force",
+            "form",
+            "influence",
+            "line"
+          ]
+        },
+        {
+          "word": "heavy",
+          "gloss_similarity": 0.56207,
+          "tokens": [
+            "power",
+            "forc",
+            "great"
+          ],
+          "shared": [
+            "approach",
+            "area",
+            "arm",
+            "armament",
+            "armor",
+            "artillery",
+            "assault",
+            "attack"
+          ]
+        },
+        {
+          "word": "ineffective",
+          "gloss_similarity": 0.48087,
+          "tokens": [
+            "power",
+            "forc"
+          ],
+          "shared": [
+            "attack",
+            "control",
+            "drug",
+            "leader",
+            "system",
+            "weapon"
+          ]
+        },
+        {
+          "word": "unable",
+          "gloss_similarity": 0.48087,
+          "tokens": [
+            "power",
+            "forc"
+          ],
+          "shared": [
+            "character",
+            "company",
+            "force",
+            "individual",
+            "man",
+            "party",
+            "people",
+            "person"
+          ]
+        },
+        {
+          "word": "hardy",
+          "gloss_similarity": 0.45997,
+          "tokens": [
+            "rug",
+            "strength",
+            "physic"
+          ],
+          "shared": [
+            "breed",
+            "horse",
+            "man"
+          ]
+        },
+        {
+          "word": "stalwart",
+          "gloss_similarity": 0.45997,
+          "tokens": [
+            "rug",
+            "strength",
+            "physic"
+          ],
+          "shared": [
+            "friend",
+            "support",
+            "supporter"
+          ]
+        },
+        {
+          "word": "sturdy",
+          "gloss_similarity": 0.45997,
+          "tokens": [
+            "rug",
+            "strength",
+            "physic"
+          ],
+          "shared": [
+            "bill",
+            "body",
+            "build",
+            "leg",
+            "limb",
+            "piece"
+          ]
+        },
+        {
+          "word": "weak",
+          "gloss_similarity": 0.39465,
+          "tokens": [
+            "strength",
+            "physic"
+          ],
+          "shared": [
+            "ability",
+            "acid",
+            "area",
+            "attack",
+            "basis",
+            "bite",
+            "book",
+            "character"
+          ]
+        },
+        {
+          "word": "light",
+          "gloss_similarity": 0.383,
+          "tokens": [
+            "power",
+            "forc"
+          ],
+          "shared": [
+            "approach",
+            "area",
+            "arm",
+            "armament",
+            "armor",
+            "artillery",
+            "attack",
+            "ballad"
+          ]
+        },
+        {
+          "word": "strong",
+          "gloss_similarity": 0.35121,
+          "tokens": [
+            "strength",
+            "power"
+          ],
+          "shared": [
+            "ability",
+            "acid",
+            "actor",
+            "advocate",
+            "agent",
+            "alliance",
+            "ally",
+            "approach"
+          ]
+        },
+        {
+          "word": "lame",
+          "gloss_similarity": 0.34148,
+          "tokens": [
+            "effect",
+            "forc"
+          ],
+          "shared": [
+            "episode",
+            "horse",
+            "one"
+          ]
+        },
+        {
+          "word": "forceful",
+          "gloss_similarity": 0.31894,
+          "tokens": [
+            "strength",
+            "physic"
+          ],
+          "shared": [
+            "advocate",
+            "character",
+            "chorus",
+            "impact",
+            "personality",
+            "response",
+            "statement",
+            "style"
+          ]
+        },
+        {
+          "word": "violent",
+          "gloss_similarity": 0.29352,
+          "tokens": [
+            "effect",
+            "forc"
+          ],
+          "shared": [
+            "approach",
+            "assault",
+            "attack",
+            "character",
+            "element",
+            "emotion",
+            "episode",
+            "eruption"
+          ]
+        },
+        {
+          "word": "mild",
+          "gloss_similarity": 0.2843,
+          "tokens": [
+            "effect",
+            "forc"
+          ],
+          "shared": [
+            "agent",
+            "attack",
+            "beat",
+            "effect",
+            "form",
+            "language",
+            "one",
+            "stroke"
+          ]
+        },
+        {
+          "word": "charming",
+          "gloss_similarity": 0.27934,
+          "tokens": [
+            "possess",
+            "power"
+          ],
+          "shared": [
+            "area",
+            "book",
+            "character",
+            "church",
+            "city",
+            "house",
+            "man",
+            "music"
+          ]
+        },
+        {
+          "word": "magic",
+          "gloss_similarity": 0.27934,
+          "tokens": [
+            "possess",
+            "power"
+          ],
+          "shared": [
+            "ability",
+            "attack",
+            "effect",
+            "element",
+            "episode",
+            "item",
+            "marker",
+            "moment"
+          ]
+        },
+        {
+          "word": "magical",
+          "gloss_similarity": 0.27934,
+          "tokens": [
+            "possess",
+            "power"
+          ],
+          "shared": [
+            "ability",
+            "artifact",
+            "attack",
+            "barrier",
+            "being",
+            "book",
+            "character",
+            "charm"
+          ]
+        },
+        {
+          "word": "robust",
+          "gloss_similarity": 0.2607,
+          "tokens": [
+            "enough",
+            "strong"
+          ],
+          "shared": [
+            "approach",
+            "area",
+            "body",
+            "build",
+            "capability",
+            "design",
+            "economy",
+            "expression"
+          ]
+        },
+        {
+          "word": "mighty",
+          "gloss_similarity": 0.21839,
+          "tokens": [
+            "forc",
+            "great"
+          ],
+          "shared": [
+            "army",
+            "empire",
+            "king",
+            "man",
+            "monarch",
+            "one",
+            "power",
+            "river"
+          ]
+        }
+      ]
+    }
+  }
+}

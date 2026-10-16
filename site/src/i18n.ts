@@ -11,6 +11,36 @@ export const languages = {
 export type Lang = keyof typeof languages;
 const order = Object.keys(languages) as Lang[];
 const messages: Record<string, string[]> = {
+  definitionSource: [
+    "語義説明の近さ",
+    "Definition similarity",
+    "释义相似",
+    "정의 유사도",
+    "Similitud de definiciones",
+    "Similarité des définitions",
+    "Ähnliche Definitionen",
+    "Semelhança das definições",
+  ],
+  definitionCandidates: [
+    "語義説明と共起が近い候補",
+    "Similar definitions and shared contexts",
+    "释义及共现相近的候选词",
+    "정의와 문맥이 비슷한 후보",
+    "Definiciones y contextos próximos",
+    "Définitions et contextes proches",
+    "Ähnliche Definitionen und Kontexte",
+    "Definições e contextos próximos",
+  ],
+  definitionHelp: [
+    "辞書の説明文の類似度と共通の共起語から抽出。同義・自然な置換を保証するものではありません。",
+    "Derived from definition similarity and shared corpus contexts, not a guarantee of synonymy or natural substitution.",
+    "根据释义相似度和共同共现词提取，不保证同义或自然替换。",
+    "정의 유사도와 공통 코퍼스 문맥으로 추출하며 동의어나 자연스러운 대체를 보장하지 않습니다.",
+    "Similitud de definiciones y contextos; no garantiza sinonimia ni sustitución natural.",
+    "Similarité des définitions et contextes ; aucune garantie de synonymie.",
+    "Aus Definitionsähnlichkeit und gemeinsamen Kontexten; keine Garantie für Synonymie.",
+    "Semelhança de definições e contextos; não garante sinonímia ou substituição natural.",
+  ],
   candidateSource: [
     "候補の根拠",
     "Candidate source",

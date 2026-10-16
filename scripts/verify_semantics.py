@@ -26,7 +26,7 @@ def main():
     db.execute("SET memory_limit='2GB'");db.execute("SET threads=4")
     counts={}
     for relation,direction in [key.split(':') for key in manifest['neighbours']]:
-        pos='r' if direction=='reverse' and relation in ['adj_adv','verb_adv'] else 'n' if direction=='reverse' else 'a' if relation=='amod' else 'v' 
+        pos='r' if direction=='reverse' and relation in ['adj_adv','verb_adv'] else 'n' if direction=='reverse' else 'a' if relation=='amod' else 'v'
         key=f"{relation}:{direction}"
         left,right=("lemma","collocate") if direction=="forward" else ("collocate","lemma")
         marginals=dict(db.execute(f"SELECT {left},sum(count) FROM pairs WHERE relation=? GROUP BY 1",[relation]).fetchall())
@@ -53,6 +53,14 @@ def main():
     mismatches=db.execute('SELECT r.* FROM regression_rows r LEFT JOIN pairs p USING(relation,lemma,collocate) WHERE p.count IS NULL OR p.count<>r.expected_count OR p.documents<>r.expected_documents').fetchall()
     assert not mismatches,mismatches[:3]
     db.unregister('regression_rows')
+    gloss_counts={}
+    for word,entry in words.items():
+        for key,links in entry.get('gloss_neighbours',{}).items():
+            gloss_counts[key]=gloss_counts.get(key,0)+1
+            for link in links:
+                assert link['word']!=word and link['word'] in words
+                assert link['gloss_similarity']>=.12 and len(link['tokens'])>=2 and len(link['shared'])>=3
+    assert gloss_counts==manifest.get('gloss_neighbours',{})
     fixture=json.loads((ROOT/"site/src/fixtures/high-regression.json").read_text(encoding="utf-8"))
     verified=0
     for word,entry in fixture["entries"].items():
@@ -68,7 +76,7 @@ def main():
     with zipfile.ZipFile(archive) as z:
         for path in OUT.iterdir():
             if path.is_file():assert z.read("data/semantics/"+path.name)==path.read_bytes()
-    report={"entries":len(words),"lexical_words":manifest.get("lexical_words",len(words)),"general_query_settings":len(general["queries"]),"verified_general_pair_cells":len(regression_rows),"senses":senses,"neighbour_sets":counts,"verified_high_pair_cells":verified,"license_on_every_shard":True,"archive_sha256":digest,"max_shard_bytes":max(p.stat().st_size for p in OUT.glob('??.json')),"all_assertions_passed":True}
+    report={"entries":len(words),"lexical_words":manifest.get("lexical_words",len(words)),"general_query_settings":len(general["queries"]),"verified_general_pair_cells":len(regression_rows),"senses":senses,"neighbour_sets":counts,"definition_neighbour_sets":gloss_counts,"verified_high_pair_cells":verified,"license_on_every_shard":True,"archive_sha256":digest,"max_shard_bytes":max(p.stat().st_size for p in OUT.glob('??.json')),"all_assertions_passed":True}
     path=ROOT/"reports/site/semantics_verification.json"
     path.write_text(json.dumps(report,indent=2)+"\n",encoding="utf-8")
     print(json.dumps(report,indent=2))

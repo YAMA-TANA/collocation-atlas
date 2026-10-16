@@ -13,9 +13,16 @@
     "adj_adv:reverse": 286,
     "verb_adv:reverse": 815
   },
+  "definition_neighbour_sets": {
+    "dobj:forward": 1551,
+    "nsubj:forward": 1169,
+    "amod:forward": 1958,
+    "dobj:reverse": 4718,
+    "amod:reverse": 4892
+  },
   "verified_high_pair_cells": 54,
   "license_on_every_shard": true,
-  "archive_sha256": "f949c8bce1ca0be7995c73b9bd6eba950d5bee227ed2d6021147779115d9ae9e",
-  "max_shard_bytes": 1314507,
+  "archive_sha256": "b86aa4bbfc926b8a974a85baecee96fb0380f7ab3c298bfb86d8d97003bd2af8",
+  "max_shard_bytes": 1494123,
   "all_assertions_passed": true
 }

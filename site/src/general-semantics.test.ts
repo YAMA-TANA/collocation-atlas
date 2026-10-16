@@ -6,6 +6,7 @@ import {
   rankCandidates,
   senseComparison,
   automaticComparison,
+  comparisonCandidates,
   senseOptions,
   partOfSpeech,
   type SemanticEntry,
@@ -74,9 +75,10 @@ const cases: [string, string, string, string[]][] = [
   ["buy", "car", "dobj", ["purchase"]],
   ["choose", "option", "dobj", ["select", "pick"]],
   ["begin", "experiment", "dobj", ["start"]],
-  ["show", "result", "dobj", ["produce", "reveal", "demonstrate"]],
+  // PRODUCE a result changes the event; INDICATE belongs to the requested SHOW family.
+  ["show", "result", "dobj", ["indicate", "reveal", "demonstrate"]],
   ["need", "help", "dobj", ["require", "seek"]],
-  ["answer", "question", "dobj", ["ask", "address", "resolve"]],
+  ["answer", "question", "dobj", ["reply", "respond", "address", "resolve"]],
 ];
 describe("Argument-aware lexical choice across different word families", () => {
   it("retains corpus-supported alternatives across nearby senses for verbs", () => {
@@ -137,16 +139,9 @@ describe("Argument-aware lexical choice across different word families", () => {
       const data = fixture.semantics[word],
         distribution = fixture.contexts[`${relation}:${context}`];
       const sense = defaultSenseFor(data, relation, "forward", distribution);
-      const candidates = rankCandidates(
-        word,
-        data,
-        relation,
-        "forward",
-        sense,
-        distribution,
-      )
-        .filter((c) => c.total > 0)
-        .slice(0, 5);
+      const candidates = comparisonCandidates(
+        rankCandidates(word, data, relation, "forward", sense, distribution),
+      );
       expect(
         candidates.some((c) => expected.includes(c.word)),
         candidates.map((c) => `${c.word}:${c.count}`).join(", "),
@@ -157,6 +152,22 @@ describe("Argument-aware lexical choice across different word families", () => {
         expect(c.documents).toBe(row?.[2] ?? 0);
       }
     });
+  it("does not promote HAVE or CAUSE just because they frequently take PROBLEM", () => {
+    const data = fixture.semantics.solve,
+      context = fixture.contexts["dobj:problem"];
+    const candidates = comparisonCandidates(
+      rankCandidates(
+        "solve",
+        data,
+        "dobj",
+        "forward",
+        defaultSenseFor(data, "dobj", "forward", context),
+        context,
+      ),
+    );
+    expect(candidates.map((c) => c.word)).not.toContain("have");
+    expect(candidates.map((c) => c.word)).not.toContain("cause");
+  });
   it("keeps lexical equivalence separate from shared contexts", () => {
     const lexical = candidatesFor(fixture.semantics.buy, "dobj", "forward");
     expect(lexical.find((c) => c.word === "purchase")?.kind).toBe("synonym");

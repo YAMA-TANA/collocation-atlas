@@ -1796,7 +1796,11 @@ function Comparison({
                               ? "synonymSource"
                               : kind === "similar" || kind === "related"
                                 ? "relatedSource"
-                                : "contextSource",
+                                : candidateMetadata.gloss_neighbours?.[
+                                      `${relation}:${direction}`
+                                    ]?.some((c) => c.word === w)
+                                  ? "definitionSource"
+                                  : "contextSource",
                           );
                         })()}
                       </small>

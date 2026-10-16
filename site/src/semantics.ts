@@ -12,7 +12,8 @@ export {
 import { getSemantics, type Neighbour, type SemanticEntry } from "./lexical";
 export type Candidate = {
   word: string;
-  kind: "synonym" | "similar" | "related" | "context";
+  kind: "synonym" | "similar" | "related" | "context" | "gloss";
+  glossSimilarity?: number;
   neighbour?: Neighbour;
   similarity: number;
   shared: string[];
@@ -152,14 +153,18 @@ export function rankCandidates(
         continue;
       if (!byName.has(name)) {
         const neighbour = data.neighbours?.[key]?.find((n) => n.word === name),
-          ev = data.evidence?.[key]?.[name];
+          ev = data.evidence?.[key]?.[name],
+          gloss = data.gloss_neighbours?.[key]?.find((n) => n.word === name);
         byName.set(name, {
           word: name,
-          kind: "context",
+          kind: gloss ? "gloss" : "context",
+          glossSimilarity: gloss?.gloss_similarity,
           similarity: ev?.similarity ?? neighbour?.similarity ?? 0,
-          shared: ev?.shared ?? neighbour?.shared ?? [],
+          shared: ev?.shared ?? neighbour?.shared ?? gloss?.shared ?? [],
           total,
-          score: (ev?.similarity ?? neighbour?.similarity ?? 0) * 8,
+          score:
+            (ev?.similarity ?? neighbour?.similarity ?? 0) * 8 +
+            (gloss?.gloss_similarity ?? 0) * 8,
         });
       }
     }
@@ -289,13 +294,13 @@ export async function comparisonGroup(
   );
   if (!object && senseId === undefined)
     return automaticComparison(word, data, relation, direction);
-  return [
-    word,
-    ...candidates
-      .filter((c) => c.total > 0)
-      .slice(0, 5)
-      .map((c) => c.word),
-  ];
+  return [word, ...comparisonCandidates(candidates).map((c) => c.word)];
+}
+export function comparisonCandidates(candidates: Candidate[]) {
+  // A shared argument alone is not evidence of semantic compatibility.
+  return candidates
+    .filter((c) => c.total > 0 && c.kind !== "context")
+    .slice(0, 5);
 }
 export function senseContexts(
   word: string,

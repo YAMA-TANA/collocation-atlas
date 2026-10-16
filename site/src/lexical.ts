@@ -21,6 +21,15 @@ export type SemanticEntry = {
   neighbours?: Record<string, Neighbour[]>;
   availability?: Record<string, Record<string, number>>;
   evidence?: Record<string, Record<string, ContextEvidence>>;
+  gloss_neighbours?: Record<
+    string,
+    {
+      word: string;
+      gloss_similarity: number;
+      shared: string[];
+      tokens: string[];
+    }[]
+  >;
   contexts?: Record<string, [string, number, number, number][]>;
   pos_counts?: Record<string, number>;
 };
@@ -38,7 +47,7 @@ export async function getSemantics(word: string): Promise<SemanticEntry> {
   if (!cache.has(key))
     cache.set(
       key,
-      fetch(`/data/semantics/${key}.json?v=2`)
+      fetch(`/data/semantics/${key}.json?v=3`)
         .then(async (r) => {
           if (!r.ok) throw Error(`HTTP ${r.status}`);
           return (await r.json()).words;

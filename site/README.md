@@ -22,6 +22,7 @@ uv run python scripts/export_site.py
 uv run python scripts/export_site_reverse.py
 uv run --extra semantics python -m nltk.downloader -d data/nltk_data wordnet
 uv run --extra semantics python scripts/export_semantics.py
+uv run --extra semantics python scripts/export_gloss_links.py
 uv run python scripts/export_semantic_regressions.py
 uv run python scripts/verify_semantics.py
 cd site
@@ -58,6 +59,16 @@ other_marginal], ...]]`. Counts sum to **34,688,327 extracted dependencies**.
   two-hop `similar_to`, direct hypernym/hyponym links) are labelled as related words, not synonyms.
   Every shard includes the full WordNet 3.0 license. Corpus availability uses the
   existing relation marginals, not WordNet sense-tag counts.
+- Definition-neighbour links compare WordNet definitions per sense and POS with
+  sublinear TF-IDF and Porter stems; maximum qualifying sense-pair similarity
+  >=0.12, >=2 shared definition tokens, >=3 shared corpus contexts (each >=3
+  occurrences and >=3 original documents), top32 candidates. These links are
+  separately labelled definition similarity, not dictionary synonymy.
+- Automatic phrase comparisons exclude words supported only by a shared
+  argument. Unfiltered observed partners remain inspectable in the suggestion
+  panel. This prevents frequent but semantically different governors (such as
+  HAVE/CAUSE with PROBLEM) from crowding out lexical comparisons.
+
 - Context neighbours: discounted PPMI cosine in seven separate spaces: adjective–noun,
   verb–object, verb–subject, noun–adjective, noun–verb, adverb–adjective and
   adverb–verb. There are 18,271 neighbour sets. At least 3 occurrences in 3
@@ -65,10 +76,10 @@ other_marginal], ...]]`. Counts sum to **34,688,327 extracted dependencies**.
   features, cosine >=0.12 and >=3 shared features. Up to 24 neighbours per space.
   Direct WordNet antonyms are excluded; topical or opposed meanings can remain.
 - `/data/semantics/manifest.json` records the source archive, method and coverage.
-  Schema 2 also stores lexical-candidate cosine/shared-context evidence, selected
-  observed context rows and corpus POS counts. The client requests `?v=2` to
+  Schema 3 also stores lexical-candidate cosine/shared-context evidence, selected
+  observed context rows and corpus POS counts. The client requests `?v=3` to
   separate this schema from older browser caches. The semantic release is
-  `semantic-engine-2026-10-16`; corpus aggregates remain unchanged.
+  `semantic-engine-2026-10-16-v2`; corpus aggregates remain unchanged.
 
 Detailed excerpts are deliberately a subset; every pair count is searchable.
 No full document texts are shipped. Forms, determiners and modifiers are pooled

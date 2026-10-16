@@ -205,6 +205,17 @@ export function SynonymExplorer({
               )}
             </div>
           )}
+          {candidates.some((c) => c.kind === "gloss") && (
+            <div className="synonym-group">
+              <strong>{t("definitionCandidates")}</strong>
+              <div className="chip-list">
+                {chips(
+                  candidates.filter((c) => c.kind === "gloss").slice(0, 10),
+                )}
+              </div>
+              <p>{t("definitionHelp")}</p>
+            </div>
+          )}
           {!!contexts.length && (
             <div className="synonym-group context-group">
               <strong>

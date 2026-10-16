@@ -2127,49 +2127,80 @@
       "candidates": [
         {
           "word": "heavy",
-          "kind": "context",
+          "kind": "gloss",
           "count": 1313,
           "documents": 807,
-          "shared": [],
+          "shared": [
+            "accent",
+            "action",
+            "activity",
+            "airplay",
+            "album",
+            "amount",
+            "approach",
+            "area"
+          ],
           "similarity": 0
         },
         {
-          "word": "torrential",
-          "kind": "context",
-          "count": 231,
-          "documents": 188,
-          "shared": [],
-          "similarity": 0
+          "word": "warm",
+          "kind": "gloss",
+          "count": 9,
+          "documents": 9,
+          "shared": [
+            "feeling",
+            "current",
+            "breeze",
+            "friendship",
+            "personality",
+            "bias"
+          ],
+          "similarity": 0.04741
         },
         {
-          "word": "acid",
-          "kind": "context",
-          "count": 57,
-          "documents": 34,
-          "shared": [],
-          "similarity": 0
+          "word": "hard",
+          "kind": "gloss",
+          "count": 7,
+          "documents": 6,
+          "shared": [
+            "feeling",
+            "evidence"
+          ],
+          "similarity": 0.01362
         },
         {
           "word": "light",
-          "kind": "context",
+          "kind": "gloss",
           "count": 78,
           "documents": 71,
-          "shared": [],
+          "shared": [
+            "absorption",
+            "alloy",
+            "amount",
+            "approach",
+            "area",
+            "arm",
+            "armament",
+            "armor"
+          ],
           "similarity": 0
         },
         {
-          "word": "moderate",
-          "kind": "context",
-          "count": 27,
-          "documents": 25,
+          "word": "high",
+          "kind": "gloss",
+          "count": 24,
+          "documents": 18,
           "shared": [
-            "shear",
-            "gust",
-            "wind",
-            "gale",
-            "hurricane"
+            "ability",
+            "absorption",
+            "acclaim",
+            "acid",
+            "act",
+            "action",
+            "activation",
+            "activity"
           ],
-          "similarity": 0.1689
+          "similarity": 0
         }
       ]
     },
@@ -2179,14 +2210,6 @@
       "relation": "amod",
       "selected_sense": "powerful.a.01",
       "candidates": [
-        {
-          "word": "instant",
-          "kind": "context",
-          "count": 12,
-          "documents": 7,
-          "shared": [],
-          "similarity": 0
-        },
         {
           "word": "strong",
           "kind": "similar",
@@ -2203,28 +2226,56 @@
           "similarity": 0.13766
         },
         {
-          "word": "hot",
-          "kind": "context",
-          "count": 10,
-          "documents": 10,
-          "shared": [],
-          "similarity": 0
+          "word": "mighty",
+          "kind": "similar",
+          "count": 0,
+          "documents": 0,
+          "shared": [
+            "warrior",
+            "empire",
+            "king",
+            "man"
+          ],
+          "similarity": 0.10099
         },
         {
-          "word": "colombian",
-          "kind": "context",
-          "count": 4,
-          "documents": 3,
-          "shared": [],
-          "similarity": 0
+          "word": "potent",
+          "kind": "similar",
+          "count": 0,
+          "documents": 0,
+          "shared": [
+            "weapon",
+            "symbol",
+            "force",
+            "influence"
+          ],
+          "similarity": 0.04651
         },
         {
-          "word": "turkish",
-          "kind": "context",
-          "count": 6,
-          "documents": 3,
-          "shared": [],
-          "similarity": 0
+          "word": "muscular",
+          "kind": "similar",
+          "count": 0,
+          "documents": 0,
+          "shared": [
+            "build",
+            "warrior",
+            "man"
+          ],
+          "similarity": 0.02553
+        },
+        {
+          "word": "effective",
+          "kind": "related",
+          "count": 0,
+          "documents": 0,
+          "shared": [
+            "tool",
+            "weapon",
+            "ruler",
+            "attack",
+            "force"
+          ],
+          "similarity": 0.0425
         }
       ]
     },
@@ -2234,6 +2285,23 @@
       "relation": "amod",
       "selected_sense": "high.a.02",
       "candidates": [
+        {
+          "word": "first",
+          "kind": "gloss",
+          "count": 265,
+          "documents": 212,
+          "shared": [
+            "acclaim",
+            "accommodation",
+            "ace",
+            "achievement",
+            "acid",
+            "act",
+            "action",
+            "activity"
+          ],
+          "similarity": 0
+        },
         {
           "word": "tall",
           "kind": "related",
@@ -2246,35 +2314,54 @@
           "similarity": 0.02523
         },
         {
-          "word": "new",
-          "kind": "context",
-          "count": 972,
-          "documents": 637,
-          "shared": [],
+          "word": "major",
+          "kind": "gloss",
+          "count": 67,
+          "documents": 61,
+          "shared": [
+            "acclaim",
+            "achievement",
+            "acid",
+            "act",
+            "action",
+            "activity",
+            "agency",
+            "aim"
+          ],
           "similarity": 0
         },
         {
-          "word": "old",
-          "kind": "context",
-          "count": 496,
-          "documents": 376,
-          "shared": [],
+          "word": "good",
+          "kind": "gloss",
+          "count": 21,
+          "documents": 17,
+          "shared": [
+            "ability",
+            "accommodation",
+            "accuracy",
+            "achievement",
+            "act",
+            "action",
+            "activity",
+            "administration"
+          ],
           "similarity": 0
         },
         {
-          "word": "other",
-          "kind": "context",
-          "count": 559,
-          "documents": 438,
-          "shared": [],
-          "similarity": 0
-        },
-        {
-          "word": "historic",
-          "kind": "context",
-          "count": 254,
-          "documents": 200,
-          "shared": [],
+          "word": "long",
+          "kind": "gloss",
+          "count": 24,
+          "documents": 21,
+          "shared": [
+            "age",
+            "aircraft",
+            "album",
+            "amount",
+            "animal",
+            "appearance",
+            "arch",
+            "area"
+          ],
           "similarity": 0
         }
       ]
@@ -2285,6 +2372,23 @@
       "relation": "amod",
       "selected_sense": "big.s.01",
       "candidates": [
+        {
+          "word": "small",
+          "kind": "gloss",
+          "count": 6,
+          "documents": 5,
+          "shared": [
+            "accident",
+            "act",
+            "action",
+            "addition",
+            "adjustment",
+            "advance",
+            "advantage",
+            "affair"
+          ],
+          "similarity": 0
+        },
         {
           "word": "serious",
           "kind": "related",
@@ -2313,21 +2417,6 @@
             "upset"
           ],
           "similarity": 0.05581
-        },
-        {
-          "word": "terrible",
-          "kind": "context",
-          "count": 20,
-          "documents": 20,
-          "shared": [
-            "mistake",
-            "secret",
-            "thing",
-            "mess",
-            "news",
-            "trouble"
-          ],
-          "similarity": 0.12518
         },
         {
           "word": "grave",
@@ -2363,6 +2452,18 @@
       "selected_sense": "difficult.a.01",
       "candidates": [
         {
+          "word": "severe",
+          "kind": "gloss",
+          "count": 96,
+          "documents": 84,
+          "shared": [
+            "blow",
+            "winter",
+            "difficulty"
+          ],
+          "similarity": 0.01855
+        },
+        {
           "word": "difficult",
           "kind": "synonym",
           "count": 53,
@@ -2390,28 +2491,36 @@
           "similarity": 0.0209
         },
         {
-          "word": "financial",
-          "kind": "context",
-          "count": 304,
-          "documents": 271,
-          "shared": [],
+          "word": "psychological",
+          "kind": "gloss",
+          "count": 43,
+          "documents": 41,
+          "shared": [
+            "aspect",
+            "blow",
+            "challenge",
+            "component",
+            "edge",
+            "element",
+            "experience",
+            "film"
+          ],
           "similarity": 0
         },
         {
-          "word": "big",
-          "kind": "context",
-          "count": 305,
-          "documents": 270,
-          "shared": [],
-          "similarity": 0
-        },
-        {
-          "word": "major",
-          "kind": "context",
-          "count": 301,
-          "documents": 284,
-          "shared": [],
-          "similarity": 0
+          "word": "tough",
+          "kind": "similar",
+          "count": 6,
+          "documents": 6,
+          "shared": [
+            "sell",
+            "nut",
+            "decision",
+            "exoskeleton",
+            "alloy",
+            "question"
+          ],
+          "similarity": 0.14882
         }
       ]
     },
@@ -2467,26 +2576,25 @@
           "similarity": 0.12189
         },
         {
-          "word": "pay",
-          "kind": "context",
-          "count": 232,
-          "documents": 212,
-          "shared": [],
-          "similarity": 0
+          "word": "cut",
+          "kind": "related",
+          "count": 19,
+          "documents": 17,
+          "shared": [
+            "expense",
+            "power"
+          ],
+          "similarity": 0.02194
         },
         {
-          "word": "increase",
-          "kind": "context",
-          "count": 64,
-          "documents": 55,
+          "word": "change",
+          "kind": "related",
+          "count": 5,
+          "documents": 4,
           "shared": [
-            "chance",
-            "risk",
-            "severity",
-            "likelihood",
-            "effectiveness"
+            "image"
           ],
-          "similarity": 0.1796
+          "similarity": 0.00828
         }
       ]
     },
@@ -2587,6 +2695,45 @@
           "similarity": 0.00946
         },
         {
+          "word": "take",
+          "kind": "gloss",
+          "count": 108,
+          "documents": 101,
+          "shared": [
+            "account",
+            "act",
+            "acting",
+            "action",
+            "activity",
+            "ad",
+            "adult",
+            "advance"
+          ],
+          "similarity": 0
+        },
+        {
+          "word": "execute",
+          "kind": "gloss",
+          "count": 7,
+          "documents": 7,
+          "shared": [
+            "duty",
+            "trick",
+            "work"
+          ],
+          "similarity": 0.01461
+        },
+        {
+          "word": "set",
+          "kind": "gloss",
+          "count": 5,
+          "documents": 5,
+          "shared": [
+            "business"
+          ],
+          "similarity": 0.00534
+        },
+        {
           "word": "influence",
           "kind": "related",
           "count": 126,
@@ -2596,30 +2743,6 @@
             "work"
           ],
           "similarity": 0.01765
-        },
-        {
-          "word": "reverse",
-          "kind": "context",
-          "count": 153,
-          "documents": 147,
-          "shared": [],
-          "similarity": 0
-        },
-        {
-          "word": "appeal",
-          "kind": "context",
-          "count": 129,
-          "documents": 117,
-          "shared": [],
-          "similarity": 0
-        },
-        {
-          "word": "announce",
-          "kind": "context",
-          "count": 115,
-          "documents": 110,
-          "shared": [],
-          "similarity": 0
         }
       ]
     },
@@ -2645,36 +2768,6 @@
           "similarity": 0.43854
         },
         {
-          "word": "have",
-          "kind": "context",
-          "count": 1845,
-          "documents": 1516,
-          "shared": [],
-          "similarity": 0
-        },
-        {
-          "word": "address",
-          "kind": "context",
-          "count": 284,
-          "documents": 248,
-          "shared": [
-            "problem",
-            "crisis",
-            "dispute",
-            "issue",
-            "challenge"
-          ],
-          "similarity": 0.1585
-        },
-        {
-          "word": "cause",
-          "kind": "context",
-          "count": 554,
-          "documents": 511,
-          "shared": [],
-          "similarity": 0
-        },
-        {
           "word": "work",
           "kind": "synonym",
           "count": 14,
@@ -2688,6 +2781,48 @@
             "series"
           ],
           "similarity": 0.05563
+        },
+        {
+          "word": "clear",
+          "kind": "gloss",
+          "count": 3,
+          "documents": 3,
+          "shared": [
+            "mystery"
+          ],
+          "similarity": 0.01498
+        },
+        {
+          "word": "develop",
+          "kind": "gloss",
+          "count": 76,
+          "documents": 71,
+          "shared": [
+            "case",
+            "code",
+            "difference",
+            "equation",
+            "game",
+            "issue",
+            "lot",
+            "model"
+          ],
+          "similarity": 0
+        },
+        {
+          "word": "understand",
+          "kind": "related",
+          "count": 25,
+          "documents": 25,
+          "shared": [
+            "issue",
+            "structure",
+            "equation",
+            "problem",
+            "difference",
+            "situation"
+          ],
+          "similarity": 0.06336
         }
       ]
     },
@@ -2698,18 +2833,36 @@
       "selected_sense": "obtain.v.01",
       "candidates": [
         {
-          "word": "grant",
-          "kind": "context",
-          "count": 215,
-          "documents": 193,
+          "word": "receive",
+          "kind": "gloss",
+          "count": 250,
+          "documents": 233,
           "shared": [
-            "permit",
-            "visa",
-            "consent",
-            "injunction",
-            "license"
+            "doctorate",
+            "phd",
+            "approval",
+            "permission",
+            "certificate",
+            "grant"
           ],
-          "similarity": 0.3225
+          "similarity": 0.14914
+        },
+        {
+          "word": "have",
+          "kind": "gloss",
+          "count": 64,
+          "documents": 57,
+          "shared": [
+            "ability",
+            "abortion",
+            "access",
+            "accuracy",
+            "act",
+            "address",
+            "advantage",
+            "advice"
+          ],
+          "similarity": 0
         },
         {
           "word": "get",
@@ -2727,18 +2880,19 @@
           "similarity": 0.12654
         },
         {
-          "word": "request",
-          "kind": "context",
-          "count": 135,
-          "documents": 134,
+          "word": "hold",
+          "kind": "gloss",
+          "count": 3,
+          "documents": 3,
           "shared": [
-            "consent",
-            "injunction",
-            "permission",
-            "approval",
-            "divorce"
+            "patent",
+            "citizenship",
+            "benefice",
+            "key",
+            "licence",
+            "relic"
           ],
-          "similarity": 0.2369
+          "similarity": 0.05531
         },
         {
           "word": "gain",
@@ -2754,21 +2908,6 @@
             "certificate"
           ],
           "similarity": 0.10144
-        },
-        {
-          "word": "secure",
-          "kind": "related",
-          "count": 27,
-          "documents": 25,
-          "shared": [
-            "funding",
-            "financing",
-            "loan",
-            "lease",
-            "right",
-            "patent"
-          ],
-          "similarity": 0.2377
         }
       ]
     },
@@ -2808,40 +2947,46 @@
           "similarity": 0.04645
         },
         {
-          "word": "drive",
-          "kind": "context",
-          "count": 339,
-          "documents": 284,
-          "shared": [],
+          "word": "fix",
+          "kind": "gloss",
+          "count": 21,
+          "documents": 21,
+          "shared": [
+            "arm",
+            "bicycle",
+            "building",
+            "car",
+            "computer",
+            "dinner",
+            "door",
+            "engine"
+          ],
           "similarity": 0
         },
         {
-          "word": "own",
-          "kind": "context",
-          "count": 48,
-          "documents": 45,
+          "word": "receive",
+          "kind": "gloss",
+          "count": 6,
+          "documents": 5,
           "shared": [
-            "car",
-            "stock",
-            "stake",
-            "house",
-            "share"
+            "acre",
+            "aircraft",
+            "album",
+            "allotment",
+            "ammunition",
+            "amount",
+            "area",
+            "arm"
           ],
-          "similarity": 0.3517
+          "similarity": 0
         },
         {
-          "word": "rent",
-          "kind": "context",
-          "count": 60,
-          "documents": 47,
-          "shared": [
-            "car",
-            "house",
-            "farm",
-            "land",
-            "property"
-          ],
-          "similarity": 0.1907
+          "word": "take",
+          "kind": "related",
+          "count": 86,
+          "documents": 74,
+          "shared": [],
+          "similarity": 0
         }
       ]
     },
@@ -2851,6 +2996,21 @@
       "relation": "dobj",
       "selected_sense": "choose.v.01",
       "candidates": [
+        {
+          "word": "prefer",
+          "kind": "gloss",
+          "count": 4,
+          "documents": 3,
+          "shared": [
+            "mate",
+            "design",
+            "male",
+            "manner",
+            "candidate",
+            "site"
+          ],
+          "similarity": 0.10561
+        },
         {
           "word": "select",
           "kind": "synonym",
@@ -2877,27 +3037,35 @@
           "similarity": 0.00405
         },
         {
-          "word": "have",
-          "kind": "context",
-          "count": 454,
-          "documents": 403,
-          "shared": [],
-          "similarity": 0
+          "word": "pick",
+          "kind": "related",
+          "count": 12,
+          "documents": 12,
+          "shared": [
+            "winner",
+            "successor",
+            "topic",
+            "jury",
+            "one",
+            "option"
+          ],
+          "similarity": 0.10126
         },
         {
-          "word": "give",
-          "kind": "context",
-          "count": 209,
-          "documents": 194,
-          "shared": [],
-          "similarity": 0
-        },
-        {
-          "word": "consider",
-          "kind": "context",
-          "count": 97,
-          "documents": 96,
-          "shared": [],
+          "word": "make",
+          "kind": "gloss",
+          "count": 14,
+          "documents": 14,
+          "shared": [
+            "act",
+            "action",
+            "actor",
+            "adventure",
+            "album",
+            "alignment",
+            "alternative",
+            "amount"
+          ],
           "similarity": 0
         }
       ]
@@ -2924,48 +3092,66 @@
           "similarity": 0.40087
         },
         {
-          "word": "conduct",
-          "kind": "context",
-          "count": 151,
-          "documents": 136,
-          "shared": [
-            "negotiation",
-            "campaign",
-            "rehearsal",
-            "work",
-            "affair"
-          ],
-          "similarity": 0.2423
-        },
-        {
           "word": "perform",
-          "kind": "context",
+          "kind": "gloss",
           "count": 153,
           "documents": 124,
-          "shared": [],
+          "shared": [
+            "act",
+            "action",
+            "activity",
+            "album",
+            "analysis",
+            "appearance",
+            "approach",
+            "assessment"
+          ],
           "similarity": 0
         },
         {
-          "word": "continue",
-          "kind": "context",
-          "count": 11,
-          "documents": 10,
+          "word": "initiate",
+          "kind": "gloss",
+          "count": 7,
+          "documents": 6,
           "shared": [
-            "career",
             "feud",
             "negotiation",
-            "march",
-            "drive"
+            "construction",
+            "drive",
+            "campaign"
           ],
-          "similarity": 0.4357
+          "similarity": 0.2982
         },
         {
-          "word": "carry",
-          "kind": "context",
-          "count": 74,
-          "documents": 63,
-          "shared": [],
+          "word": "do",
+          "kind": "gloss",
+          "count": 24,
+          "documents": 23,
+          "shared": [
+            "account",
+            "act",
+            "action",
+            "activity",
+            "advance",
+            "album",
+            "analysis",
+            "angle"
+          ],
           "similarity": 0
+        },
+        {
+          "word": "complete",
+          "kind": "gloss",
+          "count": 4,
+          "documents": 4,
+          "shared": [
+            "refit",
+            "preparation",
+            "construction",
+            "journey",
+            "work"
+          ],
+          "similarity": 0.2396
         }
       ]
     }

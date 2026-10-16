@@ -4,6 +4,7 @@ import {
   defaultSenseFor,
   senseComparison,
   automaticComparison,
+  comparisonCandidates,
   rankCandidates,
   senseOptions,
   type SemanticEntry,
@@ -58,16 +59,16 @@ const phrases = [
     collocate,
     relation,
     selected_sense: sense,
-    candidates: rankCandidates(word, data, relation, "forward", sense, context)
-      .slice(0, 5)
-      .map(({ word, kind, count, documents, shared, similarity }) => ({
-        word,
-        kind,
-        count,
-        documents,
-        shared,
-        similarity,
-      })),
+    candidates: comparisonCandidates(
+      rankCandidates(word, data, relation, "forward", sense, context),
+    ).map(({ word, kind, count, documents, shared, similarity }) => ({
+      word,
+      kind,
+      count,
+      documents,
+      shared,
+      similarity,
+    })),
   };
 });
 const result = {
