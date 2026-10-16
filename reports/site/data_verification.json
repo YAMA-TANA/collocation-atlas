@@ -1,0 +1,16 @@
+{
+  "status": "passed",
+  "totals": {
+    "lexicon": {
+      "pairs": 6921544,
+      "edges": 34688327
+    },
+    "reverse": {
+      "pairs": 6921544,
+      "edges": 34688327
+    }
+  },
+  "real_benchmark_cells": 42,
+  "maximum_shard_bytes": 1685572,
+  "full_document_texts_published": false
+}

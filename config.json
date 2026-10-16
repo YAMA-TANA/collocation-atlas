@@ -1,0 +1,20 @@
+{
+  "synonyms": ["lessen", "reduce", "decrease", "lower", "diminish", "cut"],
+  "min_pair_count": 3,
+  "min_pair_documents": 3,
+  "min_verb_edges": 50,
+  "min_object_cluster_edges": 40,
+  "min_object_documents": 15,
+  "min_expected": 10,
+  "max_relative_share_upper": 0.25,
+  "absence_adjusted_p": 0.01,
+  "min_stratum_verb_edges": 10,
+  "reference_year": 2026,
+  "recent_years": 10,
+  "score_weights": {
+    "frequency": 0.2,
+    "association": 0.2,
+    "dispersion": 0.3,
+    "synonym_preference": 0.3
+  }
+}

@@ -1,0 +1,79 @@
+{
+  "completed_at": "2026-10-16T08:44:27.287696+00:00",
+  "active_database": "data/collocations.duckdb",
+  "previous_backup": "data/collocations_before_11026154.duckdb",
+  "words": 102072709,
+  "source_documents": 39541,
+  "unit_tests": {
+    "passed": 24,
+    "log": "tests.log"
+  },
+  "api_requests_passed": 13,
+  "parquet_tables_matched": 6,
+  "aggregation_integrity": {
+    "occurrences": 34688327,
+    "pair_total": 34688327,
+    "strata_total": 34688327,
+    "counts_match": true,
+    "orphan_occurrences": 0
+  },
+  "previous_query_regression": {
+    "cells": 42,
+    "unchanged": true,
+    "tolerance": 1e-12,
+    "reference": "reports/expansion/comparison_combined.json",
+    "active_words": 11026154,
+    "includes_missing_date_regression": true
+  },
+  "kwic_context_review": [
+    {
+      "object": "risk",
+      "document_id": "AMALGUM_bio_civil",
+      "source": "AMALGUM",
+      "review": "context supports the extracted lessen-object relation"
+    },
+    {
+      "object": "risk",
+      "document_id": "OANC-0338f6bce0452a422059",
+      "source": "OANC",
+      "review": "context supports the extracted lessen-object relation"
+    },
+    {
+      "object": "impact",
+      "document_id": "AMALGUM_academic_weaning",
+      "source": "AMALGUM",
+      "review": "context supports the extracted lessen-object relation"
+    },
+    {
+      "object": "impact",
+      "document_id": "AMALGUM_news_stories",
+      "source": "AMALGUM",
+      "review": "context supports the extracted lessen-object relation"
+    },
+    {
+      "object": "burden",
+      "document_id": "OANC-36da8654f309da986603",
+      "source": "OANC",
+      "review": "context supports the extracted lessen-object relation"
+    },
+    {
+      "object": "burden",
+      "document_id": "OANC-3ed1bd772040fda86ce0",
+      "source": "OANC",
+      "review": "context supports the extracted lessen-object relation"
+    },
+    {
+      "object": "pain",
+      "document_id": "OANC-32aedca4dcf600a3897e",
+      "source": "OANC",
+      "review": "context supports the extracted lessen-object relation"
+    },
+    {
+      "object": "pain",
+      "document_id": "WT103-09e115bd34d20e6a8b0c",
+      "source": "WikiText-103",
+      "review": "context supports the extracted lessen-object relation"
+    }
+  ],
+  "kwic_review_limit": "Eight examples reviewed; this is not a corpus-wide parser accuracy estimate."
+}

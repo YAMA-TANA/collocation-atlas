@@ -1,0 +1,356 @@
+{
+  "combined": {
+    "documents": 39541,
+    "words": 102072709,
+    "tokens": 117028879,
+    "domains": 38,
+    "author_labels": 2060,
+    "dated_documents": 9727,
+    "country_known_documents": 0,
+    "earliest_year": 1992,
+    "latest_year": 2019,
+    "segments": 40277,
+    "registers": [
+      {
+        "register": "academic",
+        "documents": 1752,
+        "segments": 1753,
+        "words": 4336327
+      },
+      {
+        "register": "bio",
+        "documents": 598,
+        "segments": 598,
+        "words": 418496
+      },
+      {
+        "register": "encyclopedia",
+        "documents": 28235,
+        "segments": 28235,
+        "words": 84877310
+      },
+      {
+        "register": "fiction",
+        "documents": 1,
+        "segments": 1,
+        "words": 62836
+      },
+      {
+        "register": "interview",
+        "documents": 264,
+        "segments": 821,
+        "words": 442045
+      },
+      {
+        "register": "letters",
+        "documents": 245,
+        "segments": 245,
+        "words": 93928
+      },
+      {
+        "register": "magazine",
+        "documents": 4563,
+        "segments": 4563,
+        "words": 4942736
+      },
+      {
+        "register": "news",
+        "documents": 685,
+        "segments": 685,
+        "words": 435008
+      },
+      {
+        "register": "spoken",
+        "documents": 2400,
+        "segments": 2400,
+        "words": 3297915
+      },
+      {
+        "register": "technical",
+        "documents": 301,
+        "segments": 301,
+        "words": 1364494
+      },
+      {
+        "register": "travel",
+        "documents": 54,
+        "segments": 178,
+        "words": 1037016
+      },
+      {
+        "register": "unknown",
+        "documents": 6,
+        "segments": 45,
+        "words": 338786
+      },
+      {
+        "register": "voyage",
+        "documents": 452,
+        "segments": 452,
+        "words": 425812
+      }
+    ],
+    "sources": [
+      {
+        "source": "AMALGUM",
+        "documents": 2648,
+        "segments": 3220,
+        "words": 2164907
+      },
+      {
+        "source": "OANC",
+        "documents": 8658,
+        "segments": 8822,
+        "words": 15030492
+      },
+      {
+        "source": "WikiText-103",
+        "documents": 28235,
+        "segments": 28235,
+        "words": 84877310
+      }
+    ],
+    "scope": {
+      "register": null,
+      "country": null,
+      "year_from": null,
+      "year_to": null,
+      "source": null
+    },
+    "limitations": [
+      "sampled source language is not verified native-speaker language",
+      "source domains are not independent speakers",
+      "basic machine parses; parse/sense errors and near duplicates remain",
+      "document publication year is not the date of every quoted expression",
+      "author_labels may name coauthor groups, not individual authors"
+    ],
+    "statuses": [
+      "common",
+      "normal",
+      "marked",
+      "rare but attested",
+      "strongly dispreferred",
+      "likely anomalous",
+      "insufficient data"
+    ]
+  },
+  "AMALGUM": {
+    "documents": 2648,
+    "words": 2164907,
+    "tokens": 2499981,
+    "domains": 4,
+    "author_labels": 664,
+    "dated_documents": 1532,
+    "country_known_documents": 0,
+    "earliest_year": 2002,
+    "latest_year": 2019,
+    "segments": 3220,
+    "registers": [
+      {
+        "register": "academic",
+        "documents": 664,
+        "segments": 664,
+        "words": 443546
+      },
+      {
+        "register": "bio",
+        "documents": 598,
+        "segments": 598,
+        "words": 418496
+      },
+      {
+        "register": "interview",
+        "documents": 264,
+        "segments": 821,
+        "words": 442045
+      },
+      {
+        "register": "news",
+        "documents": 685,
+        "segments": 685,
+        "words": 435008
+      },
+      {
+        "register": "voyage",
+        "documents": 452,
+        "segments": 452,
+        "words": 425812
+      }
+    ],
+    "sources": [
+      {
+        "source": "AMALGUM",
+        "documents": 2648,
+        "segments": 3220,
+        "words": 2164907
+      }
+    ],
+    "scope": {
+      "register": null,
+      "country": null,
+      "year_from": null,
+      "year_to": null,
+      "source": "AMALGUM"
+    },
+    "limitations": [
+      "sampled source language is not verified native-speaker language",
+      "source domains are not independent speakers",
+      "basic machine parses; parse/sense errors and near duplicates remain",
+      "document publication year is not the date of every quoted expression",
+      "author_labels may name coauthor groups, not individual authors"
+    ],
+    "statuses": [
+      "common",
+      "normal",
+      "marked",
+      "rare but attested",
+      "strongly dispreferred",
+      "likely anomalous",
+      "insufficient data"
+    ]
+  },
+  "WikiText-103": {
+    "documents": 28235,
+    "words": 84877310,
+    "tokens": 97529154,
+    "domains": 1,
+    "author_labels": 0,
+    "dated_documents": 0,
+    "country_known_documents": 0,
+    "earliest_year": null,
+    "latest_year": null,
+    "segments": 28235,
+    "registers": [
+      {
+        "register": "encyclopedia",
+        "documents": 28235,
+        "segments": 28235,
+        "words": 84877310
+      }
+    ],
+    "sources": [
+      {
+        "source": "WikiText-103",
+        "documents": 28235,
+        "segments": 28235,
+        "words": 84877310
+      }
+    ],
+    "scope": {
+      "register": null,
+      "country": null,
+      "year_from": null,
+      "year_to": null,
+      "source": "WikiText-103"
+    },
+    "limitations": [
+      "sampled source language is not verified native-speaker language",
+      "source domains are not independent speakers",
+      "basic machine parses; parse/sense errors and near duplicates remain",
+      "document publication year is not the date of every quoted expression",
+      "author_labels may name coauthor groups, not individual authors"
+    ],
+    "statuses": [
+      "common",
+      "normal",
+      "marked",
+      "rare but attested",
+      "strongly dispreferred",
+      "likely anomalous",
+      "insufficient data"
+    ]
+  },
+  "OANC": {
+    "documents": 8658,
+    "words": 15030492,
+    "tokens": 16999744,
+    "domains": 34,
+    "author_labels": 1396,
+    "dated_documents": 8195,
+    "country_known_documents": 0,
+    "earliest_year": 1992,
+    "latest_year": 2008,
+    "segments": 8822,
+    "registers": [
+      {
+        "register": "academic",
+        "documents": 1088,
+        "segments": 1089,
+        "words": 3892781
+      },
+      {
+        "register": "fiction",
+        "documents": 1,
+        "segments": 1,
+        "words": 62836
+      },
+      {
+        "register": "letters",
+        "documents": 245,
+        "segments": 245,
+        "words": 93928
+      },
+      {
+        "register": "magazine",
+        "documents": 4563,
+        "segments": 4563,
+        "words": 4942736
+      },
+      {
+        "register": "spoken",
+        "documents": 2400,
+        "segments": 2400,
+        "words": 3297915
+      },
+      {
+        "register": "technical",
+        "documents": 301,
+        "segments": 301,
+        "words": 1364494
+      },
+      {
+        "register": "travel",
+        "documents": 54,
+        "segments": 178,
+        "words": 1037016
+      },
+      {
+        "register": "unknown",
+        "documents": 6,
+        "segments": 45,
+        "words": 338786
+      }
+    ],
+    "sources": [
+      {
+        "source": "OANC",
+        "documents": 8658,
+        "segments": 8822,
+        "words": 15030492
+      }
+    ],
+    "scope": {
+      "register": null,
+      "country": null,
+      "year_from": null,
+      "year_to": null,
+      "source": "OANC"
+    },
+    "limitations": [
+      "sampled source language is not verified native-speaker language",
+      "source domains are not independent speakers",
+      "basic machine parses; parse/sense errors and near duplicates remain",
+      "document publication year is not the date of every quoted expression",
+      "author_labels may name coauthor groups, not individual authors"
+    ],
+    "statuses": [
+      "common",
+      "normal",
+      "marked",
+      "rare but attested",
+      "strongly dispreferred",
+      "likely anomalous",
+      "insufficient data"
+    ]
+  }
+}

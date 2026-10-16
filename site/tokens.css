@@ -1,0 +1,57 @@
+:root {
+  --color-paper: oklch(97.3% 0.009 113);
+  --color-surface: oklch(99.2% 0.006 113);
+  --color-sidebar: oklch(95.8% 0.013 113);
+  --color-paper-2: oklch(93.5% 0.016 130);
+  --color-ink: oklch(26% 0.028 159);
+  --color-muted: oklch(48% 0.023 146);
+  --color-faint: oklch(51% 0.019 146);
+  --color-accent-ink: oklch(99.2% 0.006 113);
+  --color-rule: oklch(87.7% 0.016 126);
+  --color-rule-strong: oklch(77% 0.026 143);
+  --color-accent: oklch(39.7% 0.071 161);
+  --color-accent-hover: oklch(33% 0.065 161);
+  --color-accent-soft: oklch(91% 0.038 143);
+  --color-accent-quiet: oklch(95% 0.02 146);
+  --color-focus: oklch(45% 0.12 157);
+  --color-warm: oklch(48% 0.07 68);
+  --color-warm-soft: oklch(95% 0.036 86);
+  --color-error: oklch(42% 0.13 28);
+  --color-error-soft: oklch(96% 0.019 28);
+  --color-mark: oklch(89.5% 0.064 118);
+  --color-shadow: oklch(27% 0.025 150 / 0.08);
+  --color-scrim: oklch(20% 0.02 150 / 0.32);
+  --color-chart-1: oklch(46% 0.067 155);
+  --color-chart-2: oklch(66% 0.065 146);
+  --color-chart-3: oklch(78% 0.049 119);
+  --color-chart-4: oklch(87% 0.029 122);
+  --color-heat-0: oklch(96.7% 0.008 126);
+  --color-heat-1: oklch(93.5% 0.024 144);
+  --color-heat-2: oklch(87.2% 0.05 145);
+  --color-heat-3: oklch(76.5% 0.069 150);
+  --color-heat-4: oklch(48% 0.075 157);
+  --font-display: "DM Serif Display", "Yu Mincho", "Noto Serif CJK JP", serif;
+  --font-body:
+    "IBM Plex Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic", "Malgun Gothic",
+    sans-serif;
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+  --space-2xl: 48px;
+  --space-3xl: 64px;
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-md: 1.25rem;
+  --text-lg: 1.563rem;
+  --text-display: clamp(1.75rem, 2.35vw + 0.35rem, 2.5rem);
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 18px;
+  --radius-pill: 100px;
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --dur-short: 150ms;
+  --dur-medium: 250ms;
+}

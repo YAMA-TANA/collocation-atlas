@@ -1,0 +1,15 @@
+.venv/
+__pycache__/
+.pytest_cache/
+data/
+*.egg-info/
+site/node_modules/
+site/dist/
+site/public/data/
+site/.wrangler/
+site/test-results/
+site/playwright-report/
+site/*.tsbuildinfo
+.env
+.env.*
+!.env.example

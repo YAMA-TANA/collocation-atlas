@@ -1,0 +1,38 @@
+import { createHash } from "node:crypto";
+import { mkdir, readFile, writeFile } from "node:fs/promises";
+import { fileURLToPath } from "node:url";
+import path from "node:path";
+import { unzipSync } from "fflate";
+const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
+const base =
+  "https://github.com/YAMA-TANA/collocation-atlas/releases/download/corpus-2026-10-16";
+async function get(url) {
+  const response = await fetch(url);
+  if (!response.ok) throw Error(`Download failed: ${response.status} ${url}`);
+  return response;
+}
+console.log("Downloading the reviewed English corpus aggregates…");
+const expected = (await (await get(`${base}/corpus-site.sha256`)).text())
+  .trim()
+  .split(/\s+/)[0];
+const bytes = new Uint8Array(
+  await (await get(`${base}/corpus-site.zip`)).arrayBuffer(),
+);
+const actual = createHash("sha256").update(bytes).digest("hex");
+if (actual !== expected) throw Error("Corpus archive checksum mismatch");
+const files = unzipSync(bytes),
+  target = path.join(root, "public");
+for (const [name, contents] of Object.entries(files)) {
+  if (name.endsWith("/")) continue;
+  const dest = path.resolve(target, name);
+  if (!dest.startsWith(target + path.sep) || !name.startsWith("data/"))
+    throw Error("Unsafe archive path");
+  await mkdir(path.dirname(dest), { recursive: true });
+  await writeFile(dest, contents);
+}
+const coverage = JSON.parse(
+  await readFile(path.join(target, "data", "coverage.json"), "utf8"),
+);
+console.log(
+  `Ready: ${coverage.pairs.toLocaleString()} pairs, ${coverage.index_words.toLocaleString()} indexed words.`,
+);

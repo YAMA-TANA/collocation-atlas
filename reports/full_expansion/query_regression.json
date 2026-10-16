@@ -1,0 +1,8 @@
+{
+  "cells": 42,
+  "unchanged": true,
+  "tolerance": 1e-12,
+  "reference": "reports/expansion/comparison_combined.json",
+  "active_words": 11026154,
+  "includes_missing_date_regression": true
+}
