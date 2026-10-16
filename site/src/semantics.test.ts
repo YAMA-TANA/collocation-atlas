@@ -155,4 +155,34 @@ describe("General comparisons and evidence safety", () => {
       ])
         expect(tr(language, key)).not.toBe(key);
   });
+  it("keeps a verb-first phrase in the object relation when subject totals are larger", async () => {
+    vi.stubGlobal(
+      "fetch",
+      vi.fn(async (url: string) => ({
+        ok: true,
+        json: async () =>
+          url.includes("/semantics/")
+            ? { words: { begin: { pos_counts: { VERB: 20000 } } } }
+            : url.includes("/lexicon/")
+              ? {
+                  begin: {
+                    dobj: [1000, [["experiment", 14, 13, 1023]]],
+                    nsubj: [10000, [["experiment", 13, 11, 300]]],
+                  },
+                }
+              : {},
+      })),
+    );
+    const found = await lookup("begin an experiment");
+    expect(found).toMatchObject({
+      word: "begin",
+      object: "experiment",
+      relation: "dobj",
+      direction: "forward",
+    });
+    expect(found.forward[found.relation][1][0][1]).toBe(14);
+    expect(await lookup("begin an unobservednoun")).toMatchObject({
+      relation: "dobj",
+    });
+  });
 });

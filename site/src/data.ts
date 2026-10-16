@@ -370,6 +370,13 @@ export async function lookup(query: string): Promise<Entry> {
       )
     : [];
   const phraseRelation =
+    interpreted.relation ??
+    (interpreted.object && (pos === "VERB" || pos === "AUX")
+      ? (phraseCandidates.find(([r]) => r === "verb_adv")?.[0] ??
+        (forward.dobj ? "dobj" : undefined))
+      : interpreted.object && pos === "ADJ" && forward.amod
+        ? "amod"
+        : undefined) ??
     phraseCandidates[0]?.[0] ??
     (interpreted.object && forward.amod && !forward.dobj ? "amod" : undefined);
   return {
