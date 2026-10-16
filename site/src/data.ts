@@ -1,4 +1,5 @@
 import { glosses } from "./i18n";
+import { getSemantics } from "./lexical";
 export type Row = [
   word: string,
   count: number,
@@ -280,19 +281,6 @@ export function interpret(query: string): {
       return {
         word: first,
         object: second,
-        relation: [
-          "heavy",
-          "strong",
-          "big",
-          "large",
-          "serious",
-          "high",
-          "real",
-          "powerful",
-          "great",
-        ].includes(first)
-          ? "amod"
-          : "dobj",
         direction: "forward",
       };
     // Translate individual editorial labels (French, Spanish, etc.) first.
@@ -330,9 +318,10 @@ export function interpret(query: string): {
 export async function lookup(query: string): Promise<Entry> {
   const interpreted = interpret(query),
     word = interpreted.word;
-  const [forward, reverse] = await Promise.all([
+  const [forward, reverse, metadata] = await Promise.all([
     getLexeme(word),
     getLexeme(word, true),
+    getSemantics(word).catch(() => ({ pos_counts: {} })),
   ]);
   const candidates: [string, "forward" | "reverse", number][] = [];
   for (const r of [
@@ -347,32 +336,47 @@ export async function lookup(query: string): Promise<Entry> {
     "noun_prep",
   ]) {
     if (forward[r]) candidates.push([r, "forward", forward[r][0]]);
-    if (reverse[r] && ["dobj", "amod", "compound"].includes(r))
+    if (
+      reverse[r] &&
+      ["dobj", "amod", "compound", "verb_adv", "adj_adv"].includes(r)
+    )
       candidates.push([r, "reverse", reverse[r][0]]);
   }
   candidates.sort((a, b) => b[2] - a[2]);
   const main = candidates.filter(([r]) => r === "dobj" || r === "amod");
-  const knownVerb =
-    "lessen reduce decrease lower diminish cut increase raise boost enhance improve cause trigger induce generate produce affect influence impact solve resolve address tackle obtain acquire gain get make create prevent avoid avert allow permit enable show indicate demonstrate reveal suggest do ease relieve alleviate"
-      .split(" ")
-      .includes(word);
-  const best =
-    knownVerb && forward.dobj
-      ? (["dobj", "forward", forward.dobj[0]] as const)
-      : (main[0] ?? candidates[0]);
+  const pos = Object.entries(
+    (metadata.pos_counts ?? {}) as Record<string, number>,
+  ).sort((a, b) => b[1] - a[1])[0]?.[0];
+  const preferred = candidates.filter(([r, d]) =>
+    pos === "VERB" || pos === "AUX"
+      ? d === "forward" && ["dobj", "nsubj"].includes(r)
+      : pos === "ADJ"
+        ? d === "forward" && r === "amod"
+        : pos === "ADV"
+          ? d === "reverse" && ["verb_adv", "adj_adv"].includes(r)
+          : pos === "NOUN" || pos === "PROPN"
+            ? d === "reverse" && ["amod", "dobj", "compound"].includes(r)
+            : false,
+  );
+  const best = preferred[0] ?? main[0] ?? candidates[0];
+  const phraseCandidates = interpreted.object
+    ? candidates.filter(
+        ([r, d]) =>
+          d === "forward" &&
+          ["dobj", "amod", "compound", "nsubj", "verb_adv", "adj_adv"].includes(
+            r,
+          ) &&
+          forward[r]?.[1].some((row) => row[0] === interpreted.object),
+      )
+    : [];
+  const phraseRelation =
+    phraseCandidates[0]?.[0] ??
+    (interpreted.object && forward.amod && !forward.dobj ? "amod" : undefined);
   return {
     word,
     forward,
     reverse,
-    relation:
-      interpreted.object &&
-      interpreted.relation === "dobj" &&
-      forward.amod &&
-      (!forward.dobj ||
-        (!forward.dobj[1].some((r) => r[0] === interpreted.object) &&
-          forward.amod[1].some((r) => r[0] === interpreted.object)))
-        ? "amod"
-        : (interpreted.relation ?? best?.[0] ?? "dobj"),
+    relation: phraseRelation ?? interpreted.relation ?? best?.[0] ?? "dobj",
     direction: interpreted.direction ?? best?.[1] ?? "forward",
     object: interpreted.object,
   };
@@ -398,23 +402,6 @@ export function selection(entry: Entry, row: Row): Selection {
     ? { lemma: entry.word, collocate: row[0], relation: entry.relation }
     : { lemma: row[0], collocate: entry.word, relation: entry.relation };
 }
-export function clusterFor(
-  word: string,
-  object: string,
-  rel: string,
-  summary: Summary,
-): string[] {
-  if (rel === "amod") {
-    if (object === "rain") return ["heavy", "strong"];
-    if (object === "coffee") return ["strong", "powerful"];
-    if (object === "mistake") return ["big", "large", "serious"];
-    if (object === "possibility") return ["high", "strong", "real"];
-    if (object === "influence") return ["large", "strong", "great"];
-    return summary.adjective_clusters.find((g) => g.includes(word)) ?? [word];
-  }
-  if (object === "decision") return ["make", "do"];
-  return summary.clusters.find((g) => g.includes(word)) ?? [word];
-}
 export const exampleObjects = [
   "risk",
   "impact",
@@ -424,48 +411,6 @@ export const exampleObjects = [
   "emission",
   "temperature",
 ];
-export function comparisonObjectsFor(
-  group: string[],
-  object: string,
-  relation: string,
-  rows: Row[] = [],
-) {
-  let candidates: string[];
-  if (relation === "dobj" && group.length === 6 && group.includes("lessen"))
-    candidates = exampleObjects;
-  else if (object === "decision" && group.includes("make"))
-    candidates = [
-      "decision",
-      "work",
-      "job",
-      "mistake",
-      "effort",
-      "exercise",
-      "homework",
-    ];
-  else if (relation === "amod" && object === "rain")
-    candidates = [
-      "rain",
-      "wind",
-      "snow",
-      "storm",
-      "coffee",
-      "evidence",
-      "influence",
-    ];
-  else if (relation === "amod" && object === "coffee")
-    candidates = [
-      "coffee",
-      "influence",
-      "effect",
-      "evidence",
-      "argument",
-      "force",
-      "personality",
-    ];
-  else candidates = rows.map((r) => r[0]);
-  return [...new Set([object, ...candidates])].slice(0, 7);
-}
 export function phrase(s: Selection) {
   return ["nsubj", "passive_patient", "compound", "adj_adv"].includes(
     s.relation,

@@ -32,7 +32,7 @@ for (const [name, contents] of Object.entries(files)) {
 }
 // Lexical senses and corpus context neighbours are versioned independently.
 const semanticBase =
-  "https://github.com/YAMA-TANA/collocation-atlas/releases/download/lexicon-2026-10-16-v2";
+  "https://github.com/YAMA-TANA/collocation-atlas/releases/download/semantic-engine-2026-10-16";
 const semanticExpected = (
   await (await get(`${semanticBase}/semantic-site.sha256`)).text()
 )

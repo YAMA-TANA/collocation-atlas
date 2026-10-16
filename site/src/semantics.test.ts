@@ -7,12 +7,11 @@ import {
   partOfSpeech,
   type SemanticEntry,
 } from "./semantics";
-import { clusterFor, lookup, type Summary, type Lexeme } from "./data";
+import { lookup, type Lexeme } from "./data";
 import { tr, supported } from "./i18n";
 import fixture from "./fixtures/high-regression.json";
 
 const entries = fixture.entries as unknown as Record<string, Lexeme>;
-const summary = { clusters: [], adjective_clusters: [] } as unknown as Summary;
 afterEach(() => vi.unstubAllGlobals());
 describe("High: senses and learner contrasts with observed corpus counts", () => {
   it("keeps height, degree and pitch candidates separate", () => {
@@ -33,17 +32,6 @@ describe("High: senses and learner contrasts with observed corpus counts", () =>
     );
     expect(all.find((c) => c.word === "average")?.kind).toBe("context");
     expect(all.some((c) => c.word === "low")).toBe(false);
-  });
-  it("chooses a context-specific comparison family for high possibility", async () => {
-    expect(
-      await comparisonGroup("high", "possibility", "amod", summary),
-    ).toContain("strong");
-    expect(
-      await comparisonGroup("high", "building", "amod", summary),
-    ).toContain("tall");
-    expect(await comparisonGroup("high", "voice", "amod", summary)).toContain(
-      "shrill",
-    );
   });
   it("reproduces the measured differences without declaring observed variants wrong", () => {
     const count = (w: string, obj: string) =>
@@ -92,23 +80,11 @@ describe("General comparisons and evidence safety", () => {
         json: async () => ({ words: { price: fixture.nounSemantic } }),
       })),
     );
-    const words = await comparisonGroup(
-      "price",
-      "high",
-      "amod",
-      summary,
-      "reverse",
-    );
+    const words = await comparisonGroup("price", "high", "amod", "reverse");
     expect(words.length).toBeGreaterThan(1);
     expect(words).toContain("cost");
     expect(words).not.toContain("damage");
     expect(words).not.toContain("make");
-  });
-  it("does not inject make/get/strong for unknown words", () => {
-    expect(clusterFor("ponder", "idea", "dobj", summary)).toEqual(["ponder"]);
-    expect(clusterFor("elegant", "design", "amod", summary)).toEqual([
-      "elegant",
-    ]);
   });
   it("requires document dispersion for automatic discovery but retains explicitly requested rare/zero rows", () => {
     const data: Record<string, Lexeme> = {
@@ -174,7 +150,7 @@ describe("General comparisons and evidence safety", () => {
         "contextNote",
         "distinctive",
         "rateHelp",
-        "highSet0",
+        "meaningComparisons",
         "compareDirection",
       ])
         expect(tr(language, key)).not.toBe(key);

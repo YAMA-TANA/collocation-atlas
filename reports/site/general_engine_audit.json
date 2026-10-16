@@ -1,0 +1,2974 @@
+{
+  "schema": 2,
+  "corpus_words": 102072709,
+  "query_settings": 141,
+  "settings_with_comparisons": 141,
+  "query_results": [
+    {
+      "word": "high",
+      "relation": "amod",
+      "direction": "forward",
+      "selected_sense": "high.a.01",
+      "available_sense_groups": 7,
+      "comparison": [
+        "high",
+        "graduate",
+        "postgraduate"
+      ],
+      "lexical_candidates": 81
+    },
+    {
+      "word": "low",
+      "relation": "amod",
+      "direction": "forward",
+      "selected_sense": "low.a.01",
+      "available_sense_groups": 10,
+      "comparison": [
+        "low",
+        "reduced"
+      ],
+      "lexical_candidates": 81
+    },
+    {
+      "word": "strong",
+      "relation": "amod",
+      "direction": "forward",
+      "selected_sense": "strong.a.01",
+      "available_sense_groups": 10,
+      "comparison": [
+        "strong",
+        "powerful",
+        "severe",
+        "stiff",
+        "virile",
+        "brawny"
+      ],
+      "lexical_candidates": 109
+    },
+    {
+      "word": "weak",
+      "relation": "amod",
+      "direction": "forward",
+      "selected_sense": "weak.a.01",
+      "available_sense_groups": 12,
+      "comparison": [
+        "weak",
+        "weakened",
+        "vulnerable",
+        "flimsy",
+        "tender",
+        "anemic"
+      ],
+      "lexical_candidates": 98
+    },
+    {
+      "word": "big",
+      "relation": "amod",
+      "direction": "forward",
+      "selected_sense": "large.a.01",
+      "available_sense_groups": 13,
+      "comparison": [
+        "big",
+        "large",
+        "huge",
+        "great",
+        "enormous",
+        "macro"
+      ],
+      "lexical_candidates": 185
+    },
+    {
+      "word": "small",
+      "relation": "amod",
+      "direction": "forward",
+      "selected_sense": "small.a.01",
+      "available_sense_groups": 10,
+      "comparison": [
+        "small",
+        "tiny",
+        "diminutive",
+        "slender",
+        "petite",
+        "undersized"
+      ],
+      "lexical_candidates": 93
+    },
+    {
+      "word": "large",
+      "relation": "amod",
+      "direction": "forward",
+      "selected_sense": "large.a.01",
+      "available_sense_groups": 7,
+      "comparison": [
+        "large",
+        "big",
+        "huge",
+        "vast",
+        "sizable",
+        "enormous"
+      ],
+      "lexical_candidates": 119
+    },
+    {
+      "word": "little",
+      "relation": "amod",
+      "direction": "forward",
+      "selected_sense": "small.a.01",
+      "available_sense_groups": 8,
+      "comparison": [
+        "little",
+        "tiny",
+        "slim",
+        "petite",
+        "undersized",
+        "smallish"
+      ],
+      "lexical_candidates": 99
+    },
+    {
+      "word": "beautiful",
+      "relation": "amod",
+      "direction": "forward",
+      "selected_sense": "beautiful.a.01",
+      "available_sense_groups": 2,
+      "comparison": [
+        "beautiful",
+        "lovely",
+        "pretty",
+        "gorgeous",
+        "stunning",
+        "scenic"
+      ],
+      "lexical_candidates": 25
+    },
+    {
+      "word": "ugly",
+      "relation": "amod",
+      "direction": "forward",
+      "selected_sense": "ugly.a.01",
+      "available_sense_groups": 4,
+      "comparison": [
+        "ugly",
+        "monstrous",
+        "scrofulous",
+        "unlovely",
+        "unsightly"
+      ],
+      "lexical_candidates": 111
+    },
+    {
+      "word": "fast",
+      "relation": "amod",
+      "direction": "forward",
+      "selected_sense": "fast.a.01",
+      "available_sense_groups": 9,
+      "comparison": [
+        "fast",
+        "quick",
+        "rapid",
+        "express",
+        "swift",
+        "accelerated"
+      ],
+      "lexical_candidates": 74
+    },
+    {
+      "word": "slow",
+      "relation": "amod",
+      "direction": "forward",
+      "selected_sense": "slow.a.01",
+      "available_sense_groups": 5,
+      "comparison": [
+        "slow",
+        "sluggish",
+        "gradual",
+        "sulky",
+        "dilatory",
+        "pokey"
+      ],
+      "lexical_candidates": 44
+    },
+    {
+      "word": "quick",
+      "relation": "amod",
+      "direction": "forward",
+      "selected_sense": "quick.s.01",
+      "available_sense_groups": 6,
+      "comparison": [
+        "quick",
+        "speedy",
+        "fast",
+        "rapid",
+        "swift",
+        "immediate"
+      ],
+      "lexical_candidates": 53
+    },
+    {
+      "word": "rapid",
+      "relation": "amod",
+      "direction": "forward",
+      "selected_sense": "rapid.s.01",
+      "available_sense_groups": 2,
+      "comparison": [
+        "rapid",
+        "fast",
+        "quick",
+        "swift",
+        "accelerated",
+        "meteoric"
+      ],
+      "lexical_candidates": 16
+    },
+    {
+      "word": "old",
+      "relation": "amod",
+      "direction": "forward",
+      "selected_sense": "old.a.01",
+      "available_sense_groups": 8,
+      "comparison": [
+        "old",
+        "aged",
+        "elderly",
+        "mature",
+        "hoary",
+        "emeritus"
+      ],
+      "lexical_candidates": 82
+    },
+    {
+      "word": "new",
+      "relation": "amod",
+      "direction": "forward",
+      "selected_sense": "new.a.01",
+      "available_sense_groups": 10,
+      "comparison": [
+        "new",
+        "current",
+        "untried"
+      ],
+      "lexical_candidates": 49
+    },
+    {
+      "word": "young",
+      "relation": "amod",
+      "direction": "forward",
+      "selected_sense": "young.a.01",
+      "available_sense_groups": 5,
+      "comparison": [
+        "young",
+        "immature",
+        "teenage",
+        "adolescent",
+        "newborn",
+        "teenaged"
+      ],
+      "lexical_candidates": 51
+    },
+    {
+      "word": "ancient",
+      "relation": "amod",
+      "direction": "forward",
+      "selected_sense": "ancient.s.01",
+      "available_sense_groups": 2,
+      "comparison": [
+        "ancient",
+        "medieval",
+        "prehistoric",
+        "historical",
+        "historic",
+        "onetime"
+      ],
+      "lexical_candidates": 43
+    },
+    {
+      "word": "rich",
+      "relation": "amod",
+      "direction": "forward",
+      "selected_sense": "rich.a.01",
+      "available_sense_groups": 10,
+      "comparison": [
+        "rich",
+        "wealthy",
+        "prosperous",
+        "affluent",
+        "abundant",
+        "moneyed"
+      ],
+      "lexical_candidates": 115
+    },
+    {
+      "word": "poor",
+      "relation": "amod",
+      "direction": "forward",
+      "selected_sense": "hapless.s.01",
+      "available_sense_groups": 5,
+      "comparison": [
+        "poor",
+        "miserable",
+        "pitiful",
+        "pitiable",
+        "piteous",
+        "unfortunate"
+      ],
+      "lexical_candidates": 82
+    },
+    {
+      "word": "smart",
+      "relation": "amod",
+      "direction": "forward",
+      "selected_sense": "smart.a.01",
+      "available_sense_groups": 7,
+      "comparison": [
+        "smart",
+        "clever",
+        "intelligent",
+        "shrewd",
+        "canny",
+        "streetwise"
+      ],
+      "lexical_candidates": 88
+    },
+    {
+      "word": "clever",
+      "relation": "amod",
+      "direction": "forward",
+      "selected_sense": "cagey.s.01",
+      "available_sense_groups": 3,
+      "comparison": [
+        "clever",
+        "smart",
+        "canny",
+        "sharp",
+        "streetwise"
+      ],
+      "lexical_candidates": 31
+    },
+    {
+      "word": "intelligent",
+      "relation": "amod",
+      "direction": "forward",
+      "selected_sense": "intelligent.a.01",
+      "available_sense_groups": 4,
+      "comparison": [
+        "intelligent",
+        "clever",
+        "smart",
+        "brilliant",
+        "nimble",
+        "prehensile"
+      ],
+      "lexical_candidates": 36
+    },
+    {
+      "word": "hard",
+      "relation": "amod",
+      "direction": "forward",
+      "selected_sense": "difficult.a.01",
+      "available_sense_groups": 12,
+      "comparison": [
+        "hard",
+        "difficult",
+        "tough",
+        "challenging",
+        "sticky",
+        "rocky"
+      ],
+      "lexical_candidates": 150
+    },
+    {
+      "word": "easy",
+      "relation": "amod",
+      "direction": "forward",
+      "selected_sense": "easy.a.01",
+      "available_sense_groups": 12,
+      "comparison": [
+        "easy",
+        "simple",
+        "soft",
+        "easygoing",
+        "painless",
+        "cushy"
+      ],
+      "lexical_candidates": 88
+    },
+    {
+      "word": "difficult",
+      "relation": "amod",
+      "direction": "forward",
+      "selected_sense": "difficult.a.01",
+      "available_sense_groups": 2,
+      "comparison": [
+        "difficult",
+        "hard",
+        "challenging",
+        "arduous",
+        "problematic",
+        "tough"
+      ],
+      "lexical_candidates": 39
+    },
+    {
+      "word": "simple",
+      "relation": "amod",
+      "direction": "forward",
+      "selected_sense": "simple.a.01",
+      "available_sense_groups": 7,
+      "comparison": [
+        "simple",
+        "simplistic",
+        "easy",
+        "unsophisticated"
+      ],
+      "lexical_candidates": 56
+    },
+    {
+      "word": "important",
+      "relation": "amod",
+      "direction": "forward",
+      "selected_sense": "important.a.01",
+      "available_sense_groups": 5,
+      "comparison": [
+        "important",
+        "key",
+        "crucial",
+        "essential",
+        "fundamental",
+        "principal"
+      ],
+      "lexical_candidates": 56
+    },
+    {
+      "word": "significant",
+      "relation": "amod",
+      "direction": "forward",
+      "selected_sense": "significant.a.01",
+      "available_sense_groups": 3,
+      "comparison": [
+        "significant",
+        "important",
+        "profound",
+        "fundamental",
+        "remarkable",
+        "large"
+      ],
+      "lexical_candidates": 32
+    },
+    {
+      "word": "serious",
+      "relation": "amod",
+      "direction": "forward",
+      "selected_sense": "serious.a.01",
+      "available_sense_groups": 6,
+      "comparison": [
+        "serious",
+        "grave",
+        "real",
+        "thoughtful",
+        "earnest",
+        "sobering"
+      ],
+      "lexical_candidates": 79
+    },
+    {
+      "word": "severe",
+      "relation": "amod",
+      "direction": "forward",
+      "selected_sense": "severe.s.01",
+      "available_sense_groups": 6,
+      "comparison": [
+        "severe",
+        "terrible",
+        "intense",
+        "extreme",
+        "bad",
+        "strong"
+      ],
+      "lexical_candidates": 109
+    },
+    {
+      "word": "heavy",
+      "relation": "amod",
+      "direction": "forward",
+      "selected_sense": "heavy.a.01",
+      "available_sense_groups": 25,
+      "comparison": [
+        "heavy",
+        "massive",
+        "dense",
+        "ponderous",
+        "soggy"
+      ],
+      "lexical_candidates": 177
+    },
+    {
+      "word": "light",
+      "relation": "amod",
+      "direction": "forward",
+      "selected_sense": "light.a.01",
+      "available_sense_groups": 20,
+      "comparison": [
+        "light",
+        "airy",
+        "floaty"
+      ],
+      "lexical_candidates": 147
+    },
+    {
+      "word": "powerful",
+      "relation": "amod",
+      "direction": "forward",
+      "selected_sense": "powerful.a.01",
+      "available_sense_groups": 5,
+      "comparison": [
+        "powerful",
+        "strong",
+        "mighty",
+        "regent",
+        "omnipotent",
+        "almighty"
+      ],
+      "lexical_candidates": 37
+    },
+    {
+      "word": "deep",
+      "relation": "amod",
+      "direction": "forward",
+      "selected_sense": "deep.a.01",
+      "available_sense_groups": 15,
+      "comparison": [
+        "deep",
+        "profound",
+        "heavy"
+      ],
+      "lexical_candidates": 156
+    },
+    {
+      "word": "shallow",
+      "relation": "amod",
+      "direction": "forward",
+      "selected_sense": "shallow.a.01",
+      "available_sense_groups": 3,
+      "comparison": [
+        "shallow",
+        "neritic",
+        "fordable"
+      ],
+      "lexical_candidates": 11
+    },
+    {
+      "word": "wide",
+      "relation": "amod",
+      "direction": "forward",
+      "selected_sense": "wide.a.01",
+      "available_sense_groups": 7,
+      "comparison": [
+        "wide",
+        "broad",
+        "thick"
+      ],
+      "lexical_candidates": 92
+    },
+    {
+      "word": "broad",
+      "relation": "amod",
+      "direction": "forward",
+      "selected_sense": "wide.a.01",
+      "available_sense_groups": 8,
+      "comparison": [
+        "broad",
+        "wide",
+        "sweeping"
+      ],
+      "lexical_candidates": 109
+    },
+    {
+      "word": "bright",
+      "relation": "amod",
+      "direction": "forward",
+      "selected_sense": "bright.a.01",
+      "available_sense_groups": 9,
+      "comparison": [
+        "bright",
+        "brilliant",
+        "luminous",
+        "glossy",
+        "shiny",
+        "silvery"
+      ],
+      "lexical_candidates": 101
+    },
+    {
+      "word": "dark",
+      "relation": "amod",
+      "direction": "forward",
+      "selected_sense": "dark.a.01",
+      "available_sense_groups": 11,
+      "comparison": [
+        "dark",
+        "black",
+        "gloomy",
+        "subdued",
+        "unlit",
+        "crepuscular"
+      ],
+      "lexical_candidates": 122
+    },
+    {
+      "word": "cheap",
+      "relation": "amod",
+      "direction": "forward",
+      "selected_sense": "cheap.a.01",
+      "available_sense_groups": 4,
+      "comparison": [
+        "cheap",
+        "inexpensive",
+        "affordable",
+        "twopenny"
+      ],
+      "lexical_candidates": 57
+    },
+    {
+      "word": "expensive",
+      "relation": "amod",
+      "direction": "forward",
+      "selected_sense": "expensive.a.01",
+      "available_sense_groups": 1,
+      "comparison": [
+        "expensive",
+        "costly",
+        "valuable",
+        "pricey",
+        "overpriced",
+        "pricy"
+      ],
+      "lexical_candidates": 6
+    },
+    {
+      "word": "happy",
+      "relation": "amod",
+      "direction": "forward",
+      "selected_sense": "happy.a.01",
+      "available_sense_groups": 4,
+      "comparison": [
+        "happy",
+        "prosperous",
+        "blissful",
+        "halcyon",
+        "euphoric",
+        "glad"
+      ],
+      "lexical_candidates": 27
+    },
+    {
+      "word": "angry",
+      "relation": "amod",
+      "direction": "forward",
+      "selected_sense": "angry.a.01",
+      "available_sense_groups": 3,
+      "comparison": [
+        "angry",
+        "furious",
+        "angered",
+        "irate",
+        "indignant",
+        "irascible"
+      ],
+      "lexical_candidates": 68
+    },
+    {
+      "word": "hot",
+      "relation": "amod",
+      "direction": "forward",
+      "selected_sense": "hot.a.01",
+      "available_sense_groups": 21,
+      "comparison": [
+        "hot",
+        "warm",
+        "heated",
+        "sulfurous",
+        "torrid",
+        "overheated"
+      ],
+      "lexical_candidates": 234
+    },
+    {
+      "word": "cold",
+      "relation": "amod",
+      "direction": "forward",
+      "selected_sense": "cold.a.01",
+      "available_sense_groups": 13,
+      "comparison": [
+        "cold",
+        "cool",
+        "polar",
+        "icy",
+        "arctic",
+        "crisp"
+      ],
+      "lexical_candidates": 153
+    },
+    {
+      "word": "warm",
+      "relation": "amod",
+      "direction": "forward",
+      "selected_sense": "warm.a.01",
+      "available_sense_groups": 10,
+      "comparison": [
+        "warm",
+        "hot",
+        "lukewarm",
+        "warmed",
+        "tepid"
+      ],
+      "lexical_candidates": 69
+    },
+    {
+      "word": "cool",
+      "relation": "amod",
+      "direction": "forward",
+      "selected_sense": "cool.a.01",
+      "available_sense_groups": 6,
+      "comparison": [
+        "cool",
+        "cold"
+      ],
+      "lexical_candidates": 44
+    },
+    {
+      "word": "clear",
+      "relation": "amod",
+      "direction": "forward",
+      "selected_sense": "clear.a.01",
+      "available_sense_groups": 15,
+      "comparison": [
+        "clear",
+        "broad",
+        "vivid",
+        "definite",
+        "distinct",
+        "lucid"
+      ],
+      "lexical_candidates": 99
+    },
+    {
+      "word": "obvious",
+      "relation": "amod",
+      "direction": "forward",
+      "selected_sense": "obvious.a.01",
+      "available_sense_groups": 1,
+      "comparison": [
+        "obvious",
+        "apparent",
+        "evident",
+        "plain",
+        "overt",
+        "demonstrable"
+      ],
+      "lexical_candidates": 13
+    },
+    {
+      "word": "real",
+      "relation": "amod",
+      "direction": "forward",
+      "selected_sense": "real.a.01",
+      "available_sense_groups": 8,
+      "comparison": [
+        "real",
+        "actual",
+        "genuine",
+        "realistic"
+      ],
+      "lexical_candidates": 37
+    },
+    {
+      "word": "possible",
+      "relation": "amod",
+      "direction": "forward",
+      "selected_sense": "possible.a.01",
+      "available_sense_groups": 2,
+      "comparison": [
+        "possible",
+        "likely",
+        "viable",
+        "feasible",
+        "practical",
+        "workable"
+      ],
+      "lexical_candidates": 17
+    },
+    {
+      "word": "likely",
+      "relation": "amod",
+      "direction": "forward",
+      "selected_sense": "likely.a.01",
+      "available_sense_groups": 4,
+      "comparison": [
+        "likely",
+        "probable",
+        "possible",
+        "promising",
+        "liable"
+      ],
+      "lexical_candidates": 12
+    },
+    {
+      "word": "do",
+      "relation": "dobj",
+      "direction": "forward",
+      "selected_sense": "make.v.01",
+      "available_sense_groups": 13,
+      "comparison": [
+        "do",
+        "overdo"
+      ],
+      "lexical_candidates": 111
+    },
+    {
+      "word": "lessen",
+      "relation": "dobj",
+      "direction": "forward",
+      "selected_sense": "decrease.v.01",
+      "available_sense_groups": 3,
+      "comparison": [
+        "lessen",
+        "decrease",
+        "diminish",
+        "reduce",
+        "deflate",
+        "retard"
+      ],
+      "lexical_candidates": 50
+    },
+    {
+      "word": "reduce",
+      "relation": "dobj",
+      "direction": "forward",
+      "selected_sense": "reduce.v.01",
+      "available_sense_groups": 20,
+      "comparison": [
+        "reduce",
+        "cut",
+        "decrease",
+        "trim",
+        "lessen",
+        "slash"
+      ],
+      "lexical_candidates": 71
+    },
+    {
+      "word": "decrease",
+      "relation": "dobj",
+      "direction": "forward",
+      "selected_sense": "decrease.v.01",
+      "available_sense_groups": 2,
+      "comparison": [
+        "decrease",
+        "lessen",
+        "diminish",
+        "reduce",
+        "shorten",
+        "slow"
+      ],
+      "lexical_candidates": 49
+    },
+    {
+      "word": "lower",
+      "relation": "dobj",
+      "direction": "forward",
+      "selected_sense": "lower.v.01",
+      "available_sense_groups": 5,
+      "comparison": [
+        "lower",
+        "decrease",
+        "lessen",
+        "depress",
+        "incline",
+        "reef"
+      ],
+      "lexical_candidates": 17
+    },
+    {
+      "word": "diminish",
+      "relation": "dobj",
+      "direction": "forward",
+      "selected_sense": "decrease.v.01",
+      "available_sense_groups": 2,
+      "comparison": [
+        "diminish",
+        "lessen",
+        "decrease",
+        "weaken",
+        "reduce",
+        "concentrate"
+      ],
+      "lexical_candidates": 30
+    },
+    {
+      "word": "cut",
+      "relation": "dobj",
+      "direction": "forward",
+      "selected_sense": "cut.v.01",
+      "available_sense_groups": 40,
+      "comparison": [
+        "cut",
+        "slash",
+        "sever",
+        "trim",
+        "chop",
+        "carve"
+      ],
+      "lexical_candidates": 164
+    },
+    {
+      "word": "increase",
+      "relation": "dobj",
+      "direction": "forward",
+      "selected_sense": "increase.v.01",
+      "available_sense_groups": 2,
+      "comparison": [
+        "increase",
+        "gain",
+        "heighten",
+        "accumulate",
+        "amass",
+        "wax"
+      ],
+      "lexical_candidates": 52
+    },
+    {
+      "word": "raise",
+      "relation": "dobj",
+      "direction": "forward",
+      "selected_sense": "raise.v.01",
+      "available_sense_groups": 26,
+      "comparison": [
+        "raise",
+        "heighten",
+        "levy",
+        "arouse",
+        "increase",
+        "boost"
+      ],
+      "lexical_candidates": 139
+    },
+    {
+      "word": "boost",
+      "relation": "dobj",
+      "direction": "forward",
+      "selected_sense": "hike.v.01",
+      "available_sense_groups": 5,
+      "comparison": [
+        "boost",
+        "increase",
+        "raise",
+        "spur",
+        "lift"
+      ],
+      "lexical_candidates": 20
+    },
+    {
+      "word": "enhance",
+      "relation": "dobj",
+      "direction": "forward",
+      "selected_sense": "enhance.v.01",
+      "available_sense_groups": 2,
+      "comparison": [
+        "enhance",
+        "heighten",
+        "improve",
+        "deepen",
+        "potentiate"
+      ],
+      "lexical_candidates": 11
+    },
+    {
+      "word": "improve",
+      "relation": "dobj",
+      "direction": "forward",
+      "selected_sense": "better.v.02",
+      "available_sense_groups": 2,
+      "comparison": [
+        "improve",
+        "enhance",
+        "better",
+        "restore",
+        "alter",
+        "upgrade"
+      ],
+      "lexical_candidates": 48
+    },
+    {
+      "word": "cause",
+      "relation": "dobj",
+      "direction": "forward",
+      "selected_sense": "cause.v.01",
+      "available_sense_groups": 2,
+      "comparison": [
+        "cause",
+        "create",
+        "provoke",
+        "impel",
+        "actuate",
+        "effectuate"
+      ],
+      "lexical_candidates": 44
+    },
+    {
+      "word": "trigger",
+      "relation": "dobj",
+      "direction": "forward",
+      "selected_sense": "trip.v.04",
+      "available_sense_groups": 1,
+      "comparison": [
+        "trigger",
+        "spark",
+        "activate",
+        "trip",
+        "initiate",
+        "actuate"
+      ],
+      "lexical_candidates": 6
+    },
+    {
+      "word": "induce",
+      "relation": "dobj",
+      "direction": "forward",
+      "selected_sense": "induce.v.01",
+      "available_sense_groups": 5,
+      "comparison": [
+        "induce",
+        "stimulate",
+        "generate"
+      ],
+      "lexical_candidates": 28
+    },
+    {
+      "word": "affect",
+      "relation": "dobj",
+      "direction": "forward",
+      "selected_sense": "affect.v.01",
+      "available_sense_groups": 5,
+      "comparison": [
+        "affect",
+        "impact",
+        "strike",
+        "alter",
+        "influence",
+        "stimulate"
+      ],
+      "lexical_candidates": 80
+    },
+    {
+      "word": "influence",
+      "relation": "dobj",
+      "direction": "forward",
+      "selected_sense": "influence.v.01",
+      "available_sense_groups": 3,
+      "comparison": [
+        "influence",
+        "affect",
+        "dominate",
+        "sway",
+        "manipulate",
+        "impact"
+      ],
+      "lexical_candidates": 40
+    },
+    {
+      "word": "impact",
+      "relation": "dobj",
+      "direction": "forward",
+      "selected_sense": "impact.v.01",
+      "available_sense_groups": 2,
+      "comparison": [
+        "impact",
+        "affect",
+        "strike",
+        "endanger",
+        "wedge"
+      ],
+      "lexical_candidates": 27
+    },
+    {
+      "word": "solve",
+      "relation": "dobj",
+      "direction": "forward",
+      "selected_sense": "solve.v.01",
+      "available_sense_groups": 3,
+      "comparison": [
+        "solve",
+        "resolve",
+        "work",
+        "answer",
+        "understand",
+        "guess"
+      ],
+      "lexical_candidates": 19
+    },
+    {
+      "word": "resolve",
+      "relation": "dobj",
+      "direction": "forward",
+      "selected_sense": "decide.v.02",
+      "available_sense_groups": 7,
+      "comparison": [
+        "resolve",
+        "settle",
+        "decide",
+        "adjudicate",
+        "end",
+        "judge"
+      ],
+      "lexical_candidates": 32
+    },
+    {
+      "word": "address",
+      "relation": "dobj",
+      "direction": "forward",
+      "selected_sense": "address.v.01",
+      "available_sense_groups": 10,
+      "comparison": [
+        "address",
+        "handle",
+        "discuss",
+        "broach",
+        "ask",
+        "call"
+      ],
+      "lexical_candidates": 43
+    },
+    {
+      "word": "tackle",
+      "relation": "dobj",
+      "direction": "forward",
+      "selected_sense": "undertake.v.02",
+      "available_sense_groups": 3,
+      "comparison": [
+        "tackle",
+        "undertake",
+        "confront",
+        "face"
+      ],
+      "lexical_candidates": 8
+    },
+    {
+      "word": "obtain",
+      "relation": "dobj",
+      "direction": "forward",
+      "selected_sense": "obtain.v.01",
+      "available_sense_groups": 3,
+      "comparison": [
+        "obtain",
+        "secure",
+        "acquire",
+        "get",
+        "gain",
+        "derive"
+      ],
+      "lexical_candidates": 27
+    },
+    {
+      "word": "acquire",
+      "relation": "dobj",
+      "direction": "forward",
+      "selected_sense": "get.v.01",
+      "available_sense_groups": 7,
+      "comparison": [
+        "acquire",
+        "purchase",
+        "buy",
+        "inherit",
+        "obtain",
+        "lease"
+      ],
+      "lexical_candidates": 74
+    },
+    {
+      "word": "gain",
+      "relation": "dobj",
+      "direction": "forward",
+      "selected_sense": "derive.v.02",
+      "available_sense_groups": 9,
+      "comparison": [
+        "gain",
+        "earn",
+        "attain",
+        "obtain"
+      ],
+      "lexical_candidates": 49
+    },
+    {
+      "word": "get",
+      "relation": "dobj",
+      "direction": "forward",
+      "selected_sense": "get.v.01",
+      "available_sense_groups": 35,
+      "comparison": [
+        "get",
+        "obtain",
+        "receive",
+        "gain",
+        "catch",
+        "garner"
+      ],
+      "lexical_candidates": 194
+    },
+    {
+      "word": "make",
+      "relation": "dobj",
+      "direction": "forward",
+      "selected_sense": "make.v.01",
+      "available_sense_groups": 49,
+      "comparison": [
+        "make",
+        "overdo"
+      ],
+      "lexical_candidates": 269
+    },
+    {
+      "word": "create",
+      "relation": "dobj",
+      "direction": "forward",
+      "selected_sense": "make.v.03",
+      "available_sense_groups": 6,
+      "comparison": [
+        "create",
+        "cause",
+        "recreate",
+        "establish",
+        "evoke",
+        "generate"
+      ],
+      "lexical_candidates": 113
+    },
+    {
+      "word": "produce",
+      "relation": "dobj",
+      "direction": "forward",
+      "selected_sense": "produce.v.01",
+      "available_sense_groups": 7,
+      "comparison": [
+        "produce",
+        "generate",
+        "deliver",
+        "manufacture",
+        "birth",
+        "sporulate"
+      ],
+      "lexical_candidates": 68
+    },
+    {
+      "word": "generate",
+      "relation": "dobj",
+      "direction": "forward",
+      "selected_sense": "generate.v.01",
+      "available_sense_groups": 4,
+      "comparison": [
+        "generate",
+        "yield",
+        "produce",
+        "create",
+        "induce"
+      ],
+      "lexical_candidates": 19
+    },
+    {
+      "word": "prevent",
+      "relation": "dobj",
+      "direction": "forward",
+      "selected_sense": "prevent.v.01",
+      "available_sense_groups": 2,
+      "comparison": [
+        "prevent",
+        "avoid",
+        "foreclose",
+        "avert",
+        "stop",
+        "halt"
+      ],
+      "lexical_candidates": 34
+    },
+    {
+      "word": "avoid",
+      "relation": "dobj",
+      "direction": "forward",
+      "selected_sense": "avoid.v.01",
+      "available_sense_groups": 5,
+      "comparison": [
+        "avoid",
+        "escape",
+        "evade",
+        "circumvent",
+        "dodge",
+        "elude"
+      ],
+      "lexical_candidates": 35
+    },
+    {
+      "word": "avert",
+      "relation": "dobj",
+      "direction": "forward",
+      "selected_sense": "debar.v.02",
+      "available_sense_groups": 2,
+      "comparison": [
+        "avert",
+        "avoid",
+        "obviate",
+        "prevent",
+        "debar",
+        "forestall"
+      ],
+      "lexical_candidates": 10
+    },
+    {
+      "word": "allow",
+      "relation": "dobj",
+      "direction": "forward",
+      "selected_sense": "let.v.01",
+      "available_sense_groups": 9,
+      "comparison": [
+        "allow",
+        "permit"
+      ],
+      "lexical_candidates": 50
+    },
+    {
+      "word": "permit",
+      "relation": "dobj",
+      "direction": "forward",
+      "selected_sense": "permit.v.01",
+      "available_sense_groups": 3,
+      "comparison": [
+        "permit",
+        "allow",
+        "countenance",
+        "legalize",
+        "authorize",
+        "authorise"
+      ],
+      "lexical_candidates": 34
+    },
+    {
+      "word": "enable",
+      "relation": "dobj",
+      "direction": "forward",
+      "selected_sense": "enable.v.01",
+      "available_sense_groups": 1,
+      "comparison": [
+        "enable",
+        "empower",
+        "endue"
+      ],
+      "lexical_candidates": 9
+    },
+    {
+      "word": "show",
+      "relation": "dobj",
+      "direction": "forward",
+      "selected_sense": "show.v.01",
+      "available_sense_groups": 12,
+      "comparison": [
+        "show",
+        "exhibit",
+        "demonstrate",
+        "express",
+        "indicate",
+        "display"
+      ],
+      "lexical_candidates": 93
+    },
+    {
+      "word": "indicate",
+      "relation": "dobj",
+      "direction": "forward",
+      "selected_sense": "bespeak.v.01",
+      "available_sense_groups": 5,
+      "comparison": [
+        "indicate",
+        "signal",
+        "point",
+        "bespeak",
+        "betoken",
+        "predict"
+      ],
+      "lexical_candidates": 33
+    },
+    {
+      "word": "demonstrate",
+      "relation": "dobj",
+      "direction": "forward",
+      "selected_sense": "show.v.01",
+      "available_sense_groups": 4,
+      "comparison": [
+        "demonstrate",
+        "show",
+        "exhibit",
+        "prove",
+        "demo",
+        "confirm"
+      ],
+      "lexical_candidates": 29
+    },
+    {
+      "word": "reveal",
+      "relation": "dobj",
+      "direction": "forward",
+      "selected_sense": "uncover.v.01",
+      "available_sense_groups": 3,
+      "comparison": [
+        "reveal",
+        "uncover",
+        "unveil",
+        "disclose",
+        "expose",
+        "show"
+      ],
+      "lexical_candidates": 23
+    },
+    {
+      "word": "suggest",
+      "relation": "dobj",
+      "direction": "forward",
+      "selected_sense": "propose.v.01",
+      "available_sense_groups": 5,
+      "comparison": [
+        "suggest",
+        "propose",
+        "recommend",
+        "advocate",
+        "state",
+        "advance"
+      ],
+      "lexical_candidates": 30
+    },
+    {
+      "word": "buy",
+      "relation": "dobj",
+      "direction": "forward",
+      "selected_sense": "buy.v.01",
+      "available_sense_groups": 5,
+      "comparison": [
+        "buy",
+        "purchase",
+        "acquire",
+        "subscribe",
+        "repurchase"
+      ],
+      "lexical_candidates": 12
+    },
+    {
+      "word": "purchase",
+      "relation": "dobj",
+      "direction": "forward",
+      "selected_sense": "buy.v.01",
+      "available_sense_groups": 1,
+      "comparison": [
+        "purchase",
+        "buy",
+        "acquire",
+        "subscribe",
+        "repurchase"
+      ],
+      "lexical_candidates": 6
+    },
+    {
+      "word": "choose",
+      "relation": "dobj",
+      "direction": "forward",
+      "selected_sense": "choose.v.01",
+      "available_sense_groups": 3,
+      "comparison": [
+        "choose",
+        "select",
+        "elect",
+        "nominate",
+        "pick",
+        "adopt"
+      ],
+      "lexical_candidates": 38
+    },
+    {
+      "word": "select",
+      "relation": "dobj",
+      "direction": "forward",
+      "selected_sense": "choose.v.01",
+      "available_sense_groups": 1,
+      "comparison": [
+        "select",
+        "choose",
+        "elect",
+        "nominate",
+        "field",
+        "pick"
+      ],
+      "lexical_candidates": 34
+    },
+    {
+      "word": "begin",
+      "relation": "dobj",
+      "direction": "forward",
+      "selected_sense": "get_down.v.07",
+      "available_sense_groups": 10,
+      "comparison": [
+        "begin",
+        "start",
+        "commence",
+        "launch",
+        "recommence"
+      ],
+      "lexical_candidates": 30
+    },
+    {
+      "word": "start",
+      "relation": "dobj",
+      "direction": "forward",
+      "selected_sense": "get_down.v.07",
+      "available_sense_groups": 13,
+      "comparison": [
+        "start",
+        "begin",
+        "commence",
+        "launch",
+        "embark",
+        "plunge"
+      ],
+      "lexical_candidates": 41
+    },
+    {
+      "word": "finish",
+      "relation": "dobj",
+      "direction": "forward",
+      "selected_sense": "complete.v.01",
+      "available_sense_groups": 6,
+      "comparison": [
+        "finish",
+        "complete",
+        "end",
+        "conclude",
+        "close"
+      ],
+      "lexical_candidates": 29
+    },
+    {
+      "word": "complete",
+      "relation": "dobj",
+      "direction": "forward",
+      "selected_sense": "complete.v.01",
+      "available_sense_groups": 4,
+      "comparison": [
+        "complete",
+        "finish",
+        "execute",
+        "accomplish"
+      ],
+      "lexical_candidates": 15
+    },
+    {
+      "word": "answer",
+      "relation": "dobj",
+      "direction": "forward",
+      "selected_sense": "answer.v.01",
+      "available_sense_groups": 10,
+      "comparison": [
+        "answer",
+        "counter",
+        "return",
+        "field",
+        "retort",
+        "bridle"
+      ],
+      "lexical_candidates": 38
+    },
+    {
+      "word": "reply",
+      "relation": "dobj",
+      "direction": "forward",
+      "selected_sense": "answer.v.01",
+      "available_sense_groups": 1,
+      "comparison": [
+        "reply",
+        "answer",
+        "respond",
+        "tell",
+        "say",
+        "return"
+      ],
+      "lexical_candidates": 13
+    },
+    {
+      "word": "use",
+      "relation": "dobj",
+      "direction": "forward",
+      "selected_sense": "use.v.01",
+      "available_sense_groups": 6,
+      "comparison": [
+        "use",
+        "utilize",
+        "employ",
+        "apply",
+        "utilise",
+        "implement"
+      ],
+      "lexical_candidates": 56
+    },
+    {
+      "word": "employ",
+      "relation": "dobj",
+      "direction": "forward",
+      "selected_sense": "use.v.01",
+      "available_sense_groups": 2,
+      "comparison": [
+        "employ",
+        "utilize",
+        "apply",
+        "utilise",
+        "use",
+        "implement"
+      ],
+      "lexical_candidates": 49
+    },
+    {
+      "word": "help",
+      "relation": "dobj",
+      "direction": "forward",
+      "selected_sense": "help.v.01",
+      "available_sense_groups": 8,
+      "comparison": [
+        "help",
+        "assist",
+        "aid",
+        "serve",
+        "avail",
+        "subserve"
+      ],
+      "lexical_candidates": 37
+    },
+    {
+      "word": "assist",
+      "relation": "dobj",
+      "direction": "forward",
+      "selected_sense": "help.v.01",
+      "available_sense_groups": 3,
+      "comparison": [
+        "assist",
+        "help",
+        "aid",
+        "serve",
+        "support",
+        "facilitate"
+      ],
+      "lexical_candidates": 20
+    },
+    {
+      "word": "change",
+      "relation": "dobj",
+      "direction": "forward",
+      "selected_sense": "change.v.01",
+      "available_sense_groups": 10,
+      "comparison": [
+        "change",
+        "alter",
+        "modify",
+        "shape",
+        "switch",
+        "shift"
+      ],
+      "lexical_candidates": 581
+    },
+    {
+      "word": "alter",
+      "relation": "dobj",
+      "direction": "forward",
+      "selected_sense": "change.v.01",
+      "available_sense_groups": 5,
+      "comparison": [
+        "alter",
+        "change",
+        "modify",
+        "shape",
+        "affect",
+        "adjust"
+      ],
+      "lexical_candidates": 464
+    },
+    {
+      "word": "ask",
+      "relation": "dobj",
+      "direction": "forward",
+      "selected_sense": "ask.v.01",
+      "available_sense_groups": 7,
+      "comparison": [
+        "ask",
+        "inquire",
+        "enquire",
+        "consult",
+        "pry"
+      ],
+      "lexical_candidates": 32
+    },
+    {
+      "word": "need",
+      "relation": "dobj",
+      "direction": "forward",
+      "selected_sense": "necessitate.v.01",
+      "available_sense_groups": 2,
+      "comparison": [
+        "need",
+        "require",
+        "want",
+        "necessitate",
+        "demand"
+      ],
+      "lexical_candidates": 16
+    },
+    {
+      "word": "require",
+      "relation": "dobj",
+      "direction": "forward",
+      "selected_sense": "necessitate.v.01",
+      "available_sense_groups": 4,
+      "comparison": [
+        "require",
+        "need",
+        "necessitate",
+        "involve",
+        "demand"
+      ],
+      "lexical_candidates": 34
+    },
+    {
+      "word": "price",
+      "relation": "amod",
+      "direction": "reverse",
+      "selected_sense": "monetary_value.n.01",
+      "available_sense_groups": 6,
+      "comparison": [
+        "price",
+        "cost"
+      ],
+      "lexical_candidates": 9
+    },
+    {
+      "word": "cost",
+      "relation": "amod",
+      "direction": "reverse",
+      "selected_sense": "cost.n.01",
+      "available_sense_groups": 3,
+      "comparison": [
+        "cost",
+        "price",
+        "expense",
+        "expenditure",
+        "payment",
+        "damage"
+      ],
+      "lexical_candidates": 15
+    },
+    {
+      "word": "chance",
+      "relation": "amod",
+      "direction": "reverse",
+      "selected_sense": "opportunity.n.01",
+      "available_sense_groups": 5,
+      "comparison": [
+        "chance",
+        "opportunity"
+      ],
+      "lexical_candidates": 29
+    },
+    {
+      "word": "opportunity",
+      "relation": "amod",
+      "direction": "reverse",
+      "selected_sense": "opportunity.n.01",
+      "available_sense_groups": 1,
+      "comparison": [
+        "opportunity",
+        "chance"
+      ],
+      "lexical_candidates": 13
+    },
+    {
+      "word": "possibility",
+      "relation": "amod",
+      "direction": "reverse",
+      "selected_sense": "possibility.n.01",
+      "available_sense_groups": 4,
+      "comparison": [
+        "possibility",
+        "prospect",
+        "expectation"
+      ],
+      "lexical_candidates": 27
+    },
+    {
+      "word": "probability",
+      "relation": "amod",
+      "direction": "reverse",
+      "selected_sense": "probability.n.01",
+      "available_sense_groups": 2,
+      "comparison": [
+        "probability",
+        "chance"
+      ],
+      "lexical_candidates": 7
+    },
+    {
+      "word": "problem",
+      "relation": "amod",
+      "direction": "reverse",
+      "selected_sense": "problem.n.01",
+      "available_sense_groups": 3,
+      "comparison": [
+        "problem",
+        "difficulty"
+      ],
+      "lexical_candidates": 16
+    },
+    {
+      "word": "issue",
+      "relation": "amod",
+      "direction": "reverse",
+      "selected_sense": "issue.n.01",
+      "available_sense_groups": 11,
+      "comparison": [
+        "issue",
+        "content"
+      ],
+      "lexical_candidates": 75
+    },
+    {
+      "word": "job",
+      "relation": "amod",
+      "direction": "reverse",
+      "selected_sense": "occupation.n.01",
+      "available_sense_groups": 11,
+      "comparison": [
+        "job",
+        "business",
+        "occupation"
+      ],
+      "lexical_candidates": 48
+    },
+    {
+      "word": "work",
+      "relation": "amod",
+      "direction": "reverse",
+      "selected_sense": "work.n.01",
+      "available_sense_groups": 7,
+      "comparison": [
+        "work",
+        "project",
+        "investigation",
+        "labor",
+        "job",
+        "task"
+      ],
+      "lexical_candidates": 94
+    },
+    {
+      "word": "mistake",
+      "relation": "amod",
+      "direction": "reverse",
+      "selected_sense": "mistake.n.01",
+      "available_sense_groups": 3,
+      "comparison": [
+        "mistake",
+        "error",
+        "fault"
+      ],
+      "lexical_candidates": 32
+    },
+    {
+      "word": "error",
+      "relation": "amod",
+      "direction": "reverse",
+      "selected_sense": "mistake.n.01",
+      "available_sense_groups": 7,
+      "comparison": [
+        "error",
+        "mistake",
+        "fault"
+      ],
+      "lexical_candidates": 39
+    },
+    {
+      "word": "result",
+      "relation": "amod",
+      "direction": "reverse",
+      "selected_sense": "consequence.n.01",
+      "available_sense_groups": 3,
+      "comparison": [
+        "result",
+        "outcome",
+        "consequence",
+        "effect",
+        "upshot"
+      ],
+      "lexical_candidates": 46
+    },
+    {
+      "word": "outcome",
+      "relation": "amod",
+      "direction": "reverse",
+      "selected_sense": "result.n.03",
+      "available_sense_groups": 2,
+      "comparison": [
+        "outcome",
+        "result",
+        "resultant"
+      ],
+      "lexical_candidates": 41
+    },
+    {
+      "word": "risk",
+      "relation": "amod",
+      "direction": "reverse",
+      "selected_sense": "hazard.n.01",
+      "available_sense_groups": 4,
+      "comparison": [
+        "risk",
+        "hazard",
+        "endangerment"
+      ],
+      "lexical_candidates": 9
+    },
+    {
+      "word": "danger",
+      "relation": "amod",
+      "direction": "reverse",
+      "selected_sense": "danger.n.01",
+      "available_sense_groups": 4,
+      "comparison": [
+        "danger",
+        "vulnerability",
+        "exposure",
+        "riskiness"
+      ],
+      "lexical_candidates": 19
+    },
+    {
+      "word": "ability",
+      "relation": "amod",
+      "direction": "reverse",
+      "selected_sense": "ability.n.01",
+      "available_sense_groups": 2,
+      "comparison": [
+        "ability",
+        "capability",
+        "quality",
+        "competence",
+        "sensitivity",
+        "competency"
+      ],
+      "lexical_candidates": 31
+    },
+    {
+      "word": "capability",
+      "relation": "amod",
+      "direction": "reverse",
+      "selected_sense": "capability.n.01",
+      "available_sense_groups": 3,
+      "comparison": [
+        "capability",
+        "ability",
+        "capacity",
+        "strength",
+        "posture",
+        "overkill"
+      ],
+      "lexical_candidates": 16
+    },
+    {
+      "word": "goal",
+      "relation": "amod",
+      "direction": "reverse",
+      "selected_sense": "goal.n.01",
+      "available_sense_groups": 4,
+      "comparison": [
+        "goal",
+        "aim",
+        "objective",
+        "intention",
+        "purpose",
+        "destination"
+      ],
+      "lexical_candidates": 20
+    },
+    {
+      "word": "aim",
+      "relation": "amod",
+      "direction": "reverse",
+      "selected_sense": "purpose.n.01",
+      "available_sense_groups": 4,
+      "comparison": [
+        "aim",
+        "intention",
+        "purpose",
+        "intent"
+      ],
+      "lexical_candidates": 25
+    },
+    {
+      "word": "idea",
+      "relation": "amod",
+      "direction": "reverse",
+      "selected_sense": "idea.n.01",
+      "available_sense_groups": 5,
+      "comparison": [
+        "idea",
+        "thought"
+      ],
+      "lexical_candidates": 69
+    },
+    {
+      "word": "thought",
+      "relation": "amod",
+      "direction": "reverse",
+      "selected_sense": "idea.n.01",
+      "available_sense_groups": 4,
+      "comparison": [
+        "thought",
+        "idea"
+      ],
+      "lexical_candidates": 59
+    },
+    {
+      "word": "house",
+      "relation": "amod",
+      "direction": "reverse",
+      "selected_sense": "house.n.01",
+      "available_sense_groups": 12,
+      "comparison": [
+        "house",
+        "mansion",
+        "building",
+        "villa",
+        "home",
+        "hall"
+      ],
+      "lexical_candidates": 57
+    },
+    {
+      "word": "home",
+      "relation": "amod",
+      "direction": "reverse",
+      "selected_sense": "home.n.01",
+      "available_sense_groups": 9,
+      "comparison": [
+        "home",
+        "place"
+      ],
+      "lexical_candidates": 31
+    },
+    {
+      "word": "car",
+      "relation": "amod",
+      "direction": "reverse",
+      "selected_sense": "car.n.01",
+      "available_sense_groups": 5,
+      "comparison": [
+        "car",
+        "machine",
+        "automobile",
+        "auto",
+        "motorcar"
+      ],
+      "lexical_candidates": 38
+    },
+    {
+      "word": "vehicle",
+      "relation": "amod",
+      "direction": "reverse",
+      "selected_sense": "vehicle.n.01",
+      "available_sense_groups": 4,
+      "comparison": [
+        "vehicle",
+        "transport",
+        "craft",
+        "projectile",
+        "sledge",
+        "conveyance"
+      ],
+      "lexical_candidates": 12
+    },
+    {
+      "word": "customer",
+      "relation": "amod",
+      "direction": "reverse",
+      "selected_sense": "customer.n.01",
+      "available_sense_groups": 1,
+      "comparison": [
+        "customer",
+        "client"
+      ],
+      "lexical_candidates": 16
+    },
+    {
+      "word": "client",
+      "relation": "amod",
+      "direction": "reverse",
+      "selected_sense": "client.n.01",
+      "available_sense_groups": 3,
+      "comparison": [
+        "client",
+        "case"
+      ],
+      "lexical_candidates": 19
+    }
+  ],
+  "phrase_results": [
+    {
+      "word": "strong",
+      "collocate": "rain",
+      "relation": "amod",
+      "selected_sense": "strong.s.01",
+      "candidates": [
+        {
+          "word": "heavy",
+          "kind": "context",
+          "count": 1313,
+          "documents": 807,
+          "shared": [],
+          "similarity": 0
+        },
+        {
+          "word": "torrential",
+          "kind": "context",
+          "count": 231,
+          "documents": 188,
+          "shared": [],
+          "similarity": 0
+        },
+        {
+          "word": "acid",
+          "kind": "context",
+          "count": 57,
+          "documents": 34,
+          "shared": [],
+          "similarity": 0
+        },
+        {
+          "word": "light",
+          "kind": "context",
+          "count": 78,
+          "documents": 71,
+          "shared": [],
+          "similarity": 0
+        },
+        {
+          "word": "moderate",
+          "kind": "context",
+          "count": 27,
+          "documents": 25,
+          "shared": [
+            "shear",
+            "gust",
+            "wind",
+            "gale",
+            "hurricane"
+          ],
+          "similarity": 0.1689
+        }
+      ]
+    },
+    {
+      "word": "powerful",
+      "collocate": "coffee",
+      "relation": "amod",
+      "selected_sense": "powerful.a.01",
+      "candidates": [
+        {
+          "word": "instant",
+          "kind": "context",
+          "count": 12,
+          "documents": 7,
+          "shared": [],
+          "similarity": 0
+        },
+        {
+          "word": "strong",
+          "kind": "similar",
+          "count": 2,
+          "documents": 2,
+          "shared": [
+            "typhoon",
+            "surge",
+            "hurricane",
+            "earthquake",
+            "bite",
+            "gust"
+          ],
+          "similarity": 0.13766
+        },
+        {
+          "word": "hot",
+          "kind": "context",
+          "count": 10,
+          "documents": 10,
+          "shared": [],
+          "similarity": 0
+        },
+        {
+          "word": "colombian",
+          "kind": "context",
+          "count": 4,
+          "documents": 3,
+          "shared": [],
+          "similarity": 0
+        },
+        {
+          "word": "turkish",
+          "kind": "context",
+          "count": 6,
+          "documents": 3,
+          "shared": [],
+          "similarity": 0
+        }
+      ]
+    },
+    {
+      "word": "high",
+      "collocate": "building",
+      "relation": "amod",
+      "selected_sense": "high.a.02",
+      "candidates": [
+        {
+          "word": "tall",
+          "kind": "related",
+          "count": 370,
+          "documents": 197,
+          "shared": [
+            "peak",
+            "mountain"
+          ],
+          "similarity": 0.02523
+        },
+        {
+          "word": "new",
+          "kind": "context",
+          "count": 972,
+          "documents": 637,
+          "shared": [],
+          "similarity": 0
+        },
+        {
+          "word": "old",
+          "kind": "context",
+          "count": 496,
+          "documents": 376,
+          "shared": [],
+          "similarity": 0
+        },
+        {
+          "word": "other",
+          "kind": "context",
+          "count": 559,
+          "documents": 438,
+          "shared": [],
+          "similarity": 0
+        },
+        {
+          "word": "historic",
+          "kind": "context",
+          "count": 254,
+          "documents": 200,
+          "shared": [],
+          "similarity": 0
+        }
+      ]
+    },
+    {
+      "word": "big",
+      "collocate": "mistake",
+      "relation": "amod",
+      "selected_sense": "big.s.01",
+      "candidates": [
+        {
+          "word": "serious",
+          "kind": "related",
+          "count": 16,
+          "documents": 15,
+          "shared": [
+            "challenge",
+            "problem",
+            "mistake",
+            "flaw",
+            "obstacle",
+            "threat"
+          ],
+          "similarity": 0.0843
+        },
+        {
+          "word": "great",
+          "kind": "related",
+          "count": 19,
+          "documents": 17,
+          "shared": [
+            "deal",
+            "hit",
+            "surprise",
+            "disappointment",
+            "upset"
+          ],
+          "similarity": 0.05581
+        },
+        {
+          "word": "terrible",
+          "kind": "context",
+          "count": 20,
+          "documents": 20,
+          "shared": [
+            "mistake",
+            "secret",
+            "thing",
+            "mess",
+            "news",
+            "trouble"
+          ],
+          "similarity": 0.12518
+        },
+        {
+          "word": "grave",
+          "kind": "related",
+          "count": 9,
+          "documents": 9,
+          "shared": [
+            "mistake",
+            "threat",
+            "challenge",
+            "problem"
+          ],
+          "similarity": 0.04697
+        },
+        {
+          "word": "strategic",
+          "kind": "related",
+          "count": 10,
+          "documents": 10,
+          "shared": [
+            "mistake",
+            "blunder",
+            "threat"
+          ],
+          "similarity": 0.02709
+        }
+      ]
+    },
+    {
+      "word": "hard",
+      "collocate": "problem",
+      "relation": "amod",
+      "selected_sense": "difficult.a.01",
+      "candidates": [
+        {
+          "word": "difficult",
+          "kind": "synonym",
+          "count": 53,
+          "documents": 49,
+          "shared": [
+            "decision",
+            "time",
+            "puzzle",
+            "pitch",
+            "question",
+            "thing"
+          ],
+          "similarity": 0.12
+        },
+        {
+          "word": "serious",
+          "kind": "similar",
+          "count": 326,
+          "documents": 298,
+          "shared": [
+            "blow",
+            "question",
+            "difficulty"
+          ],
+          "similarity": 0.0209
+        },
+        {
+          "word": "financial",
+          "kind": "context",
+          "count": 304,
+          "documents": 271,
+          "shared": [],
+          "similarity": 0
+        },
+        {
+          "word": "big",
+          "kind": "context",
+          "count": 305,
+          "documents": 270,
+          "shared": [],
+          "similarity": 0
+        },
+        {
+          "word": "major",
+          "kind": "context",
+          "count": 301,
+          "documents": 284,
+          "shared": [],
+          "similarity": 0
+        }
+      ]
+    },
+    {
+      "word": "lessen",
+      "collocate": "price",
+      "relation": "dobj",
+      "selected_sense": "decrease.v.02",
+      "candidates": [
+        {
+          "word": "reduce",
+          "kind": "related",
+          "count": 59,
+          "documents": 50,
+          "shared": [
+            "dependence",
+            "burden",
+            "risk",
+            "severity",
+            "likelihood",
+            "impact"
+          ],
+          "similarity": 0.29498
+        },
+        {
+          "word": "decrease",
+          "kind": "synonym",
+          "count": 6,
+          "documents": 6,
+          "shared": [
+            "risk",
+            "likelihood",
+            "burden",
+            "chance",
+            "effectiveness",
+            "amount"
+          ],
+          "similarity": 0.3014
+        },
+        {
+          "word": "lower",
+          "kind": "related",
+          "count": 62,
+          "documents": 56,
+          "shared": [
+            "risk",
+            "burden",
+            "value",
+            "amount",
+            "chance",
+            "expense"
+          ],
+          "similarity": 0.12189
+        },
+        {
+          "word": "pay",
+          "kind": "context",
+          "count": 232,
+          "documents": 212,
+          "shared": [],
+          "similarity": 0
+        },
+        {
+          "word": "increase",
+          "kind": "context",
+          "count": 64,
+          "documents": 55,
+          "shared": [
+            "chance",
+            "risk",
+            "severity",
+            "likelihood",
+            "effectiveness"
+          ],
+          "similarity": 0.1796
+        }
+      ]
+    },
+    {
+      "word": "lessen",
+      "collocate": "emission",
+      "relation": "dobj",
+      "selected_sense": "decrease.v.02",
+      "candidates": [
+        {
+          "word": "reduce",
+          "kind": "related",
+          "count": 203,
+          "documents": 96,
+          "shared": [
+            "dependence",
+            "burden",
+            "risk",
+            "severity",
+            "likelihood",
+            "impact"
+          ],
+          "similarity": 0.29498
+        },
+        {
+          "word": "decrease",
+          "kind": "synonym",
+          "count": 5,
+          "documents": 5,
+          "shared": [
+            "risk",
+            "likelihood",
+            "burden",
+            "chance",
+            "effectiveness",
+            "amount"
+          ],
+          "similarity": 0.3014
+        },
+        {
+          "word": "limit",
+          "kind": "related",
+          "count": 20,
+          "documents": 13,
+          "shared": [
+            "effectiveness",
+            "amount",
+            "impact",
+            "influence",
+            "value",
+            "power"
+          ],
+          "similarity": 0.12293
+        },
+        {
+          "word": "mitigate",
+          "kind": "related",
+          "count": 3,
+          "documents": 3,
+          "shared": [
+            "impact",
+            "risk",
+            "effect",
+            "burden",
+            "pain",
+            "threat"
+          ],
+          "similarity": 0.33565
+        },
+        {
+          "word": "cut",
+          "kind": "related",
+          "count": 24,
+          "documents": 20,
+          "shared": [
+            "expense",
+            "power"
+          ],
+          "similarity": 0.02194
+        }
+      ]
+    },
+    {
+      "word": "do",
+      "collocate": "decision",
+      "relation": "dobj",
+      "selected_sense": "cause.v.01",
+      "candidates": [
+        {
+          "word": "make",
+          "kind": "synonym",
+          "count": 1731,
+          "documents": 1359,
+          "shared": [
+            "impression",
+            "movie"
+          ],
+          "similarity": 0.00946
+        },
+        {
+          "word": "influence",
+          "kind": "related",
+          "count": 126,
+          "documents": 116,
+          "shared": [
+            "thinking",
+            "work"
+          ],
+          "similarity": 0.01765
+        },
+        {
+          "word": "reverse",
+          "kind": "context",
+          "count": 153,
+          "documents": 147,
+          "shared": [],
+          "similarity": 0
+        },
+        {
+          "word": "appeal",
+          "kind": "context",
+          "count": 129,
+          "documents": 117,
+          "shared": [],
+          "similarity": 0
+        },
+        {
+          "word": "announce",
+          "kind": "context",
+          "count": 115,
+          "documents": 110,
+          "shared": [],
+          "similarity": 0
+        }
+      ]
+    },
+    {
+      "word": "solve",
+      "collocate": "problem",
+      "relation": "dobj",
+      "selected_sense": "solve.v.01",
+      "candidates": [
+        {
+          "word": "resolve",
+          "kind": "related",
+          "count": 166,
+          "documents": 155,
+          "shared": [
+            "problem",
+            "crisis",
+            "dilemma",
+            "mystery",
+            "dispute",
+            "conflict"
+          ],
+          "similarity": 0.43854
+        },
+        {
+          "word": "have",
+          "kind": "context",
+          "count": 1845,
+          "documents": 1516,
+          "shared": [],
+          "similarity": 0
+        },
+        {
+          "word": "address",
+          "kind": "context",
+          "count": 284,
+          "documents": 248,
+          "shared": [
+            "problem",
+            "crisis",
+            "dispute",
+            "issue",
+            "challenge"
+          ],
+          "similarity": 0.1585
+        },
+        {
+          "word": "cause",
+          "kind": "context",
+          "count": 554,
+          "documents": 511,
+          "shared": [],
+          "similarity": 0
+        },
+        {
+          "word": "work",
+          "kind": "synonym",
+          "count": 14,
+          "documents": 13,
+          "shared": [
+            "puzzle",
+            "problem",
+            "case",
+            "lot",
+            "issue",
+            "series"
+          ],
+          "similarity": 0.05563
+        }
+      ]
+    },
+    {
+      "word": "obtain",
+      "collocate": "permission",
+      "relation": "dobj",
+      "selected_sense": "obtain.v.01",
+      "candidates": [
+        {
+          "word": "grant",
+          "kind": "context",
+          "count": 215,
+          "documents": 193,
+          "shared": [
+            "permit",
+            "visa",
+            "consent",
+            "injunction",
+            "license"
+          ],
+          "similarity": 0.3225
+        },
+        {
+          "word": "get",
+          "kind": "related",
+          "count": 89,
+          "documents": 81,
+          "shared": [
+            "divorce",
+            "license",
+            "permit",
+            "permission",
+            "approval",
+            "visa"
+          ],
+          "similarity": 0.12654
+        },
+        {
+          "word": "request",
+          "kind": "context",
+          "count": 135,
+          "documents": 134,
+          "shared": [
+            "consent",
+            "injunction",
+            "permission",
+            "approval",
+            "divorce"
+          ],
+          "similarity": 0.2369
+        },
+        {
+          "word": "gain",
+          "kind": "related",
+          "count": 59,
+          "documents": 56,
+          "shared": [
+            "approval",
+            "employment",
+            "permission",
+            "understanding",
+            "backing",
+            "certificate"
+          ],
+          "similarity": 0.10144
+        },
+        {
+          "word": "secure",
+          "kind": "related",
+          "count": 27,
+          "documents": 25,
+          "shared": [
+            "funding",
+            "financing",
+            "loan",
+            "lease",
+            "right",
+            "patent"
+          ],
+          "similarity": 0.2377
+        }
+      ]
+    },
+    {
+      "word": "buy",
+      "collocate": "car",
+      "relation": "dobj",
+      "selected_sense": "buy.v.01",
+      "candidates": [
+        {
+          "word": "purchase",
+          "kind": "synonym",
+          "count": 31,
+          "documents": 26,
+          "shared": [
+            "ticket",
+            "stake",
+            "share",
+            "farm",
+            "estate",
+            "acre"
+          ],
+          "similarity": 0.45502
+        },
+        {
+          "word": "get",
+          "kind": "related",
+          "count": 123,
+          "documents": 91,
+          "shared": [
+            "stuff",
+            "ticket",
+            "one",
+            "insurance",
+            "cadillac"
+          ],
+          "similarity": 0.04645
+        },
+        {
+          "word": "drive",
+          "kind": "context",
+          "count": 339,
+          "documents": 284,
+          "shared": [],
+          "similarity": 0
+        },
+        {
+          "word": "own",
+          "kind": "context",
+          "count": 48,
+          "documents": 45,
+          "shared": [
+            "car",
+            "stock",
+            "stake",
+            "house",
+            "share"
+          ],
+          "similarity": 0.3517
+        },
+        {
+          "word": "rent",
+          "kind": "context",
+          "count": 60,
+          "documents": 47,
+          "shared": [
+            "car",
+            "house",
+            "farm",
+            "land",
+            "property"
+          ],
+          "similarity": 0.1907
+        }
+      ]
+    },
+    {
+      "word": "choose",
+      "collocate": "option",
+      "relation": "dobj",
+      "selected_sense": "choose.v.01",
+      "candidates": [
+        {
+          "word": "select",
+          "kind": "synonym",
+          "count": 7,
+          "documents": 7,
+          "shared": [
+            "nominee",
+            "successor",
+            "site",
+            "candidate",
+            "winner",
+            "mate"
+          ],
+          "similarity": 0.33783
+        },
+        {
+          "word": "take",
+          "kind": "synonym",
+          "count": 31,
+          "documents": 31,
+          "shared": [
+            "photo"
+          ],
+          "similarity": 0.00405
+        },
+        {
+          "word": "have",
+          "kind": "context",
+          "count": 454,
+          "documents": 403,
+          "shared": [],
+          "similarity": 0
+        },
+        {
+          "word": "give",
+          "kind": "context",
+          "count": 209,
+          "documents": 194,
+          "shared": [],
+          "similarity": 0
+        },
+        {
+          "word": "consider",
+          "kind": "context",
+          "count": 97,
+          "documents": 96,
+          "shared": [],
+          "similarity": 0
+        }
+      ]
+    },
+    {
+      "word": "begin",
+      "collocate": "experiment",
+      "relation": "dobj",
+      "selected_sense": "get_down.v.07",
+      "candidates": [
+        {
+          "word": "start",
+          "kind": "synonym",
+          "count": 9,
+          "documents": 9,
+          "shared": [
+            "career",
+            "feud",
+            "negotiation",
+            "season",
+            "campaign",
+            "trend"
+          ],
+          "similarity": 0.40087
+        },
+        {
+          "word": "conduct",
+          "kind": "context",
+          "count": 151,
+          "documents": 136,
+          "shared": [
+            "negotiation",
+            "campaign",
+            "rehearsal",
+            "work",
+            "affair"
+          ],
+          "similarity": 0.2423
+        },
+        {
+          "word": "perform",
+          "kind": "context",
+          "count": 153,
+          "documents": 124,
+          "shared": [],
+          "similarity": 0
+        },
+        {
+          "word": "continue",
+          "kind": "context",
+          "count": 11,
+          "documents": 10,
+          "shared": [
+            "career",
+            "feud",
+            "negotiation",
+            "march",
+            "drive"
+          ],
+          "similarity": 0.4357
+        },
+        {
+          "word": "carry",
+          "kind": "context",
+          "count": 74,
+          "documents": 63,
+          "shared": [],
+          "similarity": 0
+        }
+      ]
+    }
+  ],
+  "interpretation": "Comparison candidates are not naturalness judgments. Lexical relations and shared-context alternatives are distinguished. Corpus counts are pooled by lemma, not disambiguated word senses. No word-specific candidate rules are used."
+}

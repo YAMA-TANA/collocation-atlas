@@ -1,21 +1,25 @@
-import { useEffect, useState } from "react";
-import { tr, type Lang } from "./i18n";
+import { useEffect, useMemo, useState } from "react";
+import { tr, format, type Lang } from "./i18n";
+import { getLexeme, type Relationship } from "./data";
 import {
   candidatesFor,
   getSemantics,
   defaultSenseFor,
   senseComparison,
-  highSets,
+  rankCandidates,
   partOfSpeech,
+  type Candidate,
   type Direction,
   type SemanticEntry,
 } from "./semantics";
+import { SenseChoices } from "./SenseChoices";
 
 export function SynonymExplorer({
   word,
   words,
   relation,
   direction,
+  context = "",
   lang,
   onChange,
   onPreset,
@@ -24,41 +28,33 @@ export function SynonymExplorer({
   words: string[];
   relation: string;
   direction: Direction;
+  context?: string;
   lang: Lang;
   onChange: (words: string[]) => void;
   onPreset: (words: string[], objects: string[]) => void;
 }) {
-  const t = (key: string) => tr(lang, key);
+  const t = (key: string) => tr(lang, key),
+    key = JSON.stringify([word, relation, direction, context]);
   const [loaded, setLoaded] = useState<{
-    key: string;
-    data: SemanticEntry;
-  } | null>(null);
-  const [failed, setFailed] = useState("");
-  const [sense, setSense] = useState("");
-  const [expanded, setExpanded] = useState(false);
-  const key = `${word}:${relation}:${direction}`;
+      key: string;
+      data: SemanticEntry;
+      context?: Relationship;
+    } | null>(null),
+    [failed, setFailed] = useState(""),
+    [chosen, setChosen] = useState<{ key: string; id: string } | null>(null),
+    [expanded, setExpanded] = useState(false);
   useEffect(() => {
     let alive = true;
-    setSense(
-      word === "high" && relation === "amod" && direction === "forward"
-        ? words.includes("strong")
-          ? "high.a.01"
-          : words.includes("shrill")
-            ? "high.a.04"
-            : words.includes("senior")
-              ? "eminent.s.01"
-              : "high.a.02"
-        : "",
-    );
-    setExpanded(false);
     setFailed("");
-    getSemantics(word)
-      .then((data) => {
-        if (alive) {
-          setLoaded({ key, data });
-          if (word !== "high")
-            setSense(defaultSenseFor(data, relation, direction) ?? "");
-        }
+    setExpanded(false);
+    Promise.all([
+      getSemantics(word),
+      context
+        ? getLexeme(context, direction === "forward")
+        : Promise.resolve(null),
+    ])
+      .then(([data, other]) => {
+        if (alive) setLoaded({ key, data, context: other?.[relation] });
       })
       .catch(() => {
         if (alive) setFailed(key);
@@ -66,31 +62,48 @@ export function SynonymExplorer({
     return () => {
       alive = false;
     };
-  }, [key, word]);
+  }, [key, word, relation, direction, context]);
   const data = loaded?.key === key ? loaded.data : null;
+  const sense = data
+    ? chosen?.key === key
+      ? chosen.id
+      : (defaultSenseFor(data, relation, direction, loaded?.context) ?? "")
+    : "";
   const senses = data?.[partOfSpeech(relation, direction)] ?? [];
-  const candidates = data
-    ? candidatesFor(data, relation, direction, sense)
-    : [];
-  const lexical = candidates
-    .filter((c) => c.kind !== "context")
-    .sort(
-      (a, b) =>
-        (data?.availability?.[b.word]?.[`${relation}:${direction}`] ?? 0) -
-          (data?.availability?.[a.word]?.[`${relation}:${direction}`] ?? 0) ||
-        a.word.localeCompare(b.word),
+  const candidates = useMemo(
+    () =>
+      data
+        ? rankCandidates(
+            word,
+            data,
+            relation,
+            direction,
+            sense || undefined,
+            loaded?.context,
+          )
+        : [],
+    [data, word, relation, direction, sense, loaded],
+  );
+  const lexical = candidates.filter((c) => c.kind === "synonym"),
+    nearby = candidates.filter(
+      (c) => c.kind === "similar" || c.kind === "related",
     );
   const contexts = data
-    ? candidatesFor(data, relation, direction).filter(
-        (c) => c.kind === "context",
-      )
+    ? rankCandidates(
+        word,
+        data,
+        relation,
+        direction,
+        undefined,
+        loaded?.context,
+      ).filter((c) => c.kind === "context")
     : [];
   const toggle = (candidate: string) => {
     if (words.includes(candidate)) {
       if (candidate !== word) onChange(words.filter((w) => w !== candidate));
     } else if (words.length < 6) onChange([...words, candidate]);
   };
-  const chips = (items: typeof candidates) =>
+  const chips = (items: Candidate[]) =>
     items.map((c) => (
       <button
         type="button"
@@ -98,16 +111,11 @@ export function SynonymExplorer({
         key={c.word}
         aria-pressed={words.includes(c.word)}
         disabled={!words.includes(c.word) && words.length >= 6}
-        title={
-          c.neighbour
-            ? `${t("sharedContexts")}: ${c.neighbour.shared.join(", ")}`
-            : c.kind === "synonym"
-              ? "WordNet synset"
-              : "WordNet similar_to"
-        }
+        title={`${c.kind} · ${c.shared.join(", ")}${c.count !== undefined ? ` · ${c.count} ${t("observed")} / ${c.documents} ${t("documents")}` : ""}`}
         onClick={() => toggle(c.word)}
       >
         {words.includes(c.word) ? "−" : "+"} {c.word}
+        {c.count !== undefined && <small> · {format(lang, c.count)}</small>}
       </button>
     ));
   return (
@@ -119,28 +127,19 @@ export function SynonymExplorer({
         <span>{t("chooseSix")}</span>
       </div>
       <p className="synonym-note">{t("synonymNote")}</p>
-      {word === "high" && relation === "amod" && direction === "forward" && (
-        <div className="high-presets">
-          <span>{t("teachingSets")}</span>
-          <div className="chip-list">
-            {highSets.map((p, i) => (
-              <button
-                className="chip"
-                type="button"
-                key={p.id}
-                onClick={() => {
-                  setSense(
-                    ["high.a.02", "high.a.01", "high.a.04", "eminent.s.01"][i],
-                  );
-                  onPreset(p.words, p.objects);
-                }}
-              >
-                {tr(lang, `highSet${i}`)}
-              </button>
-            ))}
-          </div>
-        </div>
-      )}
+      <SenseChoices
+        word={word}
+        relation={relation}
+        direction={direction}
+        lang={lang}
+        onChoose={(w, o, id) => {
+          setChosen({ key, id });
+          onPreset(
+            w,
+            context ? [context, ...o.filter((x) => x !== context)] : o,
+          );
+        }}
+      />
       {failed === key ? (
         <p role="alert">{t("error")}</p>
       ) : !data ? (
@@ -152,18 +151,18 @@ export function SynonymExplorer({
             <select
               value={sense}
               onChange={(e) => {
-                setSense(e.target.value);
-                if (data)
-                  onChange(
-                    senseComparison(
-                      word,
-                      data,
-                      relation,
-                      direction,
-                      e.target.value || undefined,
-                    ),
-                  );
+                const id = e.target.value;
+                setChosen({ key, id });
                 setExpanded(false);
+                onChange(
+                  senseComparison(
+                    word,
+                    data,
+                    relation,
+                    direction,
+                    id || undefined,
+                  ),
+                );
               }}
             >
               <option value="">{t("allSenses")}</option>
@@ -179,25 +178,39 @@ export function SynonymExplorer({
               {senses.find((s) => s.id === sense)?.definition}
             </p>
           )}
+          {!!context && (
+            <p className="context-scope">
+              {t("contextFor")}: <strong>{context}</strong> ·{" "}
+              {t("contextCountHelp")}
+            </p>
+          )}
           <div className="synonym-group">
-            <strong>{t("lexicalCandidates")}</strong>
-            <div className="chip-list">
-              {chips(expanded ? lexical : lexical.slice(0, 12))}
-            </div>
+            <strong>{t("dictionarySynonyms")}</strong>
+            <div className="chip-list">{chips(lexical)}</div>
             {!lexical.length && <p>{t("noLexical")}</p>}
-            {lexical.length > 12 && (
-              <button
-                className="text-link"
-                onClick={() => setExpanded(!expanded)}
-              >
-                {t(expanded ? "fewer" : "more")}
-              </button>
-            )}
           </div>
+          {!!nearby.length && (
+            <div className="synonym-group">
+              <strong>{t("nearbyCandidates")}</strong>
+              <div className="chip-list">
+                {chips(expanded ? nearby : nearby.slice(0, 10))}
+              </div>
+              {nearby.length > 10 && (
+                <button
+                  className="text-link"
+                  onClick={() => setExpanded(!expanded)}
+                >
+                  {t(expanded ? "fewer" : "more")}
+                </button>
+              )}
+            </div>
+          )}
           {!!contexts.length && (
             <div className="synonym-group context-group">
-              <strong>{t("contextCandidates")}</strong>
-              <div className="chip-list">{chips(contexts)}</div>
+              <strong>
+                {t(context ? "contextAlternatives" : "contextCandidates")}
+              </strong>
+              <div className="chip-list">{chips(contexts.slice(0, 12))}</div>
               <p>{t("contextNote")}</p>
             </div>
           )}

@@ -44,7 +44,6 @@ import {
   englishPairs,
   normalize,
   interpret,
-  comparisonObjectsFor,
   type Summary,
   type Entry,
   type Selection,
@@ -54,9 +53,12 @@ import {
 } from "./data";
 import "./styles.css";
 import { SynonymExplorer } from "./SynonymExplorer";
+import { SenseChoices } from "./SenseChoices";
 import {
   comparisonGroup,
-  highSets,
+  getSemantics,
+  candidatesFor,
+  type SemanticEntry,
   discoverObjects,
   canonicalPair,
   type Direction,
@@ -219,9 +221,7 @@ function App() {
           ]?.[1] ?? [];
         const desired = e.object
           ? rows.find((r) => r[0] === e.object)
-          : e.word === "lessen"
-            ? (rows.find((r) => r[0] === "risk") ?? rows[0])
-            : rows[0];
+          : rows[0];
         const pick = desired
           ? selection(e, desired)
           : e.object
@@ -231,44 +231,22 @@ function App() {
         if (pick) {
           const group = await comparisonGroup(
             e.word,
-            e.word === "high" && !e.object
-              ? "building"
-              : e.direction === "forward"
-                ? pick.collocate
-                : pick.lemma,
+            e.object ?? "",
             e.relation,
-            summary,
             e.direction,
           );
           if (!alive) return;
           setCompareDirection(e.direction);
-          const highProfile =
-            e.word === "high" &&
-            e.relation === "amod" &&
-            e.direction === "forward"
-              ? (highSets.find((p) => p.objects.includes(e.object ?? "")) ??
-                highSets[0])
-              : null;
-          setCompareOrder(
-            highProfile || e.object ? "specified" : "distinctive",
-          );
+          setCompareOrder(e.object ? "specified" : "distinctive");
           setCompareWords(group);
           setCompareRel(e.relation);
-          setCompareObjects(
-            highProfile
-              ? [
-                  ...new Set([
-                    ...(e.object ? [e.object] : []),
-                    ...highProfile.objects,
-                  ]),
-                ]
-              : comparisonObjectsFor(
-                  group,
-                  e.direction === "forward" ? pick.collocate : pick.lemma,
-                  e.relation,
-                  rows,
-                ),
-          );
+          setCompareObjects(e.object ? [e.object] : []);
+        } else {
+          setCompareWords([e.word]);
+          setCompareObjects([]);
+          setCompareDirection(e.direction);
+          setCompareRel(e.relation);
+          setCompareOrder("distinctive");
         }
         setLoading(false);
       })
@@ -425,23 +403,11 @@ function App() {
     setLimit(12);
     setCompareRel(actual);
     if (pick && summary) {
-      const group = await comparisonGroup(
-        e.word,
-        direction === "forward" ? pick.collocate : pick.lemma,
-        actual,
-        summary,
-        direction,
-      );
+      const group = await comparisonGroup(e.word, "", actual, direction);
       setCompareDirection(direction);
       setCompareWords(group);
-      setCompareObjects(
-        comparisonObjectsFor(
-          group,
-          direction === "forward" ? pick.collocate : pick.lemma,
-          actual,
-          available[actual]?.[1] ?? [],
-        ),
-      );
+      setCompareObjects([]);
+      setCompareOrder("distinctive");
     }
   }
   async function compareSelected() {
@@ -451,21 +417,14 @@ function App() {
       direction === "forward" ? selected.lemma : selected.collocate,
       direction === "forward" ? selected.collocate : selected.lemma,
       selected.relation,
-      summary,
       direction,
     );
     setCompareDirection(direction);
     setCompareWords(group);
-    setCompareObjects(
-      comparisonObjectsFor(
-        group,
-        direction === "forward" ? selected.collocate : selected.lemma,
-        selected.relation,
-        (direction === "forward" ? entry?.forward : entry?.reverse)?.[
-          selected.relation
-        ]?.[1] ?? [],
-      ),
-    );
+    setCompareObjects([
+      direction === "forward" ? selected.collocate : selected.lemma,
+    ]);
+    setCompareOrder("specified");
     setCompareRel(selected.relation);
     setView("compare");
   }
@@ -807,6 +766,7 @@ function App() {
                         words={compareWords}
                         relation={entry.relation}
                         direction={entry.direction}
+                        context={entry.object}
                         lang={lang}
                         onChange={(w) => {
                           setCompareWords(w);
@@ -818,7 +778,9 @@ function App() {
                           setCompareObjects(o);
                           setCompareRel(entry.relation);
                           setCompareDirection(entry.direction);
-                          setCompareOrder("specified");
+                          setCompareOrder(
+                            o.length ? "specified" : "distinctive",
+                          );
                           setView("compare");
                         }}
                       />
@@ -1453,6 +1415,7 @@ function Comparison({
     [loading, setLoading] = useState(false),
     [error, setError] = useState(false),
     [mode, setMode] = useState<"count" | "preference" | "rate">("count");
+  const [candidateMetadata, setCandidateMetadata] = useState<SemanticEntry>({});
   const [rowOrder, setRowOrder] = useState<RowOrder>(initialOrder);
   const [editorOpen, setEditorOpen] = useState(false);
   useEffect(() => setRowOrder(initialOrder), [initialOrder]);
@@ -1475,14 +1438,19 @@ function Comparison({
     let alive = true;
     setLoading(true);
     setError(false);
-    Promise.all(
-      words.map(
-        async (w) => [w, await getLexeme(w, direction === "reverse")] as const,
+    Promise.all([
+      Promise.all(
+        words.map(
+          async (w) =>
+            [w, await getLexeme(w, direction === "reverse")] as const,
+        ),
       ),
-    )
-      .then((p) => {
+      getSemantics(words[0]).catch(() => ({}) as SemanticEntry),
+    ])
+      .then(([p, metadata]) => {
         if (alive) {
           setEntries(Object.fromEntries(p));
+          setCandidateMetadata(metadata);
           setEntryKey(loadKey);
           setLoading(false);
         }
@@ -1623,25 +1591,18 @@ function Comparison({
           </button>
         </div>
       </div>
-      {!compact &&
-        words[0] === "high" &&
-        relation === "amod" &&
-        direction === "forward" && (
-          <div className="comparison-quick chip-list">
-            {highSets.map((p, i) => (
-              <button
-                className="chip"
-                key={p.id}
-                onClick={() => {
-                  onApply(p.words, p.objects, relation, direction);
-                  setRowOrder("specified");
-                }}
-              >
-                {t(`highSet${i}`)}
-              </button>
-            ))}
-          </div>
-        )}
+      {!compact && (
+        <SenseChoices
+          word={words[0]}
+          relation={relation}
+          direction={direction}
+          lang={lang}
+          onChoose={(w, o) => {
+            onApply(w, o, relation, direction);
+            setRowOrder(o.length ? "specified" : "distinctive");
+          }}
+        />
+      )}
       {!compact && (
         <details
           className="comparison-editor"
@@ -1657,11 +1618,12 @@ function Comparison({
               words={words}
               relation={relation}
               direction={direction}
+              context={objects.length === 1 ? objects[0] : undefined}
               lang={lang}
               onChange={(w) => onApply(w, objects, relation, direction)}
               onPreset={(w, o) => {
                 onApply(w, o, relation, direction);
-                setRowOrder("specified");
+                setRowOrder(o.length ? "specified" : "distinctive");
               }}
             />
           )}
@@ -1685,12 +1647,20 @@ function Comparison({
                   return;
                 }
                 setInputError(false);
-                const parsed = interpret(objectInput);
-                const obj = objectInput.trim()
-                  ? (parsed.object ?? parsed.word)
-                  : "";
-                setRowOrder(obj ? "specified" : "distinctive");
-                onApply(w, obj ? [obj] : [], relationInput, directionInput);
+                const requested = [
+                  ...new Set(
+                    objectInput
+                      .split(/[,、，]/)
+                      .map((s) => s.trim())
+                      .filter(Boolean)
+                      .map((s) => {
+                        const parsed = interpret(s);
+                        return parsed.object ?? parsed.word;
+                      }),
+                  ),
+                ];
+                setRowOrder(requested.length ? "specified" : "distinctive");
+                onApply(w, requested, relationInput, directionInput);
               }}
             >
               <label>
@@ -1717,9 +1687,11 @@ function Comparison({
                   value={relationInput}
                   onChange={(e) => setRelationInput(e.target.value)}
                 >
-                  <option value="dobj">{t("dobj")}</option>
-                  <option value="amod">{t("amod")}</option>
-                  <option value="nsubj">{t("nsubj")}</option>
+                  {summary.relations.map(({ relation: r }) => (
+                    <option key={r} value={r}>
+                      {t(r)}
+                    </option>
+                  ))}
                 </select>
               </label>
               <label>
@@ -1808,6 +1780,27 @@ function Comparison({
                 {words.map((w) => (
                   <th scope="col" key={w}>
                     {w}
+                    {w !== words[0] && (
+                      <small
+                        className="candidate-source"
+                        title={t("candidateSource")}
+                      >
+                        {(() => {
+                          const kind = candidatesFor(
+                            candidateMetadata,
+                            relation,
+                            direction,
+                          ).find((c) => c.word === w)?.kind;
+                          return t(
+                            kind === "synonym"
+                              ? "synonymSource"
+                              : kind === "similar" || kind === "related"
+                                ? "relatedSource"
+                                : "contextSource",
+                          );
+                        })()}
+                      </small>
+                    )}
                   </th>
                 ))}
               </tr>

@@ -1,43 +1,36 @@
-import { hash, type Lexeme, type Summary, clusterFor } from "./data";
+import { getLexeme, logDice, type Lexeme, type Relationship } from "./data";
 
 export type Direction = "forward" | "reverse";
-export type Sense = {
-  id: string;
-  definition: string;
-  synonyms: string[];
-  similar: string[];
-  antonyms: string[];
+export type PartOfSpeech = "a" | "v" | "n" | "r" | "none";
+export {
+  getSemantics,
+  type Sense,
+  type Neighbour,
+  type ContextEvidence,
+  type SemanticEntry,
+} from "./lexical";
+import { getSemantics, type Neighbour, type SemanticEntry } from "./lexical";
+export type Candidate = {
+  word: string;
+  kind: "synonym" | "similar" | "related" | "context";
+  neighbour?: Neighbour;
+  similarity: number;
+  shared: string[];
+  total: number;
+  count?: number;
+  documents?: number;
+  score: number;
 };
-export type Neighbour = { word: string; similarity: number; shared: string[] };
-export type SemanticEntry = {
-  a?: Sense[];
-  v?: Sense[];
-  n?: Sense[];
-  r?: Sense[];
-  neighbours?: Record<string, Neighbour[]>;
-  availability?: Record<string, Record<string, number>>;
-};
-const cache = new Map<string, Promise<Record<string, SemanticEntry>>>();
-export async function getSemantics(word: string): Promise<SemanticEntry> {
-  const shard = (await hash(word)).slice(0, 2);
-  if (!cache.has(shard))
-    cache.set(
-      shard,
-      fetch(`/data/semantics/${shard}.json`)
-        .then(async (r) => {
-          if (!r.ok) throw Error(`HTTP ${r.status}`);
-          return (await r.json()).words;
-        })
-        .catch((e) => {
-          cache.delete(shard);
-          throw e;
-        }),
-    );
-  return (await cache.get(shard)!)[word] ?? {};
-}
-export function partOfSpeech(relation: string, direction: Direction) {
+export function partOfSpeech(
+  relation: string,
+  direction: Direction,
+): PartOfSpeech {
   if (direction === "reverse")
-    return ["verb_adv", "adj_adv"].includes(relation) ? "r" : "n";
+    return ["verb_adv", "adj_adv"].includes(relation)
+      ? "r"
+      : relation.endsWith("_prep")
+        ? "none"
+        : "n";
   return ["amod", "adj_adv", "adj_prep"].includes(relation)
     ? "a"
     : ["compound", "noun_prep"].includes(relation)
@@ -49,39 +42,178 @@ export function candidatesFor(
   relation: string,
   direction: Direction,
   senseId?: string,
-) {
-  const all = data[partOfSpeech(relation, direction)] ?? [];
+): Candidate[] {
+  const key = `${relation}:${direction}`,
+    all = data[partOfSpeech(relation, direction)] ?? [];
   const senses = senseId ? all.filter((s) => s.id === senseId) : all;
-  const opposite = new Set(all.flatMap((s) => s.antonyms));
-  const direct = new Set(senses.flatMap((s) => s.synonyms));
-  const similar = new Set(senses.flatMap((s) => s.similar));
-  const neighbours = senseId
-    ? []
-    : (data.neighbours?.[`${relation}:${direction}`] ?? []);
-  const words = [
-    ...new Set([...direct, ...similar, ...neighbours.map((n) => n.word)]),
+  const opposite = new Set(all.flatMap((s) => s.antonyms)),
+    direct = new Set(senses.flatMap((s) => s.synonyms)),
+    similar = new Set(senses.flatMap((s) => s.similar)),
+    related = new Set(senses.flatMap((s) => s.related ?? []));
+  const neighbours = senseId ? [] : (data.neighbours?.[key] ?? []);
+  const names = [
+    ...new Set([
+      ...direct,
+      ...similar,
+      ...related,
+      ...neighbours.map((n) => n.word),
+    ]),
   ].filter((w) => !opposite.has(w));
-  return words.map((word) => ({
-    word,
-    kind: direct.has(word)
+  return names.map((word) => {
+    const neighbour = neighbours.find((n) => n.word === word),
+      evidence = data.evidence?.[key]?.[word];
+    const kind = direct.has(word)
       ? "synonym"
       : similar.has(word)
         ? "similar"
-        : "context",
-    neighbour: neighbours.find((n) => n.word === word),
-  }));
+        : related.has(word)
+          ? "related"
+          : "context";
+    const similarity = evidence?.similarity ?? neighbour?.similarity ?? 0,
+      shared = evidence?.shared ?? neighbour?.shared ?? [],
+      total = data.availability?.[word]?.[key] ?? 0;
+    return {
+      word,
+      kind,
+      neighbour,
+      similarity,
+      shared,
+      total,
+      score:
+        (kind === "synonym"
+          ? 3.5
+          : kind === "similar"
+            ? 1.5
+            : kind === "related"
+              ? 0.5
+              : 0) +
+        similarity * 8 +
+        Math.min(1, shared.length / 6) +
+        Math.min(1, Math.log1p(total) / 10),
+    };
+  });
 }
 export function defaultSenseFor(
   data: SemanticEntry,
   relation: string,
   direction: Direction,
+  context?: Relationship,
 ) {
-  return (data[partOfSpeech(relation, direction)] ?? []).find((s) =>
-    candidatesFor(data, relation, direction, s.id).some(
-      (c) =>
-        (data.availability?.[c.word]?.[`${relation}:${direction}`] ?? 0) > 0,
+  const contextRows = new Map(context?.[1].map((r) => [r[0], r]) ?? []);
+  const scored = (data[partOfSpeech(relation, direction)] ?? [])
+    .map((sense, index) => {
+      const candidates = candidatesFor(data, relation, direction, sense.id)
+        .filter((c) => c.total > 0)
+        .sort((a, b) => b.similarity - a.similarity || b.score - a.score);
+      const top = candidates.slice(0, 3);
+      return {
+        sense,
+        index,
+        score:
+          candidates
+            .map((c) => Math.log1p(contextRows.get(c.word)?.[1] ?? 0))
+            .sort((a, b) => b - a)
+            .slice(0, 3)
+            .reduce((a, b) => a + b, 0) +
+          (top[0]?.similarity ?? 0) +
+          (top[1]?.similarity ?? 0) * 0.2,
+        supported: candidates.length > 0,
+      };
+    })
+    .filter((s) => s.supported)
+    .sort((a, b) =>
+      context ? b.score - a.score || a.index - b.index : a.index - b.index,
+    );
+  return scored[0]?.sense.id;
+}
+export function rankCandidates(
+  word: string,
+  data: SemanticEntry,
+  relation: string,
+  direction: Direction,
+  senseId?: string,
+  context?: Relationship,
+): Candidate[] {
+  const key = `${relation}:${direction}`;
+  const candidates = candidatesFor(data, relation, direction, senseId);
+  const byName = new Map(candidates.map((c) => [c.word, c]));
+  const blocked = new Set(
+    (data[partOfSpeech(relation, direction)] ?? []).flatMap((s) => s.antonyms),
+  );
+  if (context)
+    for (const [name, count, documents, total] of context[1]) {
+      if (
+        name === word ||
+        blocked.has(name) ||
+        count < 3 ||
+        documents < 3 ||
+        !/^[a-z][a-z-]+$/.test(name)
+      )
+        continue;
+      if (!byName.has(name)) {
+        const neighbour = data.neighbours?.[key]?.find((n) => n.word === name),
+          ev = data.evidence?.[key]?.[name];
+        byName.set(name, {
+          word: name,
+          kind: "context",
+          similarity: ev?.similarity ?? neighbour?.similarity ?? 0,
+          shared: ev?.shared ?? neighbour?.shared ?? [],
+          total,
+          score: (ev?.similarity ?? neighbour?.similarity ?? 0) * 8,
+        });
+      }
+    }
+  const contextRows = new Map(context?.[1].map((r) => [r[0], r]) ?? []);
+  return [...byName.values()]
+    .filter((c) => c.word !== word)
+    .map((c) => {
+      const row = contextRows.get(c.word),
+        count = row?.[1] ?? 0,
+        documents = row?.[2] ?? 0;
+      const association =
+        context && row ? (logDice(count, row[3], context[0]) ?? 0) : 0;
+      return {
+        ...c,
+        total: row?.[3] ?? c.total,
+        count: context ? count : undefined,
+        documents: context ? documents : undefined,
+        score:
+          c.score +
+          (context
+            ? count > 0
+              ? Math.log1p(count) * 1.3 * Math.min(1, documents / 3) +
+                Math.max(0, association) / 3
+              : -3
+            : 0),
+      };
+    })
+    .sort((a, b) => b.score - a.score || a.word.localeCompare(b.word));
+}
+export async function getCandidates(
+  word: string,
+  relation: string,
+  direction: Direction,
+  object = "",
+  senseId?: string,
+) {
+  const [data, partner] = await Promise.all([
+    getSemantics(word),
+    object ? getLexeme(object, direction === "forward") : Promise.resolve(null),
+  ]);
+  const chosen =
+    senseId ?? defaultSenseFor(data, relation, direction, partner?.[relation]);
+  return {
+    data,
+    senseId: chosen,
+    candidates: rankCandidates(
+      word,
+      data,
+      relation,
+      direction,
+      chosen,
+      partner?.[relation],
     ),
-  )?.id;
+  };
 }
 export function senseComparison(
   word: string,
@@ -90,113 +222,108 @@ export function senseComparison(
   direction: Direction,
   senseId?: string,
 ) {
-  const candidates = candidatesFor(data, relation, direction, senseId);
   return [
     word,
-    ...candidates
-      .filter(
-        (c) =>
-          c.word !== word &&
-          (data.availability?.[c.word]?.[`${relation}:${direction}`] ?? 0) > 0,
-      )
-      .sort(
-        (a, b) =>
-          (data.availability?.[b.word]?.[`${relation}:${direction}`] ?? 0) -
-            (data.availability?.[a.word]?.[`${relation}:${direction}`] ?? 0) ||
-          a.word.localeCompare(b.word),
-      )
+    ...rankCandidates(word, data, relation, direction, senseId)
+      .filter((c) => c.total > 0)
       .slice(0, 5)
       .map((c) => c.word),
   ];
 }
-
-// Teaching comparisons, explicitly labelled as comparisons rather than interchangeable synonyms.
-export const highSets = [
-  {
-    id: "height",
-    ja: "高さ・位置",
-    en: "Height / position",
-    words: ["high", "tall", "lofty", "elevated"],
-    objects: ["building", "tree", "mountain", "wall", "tower", "ceiling"],
-  },
-  {
-    id: "degree",
-    ja: "程度・量・確率",
-    en: "Degree / amount / probability",
-    words: ["high", "strong", "great", "large", "big", "elevated"],
-    objects: [
-      "possibility",
-      "probability",
-      "chance",
-      "risk",
-      "price",
-      "temperature",
-      "pressure",
-      "quality",
-      "demand",
-    ],
-  },
-  {
-    id: "pitch",
-    ja: "声・音の高さ",
-    en: "Voice / pitch",
-    words: ["high", "shrill", "squeaky", "piercing"],
-    objects: ["voice", "note", "sound", "pitch", "cry"],
-  },
-  {
-    id: "status",
-    ja: "地位・重要度",
-    en: "Status / importance",
-    words: ["high", "senior", "top", "elevated"],
-    objects: ["rank", "position", "official", "priority", "status"],
-  },
-];
+export function automaticComparison(
+  word: string,
+  data: SemanticEntry,
+  relation: string,
+  direction: Direction,
+) {
+  const key = `${relation}:${direction}`,
+    selected = defaultSenseFor(data, relation, direction);
+  const primary = rankCandidates(
+    word,
+    data,
+    relation,
+    direction,
+    selected,
+  ).filter((c) => c.total > 0);
+  const hasEvidence = Object.keys(data.evidence?.[key] ?? {}).length > 0;
+  const supported = primary.filter(
+    (c) => !hasEvidence || c.total < 50 || c.similarity >= 0.05,
+  );
+  const base = supported.length ? supported : primary;
+  const direct = base.filter(
+    (c) => c.kind === "synonym" || c.kind === "similar",
+  );
+  const supplementary = rankCandidates(word, data, relation, direction).filter(
+    (c) =>
+      c.kind !== "context" &&
+      c.total > 0 &&
+      c.similarity >= 0.12 &&
+      c.shared.length >= 3,
+  );
+  const pos = partOfSpeech(relation, direction);
+  const candidates =
+    pos === "n" && direct.length
+      ? direct
+      : pos === "v" && base.length < 5
+        ? [
+            ...new Map(
+              [...base, ...supplementary].map((c) => [c.word, c]),
+            ).values(),
+          ].sort((a, b) => b.score - a.score || a.word.localeCompare(b.word))
+        : base;
+  return [word, ...candidates.slice(0, 5).map((c) => c.word)];
+}
 export async function comparisonGroup(
   word: string,
   object: string,
   relation: string,
-  summary: Summary,
   direction: Direction = "forward",
+  senseId?: string,
 ) {
-  if (word === "high" && relation === "amod" && direction === "forward")
-    return (highSets.find((set) => set.objects.includes(object)) ?? highSets[0])
-      .words;
-  const editorial =
-    direction === "forward"
-      ? clusterFor(word, object, relation, summary)
-      : [word];
-  if (
-    editorial.length > 1 &&
-    !(relation === "amod" && editorial.includes("high"))
-  )
-    return [word, ...editorial.filter((w) => w !== word)];
-  const data = await getSemantics(word).catch(() => ({}) as SemanticEntry);
-  const candidates = candidatesFor(
-    data,
+  const { data, candidates } = await getCandidates(
+    word,
     relation,
     direction,
-    defaultSenseFor(data, relation, direction),
+    object,
+    senseId,
   );
-  const scored = candidates.map((c) => {
-    const total =
-      data.availability?.[c.word]?.[`${relation}:${direction}`] ?? 0;
-    return {
-      ...c,
-      total,
-      score:
-        (c.kind === "synonym" ? 3 : c.kind === "similar" ? 2 : 1) *
-          Math.log1p(total) +
-        (c.neighbour?.similarity ?? 0) * 4,
-    };
-  });
+  if (!object && senseId === undefined)
+    return automaticComparison(word, data, relation, direction);
   return [
     word,
-    ...scored
-      .filter((c) => c.total > 0 && c.word !== word)
-      .sort((a, b) => b.score - a.score || a.word.localeCompare(b.word))
-      .slice(0, 4)
+    ...candidates
+      .filter((c) => c.total > 0)
+      .slice(0, 5)
       .map((c) => c.word),
   ];
+}
+export function senseContexts(
+  word: string,
+  data: SemanticEntry,
+  relation: string,
+  direction: Direction,
+  senseId: string,
+): string[] {
+  const candidates = candidatesFor(data, relation, direction, senseId)
+    .filter((c) => c.total > 0)
+    .sort((a, b) => b.similarity - a.similarity || b.score - a.score)
+    .slice(0, 4);
+  const shared = [...new Set(candidates.flatMap((c) => c.shared))];
+  return shared.slice(0, 8);
+}
+export function senseOptions(
+  data: SemanticEntry,
+  relation: string,
+  direction: Direction,
+) {
+  return (data[partOfSpeech(relation, direction)] ?? [])
+    .map((s) => ({
+      ...s,
+      candidates: candidatesFor(data, relation, direction, s.id)
+        .filter((c) => c.total > 0)
+        .sort((a, b) => b.score - a.score || a.word.localeCompare(b.word)),
+    }))
+    .filter((s) => s.candidates.length > 0);
 }
 
 export type RowOrder = "distinctive" | "shared" | "frequent" | "specified";

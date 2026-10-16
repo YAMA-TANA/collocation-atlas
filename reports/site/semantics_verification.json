@@ -1,14 +1,21 @@
 {
+  "entries": 47538,
   "lexical_words": 47029,
+  "general_query_settings": 141,
+  "verified_general_pair_cells": 12156,
   "senses": 100151,
   "neighbour_sets": {
-    "amod:forward": 2966,
-    "dobj:forward": 1816,
-    "dobj:reverse": 4944
+    "amod:forward": 3337,
+    "dobj:forward": 1831,
+    "nsubj:forward": 1323,
+    "amod:reverse": 5456,
+    "dobj:reverse": 5223,
+    "adj_adv:reverse": 286,
+    "verb_adv:reverse": 815
   },
   "verified_high_pair_cells": 54,
   "license_on_every_shard": true,
-  "archive_sha256": "3f1d16d22572dd518da7b32db5c670c94943813edd72f04335281dda5816f26e",
-  "max_shard_bytes": 419915,
+  "archive_sha256": "f949c8bce1ca0be7995c73b9bd6eba950d5bee227ed2d6021147779115d9ae9e",
+  "max_shard_bytes": 1314507,
   "all_assertions_passed": true
 }

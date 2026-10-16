@@ -25,7 +25,8 @@ def main():
     db=duckdb.connect(str(ROOT/"data/collocations.duckdb"),read_only=True)
     db.execute("SET memory_limit='2GB'");db.execute("SET threads=4")
     counts={}
-    for relation,direction,pos in [("amod","forward","a"),("dobj","forward","v"),("dobj","reverse","n")]:
+    for relation,direction in [key.split(':') for key in manifest['neighbours']]:
+        pos='r' if direction=='reverse' and relation in ['adj_adv','verb_adv'] else 'n' if direction=='reverse' else 'a' if relation=='amod' else 'v' 
         key=f"{relation}:{direction}"
         left,right=("lemma","collocate") if direction=="forward" else ("collocate","lemma")
         marginals=dict(db.execute(f"SELECT {left},sum(count) FROM pairs WHERE relation=? GROUP BY 1",[relation]).fetchall())
@@ -41,6 +42,17 @@ def main():
                 neighbours+=1
         assert neighbours==manifest["neighbours"][key]
         counts[key]=neighbours
+    import pyarrow as pa
+    general=json.loads((ROOT/'site/src/fixtures/general-regression.json').read_text(encoding='utf-8'))
+    regression_rows=[]
+    for key,(total,rows) in general['contexts'].items():
+        relation,partner=key.split(':')
+        assert total==db.execute('SELECT sum(count) FROM pairs WHERE relation=? AND collocate=?',[relation,partner]).fetchone()[0]
+        regression_rows.extend({'relation':relation,'lemma':word,'collocate':partner,'expected_count':count,'expected_documents':documents} for word,count,documents,_ in rows)
+    db.register('regression_rows',pa.Table.from_pylist(regression_rows))
+    mismatches=db.execute('SELECT r.* FROM regression_rows r LEFT JOIN pairs p USING(relation,lemma,collocate) WHERE p.count IS NULL OR p.count<>r.expected_count OR p.documents<>r.expected_documents').fetchall()
+    assert not mismatches,mismatches[:3]
+    db.unregister('regression_rows')
     fixture=json.loads((ROOT/"site/src/fixtures/high-regression.json").read_text(encoding="utf-8"))
     verified=0
     for word,entry in fixture["entries"].items():
@@ -56,7 +68,7 @@ def main():
     with zipfile.ZipFile(archive) as z:
         for path in OUT.iterdir():
             if path.is_file():assert z.read("data/semantics/"+path.name)==path.read_bytes()
-    report={"lexical_words":len(words),"senses":senses,"neighbour_sets":counts,"verified_high_pair_cells":verified,"license_on_every_shard":True,"archive_sha256":digest,"max_shard_bytes":max(p.stat().st_size for p in OUT.glob('??.json')),"all_assertions_passed":True}
+    report={"entries":len(words),"lexical_words":manifest.get("lexical_words",len(words)),"general_query_settings":len(general["queries"]),"verified_general_pair_cells":len(regression_rows),"senses":senses,"neighbour_sets":counts,"verified_high_pair_cells":verified,"license_on_every_shard":True,"archive_sha256":digest,"max_shard_bytes":max(p.stat().st_size for p in OUT.glob('??.json')),"all_assertions_passed":True}
     path=ROOT/"reports/site/semantics_verification.json"
     path.write_text(json.dumps(report,indent=2)+"\n",encoding="utf-8")
     print(json.dumps(report,indent=2))

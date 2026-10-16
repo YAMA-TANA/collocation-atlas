@@ -23,7 +23,6 @@ describe("Search interpretation without invented evidence", () => {
     expect(interpret("heavy rain")).toMatchObject({
       word: "heavy",
       object: "rain",
-      relation: "amod",
     });
   });
   it("maps Romance-language search examples", () => {

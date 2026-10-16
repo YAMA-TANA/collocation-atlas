@@ -19,7 +19,8 @@ is English; arbitrary machine translation is not claimed.
 - Lemma aggregation, original document frequency, logDice, and normalized
   preference within an explicitly displayed comparison set.
 - WordNet senses for 47,029 words, with separate lexical and corpus-context
-  suggestions. Choose a sense to rebuild the comparison without mixing senses.
+  suggestions. Every query uses the same pipeline: no per-word synonym rules.
+  Choose a sense or supply a collocate to rebuild the comparison.
 - Automatically discovered distinctive/shared collocates, per-word rate
   normalization, editable comparison columns, and noun comparisons in reverse.
 - Selected source-linked examples and detailed evidence for 53 learning entries.
