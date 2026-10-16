@@ -30,6 +30,32 @@ for (const [name, contents] of Object.entries(files)) {
   await mkdir(path.dirname(dest), { recursive: true });
   await writeFile(dest, contents);
 }
+// Lexical senses and corpus context neighbours are versioned independently.
+const semanticBase =
+  "https://github.com/YAMA-TANA/collocation-atlas/releases/download/lexicon-2026-10-16-v2";
+const semanticExpected = (
+  await (await get(`${semanticBase}/semantic-site.sha256`)).text()
+)
+  .trim()
+  .split(/\s+/)[0];
+const semanticBytes = new Uint8Array(
+  await (await get(`${semanticBase}/semantic-site.zip`)).arrayBuffer(),
+);
+if (
+  createHash("sha256").update(semanticBytes).digest("hex") !== semanticExpected
+)
+  throw Error("Semantic archive checksum mismatch");
+for (const [name, contents] of Object.entries(unzipSync(semanticBytes))) {
+  if (name.endsWith("/")) continue;
+  const dest = path.resolve(target, name);
+  if (
+    !dest.startsWith(target + path.sep) ||
+    !name.startsWith("data/semantics/")
+  )
+    throw Error("Unsafe semantic archive path");
+  await mkdir(path.dirname(dest), { recursive: true });
+  await writeFile(dest, contents);
+}
 const coverage = JSON.parse(
   await readFile(path.join(target, "data", "coverage.json"), "utf8"),
 );

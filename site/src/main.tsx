@@ -40,7 +40,6 @@ import {
   phrase,
   logDice,
   preference,
-  clusterFor,
   exampleObjects,
   englishPairs,
   normalize,
@@ -54,6 +53,15 @@ import {
   type Row,
 } from "./data";
 import "./styles.css";
+import { SynonymExplorer } from "./SynonymExplorer";
+import {
+  comparisonGroup,
+  highSets,
+  discoverObjects,
+  canonicalPair,
+  type Direction,
+  type RowOrder,
+} from "./semantics";
 
 type View = "dictionary" | "compare" | "saved" | "about";
 function stored<T>(key: string, fallback: T): T {
@@ -145,6 +153,9 @@ function App() {
   const [compareObjects, setCompareObjects] =
       useState<string[]>(exampleObjects),
     [compareRel, setCompareRel] = useState("dobj");
+  const [compareDirection, setCompareDirection] =
+    useState<Direction>("forward");
+  const [compareOrder, setCompareOrder] = useState<RowOrder>("distinctive");
   const navigate = useCallback(
     (text: string, target: View = "dictionary") => {
       setInput(text);
@@ -199,7 +210,7 @@ function App() {
     setFilter("");
     setLimit(12);
     lookup(query)
-      .then((e) => {
+      .then(async (e) => {
         if (!alive) return;
         setEntry(e);
         const rows =
@@ -208,46 +219,58 @@ function App() {
           ]?.[1] ?? [];
         const desired = e.object
           ? rows.find((r) => r[0] === e.object)
-          : (rows.find((r) => r[0] === "risk") ?? rows[0]);
+          : e.word === "lessen"
+            ? (rows.find((r) => r[0] === "risk") ?? rows[0])
+            : rows[0];
         const pick = desired
           ? selection(e, desired)
           : e.object
             ? { lemma: e.word, collocate: e.object, relation: e.relation }
             : null;
         setSelected(pick);
-        setLoading(false);
         if (pick) {
-          const group = clusterFor(
-            pick.lemma,
-            pick.collocate,
+          const group = await comparisonGroup(
+            e.word,
+            e.word === "high" && !e.object
+              ? "building"
+              : e.direction === "forward"
+                ? pick.collocate
+                : pick.lemma,
             e.relation,
             summary,
+            e.direction,
+          );
+          if (!alive) return;
+          setCompareDirection(e.direction);
+          const highProfile =
+            e.word === "high" &&
+            e.relation === "amod" &&
+            e.direction === "forward"
+              ? (highSets.find((p) => p.objects.includes(e.object ?? "")) ??
+                highSets[0])
+              : null;
+          setCompareOrder(
+            highProfile || e.object ? "specified" : "distinctive",
           );
           setCompareWords(group);
           setCompareRel(e.relation);
           setCompareObjects(
-            comparisonObjectsFor(
-              group,
-              pick.collocate,
-              e.relation,
-              e.direction === "forward" ? rows : [],
-            ),
+            highProfile
+              ? [
+                  ...new Set([
+                    ...(e.object ? [e.object] : []),
+                    ...highProfile.objects,
+                  ]),
+                ]
+              : comparisonObjectsFor(
+                  group,
+                  e.direction === "forward" ? pick.collocate : pick.lemma,
+                  e.relation,
+                  rows,
+                ),
           );
-          if (e.direction === "reverse")
-            getLexeme(pick.lemma)
-              .then((d) => {
-                if (alive)
-                  setCompareObjects(
-                    comparisonObjectsFor(
-                      group,
-                      pick.collocate,
-                      e.relation,
-                      d[e.relation]?.[1] ?? [],
-                    ),
-                  );
-              })
-              .catch(() => {});
         }
+        setLoading(false);
       })
       .catch(() => {
         if (alive) {
@@ -385,7 +408,7 @@ function App() {
       setDialogQuery(query);
     }
   }
-  function changeRelation(
+  async function changeRelation(
     rel: string,
     direction = entry?.direction ?? "forward",
   ) {
@@ -402,33 +425,45 @@ function App() {
     setLimit(12);
     setCompareRel(actual);
     if (pick && summary) {
-      const group = clusterFor(pick.lemma, pick.collocate, actual, summary);
+      const group = await comparisonGroup(
+        e.word,
+        direction === "forward" ? pick.collocate : pick.lemma,
+        actual,
+        summary,
+        direction,
+      );
+      setCompareDirection(direction);
       setCompareWords(group);
       setCompareObjects(
         comparisonObjectsFor(
           group,
-          pick.collocate,
+          direction === "forward" ? pick.collocate : pick.lemma,
           actual,
-          direction === "forward" ? (available[actual]?.[1] ?? []) : [],
+          available[actual]?.[1] ?? [],
         ),
       );
     }
   }
-  function compareSelected() {
+  async function compareSelected() {
     if (!selected || !summary) return;
-    const group = clusterFor(
-      selected.lemma,
-      selected.collocate,
+    const direction = entry?.direction ?? "forward";
+    const group = await comparisonGroup(
+      direction === "forward" ? selected.lemma : selected.collocate,
+      direction === "forward" ? selected.collocate : selected.lemma,
       selected.relation,
       summary,
+      direction,
     );
+    setCompareDirection(direction);
     setCompareWords(group);
     setCompareObjects(
       comparisonObjectsFor(
         group,
-        selected.collocate,
+        direction === "forward" ? selected.collocate : selected.lemma,
         selected.relation,
-        entry?.forward[selected.relation]?.[1] ?? [],
+        (direction === "forward" ? entry?.forward : entry?.reverse)?.[
+          selected.relation
+        ]?.[1] ?? [],
       ),
     );
     setCompareRel(selected.relation);
@@ -767,6 +802,33 @@ function App() {
                           </button>
                         </div>
                       </div>
+                      <SynonymExplorer
+                        word={entry.word}
+                        words={compareWords}
+                        relation={entry.relation}
+                        direction={entry.direction}
+                        lang={lang}
+                        onChange={(w) => {
+                          setCompareWords(w);
+                          setCompareRel(entry.relation);
+                          setCompareDirection(entry.direction);
+                        }}
+                        onPreset={(w, o) => {
+                          setCompareWords(w);
+                          setCompareObjects(o);
+                          setCompareRel(entry.relation);
+                          setCompareDirection(entry.direction);
+                          setCompareOrder("specified");
+                          setView("compare");
+                        }}
+                      />
+                      <button
+                        className="text-link open-comparison"
+                        onClick={() => setView("compare")}
+                      >
+                        {t("compare")}
+                        <ArrowRight size={16} />
+                      </button>
                       {!Object.keys(entry.forward).length &&
                       !Object.keys(entry.reverse).length ? (
                         <div className="empty-state">
@@ -1024,9 +1086,12 @@ function App() {
                               words={compareWords}
                               objects={compareObjects}
                               relation={compareRel}
+                              direction={compareDirection}
+                              initialOrder={compareOrder}
                               selected={selected}
                               onSelect={setSelected}
-                              onApply={(w, o, r) => {
+                              onApply={(w, o, r, d) => {
+                                setCompareDirection(d);
                                 setCompareWords(w);
                                 setCompareObjects(o);
                                 setCompareRel(r);
@@ -1039,22 +1104,32 @@ function App() {
                     </>
                   )
                 ))}
-              {view === "compare" && (
-                <Comparison
-                  lang={lang}
-                  summary={summary}
-                  words={compareWords}
-                  objects={compareObjects}
-                  relation={compareRel}
-                  selected={selected}
-                  onSelect={setSelected}
-                  onApply={(w, o, r) => {
-                    setCompareWords(w);
-                    setCompareObjects(o);
-                    setCompareRel(r);
-                  }}
-                />
-              )}
+              {view === "compare" &&
+                (searchError ? (
+                  <p className="error-box" role="alert">
+                    {t("error")}
+                  </p>
+                ) : loading ? (
+                  <Loading t={t} />
+                ) : (
+                  <Comparison
+                    lang={lang}
+                    summary={summary}
+                    words={compareWords}
+                    objects={compareObjects}
+                    relation={compareRel}
+                    direction={compareDirection}
+                    initialOrder={compareOrder}
+                    selected={selected}
+                    onSelect={setSelected}
+                    onApply={(w, o, r, d) => {
+                      setCompareDirection(d);
+                      setCompareWords(w);
+                      setCompareObjects(o);
+                      setCompareRel(r);
+                    }}
+                  />
+                ))}
               {view === "saved" && (
                 <section className="saved-page">
                   <h1>{t("saved")}</h1>
@@ -1340,7 +1415,10 @@ type Benchmark = {
       {
         count: number;
         documents: number;
-        synonym_preference: { preference_score: number | null };
+        synonym_preference: {
+          preference_score: number | null;
+          verb_cluster_count: number;
+        };
       }
     >;
   }[];
@@ -1351,6 +1429,8 @@ function Comparison({
   words,
   objects,
   relation,
+  direction,
+  initialOrder = "distinctive",
   selected,
   onSelect,
   onApply,
@@ -1363,14 +1443,22 @@ function Comparison({
   relation: string;
   selected: Selection | null;
   onSelect: (s: Selection) => void;
-  onApply: (w: string[], o: string[], r: string) => void;
+  direction: Direction;
+  initialOrder?: RowOrder;
+  onApply: (w: string[], o: string[], r: string, d: Direction) => void;
   compact?: boolean;
 }) {
   const t = (s: string) => tr(lang, s),
     [entries, setEntries] = useState<Record<string, Lexeme>>({}),
     [loading, setLoading] = useState(false),
     [error, setError] = useState(false),
-    [mode, setMode] = useState<"count" | "preference">("count");
+    [mode, setMode] = useState<"count" | "preference" | "rate">("count");
+  const [rowOrder, setRowOrder] = useState<RowOrder>(initialOrder);
+  const [editorOpen, setEditorOpen] = useState(false);
+  useEffect(() => setRowOrder(initialOrder), [initialOrder]);
+  const [directionInput, setDirectionInput] = useState<Direction>(direction);
+  const [entryKey, setEntryKey] = useState("");
+  const loadKey = JSON.stringify([words, relation, direction]);
   const [wordInput, setWordInput] = useState(words.join(", ")),
     [objectInput, setObjectInput] = useState(""),
     [relationInput, setRelationInput] = useState(relation),
@@ -1380,16 +1468,22 @@ function Comparison({
   useEffect(() => {
     setWordInput(words.join(", "));
     setRelationInput(relation);
+    setDirectionInput(direction);
     setSource("combined");
-  }, [words.join(","), relation]);
+  }, [words.join(","), relation, direction]);
   useEffect(() => {
     let alive = true;
     setLoading(true);
     setError(false);
-    Promise.all(words.map(async (w) => [w, await getLexeme(w)] as const))
+    Promise.all(
+      words.map(
+        async (w) => [w, await getLexeme(w, direction === "reverse")] as const,
+      ),
+    )
       .then((p) => {
         if (alive) {
           setEntries(Object.fromEntries(p));
+          setEntryKey(loadKey);
           setLoading(false);
         }
       })
@@ -1402,8 +1496,15 @@ function Comparison({
     return () => {
       alive = false;
     };
-  }, [words.join(",")]);
+  }, [loadKey]);
+  const discovered = useMemo(
+    () => discoverObjects(words, entries, relation, rowOrder, objects),
+    [words, entries, relation, rowOrder, objects],
+  );
+  const displayedObjects = rowOrder === "specified" ? objects : discovered;
   const canSource =
+    direction === "forward" &&
+    rowOrder === "specified" &&
     relation === "dobj" &&
     words.length === 6 &&
     summary.clusters[0].every((w) => words.includes(w)) &&
@@ -1430,7 +1531,7 @@ function Comparison({
       alive = false;
     };
   }, [source, canSource]);
-  const values = objects.map((obj) => {
+  const values = displayedObjects.map((obj) => {
     const cells = words.map((word) => {
       const row = entries[word]?.[relation]?.[1]?.find((r) => r[0] === obj);
       return {
@@ -1452,6 +1553,13 @@ function Comparison({
           ...c,
           count: b?.count ?? c.count,
           docs: b?.documents ?? c.docs,
+          rate: b
+            ? b.synonym_preference.verb_cluster_count
+              ? (b.count / b.synonym_preference.verb_cluster_count) * 10000
+              : null
+            : c.base
+              ? (c.count / c.base) * 10000
+              : null,
           score: b
             ? b.synonym_preference.preference_score
             : preference(c.count, total, c.base, bases),
@@ -1460,8 +1568,16 @@ function Comparison({
     };
   });
   const selectedCell = values
-    .find((r) => r.object === selected?.collocate)
-    ?.cells.find((c) => c.word === selected?.lemma);
+    .find(
+      (r) =>
+        r.object ===
+        (direction === "forward" ? selected?.collocate : selected?.lemma),
+    )
+    ?.cells.find(
+      (c) =>
+        c.word ===
+        (direction === "forward" ? selected?.lemma : selected?.collocate),
+    );
   const maximum = Math.max(
     1,
     ...values.flatMap((r) => r.cells.map((c) => c.count)),
@@ -1498,81 +1614,158 @@ function Comparison({
           >
             {t("preference")}
           </button>
+          <button
+            className={mode === "rate" ? "active" : ""}
+            aria-pressed={mode === "rate"}
+            onClick={() => setMode("rate")}
+          >
+            {t("rateMode")}
+          </button>
         </div>
       </div>
+      {!compact &&
+        words[0] === "high" &&
+        relation === "amod" &&
+        direction === "forward" && (
+          <div className="comparison-quick chip-list">
+            {highSets.map((p, i) => (
+              <button
+                className="chip"
+                key={p.id}
+                onClick={() => {
+                  onApply(p.words, p.objects, relation, direction);
+                  setRowOrder("specified");
+                }}
+              >
+                {t(`highSet${i}`)}
+              </button>
+            ))}
+          </div>
+        )}
       {!compact && (
-        <form
-          className="compare-form"
-          onSubmit={(e) => {
-            e.preventDefault();
-            const w = wordInput
-              .toLowerCase()
-              .split(/[,、，]/)
-              .map((s) => s.trim())
-              .filter(Boolean);
-            if (
-              w.length < 2 ||
-              w.length > 6 ||
-              new Set(w).size !== w.length ||
-              w.some((s) => !/^[a-z][a-z-]{0,29}$/.test(s))
-            ) {
-              setInputError(true);
-              return;
-            }
-            setInputError(false);
-            const parsed = interpret(objectInput);
-            const obj = objectInput.trim()
-              ? (parsed.object ?? parsed.word)
-              : "";
-            onApply(
-              w,
-              obj ? comparisonObjectsFor(w, obj, relationInput) : objects,
-              relationInput,
-            );
-          }}
+        <details
+          className="comparison-editor"
+          onToggle={(e) => setEditorOpen(e.currentTarget.open)}
         >
-          <label>
-            {t("compareWords")}
-            <input
-              value={wordInput}
-              onChange={(e) => setWordInput(e.target.value)}
-              aria-invalid={inputError}
-              aria-describedby={inputError ? "compare-error" : undefined}
+          <summary>
+            {t("editComparisons")}
+            <span>{words.join(" · ")}</span>
+          </summary>
+          {editorOpen && (
+            <SynonymExplorer
+              word={words[0]}
+              words={words}
+              relation={relation}
+              direction={direction}
+              lang={lang}
+              onChange={(w) => onApply(w, objects, relation, direction)}
+              onPreset={(w, o) => {
+                onApply(w, o, relation, direction);
+                setRowOrder("specified");
+              }}
             />
-          </label>
-          <label>
-            {t("compareObject")}
-            <input
-              value={objectInput}
-              onChange={(e) => setObjectInput(e.target.value)}
-              placeholder="risk / price / rain"
-              maxLength={40}
-            />
-          </label>
-          <label>
-            {t("relation")}
-            <select
-              value={relationInput}
-              onChange={(e) => setRelationInput(e.target.value)}
-            >
-              <option value="dobj">{t("dobj")}</option>
-              <option value="amod">{t("amod")}</option>
-              <option value="nsubj">{t("nsubj")}</option>
-            </select>
-          </label>
-          <button className="btn" type="submit">
-            {t("apply")}
-            <ArrowRight size={15} />
-          </button>
-          {inputError && (
-            <p className="form-error" id="compare-error" role="alert">
-              {t("comparisonError")}
-            </p>
           )}
-        </form>
+          {!compact && (
+            <form
+              className="compare-form"
+              onSubmit={(e) => {
+                e.preventDefault();
+                const w = wordInput
+                  .toLowerCase()
+                  .split(/[,、，]/)
+                  .map((s) => s.trim())
+                  .filter(Boolean);
+                if (
+                  w.length < 2 ||
+                  w.length > 6 ||
+                  new Set(w).size !== w.length ||
+                  w.some((s) => !/^[a-z][a-z-]{0,29}$/.test(s))
+                ) {
+                  setInputError(true);
+                  return;
+                }
+                setInputError(false);
+                const parsed = interpret(objectInput);
+                const obj = objectInput.trim()
+                  ? (parsed.object ?? parsed.word)
+                  : "";
+                setRowOrder(obj ? "specified" : "distinctive");
+                onApply(w, obj ? [obj] : [], relationInput, directionInput);
+              }}
+            >
+              <label>
+                {t("compareWords")}
+                <input
+                  value={wordInput}
+                  onChange={(e) => setWordInput(e.target.value)}
+                  aria-invalid={inputError}
+                  aria-describedby={inputError ? "compare-error" : undefined}
+                />
+              </label>
+              <label>
+                {t("compareObject")}
+                <input
+                  value={objectInput}
+                  onChange={(e) => setObjectInput(e.target.value)}
+                  placeholder="risk / price / rain"
+                  maxLength={40}
+                />
+              </label>
+              <label>
+                {t("relation")}
+                <select
+                  value={relationInput}
+                  onChange={(e) => setRelationInput(e.target.value)}
+                >
+                  <option value="dobj">{t("dobj")}</option>
+                  <option value="amod">{t("amod")}</option>
+                  <option value="nsubj">{t("nsubj")}</option>
+                </select>
+              </label>
+              <label>
+                {t("compareDirection")}
+                <select
+                  value={directionInput}
+                  onChange={(e) =>
+                    setDirectionInput(e.target.value as Direction)
+                  }
+                >
+                  <option value="forward">{t("forwardComparison")}</option>
+                  <option value="reverse">{t("reverseComparison")}</option>
+                </select>
+              </label>
+              <button className="btn" type="submit">
+                {t("apply")}
+                <ArrowRight size={15} />
+              </button>
+              {inputError && (
+                <p className="form-error" id="compare-error" role="alert">
+                  {t("comparisonError")}
+                </p>
+              )}
+            </form>
+          )}
+        </details>
       )}
       <div className="matrix-toolbar">
-        <span>{t(mode === "count" ? "observed" : "preference")}</span>
+        <label className="row-order">
+          {t("rowOrder")}
+          <select
+            value={rowOrder}
+            onChange={(e) => {
+              setRowOrder(e.target.value as RowOrder);
+              setSource("combined");
+            }}
+          >
+            {(
+              ["distinctive", "shared", "frequent", "specified"] as RowOrder[]
+            ).map((value) => (
+              <option key={value} value={value}>
+                {t(value)}
+              </option>
+            ))}
+          </select>
+        </label>
         {canSource && (
           <label className="source-picker">
             <Database size={13} />
@@ -1595,12 +1788,14 @@ function Comparison({
           </label>
         )}
       </div>
+      <p className="discovery-note">{t("discoveryHelp")}</p>
       {error && (
         <p className="form-error" role="alert">
           {t("error")}
         </p>
       )}
       {loading ||
+      entryKey !== loadKey ||
       !words.every((w) => w in entries) ||
       (source !== "combined" && (!benchmark || !canSource)) ? (
         <Loading t={t} />
@@ -1626,27 +1821,50 @@ function Comparison({
                   </th>
                   {row.cells.map((c) => {
                     const active =
-                      selected?.lemma === c.word &&
-                      selected?.collocate === row.object &&
+                      (direction === "forward"
+                        ? selected?.lemma
+                        : selected?.collocate) === c.word &&
+                      (direction === "forward"
+                        ? selected?.collocate
+                        : selected?.lemma) === row.object &&
                       selected?.relation === relation;
-                    const v = mode === "count" ? c.count : c.score;
+                    const v =
+                      mode === "count"
+                        ? c.count
+                        : mode === "rate"
+                          ? c.rate
+                          : c.score;
                     const intensity =
                       mode === "count"
                         ? Math.log1p(c.count) / Math.log1p(maximum)
-                        : (c.score ?? 0);
+                        : mode === "rate"
+                          ? Math.min(
+                              1,
+                              (c.rate ?? 0) /
+                                Math.max(
+                                  1,
+                                  ...values.flatMap((r) =>
+                                    r.cells.map((c) => c.rate ?? 0),
+                                  ),
+                                ),
+                            )
+                          : (c.score ?? 0);
                     return (
                       <td key={c.word}>
                         <button
                           className={`heat-cell level-${c.count ? Math.min(4, Math.ceil(intensity * 4)) : 0} ${active ? "cell-selected" : ""}`}
                           onClick={() =>
-                            onSelect({
-                              lemma: c.word,
-                              collocate: row.object,
-                              relation,
-                            })
+                            onSelect(
+                              canonicalPair(
+                                c.word,
+                                row.object,
+                                relation,
+                                direction,
+                              ),
+                            )
                           }
                           aria-pressed={active}
-                          title={`${c.word} ${row.object}: ${format(lang, c.count)} ${t("observed")}, ${format(lang, c.docs)} ${t("documents")}`}
+                          title={`${phrase(canonicalPair(c.word, row.object, relation, direction))}: ${format(lang, c.count)} ${t("observed")}, ${format(lang, c.docs)} ${t("documents")}`}
                         >
                           <span>
                             {v === null
@@ -1664,22 +1882,45 @@ function Comparison({
           </table>
         </div>
       )}
+      {!loading && entryKey === loadKey && !error && !values.length && (
+        <p className="inline-empty">{t("noRows")}</p>
+      )}
       <div className="matrix-foot">
         <p>
           <Info size={14} />
-          {t(mode === "count" ? "zeroHelp" : "preferenceHelp")}
+          {t(
+            mode === "count"
+              ? "zeroHelp"
+              : mode === "rate"
+                ? "rateHelp"
+                : "preferenceHelp",
+          )}
         </p>
         <div className="heat-legend">
           <span>0</span>
           {[0, 1, 2, 3, 4].map((v) => (
             <i key={v} className={`level-${v}`} />
           ))}
-          <span>{mode === "preference" ? "1" : format(lang, maximum)}</span>
+          <span>
+            {mode === "preference"
+              ? "1"
+              : mode === "rate"
+                ? format(
+                    lang,
+                    Math.max(
+                      1,
+                      ...values.flatMap((r) => r.cells.map((c) => c.rate ?? 0)),
+                    ),
+                    2,
+                  )
+                : format(lang, maximum)}
+          </span>
         </div>
       </div>
       {selectedCell &&
         selected &&
         !loading &&
+        entryKey === loadKey &&
         !error &&
         words.every((w) => w in entries) &&
         (source === "combined" || (!!benchmark && canSource)) && (
@@ -1688,9 +1929,16 @@ function Comparison({
             selected={selected}
             row={selectedCell}
             all={
-              values.find((r) => r.object === selected.collocate)?.cells ?? []
+              values.find(
+                (r) =>
+                  r.object ===
+                  (direction === "forward"
+                    ? selected.collocate
+                    : selected.lemma),
+              )?.cells ?? []
             }
             onSelect={onSelect}
+            direction={direction}
           />
         )}
     </section>
@@ -1703,12 +1951,14 @@ function ComparisonDetail({
   row,
   all,
   onSelect,
+  direction,
 }: {
   lang: Lang;
   selected: Selection;
   row: { count: number; docs: number; score: number | null };
   all: { word: string; count: number; docs: number; score: number | null }[];
   onSelect: (s: Selection) => void;
+  direction: Direction;
 }) {
   const t = (s: string) => tr(lang, s),
     max = Math.max(1, ...all.map((c) => c.count));
@@ -1733,9 +1983,25 @@ function ComparisonDetail({
           .sort((a, b) => b.count - a.count)
           .map((c) => (
             <button
-              className={c.word === selected.lemma ? "active" : ""}
+              className={
+                c.word ===
+                (direction === "forward" ? selected.lemma : selected.collocate)
+                  ? "active"
+                  : ""
+              }
               key={c.word}
-              onClick={() => onSelect({ ...selected, lemma: c.word })}
+              onClick={() =>
+                onSelect(
+                  canonicalPair(
+                    c.word,
+                    direction === "forward"
+                      ? selected.collocate
+                      : selected.lemma,
+                    selected.relation,
+                    direction,
+                  ),
+                )
+              }
             >
               <span>{c.word}</span>
               <i>

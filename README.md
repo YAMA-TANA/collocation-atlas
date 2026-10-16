@@ -18,6 +18,10 @@ is English; arbitrary machine translation is not claimed.
 - Verb–object, adjective–noun, subject–verb, compounds, adverbs, and prepositions.
 - Lemma aggregation, original document frequency, logDice, and normalized
   preference within an explicitly displayed comparison set.
+- WordNet senses for 47,029 words, with separate lexical and corpus-context
+  suggestions. Choose a sense to rebuild the comparison without mixing senses.
+- Automatically discovered distinctive/shared collocates, per-word rate
+  normalization, editable comparison columns, and noun comparisons in reverse.
 - Selected source-linked examples and detailed evidence for 53 learning entries.
 - Source-specific comparisons for the six reduction verbs and seven benchmark nouns.
 - Local saved words, shareable search URLs, keyboard search, and mobile layouts.

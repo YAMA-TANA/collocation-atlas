@@ -364,7 +364,15 @@ export async function lookup(query: string): Promise<Entry> {
     word,
     forward,
     reverse,
-    relation: interpreted.relation ?? best?.[0] ?? "dobj",
+    relation:
+      interpreted.object &&
+      interpreted.relation === "dobj" &&
+      forward.amod &&
+      (!forward.dobj ||
+        (!forward.dobj[1].some((r) => r[0] === interpreted.object) &&
+          forward.amod[1].some((r) => r[0] === interpreted.object)))
+        ? "amod"
+        : (interpreted.relation ?? best?.[0] ?? "dobj"),
     direction: interpreted.direction ?? best?.[1] ?? "forward",
     object: interpreted.object,
   };
@@ -402,18 +410,10 @@ export function clusterFor(
     if (object === "mistake") return ["big", "large", "serious"];
     if (object === "possibility") return ["high", "strong", "real"];
     if (object === "influence") return ["large", "strong", "great"];
-    return (
-      summary.adjective_clusters.find((g) => g.includes(word)) ?? [
-        word,
-        "strong",
-      ]
-    );
+    return summary.adjective_clusters.find((g) => g.includes(word)) ?? [word];
   }
   if (object === "decision") return ["make", "do"];
-  return (
-    summary.clusters.find((g) => g.includes(word)) ??
-    [word, "make", "get"].filter((v, i, a) => a.indexOf(v) === i)
-  );
+  return summary.clusters.find((g) => g.includes(word)) ?? [word];
 }
 export const exampleObjects = [
   "risk",

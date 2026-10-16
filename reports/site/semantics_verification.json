@@ -1,0 +1,14 @@
+{
+  "lexical_words": 47029,
+  "senses": 100151,
+  "neighbour_sets": {
+    "amod:forward": 2966,
+    "dobj:forward": 1816,
+    "dobj:reverse": 4944
+  },
+  "verified_high_pair_cells": 54,
+  "license_on_every_shard": true,
+  "archive_sha256": "3f1d16d22572dd518da7b32db5c670c94943813edd72f04335281dda5816f26e",
+  "max_shard_bytes": 419915,
+  "all_assertions_passed": true
+}
