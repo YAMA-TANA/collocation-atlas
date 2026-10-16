@@ -2462,6 +2462,11 @@ kbd {
 .title-break {
   display: inline;
 }
+.evidence-scope {
+  color: var(--color-muted);
+  font-size: 11px;
+  margin: -6px 0 14px;
+}
 .btn,
 .search-form > button {
   color: var(--color-accent-ink);

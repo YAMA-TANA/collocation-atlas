@@ -1,0 +1,61 @@
+{
+  "public_url": "https://collocation-atlas.pages.dev/",
+  "github": "https://github.com/YAMA-TANA/collocation-atlas",
+  "data_release": "https://github.com/YAMA-TANA/collocation-atlas/releases/tag/corpus-2026-10-16",
+  "checked_at": "2026-10-16T09:48:28.860790+00:00",
+  "interface_languages": [
+    "ja",
+    "en",
+    "zh",
+    "ko",
+    "es",
+    "fr",
+    "de",
+    "pt"
+  ],
+  "scope": "English corpus lookup with multilingual interface and curated concept mappings",
+  "browser_flows_verified": [
+    "Japanese concept: 価格を減らす -> reduce / price, 59 occurrences, 50 documents",
+    "English phrase: make a decision -> make / decision, 1731 occurrences; do / decision, 0 observations",
+    "Adjective phrase: heavy rain -> heavy / rain, 1313 occurrences; strong / rain, 2 observations",
+    "Noun reverse lookup: price -> adjective partners, high 562, low 316",
+    "Command search modal and keyboard Enter",
+    "Save word and revisit saved list",
+    "Source attribution and methods view",
+    "OANC source filter and preference mode",
+    "All eight language controls"
+  ],
+  "responsive_widths_without_page_overflow": [
+    320,
+    375,
+    414,
+    768
+  ],
+  "frontend_tests_passed": 11,
+  "aggregate_verification": {
+    "status": "passed",
+    "totals": {
+      "lexicon": {
+        "pairs": 6921544,
+        "edges": 34688327
+      },
+      "reverse": {
+        "pairs": 6921544,
+        "edges": 34688327
+      }
+    },
+    "real_benchmark_cells": 42,
+    "maximum_shard_bytes": 1685572,
+    "full_document_texts_published": false
+  },
+  "data_download": {
+    "result": "passed; downloaded the public release, verified SHA256, extracted 6,921,544 pairs",
+    "sha256": "8545cb749b3351959fca58d45258eb72a5c253b7d24f25302f80910746671274"
+  },
+  "limitations": [
+    "Analyzed corpus is English, not eight language corpora",
+    "Detailed evidence and excerpts cover selected educational entries; aggregate counts cover all pairs",
+    "Grammar and semantic substitutability are not automatically judged",
+    "Counts are lemma dependency counts, not exact-string occurrences"
+  ]
+}

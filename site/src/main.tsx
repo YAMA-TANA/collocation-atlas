@@ -72,9 +72,9 @@ function store(key: string, value: unknown) {
 }
 function initialLang(): Lang {
   const lang = new URLSearchParams(location.search).get("lang");
-  if (lang && lang in languages) return lang as Lang;
+  if (lang && Object.hasOwn(languages, lang)) return lang as Lang;
   const saved = stored<Lang>("colloca:lang", "ja");
-  return saved in languages ? saved : "ja";
+  return Object.hasOwn(languages, saved) ? saved : "ja";
 }
 function Logo() {
   return (
@@ -98,15 +98,21 @@ function App() {
       : "dictionary";
   });
   const [query, setQuery] = useState(
-    () => new URLSearchParams(location.search).get("q") || "lessen",
+    () =>
+      new URLSearchParams(location.search).get("q")?.slice(0, 120) || "lessen",
   );
   const [input, setInput] = useState(query),
     [summary, setSummary] = useState<Summary | null>(null),
     [index, setIndex] = useState<[string, number, string[]][]>([]);
   const [entry, setEntry] = useState<Entry | null>(null),
-    [selected, setSelected] = useState<Selection | null>(null),
-    [evidence, setEvidence] = useState<Evidence | null>(null),
-    [selectedRow, setSelectedRow] = useState<Row | undefined>();
+    [selected, setSelected] = useState<Selection | null>(null);
+  const [pairData, setPairData] = useState<{
+    key: string;
+    row?: Row;
+    evidence: Evidence | null;
+    error: boolean;
+  } | null>(null);
+  const pairReady = !!selected && pairData?.key === JSON.stringify(selected);
   const [bootError, setBootError] = useState(false),
     [loading, setLoading] = useState(true),
     [searchError, setSearchError] = useState(false),
@@ -255,26 +261,29 @@ function App() {
   }, [query, summary, retry]);
   useEffect(() => {
     let alive = true;
-    setEvidence(null);
-    setSelectedRow(undefined);
+    setPairData(null);
     if (selected) {
-      getDetails(selected.lemma, selected.relation).then((d) => {
-        if (alive)
-          setEvidence(
-            d?.pairs.find((p) => p.collocate === selected.collocate) ?? null,
-          );
-      });
-      getLexeme(selected.lemma)
-        .then((d) => {
+      const key = JSON.stringify(selected);
+      Promise.all([
+        getDetails(selected.lemma, selected.relation),
+        getLexeme(selected.lemma),
+      ])
+        .then(([details, lexeme]) => {
           if (alive)
-            setSelectedRow(
-              d[selected.relation]?.[1].find(
+            setPairData({
+              key,
+              evidence:
+                details?.pairs.find(
+                  (p) => p.collocate === selected.collocate,
+                ) ?? null,
+              row: lexeme[selected.relation]?.[1].find(
                 (r) => r[0] === selected.collocate,
               ),
-            );
+              error: false,
+            });
         })
         .catch(() => {
-          /* Detailed evidence or loaded entry remains available. */
+          if (alive) setPairData({ key, evidence: null, error: true });
         });
     }
     return () => {
@@ -388,9 +397,22 @@ function App() {
     const row = (direction === "forward" ? e.forward : e.reverse)[
       actual
     ]?.[1]?.[0];
-    setSelected(row ? selection(e, row) : null);
+    const pick = row ? selection(e, row) : null;
+    setSelected(pick);
     setLimit(12);
     setCompareRel(actual);
+    if (pick && summary) {
+      const group = clusterFor(pick.lemma, pick.collocate, actual, summary);
+      setCompareWords(group);
+      setCompareObjects(
+        comparisonObjectsFor(
+          group,
+          pick.collocate,
+          actual,
+          direction === "forward" ? (available[actual]?.[1] ?? []) : [],
+        ),
+      );
+    }
   }
   function compareSelected() {
     if (!selected || !summary) return;
@@ -951,16 +973,30 @@ function App() {
                               </p>
                             </section>
                             <aside className="evidence-column">
-                              {selected && (
-                                <EvidencePanel
-                                  lang={lang}
-                                  summary={summary}
-                                  selected={selected}
-                                  evidence={evidence}
-                                  fallback={selectedRow ?? currentRow}
-                                  onCompare={compareSelected}
-                                />
-                              )}
+                              {selected &&
+                                (pairReady ? (
+                                  pairData?.error ? (
+                                    <div className="error-box" role="alert">
+                                      {t("error")}
+                                    </div>
+                                  ) : (
+                                    <EvidencePanel
+                                      lang={lang}
+                                      summary={summary}
+                                      selected={selected}
+                                      evidence={pairData?.evidence ?? null}
+                                      fallback={pairData?.row ?? currentRow}
+                                      onCompare={compareSelected}
+                                    />
+                                  )
+                                ) : (
+                                  <section
+                                    className="evidence-panel"
+                                    aria-busy="true"
+                                  >
+                                    <Loading t={t} />
+                                  </section>
+                                ))}
                               <div className="explore-callout">
                                 <div className="small-mark">
                                   <ArrowLeftRight size={21} />
@@ -1197,6 +1233,7 @@ function EvidencePanel({
         </span>
       </div>
       <h3 className="selected-phrase">{phrase(selected)}</h3>
+      <p className="evidence-scope">{t("allSources")}</p>
       <div className="evidence-metrics">
         <div>
           <strong>{format(lang, n)}</strong>
@@ -1489,9 +1526,7 @@ function Comparison({
               : "";
             onApply(
               w,
-              obj
-                ? [obj, ...objects.filter((o) => o !== obj)].slice(0, 7)
-                : objects,
+              obj ? comparisonObjectsFor(w, obj, relationInput) : objects,
               relationInput,
             );
           }}
@@ -1544,7 +1579,10 @@ function Comparison({
             <select
               aria-label={t("source")}
               value={source}
-              onChange={(e) => setSource(e.target.value)}
+              onChange={(e) => {
+                setBenchmark(null);
+                setSource(e.target.value);
+              }}
             >
               <option value="combined">{t("allSources")}</option>
               {summary.sources.map((s) => (
@@ -1562,7 +1600,9 @@ function Comparison({
           {t("error")}
         </p>
       )}
-      {loading || (source !== "combined" && !benchmark) ? (
+      {loading ||
+      !words.every((w) => w in entries) ||
+      (source !== "combined" && (!benchmark || !canSource)) ? (
         <Loading t={t} />
       ) : (
         <div className="matrix-wrap">
@@ -1637,15 +1677,22 @@ function Comparison({
           <span>{mode === "preference" ? "1" : format(lang, maximum)}</span>
         </div>
       </div>
-      {selectedCell && selected && (
-        <ComparisonDetail
-          lang={lang}
-          selected={selected}
-          row={selectedCell}
-          all={values.find((r) => r.object === selected.collocate)?.cells ?? []}
-          onSelect={onSelect}
-        />
-      )}
+      {selectedCell &&
+        selected &&
+        !loading &&
+        !error &&
+        words.every((w) => w in entries) &&
+        (source === "combined" || (!!benchmark && canSource)) && (
+          <ComparisonDetail
+            lang={lang}
+            selected={selected}
+            row={selectedCell}
+            all={
+              values.find((r) => r.object === selected.collocate)?.cells ?? []
+            }
+            onSelect={onSelect}
+          />
+        )}
     </section>
   );
 }
