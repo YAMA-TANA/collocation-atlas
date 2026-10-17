@@ -194,8 +194,8 @@ function App() {
   useEffect(() => {
     document.documentElement.lang = lang;
     store("colloca:lang", lang);
-    document.title = `COLLOCA — ${t("dictionary")}`;
-  }, [lang, t]);
+    document.title = `${query} — ${t("dictionary")} | COLLOCA`;
+  }, [lang, t, query]);
   useEffect(() => {
     const url = new URL(location.href);
     url.searchParams.set("q", query);
@@ -1120,6 +1120,10 @@ function App() {
               AMALGUM · WikiText-103 · OANC <span>—</span> {t("corpusOnly")}
             </p>
             <div className="footer-links">
+              <a href="/words/">
+                {lang === "ja" ? "英単語から探す" : "Browse English words"}
+                <ArrowUpRight size={12} />
+              </a>
               <button onClick={() => setView("about")}>
                 {t("license")}
                 <ArrowUpRight size={12} />

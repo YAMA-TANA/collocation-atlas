@@ -1,0 +1,12 @@
+{
+  "submittedAt": "2026-10-17T00:11:12.817Z",
+  "endpoint": "https://api.indexnow.org/indexnow",
+  "urls": 132,
+  "status": 202,
+  "result": "received; ownership validation pending",
+  "indexed": "not confirmed",
+  "google": {
+    "submitted": false,
+    "reason": "No connected Search Console property available; GSC Wizard subscription unavailable and alternate Search Console connection returned no sites."
+  }
+}

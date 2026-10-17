@@ -1,0 +1,804 @@
+{
+  "checkedAt": "2026-10-17T00:11:09.938Z",
+  "origin": "https://collocation-atlas.pages.dev",
+  "pages": 132,
+  "checks": [
+    {
+      "pathname": "/",
+      "status": 200,
+      "bytes": 3844,
+      "structuredData": 1
+    },
+    {
+      "pathname": "/guide/",
+      "status": 200,
+      "bytes": 6733,
+      "structuredData": 1
+    },
+    {
+      "pathname": "/words/",
+      "status": 200,
+      "bytes": 16324,
+      "structuredData": 1
+    },
+    {
+      "pathname": "/words/achieve/",
+      "status": 200,
+      "bytes": 10778,
+      "structuredData": 2
+    },
+    {
+      "pathname": "/words/acquire/",
+      "status": 200,
+      "bytes": 10691,
+      "structuredData": 2
+    },
+    {
+      "pathname": "/words/address/",
+      "status": 200,
+      "bytes": 10719,
+      "structuredData": 2
+    },
+    {
+      "pathname": "/words/affect/",
+      "status": 200,
+      "bytes": 10735,
+      "structuredData": 2
+    },
+    {
+      "pathname": "/words/alleviate/",
+      "status": 200,
+      "bytes": 9230,
+      "structuredData": 2
+    },
+    {
+      "pathname": "/words/allow/",
+      "status": 200,
+      "bytes": 10556,
+      "structuredData": 2
+    },
+    {
+      "pathname": "/words/available/",
+      "status": 200,
+      "bytes": 9215,
+      "structuredData": 2
+    },
+    {
+      "pathname": "/words/avert/",
+      "status": 200,
+      "bytes": 8569,
+      "structuredData": 2
+    },
+    {
+      "pathname": "/words/avoid/",
+      "status": 200,
+      "bytes": 10654,
+      "structuredData": 2
+    },
+    {
+      "pathname": "/words/bad/",
+      "status": 200,
+      "bytes": 8730,
+      "structuredData": 2
+    },
+    {
+      "pathname": "/words/beautiful/",
+      "status": 200,
+      "bytes": 8955,
+      "structuredData": 2
+    },
+    {
+      "pathname": "/words/begin/",
+      "status": 200,
+      "bytes": 10789,
+      "structuredData": 2
+    },
+    {
+      "pathname": "/words/believe/",
+      "status": 200,
+      "bytes": 10646,
+      "structuredData": 2
+    },
+    {
+      "pathname": "/words/big/",
+      "status": 200,
+      "bytes": 8811,
+      "structuredData": 2
+    },
+    {
+      "pathname": "/words/boost/",
+      "status": 200,
+      "bytes": 10647,
+      "structuredData": 2
+    },
+    {
+      "pathname": "/words/bring/",
+      "status": 200,
+      "bytes": 10848,
+      "structuredData": 2
+    },
+    {
+      "pathname": "/words/broad/",
+      "status": 200,
+      "bytes": 8845,
+      "structuredData": 2
+    },
+    {
+      "pathname": "/words/build/",
+      "status": 200,
+      "bytes": 10538,
+      "structuredData": 2
+    },
+    {
+      "pathname": "/words/burden/",
+      "status": 200,
+      "bytes": 11091,
+      "structuredData": 2
+    },
+    {
+      "pathname": "/words/cause/",
+      "status": 200,
+      "bytes": 10910,
+      "structuredData": 2
+    },
+    {
+      "pathname": "/words/change/",
+      "status": 200,
+      "bytes": 10598,
+      "structuredData": 2
+    },
+    {
+      "pathname": "/words/clear/",
+      "status": 200,
+      "bytes": 8847,
+      "structuredData": 2
+    },
+    {
+      "pathname": "/words/close/",
+      "status": 200,
+      "bytes": 8925,
+      "structuredData": 2
+    },
+    {
+      "pathname": "/words/coffee/",
+      "status": 200,
+      "bytes": 10538,
+      "structuredData": 2
+    },
+    {
+      "pathname": "/words/common/",
+      "status": 200,
+      "bytes": 8970,
+      "structuredData": 2
+    },
+    {
+      "pathname": "/words/consider/",
+      "status": 200,
+      "bytes": 10875,
+      "structuredData": 2
+    },
+    {
+      "pathname": "/words/create/",
+      "status": 200,
+      "bytes": 10702,
+      "structuredData": 2
+    },
+    {
+      "pathname": "/words/cut/",
+      "status": 200,
+      "bytes": 10437,
+      "structuredData": 2
+    },
+    {
+      "pathname": "/words/decision/",
+      "status": 200,
+      "bytes": 11397,
+      "structuredData": 2
+    },
+    {
+      "pathname": "/words/decrease/",
+      "status": 200,
+      "bytes": 10992,
+      "structuredData": 2
+    },
+    {
+      "pathname": "/words/deep/",
+      "status": 200,
+      "bytes": 8794,
+      "structuredData": 2
+    },
+    {
+      "pathname": "/words/demonstrate/",
+      "status": 200,
+      "bytes": 11243,
+      "structuredData": 2
+    },
+    {
+      "pathname": "/words/describe/",
+      "status": 200,
+      "bytes": 10847,
+      "structuredData": 2
+    },
+    {
+      "pathname": "/words/develop/",
+      "status": 200,
+      "bytes": 10705,
+      "structuredData": 2
+    },
+    {
+      "pathname": "/words/development/",
+      "status": 200,
+      "bytes": 11477,
+      "structuredData": 2
+    },
+    {
+      "pathname": "/words/different/",
+      "status": 200,
+      "bytes": 9048,
+      "structuredData": 2
+    },
+    {
+      "pathname": "/words/difficult/",
+      "status": 200,
+      "bytes": 9197,
+      "structuredData": 2
+    },
+    {
+      "pathname": "/words/diminish/",
+      "status": 200,
+      "bytes": 10929,
+      "structuredData": 2
+    },
+    {
+      "pathname": "/words/do/",
+      "status": 200,
+      "bytes": 10488,
+      "structuredData": 2
+    },
+    {
+      "pathname": "/words/ease/",
+      "status": 200,
+      "bytes": 10576,
+      "structuredData": 2
+    },
+    {
+      "pathname": "/words/easy/",
+      "status": 200,
+      "bytes": 8966,
+      "structuredData": 2
+    },
+    {
+      "pathname": "/words/effect/",
+      "status": 200,
+      "bytes": 11396,
+      "structuredData": 2
+    },
+    {
+      "pathname": "/words/emission/",
+      "status": 200,
+      "bytes": 11190,
+      "structuredData": 2
+    },
+    {
+      "pathname": "/words/enable/",
+      "status": 200,
+      "bytes": 10745,
+      "structuredData": 2
+    },
+    {
+      "pathname": "/words/enhance/",
+      "status": 200,
+      "bytes": 10902,
+      "structuredData": 2
+    },
+    {
+      "pathname": "/words/establish/",
+      "status": 200,
+      "bytes": 10859,
+      "structuredData": 2
+    },
+    {
+      "pathname": "/words/evidence/",
+      "status": 200,
+      "bytes": 11370,
+      "structuredData": 2
+    },
+    {
+      "pathname": "/words/expect/",
+      "status": 200,
+      "bytes": 10792,
+      "structuredData": 2
+    },
+    {
+      "pathname": "/words/experience/",
+      "status": 200,
+      "bytes": 11433,
+      "structuredData": 2
+    },
+    {
+      "pathname": "/words/explain/",
+      "status": 200,
+      "bytes": 10800,
+      "structuredData": 2
+    },
+    {
+      "pathname": "/words/fast/",
+      "status": 200,
+      "bytes": 8776,
+      "structuredData": 2
+    },
+    {
+      "pathname": "/words/gain/",
+      "status": 200,
+      "bytes": 10675,
+      "structuredData": 2
+    },
+    {
+      "pathname": "/words/generate/",
+      "status": 200,
+      "bytes": 10828,
+      "structuredData": 2
+    },
+    {
+      "pathname": "/words/get/",
+      "status": 200,
+      "bytes": 10486,
+      "structuredData": 2
+    },
+    {
+      "pathname": "/words/give/",
+      "status": 200,
+      "bytes": 10644,
+      "structuredData": 2
+    },
+    {
+      "pathname": "/words/good/",
+      "status": 200,
+      "bytes": 8879,
+      "structuredData": 2
+    },
+    {
+      "pathname": "/words/great/",
+      "status": 200,
+      "bytes": 8928,
+      "structuredData": 2
+    },
+    {
+      "pathname": "/words/happy/",
+      "status": 200,
+      "bytes": 8858,
+      "structuredData": 2
+    },
+    {
+      "pathname": "/words/have/",
+      "status": 200,
+      "bytes": 10913,
+      "structuredData": 2
+    },
+    {
+      "pathname": "/words/heavy/",
+      "status": 200,
+      "bytes": 8883,
+      "structuredData": 2
+    },
+    {
+      "pathname": "/words/high/",
+      "status": 200,
+      "bytes": 8877,
+      "structuredData": 2
+    },
+    {
+      "pathname": "/words/hold/",
+      "status": 200,
+      "bytes": 10519,
+      "structuredData": 2
+    },
+    {
+      "pathname": "/words/impact/",
+      "status": 200,
+      "bytes": 10772,
+      "structuredData": 2
+    },
+    {
+      "pathname": "/words/important/",
+      "status": 200,
+      "bytes": 9010,
+      "structuredData": 2
+    },
+    {
+      "pathname": "/words/improve/",
+      "status": 200,
+      "bytes": 10759,
+      "structuredData": 2
+    },
+    {
+      "pathname": "/words/increase/",
+      "status": 200,
+      "bytes": 10830,
+      "structuredData": 2
+    },
+    {
+      "pathname": "/words/indicate/",
+      "status": 200,
+      "bytes": 10887,
+      "structuredData": 2
+    },
+    {
+      "pathname": "/words/induce/",
+      "status": 200,
+      "bytes": 10876,
+      "structuredData": 2
+    },
+    {
+      "pathname": "/words/influence/",
+      "status": 200,
+      "bytes": 11071,
+      "structuredData": 2
+    },
+    {
+      "pathname": "/words/information/",
+      "status": 200,
+      "bytes": 11351,
+      "structuredData": 2
+    },
+    {
+      "pathname": "/words/keep/",
+      "status": 200,
+      "bytes": 10442,
+      "structuredData": 2
+    },
+    {
+      "pathname": "/words/knowledge/",
+      "status": 200,
+      "bytes": 11323,
+      "structuredData": 2
+    },
+    {
+      "pathname": "/words/large/",
+      "status": 200,
+      "bytes": 8843,
+      "structuredData": 2
+    },
+    {
+      "pathname": "/words/learn/",
+      "status": 200,
+      "bytes": 10513,
+      "structuredData": 2
+    },
+    {
+      "pathname": "/words/lessen/",
+      "status": 200,
+      "bytes": 9393,
+      "structuredData": 2
+    },
+    {
+      "pathname": "/words/likely/",
+      "status": 200,
+      "bytes": 8930,
+      "structuredData": 2
+    },
+    {
+      "pathname": "/words/low/",
+      "status": 200,
+      "bytes": 8866,
+      "structuredData": 2
+    },
+    {
+      "pathname": "/words/lower/",
+      "status": 200,
+      "bytes": 10657,
+      "structuredData": 2
+    },
+    {
+      "pathname": "/words/maintain/",
+      "status": 200,
+      "bytes": 10769,
+      "structuredData": 2
+    },
+    {
+      "pathname": "/words/major/",
+      "status": 200,
+      "bytes": 8356,
+      "structuredData": 2
+    },
+    {
+      "pathname": "/words/make/",
+      "status": 200,
+      "bytes": 10694,
+      "structuredData": 2
+    },
+    {
+      "pathname": "/words/meet/",
+      "status": 200,
+      "bytes": 10530,
+      "structuredData": 2
+    },
+    {
+      "pathname": "/words/minor/",
+      "status": 200,
+      "bytes": 8886,
+      "structuredData": 2
+    },
+    {
+      "pathname": "/words/mistake/",
+      "status": 200,
+      "bytes": 10416,
+      "structuredData": 2
+    },
+    {
+      "pathname": "/words/normal/",
+      "status": 200,
+      "bytes": 8911,
+      "structuredData": 2
+    },
+    {
+      "pathname": "/words/obtain/",
+      "status": 200,
+      "bytes": 10825,
+      "structuredData": 2
+    },
+    {
+      "pathname": "/words/offer/",
+      "status": 200,
+      "bytes": 10737,
+      "structuredData": 2
+    },
+    {
+      "pathname": "/words/opportunity/",
+      "status": 200,
+      "bytes": 11451,
+      "structuredData": 2
+    },
+    {
+      "pathname": "/words/pain/",
+      "status": 200,
+      "bytes": 11120,
+      "structuredData": 2
+    },
+    {
+      "pathname": "/words/permit/",
+      "status": 200,
+      "bytes": 10753,
+      "structuredData": 2
+    },
+    {
+      "pathname": "/words/possibility/",
+      "status": 200,
+      "bytes": 10373,
+      "structuredData": 2
+    },
+    {
+      "pathname": "/words/possible/",
+      "status": 200,
+      "bytes": 9074,
+      "structuredData": 2
+    },
+    {
+      "pathname": "/words/powerful/",
+      "status": 200,
+      "bytes": 8984,
+      "structuredData": 2
+    },
+    {
+      "pathname": "/words/prevent/",
+      "status": 200,
+      "bytes": 10814,
+      "structuredData": 2
+    },
+    {
+      "pathname": "/words/price/",
+      "status": 200,
+      "bytes": 11169,
+      "structuredData": 2
+    },
+    {
+      "pathname": "/words/problem/",
+      "status": 200,
+      "bytes": 11508,
+      "structuredData": 2
+    },
+    {
+      "pathname": "/words/produce/",
+      "status": 200,
+      "bytes": 10728,
+      "structuredData": 2
+    },
+    {
+      "pathname": "/words/provide/",
+      "status": 200,
+      "bytes": 11012,
+      "structuredData": 2
+    },
+    {
+      "pathname": "/words/quick/",
+      "status": 200,
+      "bytes": 9017,
+      "structuredData": 2
+    },
+    {
+      "pathname": "/words/rain/",
+      "status": 200,
+      "bytes": 11062,
+      "structuredData": 2
+    },
+    {
+      "pathname": "/words/raise/",
+      "status": 200,
+      "bytes": 10643,
+      "structuredData": 2
+    },
+    {
+      "pathname": "/words/rapid/",
+      "status": 200,
+      "bytes": 9054,
+      "structuredData": 2
+    },
+    {
+      "pathname": "/words/reach/",
+      "status": 200,
+      "bytes": 10656,
+      "structuredData": 2
+    },
+    {
+      "pathname": "/words/real/",
+      "status": 200,
+      "bytes": 8844,
+      "structuredData": 2
+    },
+    {
+      "pathname": "/words/reduce/",
+      "status": 200,
+      "bytes": 11004,
+      "structuredData": 2
+    },
+    {
+      "pathname": "/words/relieve/",
+      "status": 200,
+      "bytes": 10728,
+      "structuredData": 2
+    },
+    {
+      "pathname": "/words/research/",
+      "status": 200,
+      "bytes": 10987,
+      "structuredData": 2
+    },
+    {
+      "pathname": "/words/resolve/",
+      "status": 200,
+      "bytes": 10735,
+      "structuredData": 2
+    },
+    {
+      "pathname": "/words/reveal/",
+      "status": 200,
+      "bytes": 10792,
+      "structuredData": 2
+    },
+    {
+      "pathname": "/words/risk/",
+      "status": 200,
+      "bytes": 11216,
+      "structuredData": 2
+    },
+    {
+      "pathname": "/words/serious/",
+      "status": 200,
+      "bytes": 8951,
+      "structuredData": 2
+    },
+    {
+      "pathname": "/words/show/",
+      "status": 200,
+      "bytes": 11031,
+      "structuredData": 2
+    },
+    {
+      "pathname": "/words/significant/",
+      "status": 200,
+      "bytes": 9385,
+      "structuredData": 2
+    },
+    {
+      "pathname": "/words/slow/",
+      "status": 200,
+      "bytes": 8869,
+      "structuredData": 2
+    },
+    {
+      "pathname": "/words/small/",
+      "status": 200,
+      "bytes": 8816,
+      "structuredData": 2
+    },
+    {
+      "pathname": "/words/solve/",
+      "status": 200,
+      "bytes": 10698,
+      "structuredData": 2
+    },
+    {
+      "pathname": "/words/start/",
+      "status": 200,
+      "bytes": 10556,
+      "structuredData": 2
+    },
+    {
+      "pathname": "/words/strong/",
+      "status": 200,
+      "bytes": 9094,
+      "structuredData": 2
+    },
+    {
+      "pathname": "/words/success/",
+      "status": 200,
+      "bytes": 11220,
+      "structuredData": 2
+    },
+    {
+      "pathname": "/words/suggest/",
+      "status": 200,
+      "bytes": 10971,
+      "structuredData": 2
+    },
+    {
+      "pathname": "/words/support/",
+      "status": 200,
+      "bytes": 10814,
+      "structuredData": 2
+    },
+    {
+      "pathname": "/words/tackle/",
+      "status": 200,
+      "bytes": 9701,
+      "structuredData": 2
+    },
+    {
+      "pathname": "/words/take/",
+      "status": 200,
+      "bytes": 10646,
+      "structuredData": 2
+    },
+    {
+      "pathname": "/words/tall/",
+      "status": 200,
+      "bytes": 8721,
+      "structuredData": 2
+    },
+    {
+      "pathname": "/words/temperature/",
+      "status": 200,
+      "bytes": 11662,
+      "structuredData": 2
+    },
+    {
+      "pathname": "/words/time/",
+      "status": 200,
+      "bytes": 10969,
+      "structuredData": 2
+    },
+    {
+      "pathname": "/words/trigger/",
+      "status": 200,
+      "bytes": 10848,
+      "structuredData": 2
+    },
+    {
+      "pathname": "/words/understand/",
+      "status": 200,
+      "bytes": 10839,
+      "structuredData": 2
+    },
+    {
+      "pathname": "/words/wide/",
+      "status": 200,
+      "bytes": 8783,
+      "structuredData": 2
+    }
+  ],
+  "sitemap": "valid",
+  "robots": "allows rendering resources and announces sitemap",
+  "missingPage": 404,
+  "dataIndexing": "noindex",
+  "googleIndexing": "not verified"
+}

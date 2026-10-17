@@ -2,6 +2,8 @@
 
 [Open the dictionary](https://collocation-atlas.pages.dev/) · [日本語の分析エンジン説明](README_JA.md) · [Website setup](site/README.md)
 
+[英単語から探す](https://collocation-atlas.pages.dev/words/) · [使い方・データと出典](https://collocation-atlas.pages.dev/guide/)
+
 Search English word partners from **102,072,709 words**, **39,541 original
 documents**, and **6,921,544 observed dependency pairs**. Compare synonyms with
 interactive frequency bars and a preference heatmap. Inspect counts, document

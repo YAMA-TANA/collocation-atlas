@@ -10,6 +10,7 @@ site/.wrangler/
 site/test-results/
 site/playwright-report/
 site/*.tsbuildinfo
+site/.indexnow-key
 .env
 .env.*
 !.env.example
