@@ -1,0 +1,295 @@
+{
+  "submittedAt": "2026-10-17T00:40:50.813Z",
+  "endpoint": "https://api.indexnow.org/indexnow",
+  "totalUrls": 463955,
+  "receivedUrls": 463955,
+  "batches": [
+    {
+      "offset": 0,
+      "urls": 10000,
+      "status": 200,
+      "result": "received"
+    },
+    {
+      "offset": 10000,
+      "urls": 10000,
+      "status": 200,
+      "result": "received"
+    },
+    {
+      "offset": 20000,
+      "urls": 10000,
+      "status": 200,
+      "result": "received"
+    },
+    {
+      "offset": 30000,
+      "urls": 10000,
+      "status": 200,
+      "result": "received"
+    },
+    {
+      "offset": 40000,
+      "urls": 10000,
+      "status": 200,
+      "result": "received"
+    },
+    {
+      "offset": 50000,
+      "urls": 10000,
+      "status": 200,
+      "result": "received"
+    },
+    {
+      "offset": 60000,
+      "urls": 10000,
+      "status": 200,
+      "result": "received"
+    },
+    {
+      "offset": 70000,
+      "urls": 10000,
+      "status": 200,
+      "result": "received"
+    },
+    {
+      "offset": 80000,
+      "urls": 10000,
+      "status": 200,
+      "result": "received"
+    },
+    {
+      "offset": 90000,
+      "urls": 10000,
+      "status": 200,
+      "result": "received"
+    },
+    {
+      "offset": 100000,
+      "urls": 10000,
+      "status": 200,
+      "result": "received"
+    },
+    {
+      "offset": 110000,
+      "urls": 10000,
+      "status": 200,
+      "result": "received"
+    },
+    {
+      "offset": 120000,
+      "urls": 10000,
+      "status": 200,
+      "result": "received"
+    },
+    {
+      "offset": 130000,
+      "urls": 10000,
+      "status": 200,
+      "result": "received"
+    },
+    {
+      "offset": 140000,
+      "urls": 10000,
+      "status": 200,
+      "result": "received"
+    },
+    {
+      "offset": 150000,
+      "urls": 10000,
+      "status": 200,
+      "result": "received"
+    },
+    {
+      "offset": 160000,
+      "urls": 10000,
+      "status": 200,
+      "result": "received"
+    },
+    {
+      "offset": 170000,
+      "urls": 10000,
+      "status": 200,
+      "result": "received"
+    },
+    {
+      "offset": 180000,
+      "urls": 10000,
+      "status": 200,
+      "result": "received"
+    },
+    {
+      "offset": 190000,
+      "urls": 10000,
+      "status": 200,
+      "result": "received"
+    },
+    {
+      "offset": 200000,
+      "urls": 10000,
+      "status": 200,
+      "result": "received"
+    },
+    {
+      "offset": 210000,
+      "urls": 10000,
+      "status": 200,
+      "result": "received"
+    },
+    {
+      "offset": 220000,
+      "urls": 10000,
+      "status": 200,
+      "result": "received"
+    },
+    {
+      "offset": 230000,
+      "urls": 10000,
+      "status": 200,
+      "result": "received"
+    },
+    {
+      "offset": 240000,
+      "urls": 10000,
+      "status": 200,
+      "result": "received"
+    },
+    {
+      "offset": 250000,
+      "urls": 10000,
+      "status": 200,
+      "result": "received"
+    },
+    {
+      "offset": 260000,
+      "urls": 10000,
+      "status": 200,
+      "result": "received"
+    },
+    {
+      "offset": 270000,
+      "urls": 10000,
+      "status": 200,
+      "result": "received"
+    },
+    {
+      "offset": 280000,
+      "urls": 10000,
+      "status": 200,
+      "result": "received"
+    },
+    {
+      "offset": 290000,
+      "urls": 10000,
+      "status": 200,
+      "result": "received"
+    },
+    {
+      "offset": 300000,
+      "urls": 10000,
+      "status": 200,
+      "result": "received"
+    },
+    {
+      "offset": 310000,
+      "urls": 10000,
+      "status": 200,
+      "result": "received"
+    },
+    {
+      "offset": 320000,
+      "urls": 10000,
+      "status": 200,
+      "result": "received"
+    },
+    {
+      "offset": 330000,
+      "urls": 10000,
+      "status": 200,
+      "result": "received"
+    },
+    {
+      "offset": 340000,
+      "urls": 10000,
+      "status": 200,
+      "result": "received"
+    },
+    {
+      "offset": 350000,
+      "urls": 10000,
+      "status": 200,
+      "result": "received"
+    },
+    {
+      "offset": 360000,
+      "urls": 10000,
+      "status": 200,
+      "result": "received"
+    },
+    {
+      "offset": 370000,
+      "urls": 10000,
+      "status": 200,
+      "result": "received"
+    },
+    {
+      "offset": 380000,
+      "urls": 10000,
+      "status": 200,
+      "result": "received"
+    },
+    {
+      "offset": 390000,
+      "urls": 10000,
+      "status": 200,
+      "result": "received"
+    },
+    {
+      "offset": 400000,
+      "urls": 10000,
+      "status": 200,
+      "result": "received"
+    },
+    {
+      "offset": 410000,
+      "urls": 10000,
+      "status": 200,
+      "result": "received"
+    },
+    {
+      "offset": 420000,
+      "urls": 10000,
+      "status": 200,
+      "result": "received"
+    },
+    {
+      "offset": 430000,
+      "urls": 10000,
+      "status": 200,
+      "result": "received"
+    },
+    {
+      "offset": 440000,
+      "urls": 10000,
+      "status": 200,
+      "result": "received"
+    },
+    {
+      "offset": 450000,
+      "urls": 10000,
+      "status": 200,
+      "result": "received"
+    },
+    {
+      "offset": 460000,
+      "urls": 3955,
+      "status": 200,
+      "result": "received"
+    }
+  ],
+  "indexed": "not confirmed",
+  "google": {
+    "submitted": false,
+    "reason": "Search Console property not connected"
+  }
+}

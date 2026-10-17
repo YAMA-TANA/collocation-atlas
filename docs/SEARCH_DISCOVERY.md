@@ -32,6 +32,15 @@ Rendering resources under `/data/` are crawlable; their HTTP `X-Robots-Tag: noin
 
 References: [Google JavaScript SEO](https://developers.google.com/search/docs/crawling-indexing/javascript/javascript-seo-basics), [Google sitemaps](https://developers.google.com/search/docs/crawling-indexing/sitemaps/overview), [IndexNow protocol](https://www.indexnow.org/documentation).
 
+## Complete-corpus publication — 2026-10-17
+
+- Source implementation: `7f99c48`; production deployment: `https://07cab9ac.collocation-atlas.pages.dev`; preview: `https://4458854d.collocation-atlas.pages.dev`.
+- `reports/site/all_word_page_audit.json`: all **463,025 raw corpus keys** rendered and compared with the original lexicon/reverse data, including **3,624,764 numeric rows**. Missing words, duplicate words and unsupported relations: **0**. All canonical URL round trips and all directory membership checks passed. There are 6,138 build files including control files, well within Pages' asset limit.
+- `reports/site/all_word_production_http.json`: all **927 directory pages**, homepage/directory/guide, and **529 deterministic word-route samples** checked over public HTTP (**1,459 HTML responses**). The complete deployed vocabulary matched the source vocabulary, every one of **4,096 data shards** matched SHA256, all **11 sitemap files** matched exactly, and 404 / redirect / HEAD handling passed. This HTTP sample is separate from the exhaustive local word audit; it is not claimed that 463,025 individual public requests were made.
+- All **360 Vitest checks** passed, including rare reverse-only records, compounds, single-letter records, punctuation/slash-safe URLs, Unicode/BOM preservation, cache invalidation and sparse evidence. [GitHub CI](https://github.com/YAMA-TANA/collocation-atlas/actions/runs/38987092128) independently downloaded the pinned releases, built the whole catalogue and passed the exhaustive audit.
+- `reports/site/all_word_search_submission.json`: all **463,955 public URLs** sent in **47 IndexNow batches**, each returning **HTTP 200**. Receipt timestamp: `2026-10-17T00:40:50.813Z`. This confirms submission receipt, not search-result indexing. Google Search Console remains unconnected; no Google-specific submission or indexing is claimed.
+- Browser accessibility navigation confirmed the formerly excluded `all-seeing` page and the production catalogue showing all 463,025 records. The catalogue tab is retained as the deliverable.
+
 ## Initial 129-word deployment — historical verification
 
 - Cloudflare deployment: `https://163b57ab.collocation-atlas.pages.dev` (production alias above; final language-count copy clarification).
