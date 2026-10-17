@@ -1,103 +1,135 @@
-// A small, reviewable corpus extract keeps static builds independent of the
-// large optional interactive data download. Re-export after a corpus release.
+// Export every indexed word, including reverse-only and single-document records.
+// 4,096 small shards let Pages serve 186k+ HTML routes within asset/CPU limits.
 import { createHash } from "node:crypto";
-import { readFile, writeFile } from "node:fs/promises";
+import { readFile, writeFile, mkdir } from "node:fs/promises";
 import { fileURLToPath } from "node:url";
 import path from "node:path";
-
+import { PAGE_SIZE, RELATIONS, validateData } from "./search-pages.mjs";
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
+const base = path.join(root, "public/data");
 const read = async (name) =>
-  JSON.parse(await readFile(path.join(root, "public/data", name), "utf8"));
-const summary = await read("summary.json");
-const verbs =
-  `lessen reduce decrease lower diminish cut increase raise boost enhance improve cause trigger induce affect influence impact solve resolve address tackle obtain acquire gain get make create produce generate prevent avoid avert allow permit enable show indicate demonstrate reveal suggest ease relieve alleviate begin start change develop provide take give have do achieve reach meet keep hold offer bring build establish maintain support explain describe consider expect believe learn understand`.split(
-    " ",
-  );
-const adjectives =
-  `high low strong heavy big large serious real powerful great small good bad important significant major minor possible likely beautiful tall fast quick rapid slow deep wide broad close clear common normal available different difficult easy happy`.split(
-    " ",
-  );
-const nouns =
-  `risk impact burden pain price emission temperature problem decision rain mistake possibility coffee influence effect time opportunity evidence information knowledge experience success research development`.split(
-    " ",
-  );
-const groups = [
-  [
-    verbs,
-    [
-      ["dobj", false],
-      ["nsubj", false],
-      ["verb_adv", false],
-    ],
-  ],
-  [
-    adjectives,
-    [
-      ["amod", false],
-      ["adj_adv", false],
-    ],
-  ],
-  [
-    nouns,
-    [
-      ["amod", true],
-      ["dobj", true],
-      ["compound", false],
-    ],
-  ],
-];
-const cache = new Map();
-async function lexeme(word, reverse) {
-  const shard = createHash("sha256").update(word).digest("hex").slice(0, 2);
-  const file = `${reverse ? "reverse" : "lexicon"}/${shard}.json`;
-  if (!cache.has(file)) cache.set(file, await read(file));
-  return cache.get(file)[word] ?? {};
+  JSON.parse(await readFile(path.join(base, name), "utf8"));
+const [summary, index] = await Promise.all([
+  read("summary.json"),
+  read("index.json"),
+]);
+const words = index
+  .map(([word]) => word)
+  .sort((a, b) => a.localeCompare(b, "en") || (a < b ? -1 : a > b ? 1 : 0));
+if (new Set(words).size !== words.length)
+  throw Error("Duplicate words in corpus index");
+const indexed = new Set(words),
+  positions = new Map(words.map((word, i) => [word, i]));
+const groups = new Map();
+for (const word of words) {
+  const hash = createHash("sha256").update(word).digest("hex");
+  const prefix = hash.slice(0, 2);
+  if (!groups.has(prefix)) groups.set(prefix, []);
+  groups.get(prefix).push([word, hash.slice(0, 3)]);
 }
-const entries = [];
-const seen = new Set();
-for (const [words, relations] of groups) {
-  for (const word of words) {
-    if (seen.has(word)) continue;
-    seen.add(word);
+const corpus = {
+  snapshot: summary.snapshot,
+  words: summary.words,
+  documents: summary.documents,
+  pairs: summary.pair_count,
+  sources: summary.sources,
+  earliestYear: summary.earliest_year,
+  latestYear: summary.latest_year,
+};
+const output = path.join(base, "search");
+await mkdir(path.join(output, "entries"), { recursive: true });
+const manifests = [],
+  contentHash = createHash("sha256");
+let entryCount = 0,
+  rowCount = 0,
+  sparseWords = 0,
+  reverseOnly = 0;
+for (const [prefix, group] of [...groups].sort(([a], [b]) =>
+  a.localeCompare(b),
+)) {
+  const [forward, reverse] = await Promise.all([
+    read(`lexicon/${prefix}.json`),
+    read(`reverse/${prefix}.json`),
+  ]);
+  const shards = new Map();
+  const entries = [];
+  for (const [word, key] of group) {
     const tables = [];
-    for (const [relation, reverse] of relations) {
-      const data = (await lexeme(word, reverse))[relation];
-      if (!data) continue;
-      const rows = data[1]
-        .filter(([, count, docs]) => count >= 3 && docs >= 2)
-        .slice(0, 12);
-      if (rows.length)
-        tables.push({
-          relation,
-          direction: reverse ? "reverse" : "forward",
-          total: data[0],
-          rows,
-        });
-    }
-    if (!tables.length) throw Error(`No publishable corpus data: ${word}`);
-    entries.push({ word, tables });
+    for (const relation of RELATIONS)
+      for (const [direction, lexicon] of [
+        ["forward", forward],
+        ["reverse", reverse],
+      ]) {
+        const item = Object.hasOwn(lexicon, word)
+          ? lexicon[word][relation]
+          : null;
+        if (!item?.[1]?.length) continue;
+        const rows = item[1]
+          .slice(0, 12)
+          .map(([partner, count, docs, marginal]) => [
+            partner,
+            count,
+            docs,
+            marginal,
+            indexed.has(partner),
+          ]);
+        tables.push({ relation, direction, total: item[0], rows });
+        rowCount += rows.length;
+      }
+    const entry = {
+      word,
+      directoryPage: Math.floor(positions.get(word) / PAGE_SIZE) + 1,
+      tables,
+    };
+    entries.push(entry);
+    if (!Object.hasOwn(forward, word)) reverseOnly++;
+    if (tables.every((t) => t.rows.every((r) => r[1] < 3 || r[2] < 2)))
+      sparseWords++;
+    if (!shards.has(key)) shards.set(key, Object.create(null));
+    shards.get(key)[word] = entry;
   }
+  validateData({ version: 1, updated: "2026-10-17", corpus, entries });
+  for (const [key, shard] of [...shards].sort(([a], [b]) =>
+    a.localeCompare(b),
+  )) {
+    const bytes = JSON.stringify(shard) + "\n";
+    contentHash.update(bytes);
+    await writeFile(path.join(output, `entries/${key}.json`), bytes);
+    manifests.push({
+      key,
+      entries: Object.keys(shard).length,
+      bytes: Buffer.byteLength(bytes),
+      sha256: createHash("sha256").update(bytes).digest("hex"),
+    });
+  }
+  entryCount += entries.length;
 }
-entries.sort((a, b) => a.word.localeCompare(b.word, "en"));
-const result = {
-  version: 1,
-  // Page revision date; snapshot below is the corpus aggregation date, not usage year.
+if (entryCount !== words.length)
+  throw Error("Search export did not cover the entire index");
+const manifest = {
+  version: 2,
   updated: "2026-10-17",
-  corpus: {
-    snapshot: summary.snapshot,
-    words: summary.words,
-    documents: summary.documents,
-    pairs: summary.pair_count,
-    sources: summary.sources,
-    earliestYear: summary.earliest_year,
-    latestYear: summary.latest_year,
-  },
-  entries,
+  corpus,
+  wordCount: entryCount,
+  pageSize: PAGE_SIZE,
+  directoryPages: Math.ceil(entryCount / PAGE_SIZE),
+  rows: rowCount,
+  sparseWords,
+  reverseOnly,
+  contentHash: contentHash.digest("hex"),
+  shards: manifests,
 };
 await writeFile(
-  path.join(root, "scripts/search-data.json"),
-  JSON.stringify(result) + "\n",
+  path.join(output, "manifest.json"),
+  JSON.stringify(manifest) + "\n",
 );
 console.log(
-  `Exported ${entries.length} dictionary entries from ${summary.snapshot}.`,
+  JSON.stringify({
+    exported: entryCount,
+    shards: manifests.length,
+    rows: rowCount,
+    sparseWords,
+    reverseOnly,
+    largestShard: Math.max(...manifests.map((s) => s.bytes)),
+  }),
 );

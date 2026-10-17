@@ -8,7 +8,24 @@ export const escapeHtml = (value) =>
       ],
   );
 const n = (value) => value.toLocaleString("ja-JP");
-const wordUrl = (word) => `/words/${encodeURIComponent(word)}/`;
+export const wordUrl = (word) => `/words/${encodeURIComponent(word)}/`;
+export const PAGE_SIZE = 500;
+export const SITEMAP_SIZE = 45000;
+export const RELATIONS = [
+  "dobj",
+  "amod",
+  "compound",
+  "nsubj",
+  "passive_patient",
+  "verb_adv",
+  "adj_adv",
+  "verb_prep",
+  "adj_prep",
+  "noun_prep",
+];
+export const validWord = (word) =>
+  typeof word === "string" && /^\p{L}+$/u.test(word) && word.length <= 120;
+const allWords = (data) => data.words ?? data.entries.map((e) => e.word);
 const appUrl = (word, compare = false) =>
   `/?q=${encodeURIComponent(word)}&amp;lang=ja${compare ? "&amp;view=compare" : ""}`;
 export function validateData(data) {
@@ -23,7 +40,7 @@ export function validateData(data) {
   const words = new Set();
   for (const entry of data.entries) {
     if (
-      !/^[a-z]+$/.test(entry.word) ||
+      !validWord(entry.word) ||
       words.has(entry.word) ||
       !entry.tables?.length
     )
@@ -31,9 +48,7 @@ export function validateData(data) {
     words.add(entry.word);
     for (const table of entry.tables) {
       if (
-        !["dobj", "nsubj", "verb_adv", "amod", "adj_adv", "compound"].includes(
-          table.relation,
-        ) ||
+        !RELATIONS.includes(table.relation) ||
         !["forward", "reverse"].includes(table.direction) ||
         !Number.isSafeInteger(table.total) ||
         !table.rows?.length
@@ -44,7 +59,7 @@ export function validateData(data) {
           typeof word !== "string" ||
           !word ||
           ![count, docs, marginal].every(Number.isSafeInteger) ||
-          docs < 2 ||
+          docs < 1 ||
           count < docs ||
           count > table.total ||
           count > marginal
@@ -78,6 +93,17 @@ const relationLabels = {
   "verb_adv:forward": "この動詞を修飾する副詞",
   "adj_adv:forward": "この形容詞を修飾する副詞",
   "compound:forward": "この名詞と複合語を作る名詞",
+  "compound:reverse": "この語を修飾要素として含む複合名詞",
+  "verb_adv:reverse": "この副詞が修飾する動詞",
+  "adj_adv:reverse": "この副詞が修飾する形容詞",
+  "passive_patient:forward": "この動詞の受動文で対象になる語",
+  "passive_patient:reverse": "この語が受動文の対象になる動詞",
+  "verb_prep:forward": "この動詞に付く前置詞",
+  "verb_prep:reverse": "この前置詞を伴う動詞",
+  "adj_prep:forward": "この形容詞に付く前置詞",
+  "adj_prep:reverse": "この前置詞を伴う形容詞",
+  "noun_prep:forward": "この名詞に付く前置詞",
+  "noun_prep:reverse": "この前置詞を伴う名詞",
 };
 function combination(word, partner, table) {
   const [head, dependent] =
@@ -93,8 +119,9 @@ export function renderWord(entry, data) {
     .map(([partner]) => partner)
     .join("、");
   const description = `${word} と一緒に使われる英単語（${examples}など）を、約1億語の英語コーパスで確認。出現数・文書数・100万語あたりの頻度を掲載。類語比較と用例の検索へ進めます。`;
-  const available = new Set(data.entries.map((e) => e.word));
-  const body = `<nav class="breadcrumbs" aria-label="パンくず"><a href="/">ホーム</a> / <a href="/words/">英単語一覧</a> / ${escapeHtml(word)}</nav><p class="eyebrow">ENGLISH COLLOCATIONS</p><h1><span lang="en">${escapeHtml(word)}</span><small>のコロケーション</small></h1><p class="intro">どの単語と組み合わされるか。実際の英語データから、出現頻度と広がりを確かめよう。</p><div class="actions"><a class="primary" href="${appUrl(word)}">${escapeHtml(word)} を詳しく調べる →</a><a href="${appUrl(word, true)}">類語を選んで比較する →</a></div><p class="meta">${n(data.corpus.words)}語 · ${n(data.corpus.documents)}文書 · 集計 ${data.corpus.snapshot}</p>${tables.map((table) => `<section><h2>${relationLabels[`${table.relation}:${table.direction}`]}</h2><p class="table-note">矢印は構文上の結び付きを表します。出現数3回以上・2文書以上の組み合わせから、頻度上位${table.rows.length}件を表示。</p><div class="table-wrap"><table><caption>${escapeHtml(word)} — ${relationLabels[`${table.relation}:${table.direction}`]}</caption><thead><tr><th scope="col">組み合わせ（基本形）</th><th scope="col">出現数</th><th scope="col">文書数</th><th scope="col">100万語あたり</th></tr></thead><tbody>${table.rows.map(([partner, count, docs]) => `<tr><th scope="row"><span lang="en">${escapeHtml(combination(word, partner, table))}</span>${available.has(partner) ? ` <a class="partner" href="${wordUrl(partner)}">${escapeHtml(partner)} の項目</a>` : ""}</th><td>${n(count)}</td><td>${n(docs)}</td><td>${((count / data.corpus.words) * 1e6).toFixed(3)}</td></tr>`).join("")}</tbody></table></div></section>`).join("")}<section><h2>${escapeHtml(word)} と類語の違いを調べる</h2><p>同じ日本語訳でも、一緒に使う単語が同じとは限りません。検索画面で意味を選ぶと、WordNet・Wiktionary に記載された類語を、その意味ごとに比較できます。比較表では実際の頻度、文書数、選好スコアを確認できます。語義別のコーパス頻度を確定したものではありません。</p><a href="${appUrl(word, true)}">${escapeHtml(word)} の比較画面へ →</a></section>${limitation(data.corpus)}${searchForm()}<p><a href="/words/">ほかの英単語を探す →</a></p>`;
+  const available =
+    data.available ?? new Set((data.entries ?? []).map((e) => e.word));
+  const body = `<nav class="breadcrumbs" aria-label="パンくず"><a href="/">ホーム</a> / <a href="/words/">英単語一覧</a> / ${escapeHtml(word)}</nav><p class="eyebrow">ENGLISH COLLOCATIONS</p><h1><span lang="en">${escapeHtml(word)}</span><small>のコロケーション</small></h1><p class="intro">どの単語と組み合わされるか。実際の英語データから、出現頻度と広がりを確かめよう。</p><div class="actions"><a class="primary" href="${appUrl(word)}">${escapeHtml(word)} を詳しく調べる →</a><a href="${appUrl(word, true)}">類語を選んで比較する →</a></div><p class="meta">${n(data.corpus.words)}語 · ${n(data.corpus.documents)}文書 · 集計 ${data.corpus.snapshot}</p>${tables.map((table) => `<section><h2>${relationLabels[`${table.relation}:${table.direction}`]}</h2><p class="table-note">矢印は構文上の結び付きを表します。頻度上位${table.rows.length}件を表示。1回・1文書だけの記録も含みます。少数の記録では自然さを判断できません。</p><div class="table-wrap"><table><caption>${escapeHtml(word)} — ${relationLabels[`${table.relation}:${table.direction}`]}</caption><thead><tr><th scope="col">組み合わせ（基本形）</th><th scope="col">出現数</th><th scope="col">文書数</th><th scope="col">100万語あたり</th></tr></thead><tbody>${table.rows.map(([partner, count, docs, , indexed]) => `<tr><th scope="row"><span lang="en">${escapeHtml(combination(word, partner, table))}</span>${(indexed ?? available.has(partner)) ? ` <a class="partner" href="${wordUrl(partner)}">${escapeHtml(partner)} の項目</a>` : ""}</th><td>${n(count)}</td><td>${n(docs)}</td><td>${((count / data.corpus.words) * 1e6).toFixed(3)}</td></tr>`).join("")}</tbody></table></div></section>`).join("")}<section><h2>${escapeHtml(word)} と類語の違いを調べる</h2><p>同じ日本語訳でも、一緒に使う単語が同じとは限りません。類語辞典に収録がある語は、検索画面で意味を選ぶと、WordNet・Wiktionary に記載された類語を、その意味ごとに比較できます。比較表では実際の頻度、文書数、選好スコアを確認できます。語義別のコーパス頻度を確定したものではありません。</p><a href="${appUrl(word, true)}">${escapeHtml(word)} の比較画面へ →</a></section>${limitation(data.corpus)}${searchForm()}<p><a href="${entry.directoryPage ? `/words/_list/${entry.directoryPage}/` : `/words/`}">一覧でこの語の前後を見る →</a> · <a href="/words/">ほかの英単語を探す →</a></p>`;
   return document(title, description, wordUrl(word), body, [
     {
       "@context": "https://schema.org",
@@ -122,24 +149,30 @@ export function renderWord(entry, data) {
     },
   ]);
 }
-export function renderDirectory(data) {
-  const letters = [...new Set(data.entries.map((e) => e.word[0]))];
+export function renderDirectory(data, page = 0) {
+  const words = allWords(data);
+  const pages = Math.ceil(words.length / PAGE_SIZE);
+  if (!Number.isInteger(page) || page < 0 || page > pages)
+    throw Error("Invalid directory page");
+  const selected = page
+    ? words.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE)
+    : [];
+  const suffix = page ? ` — ${page} / ${pages} ページ` : "";
+  const ranges = Array.from({ length: pages }, (_, i) => ({
+    number: i + 1,
+    first: words[i * PAGE_SIZE],
+    last: words[Math.min((i + 1) * PAGE_SIZE, words.length) - 1],
+  }));
+  const navigation = page
+    ? `<nav class="letters" aria-label="一覧のページ送り">${page > 1 ? `<a rel="prev" href="/words/_list/${page - 1}/">← 前の500語</a>` : ""}<a href="/words/">一覧トップ</a>${page < pages ? `<a rel="next" href="/words/_list/${page + 1}/">次の500語 →</a>` : ""}</nav>`
+    : "";
   return document(
-    "英単語から探す｜コロケーション辞典 COLLOCA",
-    "英語コロケーション辞典の単語一覧。lessen、reduce、high、strong などの組み合わせを、コーパスの出現数・文書数から調べられます。",
-    "/words/",
-    `<p class="eyebrow">BROWSE THE DICTIONARY</p><h1>英単語から探す。</h1><p class="intro">まずは ${data.entries.length} 語の読みやすいデータページから。検索画面では、約18万語を対象に調べられます。</p>${searchForm()}<nav class="letters" aria-label="頭文字から探す">${letters.map((letter) => `<a href="#letter-${letter}">${letter.toUpperCase()}</a>`).join("")}</nav>${letters
-      .map(
-        (letter) =>
-          `<section id="letter-${letter}"><h2>${letter.toUpperCase()}</h2><ul class="word-grid">${data.entries
-            .filter((e) => e.word.startsWith(letter))
-            .map(
-              (e) =>
-                `<li><a href="${wordUrl(e.word)}" lang="en">${e.word}<span aria-hidden="true">↗</span></a></li>`,
-            )
-            .join("")}</ul></section>`,
-      )
-      .join("")}`,
+    `英単語から探す${suffix}｜コロケーション辞典 COLLOCA`,
+    page
+      ? `${selected[0]} から ${selected.at(-1)} までのコロケーション。全${n(words.length)}語の辞典を500語ずつ掲載。各語の頻度・文書数を確認できます。`
+      : `収録全${n(words.length)}語の英語コロケーション辞典。どの語にも個別ページがあり、出現数・文書数から組み合わせを調べられます。`,
+    page ? `/words/_list/${page}/` : "/words/",
+    `<p class="eyebrow">BROWSE THE COMPLETE DICTIONARY</p><h1>英単語から探す。${page ? `<small>${escapeHtml(selected[0])} — ${escapeHtml(selected.at(-1))}</small>` : ""}</h1><p class="intro">収録全 ${n(words.length)} 語の個別ページ。出現数と文書数を、どの語でも確認できます。</p><p class="table-note">収録語には固有名詞・表記揺れ・解析由来の語も含まれます。低頻度語の記録も省略していません。</p>${searchForm()}${navigation}${page ? `<p>${n((page - 1) * PAGE_SIZE + 1)}–${n(Math.min(page * PAGE_SIZE, words.length))} 語目 / ${n(words.length)}語 · ${page} / ${pages}ページ</p><ul class="word-grid">${selected.map((word) => `<li><a href="${wordUrl(word)}" lang="en">${escapeHtml(word)}<span aria-hidden="true">↗</span></a></li>`).join("")}</ul>${navigation}` : `<section><h2>アルファベット順の一覧</h2><p>各ページ500語ずつ。範囲を選ぶと、その中のすべての語へ進めます。</p><ul class="word-grid">${ranges.map((r) => `<li><a href="/words/_list/${r.number}/"><span>${escapeHtml(r.first)} — ${escapeHtml(r.last)}</span><span>${r.number}</span></a></li>`).join("")}</ul></section>`}`,
   );
 }
 export function renderGuide(data) {
@@ -153,12 +186,32 @@ export function renderGuide(data) {
 export function renderLanding(data) {
   return `<main class="reference-main"><p class="eyebrow">COLLOCA · ENGLISH COLLOCATION DICTIONARY</p><h1>英語コロケーション辞典</h1><p class="intro">単語は知っている。その組み合わせは？ 約1億語の実データで、英単語の組み合わせと類語の違いを調べよう。</p>${searchForm()}<p>${n(data.corpus.words)}語・${n(data.corpus.documents)}文書。頻度と文書数を確認し、日本語を含む8言語で英語を調べられます。</p><nav aria-label="辞典の案内"><a href="/words/">英単語から探す →</a> · <a href="/guide/">使い方・出典 →</a></nav><section><h2>よく比較する英単語</h2><ul class="word-grid">${["lessen", "reduce", "lower", "high", "strong", "heavy", "make", "do", "solve", "resolve", "increase", "raise"].map((word) => `<li><a href="${wordUrl(word)}">${word}</a></li>`).join("")}</ul></section><p>データを読み込むと、検索・比較画面が開きます。JavaScript を使用しない場合も、<a href="/words/">単語ページ</a>でコーパスの頻度を読めます。</p></main>`;
 }
-export function sitemap(data) {
-  const paths = [
+export function sitemapPaths(data) {
+  const words = allWords(data);
+  return [
     "/",
     "/words/",
     "/guide/",
-    ...data.entries.map((e) => wordUrl(e.word)),
+    ...Array.from(
+      { length: Math.ceil(words.length / PAGE_SIZE) },
+      (_, i) => `/words/_list/${i + 1}/`,
+    ),
+    ...words.map(wordUrl),
   ];
-  return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${paths.map((p) => `<url><loc>${ORIGIN}${p}</loc><lastmod>${data.updated}</lastmod></url>`).join("\n")}</urlset>\n`;
+}
+export function urlset(paths, updated) {
+  return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${paths.map((p) => `<url><loc>${ORIGIN}${p}</loc><lastmod>${updated}</lastmod></url>`).join("\n")}</urlset>\n`;
+}
+export function sitemapFiles(data) {
+  const paths = sitemapPaths(data),
+    files = new Map();
+  for (let i = 0; i < paths.length; i += SITEMAP_SIZE)
+    files.set(
+      `sitemaps/words-${files.size + 1}.xml`,
+      urlset(paths.slice(i, i + SITEMAP_SIZE), data.updated),
+    );
+  return files;
+}
+export function sitemap(data) {
+  return `<?xml version="1.0" encoding="UTF-8"?>\n<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${[...sitemapFiles(data).keys()].map((name) => `<sitemap><loc>${ORIGIN}/${name}</loc><lastmod>${data.updated}</lastmod></sitemap>`).join("\n")}</sitemapindex>\n`;
 }

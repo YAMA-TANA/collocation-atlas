@@ -201,6 +201,8 @@
   gap: 10px;
 }
 .word-grid a {
+  min-width: 0;
+  overflow-wrap: anywhere;
   display: flex;
   justify-content: space-between;
   gap: 12px;

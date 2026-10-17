@@ -1,21 +1,30 @@
 import { readFile, writeFile, mkdir } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { createHash } from "node:crypto";
+import { build } from "esbuild";
 import {
-  validateData,
   renderDirectory,
   renderGuide,
   renderLanding,
-  renderWord,
   sitemap,
+  sitemapFiles,
+  PAGE_SIZE,
   structuredData,
   ORIGIN,
 } from "./search-pages.mjs";
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
-const data = JSON.parse(
-  await readFile(path.join(root, "scripts/search-data.json"), "utf8"),
+const manifest = JSON.parse(
+  await readFile(path.join(root, "public/data/search/manifest.json"), "utf8"),
 );
-validateData(data);
+const words = JSON.parse(
+  await readFile(path.join(root, "public/data/index.json"), "utf8"),
+)
+  .map(([word]) => word)
+  .sort((a, b) => a.localeCompare(b, "en") || (a < b ? -1 : a > b ? 1 : 0));
+if (words.length !== manifest.wordCount || manifest.pageSize !== PAGE_SIZE)
+  throw Error("Incomplete all-word search export");
+const data = { ...manifest, words };
 async function save(name, contents) {
   const dest = path.join(root, "dist", name);
   await mkdir(path.dirname(dest), { recursive: true });
@@ -23,9 +32,43 @@ async function save(name, contents) {
 }
 await save("words/index.html", renderDirectory(data));
 await save("guide/index.html", renderGuide(data));
-for (const entry of data.entries)
-  await save(`words/${entry.word}/index.html`, renderWord(entry, data));
+for (let page = 1; page <= manifest.directoryPages; page++)
+  await save(`words/_list/${page}/index.html`, renderDirectory(data, page));
+for (const [name, xml] of sitemapFiles(data)) await save(name, xml);
 await save("sitemap.xml", sitemap(data));
+const metadata = {
+  version: 2,
+  updated: manifest.updated,
+  corpus: manifest.corpus,
+  wordCount: manifest.wordCount,
+};
+const hash = createHash("sha256")
+  .update(manifest.contentHash)
+  .update(JSON.stringify(metadata));
+for (const source of [
+  "scripts/search-pages.mjs",
+  "server/word-handler.mjs",
+  "server/worker.mjs",
+])
+  hash.update(await readFile(path.join(root, source)));
+metadata.cacheVersion = hash.digest("hex").slice(0, 20);
+await build({
+  entryPoints: [path.join(root, "server/worker.mjs")],
+  outfile: path.join(root, "dist/_worker.js"),
+  bundle: true,
+  format: "esm",
+  platform: "browser",
+  target: "es2022",
+  define: { __SEARCH_META__: JSON.stringify(metadata) },
+});
+await save(
+  "_routes.json",
+  JSON.stringify({
+    version: 1,
+    include: ["/words/*"],
+    exclude: ["/words/", "/words/_list/*"],
+  }) + "\n",
+);
 const original = await readFile(path.join(root, "dist/index.html"), "utf8");
 if (!original.includes('<div id="root"></div>'))
   throw Error("Missing application mount point");
@@ -47,7 +90,7 @@ await save(
   '<!doctype html><html lang="ja"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>ページが見つかりません | COLLOCA</title><link rel="stylesheet" href="/search-pages.css"><main class="reference-main"><h1>ページが見つかりません。</h1><p>URLを確認するか、辞典で英単語を検索してください。</p><a href="/">検索画面へ</a> · <a href="/words/">英単語一覧へ</a></main></html>',
 );
 console.log(
-  `Generated ${data.entries.length + 3} searchable pages, sitemap, and 404.`,
+  `Published routes for all ${manifest.wordCount} words, ${manifest.directoryPages} directory pages, ${sitemapFiles(data).size} sitemap parts, and a real 404.`,
 );
 try {
   const key = (await readFile(path.join(root, ".indexnow-key"), "utf8")).trim();

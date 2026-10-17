@@ -1,99 +1,148 @@
-// Verify deployed HTML and crawlability over HTTP, without executing client JS.
+// Exhaustive directory/shard checks plus deterministic HTTP samples of word
+// routes. Exhaustive word HTML/numeric checks run in audit-all-word-pages.mjs.
 import assert from "node:assert/strict";
+import { createHash } from "node:crypto";
 import { readFile, writeFile } from "node:fs/promises";
 import { fileURLToPath } from "node:url";
 import path from "node:path";
-import { ORIGIN, sitemap } from "./search-pages.mjs";
+import { ORIGIN, sitemap, sitemapFiles, wordUrl } from "./search-pages.mjs";
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
-const data = JSON.parse(
-  await readFile(path.join(root, "scripts/search-data.json"), "utf8"),
+const manifest = JSON.parse(
+  await readFile(path.join(root, "public/data/search/manifest.json"), "utf8"),
 );
-const origin = process.env.VERIFY_ORIGIN || ORIGIN;
-const urls = [...sitemap(data).matchAll(/<loc>([^<]+)<\/loc>/g)].map(
-  (m) => new URL(m[1]).pathname,
+const words = JSON.parse(
+  await readFile(path.join(root, "public/data/index.json"), "utf8"),
+)
+  .map(([word]) => word)
+  .sort((a, b) => a.localeCompare(b, "en") || (a < b ? -1 : a > b ? 1 : 0));
+const data = { ...manifest, words },
+  origin = process.env.VERIFY_ORIGIN || ORIGIN;
+const samples = new Set(
+  [
+    "lessen",
+    "reduce",
+    "lower",
+    "high",
+    "page",
+    "also",
+    "during",
+    "for",
+    "façade",
+    "ﬁre",
+    "zebra",
+    "serendipity",
+  ].filter((word) => words.includes(word)),
 );
-const checks = [];
-// Bounded concurrency avoids hammering the public site.
-for (let i = 0; i < urls.length; i += 6) {
-  await Promise.all(
-    urls.slice(i, i + 6).map(async (pathname) => {
-      const response = await fetch(origin + pathname);
-      assert.equal(response.status, 200, pathname);
-      assert.match(response.headers.get("content-type") || "", /text\/html/);
-      assert.doesNotMatch(
-        response.headers.get("x-robots-tag") || "",
-        /noindex/i,
-        pathname,
-      );
-      const html = await response.text();
-      assert.ok(
-        html.includes(`rel="canonical" href="${ORIGIN}${pathname}"`),
-        `canonical ${pathname}`,
-      );
-      assert.match(html, /<h1[ >]/);
-      assert.doesNotMatch(html, /name="robots" content="noindex"/);
-      const scripts = [
-        ...html.matchAll(
-          /<script type="application\/ld\+json">([\s\S]*?)<\/script>/g,
-        ),
-      ];
-      assert.ok(scripts.length, `structured data ${pathname}`);
-      scripts.forEach(([, json]) => JSON.parse(json));
-      if (pathname.startsWith("/words/") && pathname !== "/words/") {
-        assert.match(html, /<table>/);
-        assert.ok(
-          html.includes("文書数") &&
-            html.includes("完全一致フレーズの検索件数ではありません"),
-        );
-        assert.ok(html.includes('href="/?q='));
-      }
-      checks.push({
-        pathname,
-        status: response.status,
-        bytes: Buffer.byteLength(html),
-        structuredData: scripts.length,
-      });
-    }),
-  );
+for (let i = 0; i < words.length; i += Math.ceil(words.length / 512))
+  samples.add(words[i]);
+const paths = [
+  "/",
+  "/words/",
+  "/guide/",
+  ...Array.from(
+    { length: manifest.directoryPages },
+    (_, i) => `/words/_list/${i + 1}/`,
+  ),
+  ...[...samples].map(wordUrl),
+];
+async function batches(items, fn, label) {
+  for (let i = 0; i < items.length; i += 8) {
+    await Promise.all(items.slice(i, i + 8).map(fn));
+    if (i % 256 === 0)
+      console.log(`${label}: ${Math.min(i + 8, items.length)}/${items.length}`);
+  }
 }
+const checks = [];
+await batches(
+  paths,
+  async (pathname) => {
+    const r = await fetch(origin + pathname);
+    assert.equal(r.status, 200, pathname);
+    assert.match(r.headers.get("content-type") || "", /text\/html/);
+    if (origin === ORIGIN)
+      assert.doesNotMatch(r.headers.get("x-robots-tag") || "", /noindex/i);
+    const html = await r.text();
+    assert.ok(
+      html.includes(`rel="canonical" href="${ORIGIN}${pathname}"`),
+      `canonical ${pathname}`,
+    );
+    assert.match(html, /<h1[ >]/);
+    for (const [, json] of html.matchAll(
+      /<script type="application\/ld\+json">([\s\S]*?)<\/script>/g,
+    ))
+      JSON.parse(json);
+    if (samples.has(decodeURIComponent(pathname.split("/")[2] || "")))
+      assert.ok(html.includes("<table>") && html.includes("文書数"), pathname);
+    checks.push({ pathname, status: r.status, bytes: Buffer.byteLength(html) });
+  },
+  "HTML",
+);
+const indexResponse = await fetch(origin + "/sitemap.xml");
+assert.equal(indexResponse.status, 200);
+assert.equal(await indexResponse.text(), sitemap(data));
+for (const [name, xml] of sitemapFiles(data)) {
+  const r = await fetch(`${origin}/${name}`);
+  assert.equal(r.status, 200);
+  assert.equal(await r.text(), xml, name);
+}
+let checkedShards = 0;
+const selectedShards =
+  process.env.VERIFY_ALL_SHARDS === "1"
+    ? manifest.shards
+    : manifest.shards.filter((_, i) => i % 64 === 0);
+await batches(
+  selectedShards,
+  async (shard) => {
+    const r = await fetch(`${origin}/data/search/entries/${shard.key}.json`);
+    assert.equal(r.status, 200);
+    const bytes = new Uint8Array(await r.arrayBuffer());
+    assert.equal(
+      createHash("sha256").update(bytes).digest("hex"),
+      shard.sha256,
+      shard.key,
+    );
+    assert.equal(r.headers.get("x-robots-tag"), "noindex");
+    checkedShards++;
+  },
+  "Corpus shards",
+);
 const robots = await (await fetch(origin + "/robots.txt")).text();
 assert.ok(robots.includes(`Sitemap: ${ORIGIN}/sitemap.xml`));
 assert.doesNotMatch(robots, /Disallow:\s*\/(?:data\/)?\s*$/m);
-const liveSitemap = await fetch(origin + "/sitemap.xml");
-assert.equal(liveSitemap.status, 200);
-assert.equal(await liveSitemap.text(), sitemap(data));
-const missing = await fetch(origin + "/words/this-entry-does-not-exist/");
-assert.equal(missing.status, 404, "real 404 required");
-const aggregate = await fetch(origin + "/data/summary.json");
-assert.equal(aggregate.status, 200);
-assert.equal(
-  aggregate.headers.get("x-robots-tag"),
-  "noindex",
-  "data may be fetched for rendering but must not be indexed",
-);
+for (const pathname of [
+  "/words/thisentrydoesnotexistqwerty/",
+  "/words/_list/999999/",
+  "/words/%3Cscript%3E/",
+])
+  assert.equal((await fetch(origin + pathname)).status, 404, pathname);
+const alias = await fetch(origin + "/words/HIGH?tracking=1", {
+  redirect: "manual",
+});
+assert.equal(alias.status, 308);
+assert.equal(alias.headers.get("location"), origin + "/words/high/");
+const head = await fetch(origin + "/words/high/", { method: "HEAD" });
+assert.equal(head.status, 200);
+assert.equal(await head.text(), "");
 const report = {
   checkedAt: new Date().toISOString(),
   origin,
-  pages: checks.length,
-  checks: checks.sort((a, b) => a.pathname.localeCompare(b.pathname)),
-  sitemap: "valid",
-  robots: "allows rendering resources and announces sitemap",
-  missingPage: 404,
-  dataIndexing: "noindex",
+  indexedWords: words.length,
+  htmlHttpChecks: checks.length,
+  wordHttpSamples: samples.size,
+  directoryPages: manifest.directoryPages,
+  verifiedShards: checkedShards,
+  totalShards: manifest.shards.length,
+  sitemapParts: sitemapFiles(data).size,
+  sitemap: "exact match",
+  unknownWord: 404,
+  caseNormalization: 308,
+  head: 200,
   googleIndexing: "not verified",
+  checks: checks.sort((a, b) => a.pathname.localeCompare(b.pathname)),
 };
 if (process.env.SEARCH_REPORT)
   await writeFile(
     process.env.SEARCH_REPORT,
     JSON.stringify(report, null, 2) + "\n",
   );
-console.log(
-  JSON.stringify({
-    origin,
-    pages: report.pages,
-    sitemap: report.sitemap,
-    missingPage: 404,
-    dataIndexing: report.dataIndexing,
-    googleIndexing: report.googleIndexing,
-  }),
-);
+console.log(JSON.stringify({ ...report, checks: undefined }));

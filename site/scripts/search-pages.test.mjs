@@ -7,6 +7,12 @@ import {
   renderGuide,
   renderLanding,
   sitemap,
+  sitemapFiles,
+  sitemapPaths,
+  PAGE_SIZE,
+  SITEMAP_SIZE,
+  RELATIONS,
+  wordUrl,
   structuredData,
   ORIGIN,
 } from "./search-pages.mjs";
@@ -37,10 +43,11 @@ describe("crawlable dictionary pages", () => {
     expect(html).not.toContain("noindex");
   });
   it("makes every generated entry discoverable without running JavaScript", () => {
-    const directory = renderDirectory(data);
-    const xml = sitemap(data);
-    const urls = [...xml.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1]);
-    expect(new Set(urls).size).toBe(data.entries.length + 3);
+    const directory = renderDirectory(data, 1);
+    const urls = [...sitemapFiles(data).values()].flatMap((xml) =>
+      [...xml.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1]),
+    );
+    expect(new Set(urls).size).toBe(data.entries.length + 4);
     for (const { word } of data.entries) {
       expect(directory).toContain(`href="/words/${word}/"`);
       expect(urls).toContain(`${ORIGIN}/words/${word}/`);
@@ -52,6 +59,8 @@ describe("crawlable dictionary pages", () => {
     expect(
       urls.every((url) => !url.includes("?") && !url.includes("/data/")),
     ).toBe(true);
+    expect(sitemap(data)).toContain("<sitemapindex");
+    expect(renderDirectory(data)).toContain('href="/words/_list/1/"');
   });
   it("escapes corpus tokens and keeps JSON-LD inert", () => {
     const entry = structuredClone(data.entries[0]);
@@ -68,5 +77,52 @@ describe("crawlable dictionary pages", () => {
         script.replace(/^<script[^>]*>/, "").replace(/<\/script>$/, ""),
       ).text,
     ).toContain("</script>");
+  });
+  it("paginates the complete vocabulary and splits sitemap files under protocol limits", () => {
+    const large = {
+      ...data,
+      words: Array.from({ length: 100001 }, (_, i) => `word${i}`),
+    };
+    const paths = sitemapPaths(large),
+      files = sitemapFiles(large);
+    expect(files.size).toBe(3);
+    const found = [];
+    for (const xml of files.values()) {
+      const urls = [...xml.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1]);
+      expect(urls.length).toBeLessThanOrEqual(SITEMAP_SIZE);
+      expect(Buffer.byteLength(xml)).toBeLessThan(50 * 1024 * 1024);
+      found.push(...urls);
+    }
+    expect(new Set(found).size).toBe(paths.length);
+    const second = renderDirectory(large, 2);
+    expect(second).toContain(wordUrl(large.words[PAGE_SIZE]));
+    expect(second).not.toContain(wordUrl(large.words[0]));
+    expect(second).toContain('rel="prev"');
+    expect(second).toContain('rel="next"');
+    const last = renderDirectory(
+      large,
+      Math.ceil(large.words.length / PAGE_SIZE),
+    );
+    expect(last).toContain(wordUrl(large.words.at(-1)));
+    expect(last).not.toContain('rel="next"');
+  });
+  it("keeps rare observations and supports all relation directions and Unicode words", () => {
+    const entry = {
+      word: "façade",
+      tables: RELATIONS.flatMap((relation) =>
+        ["forward", "reverse"].map((direction) => ({
+          relation,
+          direction,
+          total: 1,
+          rows: [["café", 1, 1, 1, true]],
+        })),
+      ),
+    };
+    expect(() => validateData({ ...data, entries: [entry] })).not.toThrow();
+    const html = renderWord(entry, { corpus: data.corpus });
+    expect(html).not.toContain("undefined");
+    expect(html).toContain('href="/words/caf%C3%A9/"');
+    expect(html).toContain("1回・1文書だけの記録も含みます");
+    expect(html.match(/<table>/g)).toHaveLength(RELATIONS.length * 2);
   });
 });

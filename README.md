@@ -17,6 +17,8 @@ is English; arbitrary machine translation is not claimed.
 ## What is included
 
 - Search every observed pair, from either the governor or the collocate.
+- All 186,643 indexed words have individual HTML pages, linked from the complete
+  paginated directory and included in split sitemaps.
 - Verb–object, adjective–noun, subject–verb, compounds, adverbs, and prepositions.
 - Lemma aggregation, original document frequency, logDice, and normalized
   preference within an explicitly displayed comparison set.
