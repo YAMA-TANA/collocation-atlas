@@ -5,16 +5,20 @@ import { createHash } from "node:crypto";
 import { readFile, writeFile } from "node:fs/promises";
 import { fileURLToPath } from "node:url";
 import path from "node:path";
-import { ORIGIN, sitemap, sitemapFiles, wordUrl } from "./search-pages.mjs";
+import {
+  ORIGIN,
+  sitemap,
+  sitemapFiles,
+  wordUrl,
+  decodeWordSlug,
+} from "./search-pages.mjs";
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const manifest = JSON.parse(
   await readFile(path.join(root, "public/data/search/manifest.json"), "utf8"),
 );
 const words = JSON.parse(
-  await readFile(path.join(root, "public/data/index.json"), "utf8"),
-)
-  .map(([word]) => word)
-  .sort((a, b) => a.localeCompare(b, "en") || (a < b ? -1 : a > b ? 1 : 0));
+  await readFile(path.join(root, "public/data/search/words.json"), "utf8"),
+);
 const data = { ...manifest, words },
   origin = process.env.VERIFY_ORIGIN || ORIGIN;
 const samples = new Set(
@@ -31,6 +35,11 @@ const samples = new Set(
     "ﬁre",
     "zebra",
     "serendipity",
+    "a",
+    "all-seeing",
+    "d'azur",
+    ".",
+    "\ufeff",
   ].filter((word) => words.includes(word)),
 );
 for (let i = 0; i < words.length; i += Math.ceil(words.length / 512))
@@ -45,11 +54,13 @@ const paths = [
   ),
   ...[...samples].map(wordUrl),
 ];
-async function batches(items, fn, label) {
-  for (let i = 0; i < items.length; i += 8) {
-    await Promise.all(items.slice(i, i + 8).map(fn));
+async function batches(items, fn, label, parallel = 8) {
+  for (let i = 0; i < items.length; i += parallel) {
+    await Promise.all(items.slice(i, i + parallel).map(fn));
     if (i % 256 === 0)
-      console.log(`${label}: ${Math.min(i + 8, items.length)}/${items.length}`);
+      console.log(
+        `${label}: ${Math.min(i + parallel, items.length)}/${items.length}`,
+      );
   }
 }
 const checks = [];
@@ -71,13 +82,20 @@ await batches(
       /<script type="application\/ld\+json">([\s\S]*?)<\/script>/g,
     ))
       JSON.parse(json);
-    if (samples.has(decodeURIComponent(pathname.split("/")[2] || "")))
+    if (samples.has(decodeWordSlug(pathname.split("/")[2] || "")))
       assert.ok(html.includes("<table>") && html.includes("文書数"), pathname);
     checks.push({ pathname, status: r.status, bytes: Buffer.byteLength(html) });
   },
   "HTML",
 );
 const indexResponse = await fetch(origin + "/sitemap.xml");
+const catalogueResponse = await fetch(origin + "/data/search/words.json");
+assert.equal(catalogueResponse.status, 200);
+assert.deepEqual(
+  await catalogueResponse.json(),
+  words,
+  "Complete published corpus vocabulary",
+);
 assert.equal(indexResponse.status, 200);
 assert.equal(await indexResponse.text(), sitemap(data));
 for (const [name, xml] of sitemapFiles(data)) {
@@ -105,6 +123,7 @@ await batches(
     checkedShards++;
   },
   "Corpus shards",
+  16,
 );
 const robots = await (await fetch(origin + "/robots.txt")).text();
 assert.ok(robots.includes(`Sitemap: ${ORIGIN}/sitemap.xml`));
@@ -126,7 +145,8 @@ assert.equal(await head.text(), "");
 const report = {
   checkedAt: new Date().toISOString(),
   origin,
-  indexedWords: words.length,
+  corpusEntries: words.length,
+  autocompleteWords: manifest.autocompleteWords,
   htmlHttpChecks: checks.length,
   wordHttpSamples: samples.size,
   directoryPages: manifest.directoryPages,

@@ -1,7 +1,7 @@
-// Export every indexed word, including reverse-only and single-document records.
-// 4,096 small shards let Pages serve 186k+ HTML routes within asset/CPU limits.
+// Export the union of every raw corpus key, not just filtered autocomplete words.
+// 4,096 small shards let Pages serve all corpus HTML routes within asset limits.
 import { createHash } from "node:crypto";
-import { readFile, writeFile, mkdir } from "node:fs/promises";
+import { readFile, writeFile, mkdir, readdir } from "node:fs/promises";
 import { fileURLToPath } from "node:url";
 import path from "node:path";
 import { PAGE_SIZE, RELATIONS, validateData } from "./search-pages.mjs";
@@ -13,9 +13,15 @@ const [summary, index] = await Promise.all([
   read("summary.json"),
   read("index.json"),
 ]);
-const words = index
-  .map(([word]) => word)
-  .sort((a, b) => a.localeCompare(b, "en") || (a < b ? -1 : a > b ? 1 : 0));
+const vocabulary = new Set();
+for (const direction of ["lexicon", "reverse"])
+  for (const name of await readdir(path.join(base, direction))) {
+    for (const word of Object.keys(await read(`${direction}/${name}`)))
+      vocabulary.add(word);
+  }
+const words = [...vocabulary].sort(
+  (a, b) => a.localeCompare(b, "en") || (a < b ? -1 : a > b ? 1 : 0),
+);
 if (new Set(words).size !== words.length)
   throw Error("Duplicate words in corpus index");
 const indexed = new Set(words),
@@ -38,6 +44,7 @@ const corpus = {
 };
 const output = path.join(base, "search");
 await mkdir(path.join(output, "entries"), { recursive: true });
+await writeFile(path.join(output, "words.json"), JSON.stringify(words) + "\n");
 const manifests = [],
   contentHash = createHash("sha256");
 let entryCount = 0,
@@ -107,10 +114,12 @@ for (const [prefix, group] of [...groups].sort(([a], [b]) =>
 if (entryCount !== words.length)
   throw Error("Search export did not cover the entire index");
 const manifest = {
-  version: 2,
+  version: 3,
   updated: "2026-10-17",
   corpus,
   wordCount: entryCount,
+  autocompleteWords: index.length,
+  alphabeticWords: words.filter((w) => /^\p{L}+$/u.test(w)).length,
   pageSize: PAGE_SIZE,
   directoryPages: Math.ceil(entryCount / PAGE_SIZE),
   rows: rowCount,

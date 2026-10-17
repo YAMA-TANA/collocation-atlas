@@ -9,6 +9,7 @@ import {
   renderWord,
   validateData,
   wordUrl,
+  decodeWordSlug,
   sitemapPaths,
   sitemapFiles,
   PAGE_SIZE,
@@ -18,13 +19,20 @@ import {
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const read = async (name) =>
   JSON.parse(await readFile(path.join(root, "public/data", name), "utf8"));
-const [manifest, index] = await Promise.all([
+const [manifest, words] = await Promise.all([
   read("search/manifest.json"),
-  read("index.json"),
+  read("search/words.json"),
 ]);
-const words = index
-  .map(([w]) => w)
-  .sort((a, b) => a.localeCompare(b, "en") || (a < b ? -1 : a > b ? 1 : 0));
+const rawWords = new Set();
+for (const direction of ["lexicon", "reverse"])
+  for (const name of await readdir(path.join(root, "public/data", direction)))
+    for (const word of Object.keys(await read(`${direction}/${name}`)))
+      rawWords.add(word);
+assert.deepEqual(
+  new Set(words),
+  rawWords,
+  "Must cover every raw corpus key, including hapaxes, compounds and parser spellings",
+);
 const expected = new Set(words),
   observed = new Set(),
   positions = new Map(words.map((w, i) => [w, i]));
@@ -61,6 +69,11 @@ for (const shardInfo of manifest.shards) {
     entries,
   });
   for (const entry of entries) {
+    assert.equal(decodeWordSlug(wordUrl(entry.word).split("/")[2]), entry.word);
+    assert.equal(
+      new URL(ORIGIN + wordUrl(entry.word)).pathname,
+      wordUrl(entry.word),
+    );
     assert.ok(
       expected.has(entry.word) && !observed.has(entry.word),
       entry.word,
@@ -132,7 +145,7 @@ for (let page = 1; page <= manifest.directoryPages; page++) {
   );
   const links = [
     ...html.matchAll(/<li><a href="\/words\/([^/]+)\/" lang="en">/g),
-  ].map((m) => decodeURIComponent(m[1]));
+  ].map((m) => decodeWordSlug(m[1]));
   assert.deepEqual(
     links,
     words.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE),
@@ -163,7 +176,8 @@ const assets = await fileCount(path.join(root, "dist"));
 assert.ok(assets < 20000, "Pages free-plan asset limit");
 const report = {
   checkedAt: new Date().toISOString(),
-  indexedWords: expected.size,
+  corpusEntries: expected.size,
+  autocompleteWords: manifest.autocompleteWords,
   renderedWords: rendered,
   comparedSourceRows: rows,
   logicalHtmlBytes: htmlBytes,

@@ -41,14 +41,14 @@ npm run deploy
 
 Cloudflare Pages project: `collocation-atlas`. Production branch: `main`.
 Wrangler uses the operator's authenticated account; no credentials are committed.
-Interactive searching runs in the browser; every one of the 186,643 indexed
-words also has a server-rendered `/words/{word}/` page. Searching does not send
+Interactive searching runs in the browser; every one of the 463,025 corpus
+spellings also has a server-rendered `/words/{word}/` page. Searching does not send
 the query to an LLM or analytics service. Saved words and language preferences
 stay in the browser.
 
-`npm run build` requires the downloaded corpus assets and exports every indexed
-word into 4,096 small aggregate shards. A Pages advanced-mode Worker renders
-word HTML directly from those shards. The 374 directory pages, five sitemap
+`npm run build` requires the downloaded corpus assets and exports every corpus
+spelling into 4,096 small aggregate shards. A Pages advanced-mode Worker renders
+word HTML directly from those shards. The 927 directory pages, 11 sitemap
 parts, guide, and homepage are static. No extra database or paid storage is
 provisioned. See [search discovery](../docs/SEARCH_DISCOVERY.md).
 

@@ -13,6 +13,7 @@ import {
   SITEMAP_SIZE,
   RELATIONS,
   wordUrl,
+  decodeWordSlug,
   structuredData,
   ORIGIN,
 } from "./search-pages.mjs";
@@ -20,6 +21,28 @@ const data = JSON.parse(
   readFileSync(new URL("./search-data.json", import.meta.url), "utf8"),
 );
 describe("crawlable dictionary pages", () => {
+  it("round-trips every corpus spelling without path traversal or URL collisions", () => {
+    const words = [
+      "a",
+      "all-seeing",
+      "d'azur",
+      ".",
+      "..",
+      "/",
+      "a/b",
+      "a?b#c",
+      "a%2F",
+      "\ufeff",
+      "façade",
+      "~Lg",
+    ];
+    const paths = words.map(wordUrl);
+    expect(new Set(paths).size).toBe(words.length);
+    words.forEach((word, i) => {
+      expect(new URL(ORIGIN + paths[i]).pathname).toBe(paths[i]);
+      expect(decodeWordSlug(paths[i].split("/")[2])).toBe(word);
+    });
+  });
   it("publishes supported corpus data with internally consistent counts", () => {
     expect(() => validateData(data)).not.toThrow();
     expect(data.corpus.sources.reduce((sum, s) => sum + s.words, 0)).toBe(

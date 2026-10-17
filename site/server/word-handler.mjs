@@ -1,6 +1,7 @@
 import {
   renderWord,
   wordUrl,
+  decodeWordSlug,
   validWord,
   ORIGIN,
 } from "../scripts/search-pages.mjs";
@@ -46,7 +47,7 @@ export function createWordHandler(metadata) {
         });
       let word;
       try {
-        word = decodeURIComponent(match[1]).toLowerCase();
+        word = decodeWordSlug(match[1]).toLowerCase();
       } catch {
         return errorPage(400);
       }

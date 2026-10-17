@@ -50,6 +50,25 @@ function mockAssets(entries = [sample, rare]) {
 }
 afterEach(() => vi.unstubAllGlobals());
 describe("complete-vocabulary server HTML", () => {
+  it("serves compound, single-letter, punctuation and slash-containing corpus keys", async () => {
+    for (const word of [
+      "a",
+      "all-seeing",
+      "d'azur",
+      ".",
+      "/",
+      "x/y",
+      "\ufeff",
+    ]) {
+      const env = mockAssets([{ ...sample, word }]);
+      const response = await createWordHandler(metadata).fetch(
+        new Request(ORIGIN + wordUrl(word)),
+        env,
+      );
+      expect(response.status).toBe(200);
+      expect(await response.text()).toContain("<table>");
+    }
+  });
   it("does not reserve an indexed word such as page for directory pagination", async () => {
     const env = mockAssets([{ ...sample, word: "page" }]);
     const response = await createWordHandler(metadata).fetch(

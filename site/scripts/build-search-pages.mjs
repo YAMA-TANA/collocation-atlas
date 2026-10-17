@@ -18,10 +18,8 @@ const manifest = JSON.parse(
   await readFile(path.join(root, "public/data/search/manifest.json"), "utf8"),
 );
 const words = JSON.parse(
-  await readFile(path.join(root, "public/data/index.json"), "utf8"),
-)
-  .map(([word]) => word)
-  .sort((a, b) => a.localeCompare(b, "en") || (a < b ? -1 : a > b ? 1 : 0));
+  await readFile(path.join(root, "public/data/search/words.json"), "utf8"),
+);
 if (words.length !== manifest.wordCount || manifest.pageSize !== PAGE_SIZE)
   throw Error("Incomplete all-word search export");
 const data = { ...manifest, words };

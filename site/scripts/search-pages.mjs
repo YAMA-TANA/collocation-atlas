@@ -8,7 +8,30 @@ export const escapeHtml = (value) =>
       ],
   );
 const n = (value) => value.toLocaleString("ja-JP");
-export const wordUrl = (word) => `/words/${encodeURIComponent(word)}/`;
+export const displayWord = (word) =>
+  word.trim()
+    ? word
+    : `[${[...word].map((c) => "U+" + c.codePointAt(0).toString(16).toUpperCase().padStart(4, "0")).join(" ")}]`;
+export function wordUrl(word) {
+  const slug = /^[-\p{L}\p{N}]+(?:['’][-\p{L}\p{N}]+)*$/u.test(word)
+    ? encodeURIComponent(word)
+    : "~" +
+      btoa(String.fromCharCode(...new TextEncoder().encode(word)))
+        .replace(/\+/g, "-")
+        .replace(/\//g, "_")
+        .replace(/=+$/, "");
+  return `/words/${slug}/`;
+}
+export function decodeWordSlug(slug) {
+  if (!slug.startsWith("~")) return decodeURIComponent(slug);
+  const encoded = slug.slice(1);
+  if (!/^[A-Za-z0-9_-]+$/.test(encoded)) throw Error("Invalid word slug");
+  return new TextDecoder("utf-8", { fatal: true, ignoreBOM: true }).decode(
+    Uint8Array.from(atob(encoded.replace(/-/g, "+").replace(/_/g, "/")), (c) =>
+      c.charCodeAt(0),
+    ),
+  );
+}
 export const PAGE_SIZE = 500;
 export const SITEMAP_SIZE = 45000;
 export const RELATIONS = [
@@ -24,7 +47,10 @@ export const RELATIONS = [
   "noun_prep",
 ];
 export const validWord = (word) =>
-  typeof word === "string" && /^\p{L}+$/u.test(word) && word.length <= 120;
+  typeof word === "string" &&
+  word.length > 0 &&
+  word.length <= 120 &&
+  !/[\u0000-\u001f\u007f]/u.test(word);
 const allWords = (data) => data.words ?? data.entries.map((e) => e.word);
 const appUrl = (word, compare = false) =>
   `/?q=${encodeURIComponent(word)}&amp;lang=ja${compare ? "&amp;view=compare" : ""}`;
@@ -113,7 +139,7 @@ function combination(word, partner, table) {
 }
 export function renderWord(entry, data) {
   const { word, tables } = entry;
-  const title = `${word} のコロケーション・組み合わせ・類語比較 | COLLOCA`;
+  const title = `${displayWord(word)} のコロケーション・組み合わせ・類語比較 | COLLOCA`;
   const examples = tables[0].rows
     .slice(0, 4)
     .map(([partner]) => partner)
@@ -121,7 +147,7 @@ export function renderWord(entry, data) {
   const description = `${word} と一緒に使われる英単語（${examples}など）を、約1億語の英語コーパスで確認。出現数・文書数・100万語あたりの頻度を掲載。類語比較と用例の検索へ進めます。`;
   const available =
     data.available ?? new Set((data.entries ?? []).map((e) => e.word));
-  const body = `<nav class="breadcrumbs" aria-label="パンくず"><a href="/">ホーム</a> / <a href="/words/">英単語一覧</a> / ${escapeHtml(word)}</nav><p class="eyebrow">ENGLISH COLLOCATIONS</p><h1><span lang="en">${escapeHtml(word)}</span><small>のコロケーション</small></h1><p class="intro">どの単語と組み合わされるか。実際の英語データから、出現頻度と広がりを確かめよう。</p><div class="actions"><a class="primary" href="${appUrl(word)}">${escapeHtml(word)} を詳しく調べる →</a><a href="${appUrl(word, true)}">類語を選んで比較する →</a></div><p class="meta">${n(data.corpus.words)}語 · ${n(data.corpus.documents)}文書 · 集計 ${data.corpus.snapshot}</p>${tables.map((table) => `<section><h2>${relationLabels[`${table.relation}:${table.direction}`]}</h2><p class="table-note">矢印は構文上の結び付きを表します。頻度上位${table.rows.length}件を表示。1回・1文書だけの記録も含みます。少数の記録では自然さを判断できません。</p><div class="table-wrap"><table><caption>${escapeHtml(word)} — ${relationLabels[`${table.relation}:${table.direction}`]}</caption><thead><tr><th scope="col">組み合わせ（基本形）</th><th scope="col">出現数</th><th scope="col">文書数</th><th scope="col">100万語あたり</th></tr></thead><tbody>${table.rows.map(([partner, count, docs, , indexed]) => `<tr><th scope="row"><span lang="en">${escapeHtml(combination(word, partner, table))}</span>${(indexed ?? available.has(partner)) ? ` <a class="partner" href="${wordUrl(partner)}">${escapeHtml(partner)} の項目</a>` : ""}</th><td>${n(count)}</td><td>${n(docs)}</td><td>${((count / data.corpus.words) * 1e6).toFixed(3)}</td></tr>`).join("")}</tbody></table></div></section>`).join("")}<section><h2>${escapeHtml(word)} と類語の違いを調べる</h2><p>同じ日本語訳でも、一緒に使う単語が同じとは限りません。類語辞典に収録がある語は、検索画面で意味を選ぶと、WordNet・Wiktionary に記載された類語を、その意味ごとに比較できます。比較表では実際の頻度、文書数、選好スコアを確認できます。語義別のコーパス頻度を確定したものではありません。</p><a href="${appUrl(word, true)}">${escapeHtml(word)} の比較画面へ →</a></section>${limitation(data.corpus)}${searchForm()}<p><a href="${entry.directoryPage ? `/words/_list/${entry.directoryPage}/` : `/words/`}">一覧でこの語の前後を見る →</a> · <a href="/words/">ほかの英単語を探す →</a></p>`;
+  const body = `<nav class="breadcrumbs" aria-label="パンくず"><a href="/">ホーム</a> / <a href="/words/">英単語一覧</a> / ${escapeHtml(displayWord(word))}</nav><p class="eyebrow">ENGLISH COLLOCATIONS</p><h1><span lang="en">${escapeHtml(displayWord(word))}</span><small>のコロケーション</small></h1><p class="intro">どの単語と組み合わされるか。実際の英語データから、出現頻度と広がりを確かめよう。</p><div class="actions"><a class="primary" href="${appUrl(word)}">${escapeHtml(displayWord(word))} を詳しく調べる →</a><a href="${appUrl(word, true)}">類語を選んで比較する →</a></div><p class="meta">${n(data.corpus.words)}語 · ${n(data.corpus.documents)}文書 · 集計 ${data.corpus.snapshot}</p>${tables.map((table) => `<section><h2>${relationLabels[`${table.relation}:${table.direction}`]}</h2><p class="table-note">矢印は構文上の結び付きを表します。頻度上位${table.rows.length}件を表示。1回・1文書だけの記録も含みます。少数の記録では自然さを判断できません。</p><div class="table-wrap"><table><caption>${escapeHtml(displayWord(word))} — ${relationLabels[`${table.relation}:${table.direction}`]}</caption><thead><tr><th scope="col">組み合わせ（基本形）</th><th scope="col">出現数</th><th scope="col">文書数</th><th scope="col">100万語あたり</th></tr></thead><tbody>${table.rows.map(([partner, count, docs, , indexed]) => `<tr><th scope="row"><span lang="en">${escapeHtml(combination(word, partner, table))}</span>${(indexed ?? available.has(partner)) ? ` <a class="partner" href="${wordUrl(partner)}">${escapeHtml(displayWord(partner))} の項目</a>` : ""}</th><td>${n(count)}</td><td>${n(docs)}</td><td>${((count / data.corpus.words) * 1e6).toFixed(3)}</td></tr>`).join("")}</tbody></table></div></section>`).join("")}<section><h2>${escapeHtml(displayWord(word))} と類語の違いを調べる</h2><p>同じ日本語訳でも、一緒に使う単語が同じとは限りません。類語辞典に収録がある語は、検索画面で意味を選ぶと、WordNet・Wiktionary に記載された類語を、その意味ごとに比較できます。比較表では実際の頻度、文書数、選好スコアを確認できます。語義別のコーパス頻度を確定したものではありません。</p><a href="${appUrl(word, true)}">${escapeHtml(displayWord(word))} の比較画面へ →</a></section>${limitation(data.corpus)}${searchForm()}<p><a href="${entry.directoryPage ? `/words/_list/${entry.directoryPage}/` : `/words/`}">一覧でこの語の前後を見る →</a> · <a href="/words/">ほかの英単語を探す →</a></p>`;
   return document(title, description, wordUrl(word), body, [
     {
       "@context": "https://schema.org",
@@ -170,9 +196,9 @@ export function renderDirectory(data, page = 0) {
     `英単語から探す${suffix}｜コロケーション辞典 COLLOCA`,
     page
       ? `${selected[0]} から ${selected.at(-1)} までのコロケーション。全${n(words.length)}語の辞典を500語ずつ掲載。各語の頻度・文書数を確認できます。`
-      : `収録全${n(words.length)}語の英語コロケーション辞典。どの語にも個別ページがあり、出現数・文書数から組み合わせを調べられます。`,
+      : `収録データ全${n(words.length)}項目の英語コロケーション辞典。どの語にも個別ページがあり、出現数・文書数から組み合わせを調べられます。`,
     page ? `/words/_list/${page}/` : "/words/",
-    `<p class="eyebrow">BROWSE THE COMPLETE DICTIONARY</p><h1>英単語から探す。${page ? `<small>${escapeHtml(selected[0])} — ${escapeHtml(selected.at(-1))}</small>` : ""}</h1><p class="intro">収録全 ${n(words.length)} 語の個別ページ。出現数と文書数を、どの語でも確認できます。</p><p class="table-note">収録語には固有名詞・表記揺れ・解析由来の語も含まれます。低頻度語の記録も省略していません。</p>${searchForm()}${navigation}${page ? `<p>${n((page - 1) * PAGE_SIZE + 1)}–${n(Math.min(page * PAGE_SIZE, words.length))} 語目 / ${n(words.length)}語 · ${page} / ${pages}ページ</p><ul class="word-grid">${selected.map((word) => `<li><a href="${wordUrl(word)}" lang="en">${escapeHtml(word)}<span aria-hidden="true">↗</span></a></li>`).join("")}</ul>${navigation}` : `<section><h2>アルファベット順の一覧</h2><p>各ページ500語ずつ。範囲を選ぶと、その中のすべての語へ進めます。</p><ul class="word-grid">${ranges.map((r) => `<li><a href="/words/_list/${r.number}/"><span>${escapeHtml(r.first)} — ${escapeHtml(r.last)}</span><span>${r.number}</span></a></li>`).join("")}</ul></section>`}`,
+    `<p class="eyebrow">BROWSE THE COMPLETE DICTIONARY</p><h1>英単語から探す。${page ? `<small>${escapeHtml(displayWord(selected[0]))} — ${escapeHtml(displayWord(selected.at(-1)))}</small>` : ""}</h1><p class="intro">収録データ全 ${n(words.length)} 項目の個別ページ。出現数と文書数を、どの語でも確認できます。</p><p class="table-note">収録語には固有名詞・表記揺れ・解析由来の語も含まれます。低頻度語・複合語・記号を含む表記も省略していません。原文の切り分けや解析由来の断片が含まれる場合があります。</p>${searchForm()}${navigation}${page ? `<p>${n((page - 1) * PAGE_SIZE + 1)}–${n(Math.min(page * PAGE_SIZE, words.length))} 語目 / ${n(words.length)}語 · ${page} / ${pages}ページ</p><ul class="word-grid">${selected.map((word) => `<li><a href="${wordUrl(word)}" lang="en">${escapeHtml(displayWord(word))}<span aria-hidden="true">↗</span></a></li>`).join("")}</ul>${navigation}` : `<section><h2>アルファベット順の一覧</h2><p>各ページ500語ずつ。範囲を選ぶと、その中のすべての語へ進めます。</p><ul class="word-grid">${ranges.map((r) => `<li><a href="/words/_list/${r.number}/"><span>${escapeHtml(displayWord(r.first))} — ${escapeHtml(displayWord(r.last))}</span><span>${r.number}</span></a></li>`).join("")}</ul></section>`}`,
   );
 }
 export function renderGuide(data) {

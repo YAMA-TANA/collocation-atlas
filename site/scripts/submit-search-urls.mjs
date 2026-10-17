@@ -13,10 +13,8 @@ const manifest = JSON.parse(
   await readFile(path.join(root, "public/data/search/manifest.json"), "utf8"),
 );
 const words = JSON.parse(
-  await readFile(path.join(root, "public/data/index.json"), "utf8"),
-)
-  .map(([word]) => word)
-  .sort((a, b) => a.localeCompare(b, "en") || (a < b ? -1 : a > b ? 1 : 0));
+  await readFile(path.join(root, "public/data/search/words.json"), "utf8"),
+);
 const data = { ...manifest, words };
 const key = (await readFile(path.join(root, ".indexnow-key"), "utf8")).trim();
 if (!/^[a-f0-9]{32}$/.test(key))
