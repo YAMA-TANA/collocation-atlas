@@ -151,7 +151,7 @@ export function renderGuide(data) {
   );
 }
 export function renderLanding(data) {
-  return `<main class="reference-main"><p class="eyebrow">COLLOCA · ENGLISH COLLOCATION DICTIONARY</p><h1>英語コロケーション辞典</h1><p class="intro">単語は知っている。その組み合わせは？ 約1億語の実データで、英単語の組み合わせと類語の違いを調べよう。</p>${searchForm()}<p>${n(data.corpus.words)}語・${n(data.corpus.documents)}文書。頻度と文書数を確認し、日本語ほか8言語で英語を調べられます。</p><nav aria-label="辞典の案内"><a href="/words/">英単語から探す →</a> · <a href="/guide/">使い方・出典 →</a></nav><section><h2>よく比較する英単語</h2><ul class="word-grid">${["lessen", "reduce", "lower", "high", "strong", "heavy", "make", "do", "solve", "resolve", "increase", "raise"].map((word) => `<li><a href="${wordUrl(word)}">${word}</a></li>`).join("")}</ul></section><p>データを読み込むと、検索・比較画面が開きます。JavaScript を使用しない場合も、<a href="/words/">単語ページ</a>でコーパスの頻度を読めます。</p></main>`;
+  return `<main class="reference-main"><p class="eyebrow">COLLOCA · ENGLISH COLLOCATION DICTIONARY</p><h1>英語コロケーション辞典</h1><p class="intro">単語は知っている。その組み合わせは？ 約1億語の実データで、英単語の組み合わせと類語の違いを調べよう。</p>${searchForm()}<p>${n(data.corpus.words)}語・${n(data.corpus.documents)}文書。頻度と文書数を確認し、日本語を含む8言語で英語を調べられます。</p><nav aria-label="辞典の案内"><a href="/words/">英単語から探す →</a> · <a href="/guide/">使い方・出典 →</a></nav><section><h2>よく比較する英単語</h2><ul class="word-grid">${["lessen", "reduce", "lower", "high", "strong", "heavy", "make", "do", "solve", "resolve", "increase", "raise"].map((word) => `<li><a href="${wordUrl(word)}">${word}</a></li>`).join("")}</ul></section><p>データを読み込むと、検索・比較画面が開きます。JavaScript を使用しない場合も、<a href="/words/">単語ページ</a>でコーパスの頻度を読めます。</p></main>`;
 }
 export function sitemap(data) {
   const paths = [

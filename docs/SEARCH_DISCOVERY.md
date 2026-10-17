@@ -22,7 +22,7 @@ References: [Google JavaScript SEO](https://developers.google.com/search/docs/cr
 
 ## Production verification — 2026-10-17
 
-- Cloudflare deployment: `https://3cc6a79d.collocation-atlas.pages.dev` (production alias above).
+- Cloudflare deployment: `https://163b57ab.collocation-atlas.pages.dev` (production alias above; final language-count copy clarification).
 - `reports/site/search_discovery_verification.json`: all 132 sitemap pages returned HTTP 200 with readable HTML, self-canonical URLs, parseable structured data, and no indexing prohibition. Unknown word URL returned 404; corpus JSON returned 200 with `noindex`. Sitemap contents matched the built corpus extract exactly.
 - Browser: `/words/high/` displayed actual corpus rows; its comparison link opened the existing interactive high/lofty/tall/elevated/exalted comparison. Browser screenshot/DOM automation was unavailable in this app session; native accessibility navigation was used to verify the flow.
 - All 350 Vitest checks passed, including static output evidence, internal discovery, canonical/sitemap consistency, and escaping.
